@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, BookOpen, Award, Settings, BarChart3, FileText } from "lucide-react"
+import { Users, BookOpen, Award, Settings, BarChart3, FileText, GraduationCap, UserCheck } from "lucide-react"
 
 export default function DashboardPage() {
   const dashboardSections = [
@@ -13,20 +13,52 @@ export default function DashboardPage() {
       count: "4 أعضاء",
     },
     {
-      title: "إدارة البرامج",
-      description: "إدارة البرامج التعليمية والأكاديمية",
-      icon: BookOpen,
-      href: "/dashboard/programs",
+      title: "إدارة هيئة التدريس",
+      description: "إضافة وتعديل وحذف أعضاء هيئة التدريس",
+      icon: GraduationCap,
+      href: "/dashboard/faculty-members",
       color: "bg-green-500",
-      count: "قريباً",
+      count: "6 أعضاء",
     },
     {
-      title: "إدارة هيئة التدريس",
-      description: "إدارة أعضاء هيئة التدريس والمدربين",
-      icon: Award,
-      href: "/dashboard/faculty",
+      title: "إدارة البرامج التعليمية",
+      description: "إدارة برامج الماجستير والدكتوراه والدبلومات",
+      icon: BookOpen,
+      href: "/dashboard/programs",
       color: "bg-purple-500",
-      count: "قريباً",
+      count: "12 برنامج",
+    },
+    {
+      title: "إدارة المدربين المعتمدين",
+      description: "إدارة المدربين المعتمدين والخبراء",
+      icon: Award,
+      href: "/dashboard/trainers",
+      color: "bg-orange-500",
+      count: "8 مدربين",
+    },
+    {
+      title: "إدارة الاعتمادات",
+      description: "مراجعة طلبات الاعتماد وإدارة المدربين المعتمدين",
+      icon: Award,
+      href: "/dashboard/accreditations",
+      color: "bg-indigo-500",
+      count: "جديد",
+    },
+    {
+      title: "إدارة الخريجين",
+      description: "إدارة بطاقات الخريجين وطلبات الانضمام لشبكة الخريجين",
+      icon: UserCheck,
+      href: "/dashboard/graduates",
+      color: "bg-teal-500",
+      count: "جديد",
+    },
+    {
+      title: "إدارة الشهادات",
+      description: "إدارة شهادات الأكاديمية ونظام التحقق من الشهادات",
+      icon: FileText,
+      href: "/dashboard/certificates",
+      color: "bg-academy-yellow",
+      count: "جديد",
     },
     {
       title: "الإحصائيات",
@@ -76,7 +108,15 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {dashboardSections.map((section, index) => {
             const Icon = section.icon
-            const isAvailable = section.href === "/dashboard/board-members"
+            const isAvailable = [
+              "/dashboard/board-members",
+              "/dashboard/faculty-members",
+              "/dashboard/programs",
+              "/dashboard/trainers",
+              "/dashboard/accreditations",
+              "/dashboard/graduates",
+              "/dashboard/certificates",
+            ].includes(section.href)
 
             return (
               <Card

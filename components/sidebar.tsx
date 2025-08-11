@@ -42,7 +42,9 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`hidden md:flex flex-col bg-academy-blue text-white transition-all duration-300 ease-in-out ${
+      className={`${
+        isExpanded ? "overflow-y-scroll" : "overflow"
+      } hidden z-50 h-screen md:flex flex-col bg-academy-blue text-white transition-all duration-300 ease-in-out ${
         isExpanded ? "w-64" : "w-16"
       } min-h-screen sticky top-0`}
       onMouseEnter={() => setIsExpanded(true)}

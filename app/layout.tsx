@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body className={`${inter.className} bg-academy-white`}>
-        <div className="flex min-h-screen flex-col">
+        <div className="flex">
           <Sidebar />
           <div className="flex-1 flex flex-col">
             <Header />
