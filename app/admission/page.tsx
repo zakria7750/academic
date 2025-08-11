@@ -215,9 +215,9 @@ export default function AdmissionPage() {
           {/* Master's Requirements */}
           <div className="mb-16">
             <Card className="border-0 shadow-lg bg-white">
-              <CardHeader className="bg-gradient-to-r from-academy-blue to-academy-blue/80 text-white rounded-t-lg">
+              <CardHeader className="bg-academy-blue text-white rounded-t-lg">
                 <CardTitle className="text-2xl font-bold flex items-center">
-                  <Award className="w-6 h-6 mr-3" />
+                  <Award className="w-6 h-6 mr-3 text-academy-gold" />
                   شروط الحصول على الماجستير المهني
                 </CardTitle>
               </CardHeader>
@@ -228,14 +228,14 @@ export default function AdmissionPage() {
                     return (
                       <div
                         key={index}
-                        className="flex items-start space-x-4 space-x-reverse p-4 rounded-lg hover:bg-academy-blue/5 transition-colors duration-300"
+                        className="flex items-start space-x-4 space-x-reverse p-6 rounded-lg bg-academy-gray/50 hover:bg-academy-blue/10 border border-academy-gray transition-all duration-300 hover:shadow-md"
                       >
-                        <div className="w-12 h-12 bg-academy-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-6 h-6 text-academy-blue" />
+                        <div className="w-12 h-12 bg-academy-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-6 h-6 text-academy-gold" />
                         </div>
                         <div>
-                          <h4 className="font-bold text-academy-blue mb-2">{req.title}</h4>
-                          <p className="text-academy-dark-gray text-sm leading-relaxed">{req.description}</p>
+                          <h4 className="font-bold text-academy-blue mb-3 text-lg">{req.title}</h4>
+                          <p className="text-academy-dark-gray leading-relaxed">{req.description}</p>
                         </div>
                       </div>
                     )
@@ -248,9 +248,9 @@ export default function AdmissionPage() {
           {/* Doctoral Requirements */}
           <div className="mb-16">
             <Card className="border-0 shadow-lg bg-white">
-              <CardHeader className="bg-gradient-to-r from-academy-blue/90 to-academy-blue/70 text-white rounded-t-lg">
+              <CardHeader className="bg-academy-blue text-white rounded-t-lg">
                 <CardTitle className="text-2xl font-bold flex items-center">
-                  <GraduationCap className="w-6 h-6 mr-3" />
+                  <GraduationCap className="w-6 h-6 mr-3 text-academy-gold" />
                   شروط الحصول على الدكتوراه المهنية
                 </CardTitle>
               </CardHeader>
@@ -261,14 +261,14 @@ export default function AdmissionPage() {
                     return (
                       <div
                         key={index}
-                        className="flex items-start space-x-4 space-x-reverse p-4 rounded-lg hover:bg-academy-blue/5 transition-colors duration-300"
+                        className="flex items-start space-x-4 space-x-reverse p-6 rounded-lg bg-academy-gray/50 hover:bg-academy-blue/10 border border-academy-gray transition-all duration-300 hover:shadow-md"
                       >
-                        <div className="w-12 h-12 bg-academy-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-6 h-6 text-academy-blue" />
+                        <div className="w-12 h-12 bg-academy-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-6 h-6 text-academy-gold" />
                         </div>
                         <div>
-                          <h4 className="font-bold text-academy-blue mb-2">{req.title}</h4>
-                          <p className="text-academy-dark-gray text-sm leading-relaxed">{req.description}</p>
+                          <h4 className="font-bold text-academy-blue mb-3 text-lg">{req.title}</h4>
+                          <p className="text-academy-dark-gray leading-relaxed">{req.description}</p>
                         </div>
                       </div>
                     )
@@ -281,9 +281,9 @@ export default function AdmissionPage() {
           {/* General Requirements */}
           <div>
             <Card className="border-0 shadow-lg bg-white">
-              <CardHeader className="bg-gradient-to-r from-academy-blue/80 to-academy-blue/60 text-white rounded-t-lg">
+              <CardHeader className="bg-academy-blue text-white rounded-t-lg">
                 <CardTitle className="text-2xl font-bold flex items-center">
-                  <BookOpen className="w-6 h-6 mr-3" />
+                  <BookOpen className="w-6 h-6 mr-3 text-academy-gold" />
                   الشروط العامة
                 </CardTitle>
               </CardHeader>
@@ -292,10 +292,10 @@ export default function AdmissionPage() {
                   {generalRequirements.map((req, index) => (
                     <div
                       key={index}
-                      className="flex items-center space-x-3 space-x-reverse p-4 rounded-lg hover:bg-academy-blue/5 transition-colors duration-300"
+                      className="flex items-center space-x-3 space-x-reverse p-4 rounded-lg bg-academy-gray/50 hover:bg-academy-blue/10 border border-academy-gray transition-all duration-300"
                     >
-                      <div className="w-2 h-2 bg-academy-gold rounded-full flex-shrink-0"></div>
-                      <p className="text-academy-dark-gray font-medium">{req}</p>
+                      <div className="w-3 h-3 bg-academy-gold rounded-full flex-shrink-0"></div>
+                      <p className="text-academy-blue font-medium text-lg">{req}</p>
                     </div>
                   ))}
                 </div>
