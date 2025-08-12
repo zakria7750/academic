@@ -157,7 +157,6 @@ const faqData: FAQItem[] = [
 
 export default function FAQPage() {
   const [openItems, setOpenItems] = useState<number[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<string>("جميع الفئات")
 
   const toggleItem = (id: number) => {
     setOpenItems(prev => 
@@ -166,12 +165,6 @@ export default function FAQPage() {
         : [...prev, id]
     )
   }
-
-  const categories = ["جميع الفئات", ...Array.from(new Set(faqData.map(item => item.category)))]
-  
-  const filteredFAQ = selectedCategory === "جميع الفئات" 
-    ? faqData 
-    : faqData.filter(item => item.category === selectedCategory)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-academy-gray via-white to-academy-primary-50">
@@ -208,36 +201,14 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="py-8 bg-white shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h3 className="text-lg font-semibold text-academy-blue mb-4 text-center">تصفح حسب الفئة</h3>
-                         <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-               {categories.map((category) => (
-                 <button
-                   key={category}
-                   onClick={() => setSelectedCategory(category)}
-                   className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
-                     selectedCategory === category
-                       ? "bg-academy-gold text-academy-blue shadow-lg scale-105"
-                       : "bg-academy-slate-100 text-academy-slate-600 hover:bg-academy-slate-200 hover:text-academy-blue"
-                   }`}
-                 >
-                   {category}
-                 </button>
-               ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* FAQ Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid gap-6">
-              {filteredFAQ.map((item) => {
+                         <div className="grid gap-6">
+               {faqData.map((item) => {
                 const IconComponent = item.icon
                 const isOpen = openItems.includes(item.id)
                 
@@ -280,10 +251,7 @@ export default function FAQPage() {
                                      <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-academy-primary-400 group-hover:text-academy-gold" />
                                    )}
                                  </div>
-                               </div>
-                              <span className="text-sm text-academy-gold font-medium mt-1 block">
-                                {item.category}
-                              </span>
+                                                               </div>
                             </div>
                           </div>
                         </div>
@@ -312,13 +280,7 @@ export default function FAQPage() {
               })}
             </div>
 
-            {filteredFAQ.length === 0 && (
-              <div className="text-center py-16">
-                <HelpCircle className="w-16 h-16 text-academy-slate-300 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-academy-slate-600 mb-2">لا توجد أسئلة في هذه الفئة</h3>
-                <p className="text-academy-slate-500">جرب اختيار فئة أخرى أو تصفح جميع الأسئلة</p>
-              </div>
-            )}
+            
           </div>
         </div>
       </section>
