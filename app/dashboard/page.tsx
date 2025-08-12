@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, BookOpen, Award, Settings, BarChart3, FileText, GraduationCap, UserCheck } from "lucide-react"
+import { Users, BookOpen, Award, Settings, BarChart3, FileText, GraduationCap, UserCheck, UserPlus } from "lucide-react"
 
 export default function DashboardPage() {
   const dashboardSections = [
@@ -27,6 +27,14 @@ export default function DashboardPage() {
       href: "/dashboard/programs",
       color: "bg-purple-500",
       count: "12 برنامج",
+    },
+    {
+      title: "إدارة القبول والتسجيل",
+      description: "مراجعة طلبات التسجيل وإدارة الطلاب المقبولين",
+      icon: UserPlus,
+      href: "/dashboard/admissions",
+      color: "bg-academy-blue",
+      count: "جديد",
     },
     {
       title: "إدارة المدربين المعتمدين",
@@ -112,6 +120,7 @@ export default function DashboardPage() {
               "/dashboard/board-members",
               "/dashboard/faculty-members",
               "/dashboard/programs",
+              "/dashboard/admissions",
               "/dashboard/trainers",
               "/dashboard/accreditations",
               "/dashboard/graduates",

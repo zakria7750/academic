@@ -1,6 +1,9 @@
 "use client"
 
+import type React from "react"
+
 import Link from "next/link"
+import { useState } from "react"
 import {
   Phone,
   Mail,
@@ -15,12 +18,44 @@ import {
   BookOpen,
   Users,
   ChevronUp,
+  Loader2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { subscribeToNewsletter } from "@/app/actions/news-actions"
+import { toast } from "sonner"
 
 export default function Footer() {
+  const [isSubscribing, setIsSubscribing] = useState(false)
+  const [email, setEmail] = useState("")
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email.trim()) {
+      toast.error("يرجى إدخال بريدك الإلكتروني")
+      return
+    }
+
+    setIsSubscribing(true)
+    const formData = new FormData()
+    formData.append("email", email)
+
+    try {
+      const result = await subscribeToNewsletter(formData)
+      if (result.success) {
+        toast.success(result.message)
+        setEmail("")
+      } else {
+        toast.error(result.message)
+      }
+    } catch (error) {
+      toast.error("حدث خطأ غير متوقع")
+    } finally {
+      setIsSubscribing(false)
+    }
   }
 
   return (
@@ -196,16 +231,30 @@ export default function Footer() {
           <div className="max-w-2xl mx-auto text-center">
             <h4 className="text-xl font-bold text-academy-gold mb-4">اشترك في نشرتنا الإخبارية</h4>
             <p className="text-gray-300 mb-6">احصل على آخر الأخبار والتحديثات حول البرامج والفعاليات</p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="أدخل بريدك الإلكتروني"
                 className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-academy-gold/30 text-white placeholder-gray-400 focus:outline-none focus:border-academy-gold focus:bg-white/20 transition-all duration-200"
+                disabled={isSubscribing}
               />
-              <Button className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold px-6 py-3 rounded-lg whitespace-nowrap">
-                اشتراك
+              <Button
+                type="submit"
+                disabled={isSubscribing}
+                className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold px-6 py-3 rounded-lg whitespace-nowrap disabled:opacity-50"
+              >
+                {isSubscribing ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                    جاري الاشتراك...
+                  </>
+                ) : (
+                  "اشتراك"
+                )}
               </Button>
-            </div>
+            </form>
           </div>
         </div>
 

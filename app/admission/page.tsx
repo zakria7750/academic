@@ -14,6 +14,7 @@ import {
   Target,
 } from "lucide-react"
 import Link from "next/link"
+import RegistrationForm from "@/components/registration-form"
 
 export default function AdmissionPage() {
   const applicationSteps = [
@@ -142,7 +143,7 @@ export default function AdmissionPage() {
               انضم إلى
               <span className="text-academy-gold"> أكاديمية المعرفة الدولية</span>
             </h1>
-            
+
             <p className="text-xl lg:text-2xl mb-8 text-academy-gold/90 font-medium leading-relaxed">
               ابدأ رحلتك التعليمية معنا واحصل على شهادة معتمدة في تخصصك المفضل
             </p>
@@ -301,6 +302,22 @@ export default function AdmissionPage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Registration Form Section */}
+      <section className="py-20 bg-academy-gray">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-academy-blue mb-4">نموذج التسجيل</h2>
+            <p className="text-xl text-academy-dark-gray max-w-3xl mx-auto">
+              املأ النموذج التالي للتقديم والانضمام إلى برامجنا التعليمية المتميزة
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <RegistrationForm />
           </div>
         </div>
       </section>
