@@ -53,8 +53,17 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
     if (result.success) {
       setMessage({ type: "success", text: "تم إضافة الخريج بنجاح" })
       setIsAddDialogOpen(false)
-      // Refresh data
-      window.location.reload()
+      const newGraduate: Graduate = {
+        id: result.id,
+        name: formData.get("name") as string,
+        specialization: formData.get("specialization") as string,
+        current_position: formData.get("current_position") as string,
+        success_story: formData.get("success_story") as string,
+        country: formData.get("country") as string,
+        graduation_year: Number.parseInt(formData.get("graduation_year") as string),
+        created_at: new Date().toISOString(),
+      }
+      setGraduates((prev) => [...prev, newGraduate])
     } else {
       setMessage({ type: "error", text: result.error || "حدث خطأ" })
     }
@@ -67,8 +76,17 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
     if (result.success) {
       setMessage({ type: "success", text: "تم تحديث الخريج بنجاح" })
       setEditingGraduate(null)
-      // Refresh data
-      window.location.reload()
+      const updatedGraduate: Graduate = {
+        id: editingGraduate.id,
+        name: formData.get("name") as string,
+        specialization: formData.get("specialization") as string,
+        current_position: formData.get("current_position") as string,
+        success_story: formData.get("success_story") as string,
+        country: formData.get("country") as string,
+        graduation_year: Number.parseInt(formData.get("graduation_year") as string),
+        created_at: editingGraduate.created_at,
+      }
+      setGraduates((prev) => prev.map((g) => (g.id === editingGraduate.id ? updatedGraduate : g)))
     } else {
       setMessage({ type: "error", text: result.error || "حدث خطأ" })
     }
@@ -88,18 +106,45 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
 
   async function handleProcessApplication(id: number, action: "approve" | "reject", adminMessage: string) {
     setProcessingApplication(id)
-    const result = await processGraduateApplication(id, action, adminMessage)
 
-    if (result.success) {
-      setMessage({
-        type: "success",
-        text: action === "approve" ? "تم قبول الطلب بنجاح" : "تم رفض الطلب",
-      })
-      // Refresh data
-      window.location.reload()
-    } else {
-      setMessage({ type: "error", text: result.error || "حدث خطأ" })
+    try {
+      const result = await processGraduateApplication(id, action, adminMessage)
+
+      if (result.success) {
+        setMessage({
+          type: "success",
+          text: action === "approve" ? "تم قبول الطلب بنجاح" : "تم رفض الطلب",
+        })
+
+        setApplications((prevApps) =>
+          prevApps.map((app) =>
+            app.id === id ? { ...app, status: action === "approve" ? "approved" : "rejected" } : app,
+          ),
+        )
+
+        if (action === "approve") {
+          const approvedApp = applications.find((app) => app.id === id)
+          if (approvedApp) {
+            const newGraduate: Graduate = {
+              id: Date.now(), // Temporary ID, will be replaced by server
+              name: approvedApp.name,
+              specialization: approvedApp.specialization,
+              current_position: approvedApp.current_position,
+              success_story: approvedApp.success_story,
+              country: approvedApp.country,
+              graduation_year: approvedApp.graduation_year,
+              created_at: new Date().toISOString(),
+            }
+            setGraduates((prev) => [...prev, newGraduate])
+          }
+        }
+      } else {
+        setMessage({ type: "error", text: result.error || "حدث خطأ" })
+      }
+    } catch (error) {
+      setMessage({ type: "error", text: "حدث خطأ في الاتصال" })
     }
+
     setProcessingApplication(null)
   }
 

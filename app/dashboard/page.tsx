@@ -1,6 +1,17 @@
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, BookOpen, Award, Settings, BarChart3, FileText, GraduationCap, UserCheck, UserPlus } from "lucide-react"
+import {
+  Users,
+  BookOpen,
+  Award,
+  Settings,
+  BarChart3,
+  FileText,
+  GraduationCap,
+  UserCheck,
+  UserPlus,
+  Newspaper,
+} from "lucide-react"
 
 export default function DashboardPage() {
   const dashboardSections = [
@@ -69,6 +80,14 @@ export default function DashboardPage() {
       count: "جديد",
     },
     {
+      title: "إدارة الأخبار",
+      description: "إدارة الأخبار والمقالات والاشتراكات في النشرة الإخبارية",
+      icon: Newspaper,
+      href: "/dashboard/news",
+      color: "bg-academy-gold",
+      count: "جديد",
+    },
+    {
       title: "الإحصائيات",
       description: "عرض إحصائيات الموقع والمستخدمين",
       icon: BarChart3,
@@ -125,6 +144,7 @@ export default function DashboardPage() {
               "/dashboard/accreditations",
               "/dashboard/graduates",
               "/dashboard/certificates",
+              "/dashboard/news", // إضافة صفحة الأخبار للصفحات المتاحة
             ].includes(section.href)
 
             return (
