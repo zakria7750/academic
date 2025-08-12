@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Menu, X, GraduationCap, Home, Info, Users, BookOpen, UserCheck, Award, Settings, FileText, CheckCircle, Handshake, Newspaper, MessageSquare } from "lucide-react"
+import { Menu, X, GraduationCap, Home, Info, Users, BookOpen, UserCheck, Award, Settings, FileText, CheckCircle, Handshake, Newspaper, MessageSquare, HelpCircle } from "lucide-react"
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -83,6 +83,7 @@ function MobileSidebarContent({ onClose }: { onClose: () => void }) {
     { name: "القبول والتسجيل", href: "/admission", icon: FileText },
     { name: "التحقق من الشهادات", href: "/verification", icon: CheckCircle },
     { name: "الاعتمادات والشراكات", href: "/accreditations", icon: Handshake },
+    { name: "الأسئلة الشائعة", href: "/faq", icon: HelpCircle },
     { name: "مجلة وعي", href: "/magazine", icon: Newspaper },
     { name: "المدونة والأخبار", href: "/blog", icon: MessageSquare },
   ]

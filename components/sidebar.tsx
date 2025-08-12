@@ -17,6 +17,7 @@ import {
   Newspaper,
   MessageSquare,
   ChevronRight,
+  HelpCircle,
 } from "lucide-react"
 
 const menuItems = [
@@ -32,6 +33,7 @@ const menuItems = [
   { name: "القبول والتسجيل", href: "/admission", icon: FileText },
   { name: "التحقق من الشهادات", href: "/verification", icon: CheckCircle },
   { name: "الاعتمادات والشراكات", href: "/accreditations", icon: Handshake },
+  { name: "الأسئلة الشائعة", href: "/faq", icon: HelpCircle },
   { name: "مجلة وعي", href: "/magazine", icon: Newspaper },
   { name: "المدونة والأخبار", href: "/blog", icon: MessageSquare },
 ]
