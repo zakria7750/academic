@@ -36,7 +36,7 @@ export async function subscribeToNewsletter(formData: FormData) {
 
     // إرسال رسالة ترحيب
     await resend.emails.send({
-      from: "أكاديمية المعرفة الدولية <noreply@knowledge-academy.edu>",
+      from: "onboarding@resend.dev",
       to: email,
       subject: "مرحباً بك في نشرتنا الإخبارية",
       html: `
@@ -153,7 +153,7 @@ export async function addNews(formData: FormData) {
       const emails = subscribers.map((sub) => sub.email)
 
       await resend.emails.send({
-        from: "أكاديمية المعرفة الدولية <noreply@knowledge-academy.edu>",
+        from: "onboarding@resend.dev",
         to: emails,
         subject: `خبر جديد: ${title}`,
         html: `

@@ -128,7 +128,7 @@ export default function RegistrationForm() {
                   required
                   rows={3}
                   className="border-academy-blue/30 focus:border-academy-gold focus:ring-academy-gold resize-none"
-                  placeholder="اذكر مؤهلك العلمي الحالي والجامعة التي تخرجت منها"
+                  placeholder="اذكر مؤهلك العلمي الحالي والجامعة التي ��خرجت منها"
                 />
               </div>
 
