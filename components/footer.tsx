@@ -19,6 +19,7 @@ import {
   Users,
   ChevronUp,
   Loader2,
+  HelpCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { subscribeToNewsletter } from "@/app/actions/news-actions"
@@ -114,6 +115,7 @@ export default function Footer() {
                 { name: "القبول والتسجيل", href: "/admission", icon: Award },
                 { name: "التحقق من الشهادات", href: "/verification", icon: Award },
                 { name: "الاعتمادات والشراكات", href: "/accreditations", icon: Globe },
+                { name: "الأسئلة الشائعة", href: "/faq", icon: HelpCircle },
                 { name: "مجلة وعي", href: "/magazine", icon: BookOpen },
               ].map((link) => {
                 const Icon = link.icon
