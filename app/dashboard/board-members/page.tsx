@@ -344,13 +344,13 @@ export default function BoardMembersManagement() {
                       {/* Background decorative elements */}
                       <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/20 to-academy-gold/20 rounded-full transform scale-110"></div>
                       
-                      {/* Main image container - matching trainers style */}
-                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg transform group-hover:scale-105 transition-all duration-300 ring-4 ring-academy-gold/50">
+                      {/* Main image container - no cropping */}
+                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg transform group-hover:scale-105 transition-all duration-300 ring-4 ring-academy-gold/50 bg-white">
                         <Image
                           src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
                           alt={member.name}
                           fill
-                          className="object-cover"
+                          className="object-contain p-2"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, (max-width: 1536px) 33vw, 25vw"
                         />
                       </div>
@@ -362,21 +362,21 @@ export default function BoardMembersManagement() {
                       </div>
                     </div>
                     
-                    {/* Action Buttons - Always Visible */}
+                    {/* Action Buttons - Enhanced Visibility */}
                     <div className="absolute top-3 left-3 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="w-8 h-8 bg-academy-gold text-academy-blue hover:bg-academy-gold/90 shadow-lg transition-all duration-300 hover:scale-110"
+                        className="w-10 h-10 bg-academy-gold text-academy-blue hover:bg-academy-gold-dark shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 rounded-full"
                       >
-                        <Edit size={14} />
+                        <Edit size={16} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(member.id)}
-                        className="w-8 h-8 bg-red-500 text-white hover:bg-red-600 shadow-lg transition-all duration-300 hover:scale-110"
+                        className="w-10 h-10 bg-red-500 text-white hover:bg-red-600 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 rounded-full"
                       >
-                        <Trash2 size={14} />
+                        <Trash2 size={16} />
                       </Button>
                     </div>
                   </div>
