@@ -339,13 +339,17 @@ export default function FacultyMembersManagement() {
         {facultyMembers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {facultyMembers.map((member) => (
-              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden bg-white rounded-2xl">
+              <Card key={member.id} className="member-card group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white overflow-hidden">
                 <CardContent className="p-0">
-                  {/* Enhanced Member Image - Hexagonal Shape with Board-style modifications */}
-                  <div className="relative h-80 bg-gradient-to-br from-academy-blue-50 to-academy-gold-50 flex items-center justify-center overflow-hidden">
-                    <div className="relative w-56 h-72">
-                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-gold opacity-20 rounded-3xl transform rotate-6"></div>
-                      <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-500 bg-white">
+                  {/* Enhanced Member Image - Artistic Frame Design */}
+                  <div className="relative h-80 bg-gradient-to-br from-academy-blue-50 via-white to-academy-gold-50 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-64 h-72">
+                      {/* Decorative background elements */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/10 via-academy-gold/5 to-academy-blue/10 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
+                      <div className="absolute inset-2 bg-gradient-to-tr from-academy-gold/10 to-academy-blue/10 rounded-3xl transform -rotate-3 group-hover:-rotate-6 transition-transform duration-500"></div>
+                      
+                      {/* Main image container with artistic frame */}
+                      <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-500 bg-white border-4 border-white">
                         <Image
                           src={member.image_url || "/placeholder.svg?height=400&width=400&text=عضو+هيئة+التدريس"}
                           alt={member.name}
@@ -353,10 +357,23 @@ export default function FacultyMembersManagement() {
                           className="object-contain p-3"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/20 via-transparent to-transparent"></div>
+                      </div>
+
+                      {/* Academic Badge */}
+                      <div className="absolute -top-3 -right-3 bg-academy-gold text-academy-blue px-4 py-2 rounded-full text-xs font-bold shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform duration-300">
+                        أستاذ
+                      </div>
+
+                      {/* Name overlay on image */}
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <h3 className="text-lg font-bold text-white drop-shadow-lg text-center line-clamp-2">
+                          {member.name}
+                        </h3>
                       </div>
                     </div>
                     
-                    {/* Action Buttons - Board-style always visible */}
+                    {/* Action Buttons - Enhanced Visibility */}
                     <div className="action-buttons absolute top-4 left-4 flex gap-2">
                       <Button
                         size="icon"
@@ -373,21 +390,20 @@ export default function FacultyMembersManagement() {
                         <Trash2 size={16} />
                       </Button>
                     </div>
-                    
-                    {/* Member Name Overlay - Enhanced */}
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-xl font-bold text-white mb-1 line-clamp-2 drop-shadow-lg">{member.name}</h3>
-                    </div>
                   </div>
 
-                  {/* Enhanced Member Info - Board-style layout */}
-                  <div className="p-6 text-center space-y-3">
-                    <div className="inline-flex items-center justify-center">
-                      <div className="bg-academy-gray px-4 py-2 rounded-full border border-academy-gold/20">
-                        <span className="text-academy-blue text-sm font-bold">{member.specialization}</span>
+                  {/* Enhanced Member Info */}
+                  <div className="p-6 text-center space-y-4">
+                    {/* Specialization Badge */}
+                    <div className="flex items-center justify-center">
+                      <div className="flex items-center space-x-2 space-x-reverse bg-academy-blue/5 text-academy-blue px-4 py-2 rounded-full border border-academy-blue/20">
+                        <GraduationCap size={16} className="text-academy-gold flex-shrink-0" />
+                        <span className="font-semibold text-sm">{member.specialization}</span>
                       </div>
                     </div>
-                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3">{member.biography}</p>
+
+                    {/* Biography */}
+                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.biography}</p>
                   </div>
                 </CardContent>
               </Card>

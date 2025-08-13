@@ -264,19 +264,22 @@ export default function InternationalAccreditationsManagement() {
                 {accreditations.map((accreditation) => (
                   <Card
                     key={accreditation.id}
-                    className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white rounded-2xl overflow-hidden"
+                    className="group hover:shadow-2xl transition-all duration-500 border-0 overflow-hidden bg-white transform hover:scale-105"
                   >
                     <CardContent className="p-0">
-                      <div className="relative">
-                        <img
-                          src={accreditation.image_url || "/placeholder.svg"}
-                          alt={accreditation.title}
-                          className="w-full h-48 object-contain bg-white"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement
-                            target.src = "/international-accreditation-certificate.png"
-                          }}
-                        />
+                      <div className="bg-gradient-to-br from-academy-blue to-blue-700 p-6 text-center relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+                        <div className="relative">
+                          <img
+                            src={accreditation.image_url || "/placeholder.svg"}
+                            alt={accreditation.title}
+                            className="w-full h-56 mx-auto object-contain bg-white/20 backdrop-blur-sm rounded-lg p-4 shadow-lg"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement
+                              target.src = "/international-accreditation-certificate.png"
+                            }}
+                          />
+                        </div>
                         <div className="absolute top-3 right-3 flex gap-2">
                           <Button
                             size="sm"
@@ -298,20 +301,16 @@ export default function InternationalAccreditationsManagement() {
                           </Button>
                         </div>
                       </div>
-                      <div className="p-6">
-                        <h3 className="font-bold text-academy-blue mb-3 line-clamp-2 text-lg leading-tight">
+                      <div className="p-8">
+                        <h3 className="text-xl font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors leading-tight">
                           {accreditation.title}
                         </h3>
-                        <p className="text-sm text-academy-dark-gray line-clamp-3 mb-4 leading-relaxed">
-                          {accreditation.description}
-                        </p>
-                        <Badge className="bg-academy-gold/20 text-academy-blue border-academy-gold/30 hover:bg-academy-gold/30 rounded-lg px-3 py-1 font-medium">
-                          {new Date(accreditation.created_at).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                          })}
-                        </Badge>
+                        <p className="text-academy-dark-gray leading-relaxed text-base">{accreditation.description}</p>
+                        <div className="mt-6 pt-4 border-t border-gray-100">
+                          <Badge variant="outline" className="text-xs text-academy-blue border-academy-blue/30">
+                            تاريخ الاعتماد: {new Date(accreditation.created_at).toLocaleDateString("ar-SA")}
+                          </Badge>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>

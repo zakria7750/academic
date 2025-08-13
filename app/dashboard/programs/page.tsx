@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle, BookOpen } from "lucide-react"
+import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle, BookOpen, Clock, DollarSign, Users } from "lucide-react"
 import Image from "next/image"
 
 export default function ProgramsManagement() {
@@ -485,18 +485,25 @@ export default function ProgramsManagement() {
         {filteredPrograms.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredPrograms.map((program) => (
-              <Card key={program.id} className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg bg-white rounded-2xl overflow-hidden">
+              <Card key={program.id} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden">
                 <CardContent className="p-0">
-                  {/* Program Image - Full Width */}
+                  {/* Program Image */}
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={program.image_url || "/placeholder.svg?height=300&width=300&text=برنامج+تعليمي"}
                       alt={program.name}
                       fill
-                      className="object-cover w-full group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                    <div className="absolute top-3 left-3 flex gap-2">
+                    <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                    {/* Program Type Badge */}
+                    <div className="absolute top-4 right-4 bg-academy-gold text-academy-blue px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                      {program.type === "masters" ? "ماجستير" : program.type === "doctorate" ? "دكتوراه" : "دبلوم"}
+                    </div>
+                    
+                    {/* Action Buttons */}
+                    <div className="absolute top-4 left-4 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(program)}
@@ -512,34 +519,50 @@ export default function ProgramsManagement() {
                         <Trash2 size={14} />
                       </Button>
                     </div>
-                    <div className="absolute top-3 right-3 bg-academy-gold text-academy-blue px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                      {program.type === "masters" ? "ماجستير" : program.type === "doctorate" ? "دكتوراه" : "دبلوم"}
-                    </div>
                   </div>
 
                   {/* Program Info */}
-                  <div className="p-4 space-y-3">
-                    <h3 className="text-base sm:text-lg font-bold text-academy-blue mb-2 line-clamp-2 leading-tight">{program.name}</h3>
-                    <div className="space-y-2 text-xs sm:text-sm">
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors duration-300 line-clamp-2">
+                      {program.name}
+                    </h3>
+
+                    {/* Program Details */}
+                    <div className="space-y-3 mb-6">
                       {program.duration && (
-                        <div className="flex justify-between items-center">
-                          <span className="text-academy-dark-gray">المدة:</span>
-                          <span className="text-academy-blue font-semibold">{program.duration}</span>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2 space-x-reverse">
+                            <Clock size={16} className="text-academy-gold" />
+                            <span className="text-academy-dark-gray text-sm">المدة</span>
+                          </div>
+                          <span className="text-academy-blue font-semibold text-sm">{program.duration}</span>
                         </div>
                       )}
-                      <div className="flex justify-between items-center">
-                        <span className="text-academy-dark-gray">الساعات:</span>
-                        <span className="text-academy-blue font-semibold">{program.hours} ساعة</span>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2 space-x-reverse">
+                          <BookOpen size={16} className="text-academy-gold" />
+                          <span className="text-academy-dark-gray text-sm">عدد الساعات</span>
+                        </div>
+                        <span className="text-academy-blue font-semibold text-sm">{program.hours} ساعة</span>
                       </div>
+
                       {program.education_system && (
-                        <div className="flex justify-between items-center">
-                          <span className="text-academy-dark-gray">النظام:</span>
-                          <span className="text-academy-blue font-semibold text-right">{program.education_system}</span>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2 space-x-reverse">
+                            <Users size={16} className="text-academy-gold" />
+                            <span className="text-academy-dark-gray text-sm">نظام التعليم</span>
+                          </div>
+                          <span className="text-academy-blue font-semibold text-sm">{program.education_system}</span>
                         </div>
                       )}
-                      <div className="flex justify-between items-center pt-2 border-t border-academy-gold/20">
-                        <span className="text-academy-dark-gray">الرسوم:</span>
-                        <span className="text-academy-gold font-bold">{program.fees.toLocaleString()} ر.س</span>
+
+                      <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                        <div className="flex items-center space-x-2 space-x-reverse">
+                          <DollarSign size={16} className="text-academy-gold" />
+                          <span className="text-academy-dark-gray text-sm">الرسوم الدراسية</span>
+                        </div>
+                        <span className="text-academy-gold font-bold text-lg">{program.fees.toLocaleString()} ر.س</span>
                       </div>
                     </div>
                   </div>
