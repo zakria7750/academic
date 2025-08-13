@@ -1,11 +1,40 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Shield } from "lucide-react"
 import { getAllInternationalAccreditations } from "@/app/actions/international-accreditations-actions"
+import { useEffect, useState } from "react"
 
-export default async function AccreditationsPage() {
-  const accreditationsResult = await getAllInternationalAccreditations()
-  const internationalAccreditations = accreditationsResult.data || []
+export default function AccreditationsPage() {
+  const [internationalAccreditations, setInternationalAccreditations] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchAccreditations = async () => {
+      try {
+        const accreditationsResult = await getAllInternationalAccreditations()
+        setInternationalAccreditations(accreditationsResult.data || [])
+      } catch (error) {
+        console.error("Error fetching accreditations:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchAccreditations()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-academy-gray to-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-academy-blue border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-academy-blue font-semibold">جاري تحميل الاعتمادات...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-academy-gray to-white">
