@@ -165,6 +165,7 @@ export default function InternationalAccreditationsManagement() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-academy-gray to-white p-6">
       <div className="container mx-auto">
+        <div className="h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mb-6"></div>
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
@@ -179,7 +180,7 @@ export default function InternationalAccreditationsManagement() {
                   إضافة اعتماد جديد
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
                 <DialogHeader>
                   <DialogTitle className="text-academy-blue">إضافة اعتماد دولي جديد</DialogTitle>
                 </DialogHeader>
@@ -285,7 +286,7 @@ export default function InternationalAccreditationsManagement() {
         </Card>
 
         <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
             <DialogHeader>
               <DialogTitle className="text-academy-blue">تعديل الاعتماد الدولي</DialogTitle>
             </DialogHeader>

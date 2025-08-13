@@ -51,27 +51,27 @@ export function GraduateApplicationForm() {
   return (
     <>
       <Card className="max-w-2xl mx-auto shadow-xl">
-        <CardHeader className="text-center bg-gradient-to-r from-academy-yellow to-yellow-500 text-white rounded-t-lg">
+        <CardHeader className="text-center bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue rounded-t-lg">
           <CardTitle className="text-2xl font-bold">نموذج الانضمام لشبكة الخريجين</CardTitle>
         </CardHeader>
         <CardContent className="p-8">
           <form id="graduate-form" action={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-academy-yellow font-semibold">
+                <Label htmlFor="name" className="text-academy-gold font-semibold">
                   الاسم الكامل *
                 </Label>
                 <Input
                   id="name"
                   name="name"
                   required
-                  className="border-2 border-gray-200 focus:border-academy-yellow"
+                  className="border-2 border-gray-200 focus:border-academy-gold"
                   placeholder="أدخل اسمك الكامل"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-academy-yellow font-semibold">
+                <Label htmlFor="email" className="text-academy-gold font-semibold">
                   البريد الإلكتروني *
                 </Label>
                 <Input
@@ -79,7 +79,7 @@ export function GraduateApplicationForm() {
                   name="email"
                   type="email"
                   required
-                  className="border-2 border-gray-200 focus:border-academy-yellow"
+                  className="border-2 border-gray-200 focus:border-academy-gold"
                   placeholder="example@email.com"
                 />
               </div>
@@ -87,27 +87,27 @@ export function GraduateApplicationForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="specialization" className="text-academy-yellow font-semibold">
+                <Label htmlFor="specialization" className="text-academy-gold font-semibold">
                   التخصص *
                 </Label>
                 <Input
                   id="specialization"
                   name="specialization"
                   required
-                  className="border-2 border-gray-200 focus:border-academy-yellow"
+                  className="border-2 border-gray-200 focus:border-academy-gold"
                   placeholder="مثال: إدارة الأعمال"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="current_position" className="text-academy-yellow font-semibold">
+                <Label htmlFor="current_position" className="text-academy-gold font-semibold">
                   المنصب الحالي *
                 </Label>
                 <Input
                   id="current_position"
                   name="current_position"
                   required
-                  className="border-2 border-gray-200 focus:border-academy-yellow"
+                  className="border-2 border-gray-200 focus:border-academy-gold"
                   placeholder="مثال: مدير عام"
                 />
               </div>
@@ -115,20 +115,20 @@ export function GraduateApplicationForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="country" className="text-academy-yellow font-semibold">
+                <Label htmlFor="country" className="text-academy-gold font-semibold">
                   البلد *
                 </Label>
                 <Input
                   id="country"
                   name="country"
                   required
-                  className="border-2 border-gray-200 focus:border-academy-yellow"
+                  className="border-2 border-gray-200 focus:border-academy-gold"
                   placeholder="مثال: السعودية"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="graduation_year" className="text-academy-yellow font-semibold">
+                <Label htmlFor="graduation_year" className="text-academy-gold font-semibold">
                   سنة التخرج *
                 </Label>
                 <Input
@@ -138,14 +138,14 @@ export function GraduateApplicationForm() {
                   min="2000"
                   max={new Date().getFullYear()}
                   required
-                  className="border-2 border-gray-200 focus:border-academy-yellow"
+                  className="border-2 border-gray-200 focus:border-academy-gold"
                   placeholder="2023"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="success_story" className="text-academy-yellow font-semibold">
+              <Label htmlFor="success_story" className="text-academy-gold font-semibold">
                 قصة النجاح *
               </Label>
               <Textarea
@@ -153,7 +153,7 @@ export function GraduateApplicationForm() {
                 name="success_story"
                 required
                 rows={6}
-                className="border-2 border-gray-200 focus:border-academy-yellow resize-none"
+                                 className="border-2 border-gray-200 focus:border-academy-gold resize-none"
                 placeholder="شارك قصة نجاحك وكيف ساهمت الأكاديمية في تطوير مسيرتك المهنية..."
               />
             </div>
@@ -161,7 +161,7 @@ export function GraduateApplicationForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-to-r from-academy-yellow to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-semibold py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-academy-gold to-academy-gold-dark hover:from-academy-gold-dark hover:to-academy-gold text-academy-blue font-semibold py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center">

@@ -158,6 +158,7 @@ export default function AdmissionsManagement() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mb-6"></div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-academy-blue mb-2">إدارة القبول والتسجيل</h1>
         <p className="text-academy-dark-gray">إدارة طلبات التسجيل والطلاب المقبولين</p>
@@ -335,7 +336,7 @@ export default function AdmissionsManagement() {
                   إضافة طالب
                 </Button>
               </DialogTrigger>
-              <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto mx-2 sm:mx-auto">
+              <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto mx-2 sm:mx-auto bg-white">
                 <DialogHeader className="pb-4">
                   <DialogTitle className="text-academy-blue text-lg sm:text-xl">إضافة طالب جديد</DialogTitle>
                   <DialogDescription className="text-sm sm:text-base">
@@ -505,7 +506,7 @@ export default function AdmissionsManagement() {
 
       {/* Status Update Dialog */}
       <Dialog open={showStatusDialog} onOpenChange={setShowStatusDialog}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md bg-white">
           <DialogHeader>
             <DialogTitle className="text-academy-blue">
               {statusAction === "accepted" ? "قبول الطلب" : "رفض الطلب"}

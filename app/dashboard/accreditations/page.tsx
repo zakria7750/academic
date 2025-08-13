@@ -154,6 +154,7 @@ export default function AccreditationsManagement() {
     <div className="min-h-screen bg-academy-gray">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
+        <div className="h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark"></div>
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
@@ -203,7 +204,7 @@ export default function AccreditationsManagement() {
       {/* Action Modal */}
       {showActionModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+          <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
             <CardHeader>
               <CardTitle className="text-academy-blue flex items-center space-x-2 space-x-reverse">
                 {showActionModal.action === "approve" ? (

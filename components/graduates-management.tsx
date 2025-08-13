@@ -187,7 +187,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
                   إضافة خريج
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
                 <DialogHeader>
                   <DialogTitle>إضافة خريج جديد</DialogTitle>
                 </DialogHeader>
@@ -264,7 +264,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
 
       {/* Edit Graduate Dialog */}
       <Dialog open={!!editingGraduate} onOpenChange={() => setEditingGraduate(null)}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle>تعديل بيانات الخريج</DialogTitle>
           </DialogHeader>
