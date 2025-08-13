@@ -98,42 +98,57 @@ export default async function FacultyPage() {
               {facultyMembers.map((member) => (
                 <Card
                   key={member.id}
-                  className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden"
+                  className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white overflow-hidden"
                 >
                   <CardContent className="p-0">
-                    {/* Member Image */}
-                    <div className="relative h-72 overflow-hidden">
-                      <Image
-                        src={member.image_url || "/placeholder.svg?height=400&width=400&text=عضو+هيئة+التدريس"}
-                        alt={member.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    {/* Enhanced Member Image - Artistic Frame */}
+                    <div className="relative h-80 bg-gradient-to-br from-academy-blue-50 via-white to-academy-gold-50 flex items-center justify-center overflow-hidden">
+                      <div className="relative w-64 h-72">
+                        {/* Decorative background elements */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/10 via-academy-gold/5 to-academy-blue/10 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
+                        <div className="absolute inset-2 bg-gradient-to-tr from-academy-gold/10 to-academy-blue/10 rounded-3xl transform -rotate-3 group-hover:-rotate-6 transition-transform duration-500"></div>
+                        
+                        {/* Main image container with artistic frame */}
+                        <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-500 bg-white border-4 border-white">
+                          <Image
+                            src={member.image_url || "/placeholder.svg?height=400&width=400&text=عضو+هيئة+التدريس"}
+                            alt={member.name}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/20 via-transparent to-transparent"></div>
+                        </div>
 
-                      {/* Specialization Badge */}
-                      <div className="absolute top-4 right-4 bg-academy-gold text-academy-blue px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                        أستاذ
+                        {/* Academic Badge */}
+                        <div className="absolute -top-3 -right-3 bg-academy-gold text-academy-blue px-4 py-2 rounded-full text-xs font-bold shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform duration-300">
+                          أستاذ
+                        </div>
+
+                        {/* Name overlay on image */}
+                        <div className="absolute bottom-3 left-3 right-3">
+                          <h3 className="text-lg font-bold text-white drop-shadow-lg text-center line-clamp-2">
+                            {member.name}
+                          </h3>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Member Info */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
-                        {member.name}
-                      </h3>
-
-                      {/* Specialization */}
-                      <div className="flex items-center space-x-2 space-x-reverse mb-4">
-                        <BookOpen size={16} className="text-academy-gold flex-shrink-0" />
-                        <span className="text-academy-blue font-semibold text-sm">{member.specialization}</span>
+                    {/* Enhanced Member Info */}
+                    <div className="p-6 text-center space-y-4">
+                      {/* Specialization Badge */}
+                      <div className="flex items-center justify-center">
+                        <div className="flex items-center space-x-2 space-x-reverse bg-academy-blue/5 text-academy-blue px-4 py-2 rounded-full border border-academy-blue/20">
+                          <BookOpen size={16} className="text-academy-gold flex-shrink-0" />
+                          <span className="font-semibold text-sm">{member.specialization}</span>
+                        </div>
                       </div>
 
                       {/* Biography */}
                       <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.biography}</p>
 
                       {/* Read More Button */}
-                      <button className="mt-4 text-academy-gold hover:text-academy-blue font-semibold text-sm transition-colors duration-200 group-hover:translate-x-1 inline-flex items-center">
+                      <button className="text-academy-gold hover:text-academy-blue font-semibold text-sm transition-colors duration-200 group-hover:translate-x-1 inline-flex items-center mt-2">
                         اقرأ المزيد ←
                       </button>
                     </div>

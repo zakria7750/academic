@@ -144,39 +144,66 @@ export default async function TrainersPage() {
               {trainers.map((trainer) => (
                 <Card
                   key={trainer.id}
-                  className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden"
+                  className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white overflow-hidden"
                 >
                   <CardContent className="p-0">
-                    {/* Trainer Image */}
-                    <div className="relative h-64 overflow-hidden">
-                      <Image
-                        src={trainer.image_url || "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"}
-                        alt={trainer.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    {/* Enhanced Trainer Image - Certification Badge Style */}
+                    <div className="relative h-72 bg-gradient-to-br from-academy-gold-50 via-white to-academy-blue-50 flex items-center justify-center overflow-hidden">
+                      <div className="relative w-44 h-44">
+                        {/* Certification Badge Background with Animation */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold rounded-full opacity-20 animate-pulse"></div>
+                        <div className="absolute inset-1 bg-gradient-to-tr from-academy-blue/10 to-academy-gold/10 rounded-full"></div>
+                        <div className="absolute inset-3 border-2 border-academy-gold/30 rounded-full"></div>
+                        
+                        {/* Main image container */}
+                        <div className="relative inset-6 absolute rounded-full overflow-hidden shadow-2xl transform group-hover:scale-110 transition-all duration-500 bg-white ring-4 ring-academy-gold/50">
+                          <Image
+                            src={trainer.image_url || "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"}
+                            alt={trainer.name}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          />
+                        </div>
 
-                      {/* Certified Badge */}
-                      <div className="absolute top-4 right-4 bg-academy-gold text-academy-blue px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center space-x-1 space-x-reverse">
-                        <Award size={12} />
-                        <span>معتمد</span>
+                        {/* Certified Badge - Enhanced */}
+                        <div className="absolute -top-3 -right-3 bg-academy-gold text-academy-blue px-3 py-2 rounded-full text-xs font-bold shadow-xl border-2 border-white transform group-hover:scale-110 transition-transform duration-300 flex items-center space-x-1 space-x-reverse">
+                          <Award size={14} fill="currentColor" />
+                          <span>معتمد</span>
+                        </div>
+
+                        {/* Excellence Stars */}
+                        <div className="absolute -bottom-2 -left-2 flex space-x-1 space-x-reverse">
+                          {[...Array(3)].map((_, i) => (
+                            <div
+                              key={i}
+                              className="w-6 h-6 bg-academy-blue text-academy-gold rounded-full flex items-center justify-center shadow-lg border border-white transform group-hover:scale-110 transition-transform duration-300"
+                              style={{ transitionDelay: `${i * 50}ms` }}
+                            >
+                              <Star size={10} fill="currentColor" />
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
-                    {/* Trainer Info */}
-                    <div className="p-6 text-center">
-                      <h3 className="text-lg font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
-                        {trainer.name}
-                      </h3>
+                    {/* Enhanced Trainer Info */}
+                    <div className="p-6 text-center space-y-4">
+                      <div>
+                        <h3 className="text-lg font-bold text-academy-blue mb-2 group-hover:text-academy-gold transition-colors duration-300 line-clamp-2">
+                          {trainer.name}
+                        </h3>
 
-                      {/* Specialization */}
-                      <div className="bg-academy-gray px-3 py-2 rounded-full mb-4">
-                        <span className="text-academy-blue font-semibold text-sm">{trainer.specialization}</span>
+                        {/* Specialization with Enhanced Style */}
+                        <div className="inline-flex items-center justify-center">
+                          <div className="bg-academy-gray px-4 py-2 rounded-full border border-academy-gold/20 shadow-sm">
+                            <span className="text-academy-blue font-semibold text-sm">{trainer.specialization}</span>
+                          </div>
+                        </div>
                       </div>
 
                       {/* Rating Stars */}
-                      <div className="flex justify-center space-x-1 space-x-reverse mb-4">
+                      <div className="flex justify-center space-x-1 space-x-reverse">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} size={16} className="text-academy-gold fill-current" />
                         ))}

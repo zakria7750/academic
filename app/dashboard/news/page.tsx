@@ -6,12 +6,8 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Trash2, Users, Newspaper, Calendar, Mail, ImageIcon, Loader2 } from "lucide-react"
+import { Plus, Trash2, Users, Newspaper, Calendar, Mail, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import {
   getNewsletterSubscriptions,
@@ -20,6 +16,12 @@ import {
   getAllNews,
   deleteNews,
 } from "@/app/actions/news-actions"
+import { EnhancedFormModal } from "@/components/ui/enhanced-form-modal"
+import { EnhancedImageUpload } from "@/components/ui/enhanced-image-upload"
+import { EnhancedFormField } from "@/components/ui/enhanced-form-field"
+import { EnhancedDeleteConfirmation } from "@/components/ui/enhanced-delete-confirmation"
+import { EnhancedMessage } from "@/components/ui/enhanced-success-message"
+import Image from "next/image"
 
 interface Subscription {
   id: number
@@ -43,6 +45,13 @@ export default function NewsManagementPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [isAddingNews, setIsAddingNews] = useState(false)
   const [showAddNewsDialog, setShowAddNewsDialog] = useState(false)
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState<{
+    type: 'news' | 'subscription'
+    id: number
+    name: string
+  } | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
 
   // بيانات النموذج
   const [formData, setFormData] = useState({
@@ -51,6 +60,8 @@ export default function NewsManagementPage() {
     publishDate: new Date().toISOString().split("T")[0],
     image: null as File | null,
   })
+
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
 
   useEffect(() => {
     loadData()
@@ -69,48 +80,71 @@ export default function NewsManagementPage() {
         setNews(newsResult.data)
       }
     } catch (error) {
-      toast.error("حدث خطأ أثناء تحميل البيانات")
+      setMessage({ type: "error", text: "حدث خطأ أثناء تحميل البيانات" })
     } finally {
       setIsLoading(false)
     }
   }
 
-  const handleDeleteSubscription = async (id: number) => {
-    if (!confirm("هل أنت متأكد من حذف هذا المشترك؟")) return
+  const validateForm = () => {
+    const errors: Record<string, string> = {}
+    
+    if (!formData.title.trim()) {
+      errors.title = "عنوان الخبر مطلوب"
+    }
+    
+    if (!formData.description.trim()) {
+      errors.description = "وصف الخبر مطلوب"
+    }
+    
+    if (!formData.image) {
+      errors.image = "صورة الخبر مطلوبة"
+    }
+    
+    setFormErrors(errors)
+    return Object.keys(errors).length === 0
+  }
 
+  const handleDeleteSubscription = async (id: number) => {
+    setIsDeleting(true)
     try {
       const result = await deleteSubscription(id)
       if (result.success) {
-        toast.success(result.message)
+        setMessage({ type: "success", text: result.message })
         setSubscriptions(subscriptions.filter((sub) => sub.id !== id))
       } else {
-        toast.error(result.message)
+        setMessage({ type: "error", text: result.message })
       }
     } catch (error) {
-      toast.error("حدث خطأ أثناء الحذف")
+      setMessage({ type: "error", text: "حدث خطأ أثناء الحذف" })
+    } finally {
+      setIsDeleting(false)
+      setShowDeleteConfirmation(null)
     }
   }
 
   const handleDeleteNews = async (id: number) => {
-    if (!confirm("هل أنت متأكد من حذف هذا الخبر؟")) return
-
+    setIsDeleting(true)
     try {
       const result = await deleteNews(id)
       if (result.success) {
-        toast.success(result.message)
+        setMessage({ type: "success", text: result.message })
         setNews(news.filter((item) => item.id !== id))
       } else {
-        toast.error(result.message)
+        setMessage({ type: "error", text: result.message })
       }
     } catch (error) {
-      toast.error("حدث خطأ أثناء الحذف")
+      setMessage({ type: "error", text: "حدث خطأ أثناء الحذف" })
+    } finally {
+      setIsDeleting(false)
+      setShowDeleteConfirmation(null)
     }
   }
 
   const handleAddNews = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.title || !formData.description || !formData.image) {
-      toast.error("جميع الحقول مطلوبة")
+    
+    if (!validateForm()) {
       return
     }
 
@@ -119,27 +153,44 @@ export default function NewsManagementPage() {
     submitFormData.append("title", formData.title)
     submitFormData.append("description", formData.description)
     submitFormData.append("publishDate", formData.publishDate)
-    submitFormData.append("image", formData.image)
+    if (formData.image) {
+      submitFormData.append("image", formData.image)
+    }
 
     try {
       const result = await addNews(submitFormData)
       if (result.success) {
-        toast.success(result.message)
+        setMessage({ type: "success", text: result.message })
         setShowAddNewsDialog(false)
-        setFormData({
-          title: "",
-          description: "",
-          publishDate: new Date().toISOString().split("T")[0],
-          image: null,
-        })
+        resetForm()
         loadData()
       } else {
-        toast.error(result.message)
+        setMessage({ type: "error", text: result.message })
       }
     } catch (error) {
-      toast.error("حدث خطأ أثناء إضافة الخبر")
+      setMessage({ type: "error", text: "حدث خطأ أثناء إضافة الخبر" })
     } finally {
       setIsAddingNews(false)
+    }
+  }
+
+  const resetForm = () => {
+    setFormData({
+      title: "",
+      description: "",
+      publishDate: new Date().toISOString().split("T")[0],
+      image: null,
+    })
+    setFormErrors({})
+  }
+
+  const handleConfirmDelete = () => {
+    if (!showDeleteConfirmation) return
+    
+    if (showDeleteConfirmation.type === 'subscription') {
+      handleDeleteSubscription(showDeleteConfirmation.id)
+    } else {
+      handleDeleteNews(showDeleteConfirmation.id)
     }
   }
 
@@ -157,6 +208,17 @@ export default function NewsManagementPage() {
         <h1 className="text-3xl font-bold text-academy-blue mb-2">إدارة الأخبار والنشرة الإخبارية</h1>
         <p className="text-gray-600">إدارة الأخبار والمشتركين في النشرة الإخبارية</p>
       </div>
+
+      {/* Enhanced Message Display */}
+      {message && (
+        <div className="mb-6">
+          <EnhancedMessage
+            type={message.type}
+            message={message.text}
+            onClose={() => setMessage(null)}
+          />
+        </div>
+      )}
 
       <Tabs defaultValue="subscriptions" className="space-y-6">
         <TabsList className="grid w-full grid-cols-2">
@@ -187,7 +249,7 @@ export default function NewsManagementPage() {
                   {subscriptions.map((subscription) => (
                     <div
                       key={subscription.id}
-                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex-1 mb-2 sm:mb-0">
                         <p className="font-medium text-academy-blue">{subscription.email}</p>
@@ -202,7 +264,11 @@ export default function NewsManagementPage() {
                         <Button
                           variant="destructive"
                           size="sm"
-                          onClick={() => handleDeleteSubscription(subscription.id)}
+                          onClick={() => setShowDeleteConfirmation({
+                            type: 'subscription',
+                            id: subscription.id,
+                            name: subscription.email
+                          })}
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
@@ -223,102 +289,16 @@ export default function NewsManagementPage() {
                 <Newspaper className="w-5 h-5 text-academy-blue" />
                 الأخبار المنشورة
               </CardTitle>
-              <Dialog open={showAddNewsDialog} onOpenChange={setShowAddNewsDialog}>
-                <DialogTrigger asChild>
-                  <Button className="bg-academy-blue hover:bg-academy-blue/90">
-                    <Plus className="w-4 h-4 ml-2" />
-                    إنشاء خبر
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-md mx-auto max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle>إضافة خبر جديد</DialogTitle>
-                  </DialogHeader>
-                  <form onSubmit={handleAddNews} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="image">صورة الخبر</Label>
-                      <div className="flex items-center justify-center w-full">
-                        <label
-                          htmlFor="image"
-                          className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
-                        >
-                          <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                            <ImageIcon className="w-8 h-8 mb-2 text-gray-500" />
-                            <p className="text-sm text-gray-500">اختر صورة الخبر</p>
-                          </div>
-                          <input
-                            id="image"
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={(e) => setFormData({ ...formData, image: e.target.files?.[0] || null })}
-                          />
-                        </label>
-                      </div>
-                      {formData.image && <p className="text-sm text-green-600">تم اختيار: {formData.image.name}</p>}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="title">عنوان الخبر</Label>
-                      <Input
-                        id="title"
-                        value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        placeholder="أدخل عنوان الخبر"
-                        className="w-full"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="description">الوصف</Label>
-                      <Textarea
-                        id="description"
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        placeholder="أدخل وصف الخبر"
-                        rows={4}
-                        className="w-full resize-none"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="publishDate">تاريخ النشر</Label>
-                      <Input
-                        id="publishDate"
-                        type="date"
-                        value={formData.publishDate}
-                        onChange={(e) => setFormData({ ...formData, publishDate: e.target.value })}
-                        className="w-full"
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-2 pt-4">
-                      <Button
-                        type="submit"
-                        disabled={isAddingNews}
-                        className="w-full bg-academy-blue hover:bg-academy-blue/90"
-                      >
-                        {isAddingNews ? (
-                          <>
-                            <Loader2 className="w-4 h-4 animate-spin ml-2" />
-                            جاري الإضافة...
-                          </>
-                        ) : (
-                          "إضافة الخبر"
-                        )}
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => setShowAddNewsDialog(false)}
-                        className="w-full"
-                      >
-                        إلغاء
-                      </Button>
-                    </div>
-                  </form>
-                </DialogContent>
-              </Dialog>
+              <Button 
+                className="bg-academy-blue hover:bg-academy-blue/90"
+                onClick={() => {
+                  resetForm()
+                  setShowAddNewsDialog(true)
+                }}
+              >
+                <Plus className="w-4 h-4 ml-2" />
+                إنشاء خبر
+              </Button>
             </CardHeader>
             <CardContent>
               {news.length === 0 ? (
@@ -326,12 +306,14 @@ export default function NewsManagementPage() {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {news.map((newsItem) => (
-                    <Card key={newsItem.id} className="overflow-hidden">
-                      <div className="aspect-video relative">
-                        <img
+                    <Card key={newsItem.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                      <div className="relative aspect-video">
+                        <Image
                           src={newsItem.image_url || "/placeholder.svg"}
                           alt={newsItem.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-contain bg-gray-50"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       </div>
                       <CardContent className="p-4">
@@ -342,7 +324,15 @@ export default function NewsManagementPage() {
                             <Calendar className="w-3 h-3" />
                             {new Date(newsItem.publish_date).toLocaleDateString("ar-SA")}
                           </div>
-                          <Button variant="destructive" size="sm" onClick={() => handleDeleteNews(newsItem.id)}>
+                          <Button 
+                            variant="destructive" 
+                            size="sm" 
+                            onClick={() => setShowDeleteConfirmation({
+                              type: 'news',
+                              id: newsItem.id,
+                              name: newsItem.title
+                            })}
+                          >
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
@@ -355,6 +345,102 @@ export default function NewsManagementPage() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Enhanced Add News Modal */}
+      <EnhancedFormModal
+        isOpen={showAddNewsDialog}
+        onClose={() => setShowAddNewsDialog(false)}
+        title="إضافة خبر جديد"
+        size="lg"
+      >
+        <form onSubmit={handleAddNews} className="space-y-6">
+          <EnhancedImageUpload
+            onImageChange={(file) => {
+              setFormData({ ...formData, image: file })
+              if (formErrors.image) {
+                setFormErrors({ ...formErrors, image: "" })
+              }
+            }}
+            label="صورة الخبر"
+            required
+            error={formErrors.image}
+          />
+
+          <EnhancedFormField
+            type="input"
+            label="عنوان الخبر"
+            placeholder="أدخل عنوان الخبر"
+            value={formData.title}
+            onChange={(value) => {
+              setFormData({ ...formData, title: value })
+              if (formErrors.title) {
+                setFormErrors({ ...formErrors, title: "" })
+              }
+            }}
+            required
+            error={formErrors.title}
+          />
+
+          <EnhancedFormField
+            type="textarea"
+            label="الوصف"
+            placeholder="أدخل وصف الخبر"
+            value={formData.description}
+            onChange={(value) => {
+              setFormData({ ...formData, description: value })
+              if (formErrors.description) {
+                setFormErrors({ ...formErrors, description: "" })
+              }
+            }}
+            rows={4}
+            required
+            error={formErrors.description}
+          />
+
+          <EnhancedFormField
+            type="input"
+            inputType="date"
+            label="تاريخ النشر"
+            value={formData.publishDate}
+            onChange={(value) => setFormData({ ...formData, publishDate: value })}
+            required
+          />
+
+          <div className="flex flex-col gap-3 pt-6 border-t">
+            <Button
+              type="submit"
+              disabled={isAddingNews}
+              className="w-full bg-academy-blue hover:bg-academy-blue/90 h-12"
+            >
+              {isAddingNews ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                  جاري الإضافة...
+                </>
+              ) : (
+                "إضافة الخبر"
+              )}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setShowAddNewsDialog(false)}
+              className="w-full h-12"
+            >
+              إلغاء
+            </Button>
+          </div>
+        </form>
+      </EnhancedFormModal>
+
+      {/* Enhanced Delete Confirmation */}
+      <EnhancedDeleteConfirmation
+        isOpen={!!showDeleteConfirmation}
+        onClose={() => setShowDeleteConfirmation(null)}
+        onConfirm={handleConfirmDelete}
+        itemName={showDeleteConfirmation?.name}
+        isLoading={isDeleting}
+      />
     </div>
   )
 }
