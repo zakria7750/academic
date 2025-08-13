@@ -110,7 +110,7 @@ export default function InternationalAccreditationsManagement() {
     initialData?: InternationalAccreditation | null
     formRef?: React.RefObject<HTMLFormElement> | null
   }) => (
-    <form ref={formRef} onSubmit={onSubmit} className="space-y-6">
+    <form ref={formRef} onSubmit={onSubmit} className="space-y-6 bg-white">
       <div className="space-y-2">
         <label className="text-sm font-medium text-academy-blue">العنوان</label>
         <Input
