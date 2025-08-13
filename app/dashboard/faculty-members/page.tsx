@@ -6,11 +6,13 @@ import { useState, useEffect } from "react"
 import { supabase, type FacultyMember } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle, GraduationCap } from "lucide-react"
+import { Plus, Edit, Trash2, GraduationCap } from "lucide-react"
 import Image from "next/image"
+import { EnhancedFormModal } from "@/components/ui/enhanced-form-modal"
+import { EnhancedImageUpload } from "@/components/ui/enhanced-image-upload"
+import { EnhancedFormField } from "@/components/ui/enhanced-form-field"
+import { EnhancedDeleteConfirmation } from "@/components/ui/enhanced-delete-confirmation"
+import { EnhancedMessage } from "@/components/ui/enhanced-success-message"
 
 export default function FacultyMembersManagement() {
   const [facultyMembers, setFacultyMembers] = useState<FacultyMember[]>([])
@@ -20,6 +22,7 @@ export default function FacultyMembersManagement() {
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -28,6 +31,8 @@ export default function FacultyMembersManagement() {
     biography: "",
     image: null as File | null,
   })
+
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
 
   useEffect(() => {
     fetchFacultyMembers()
@@ -44,15 +49,10 @@ export default function FacultyMembersManagement() {
       setFacultyMembers(data || [])
     } catch (error) {
       console.error("Error fetching faculty members:", error)
-      showMessage("error", "حدث خطأ في تحميل البيانات")
+      setMessage({ type: "error", text: "حدث خطأ في تحميل البيانات" })
     } finally {
       setIsLoading(false)
     }
-  }
-
-  const showMessage = (type: "success" | "error", text: string) => {
-    setMessage({ type, text })
-    setTimeout(() => setMessage(null), 5000)
   }
 
   const uploadImage = async (file: File): Promise<string | null> => {
@@ -74,8 +74,32 @@ export default function FacultyMembersManagement() {
     }
   }
 
+  const validateForm = () => {
+    const errors: Record<string, string> = {}
+    
+    if (!formData.name.trim()) {
+      errors.name = "اسم العضو مطلوب"
+    }
+    
+    if (!formData.specialization.trim()) {
+      errors.specialization = "التخصص مطلوب"
+    }
+    
+    if (!formData.biography.trim()) {
+      errors.biography = "السيرة الموجزة مطلوبة"
+    }
+    
+    setFormErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!validateForm()) {
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
@@ -103,13 +127,13 @@ export default function FacultyMembersManagement() {
         const { error } = await supabase.from("faculty_members").update(memberData).eq("id", editingMember.id)
 
         if (error) throw error
-        showMessage("success", "تم تحديث عضو هيئة التدريس بنجاح")
+        setMessage({ type: "success", text: "تم تحديث عضو هيئة التدريس بنجاح" })
       } else {
         // Add new member
         const { error } = await supabase.from("faculty_members").insert([memberData])
 
         if (error) throw error
-        showMessage("success", "تم إضافة عضو هيئة التدريس بنجاح")
+        setMessage({ type: "success", text: "تم إضافة عضو هيئة التدريس بنجاح" })
       }
 
       // Reset form and refresh data
@@ -117,23 +141,26 @@ export default function FacultyMembersManagement() {
       fetchFacultyMembers()
     } catch (error) {
       console.error("Error saving member:", error)
-      showMessage("error", "حدث خطأ في حفظ البيانات")
+      setMessage({ type: "error", text: "حدث خطأ في حفظ البيانات" })
     } finally {
       setIsSubmitting(false)
     }
   }
 
   const handleDelete = async (id: string) => {
+    setIsDeleting(true)
     try {
       const { error } = await supabase.from("faculty_members").delete().eq("id", id)
 
       if (error) throw error
-      showMessage("success", "تم حذف عضو هيئة التدريس بنجاح")
+      setMessage({ type: "success", text: "تم حذف عضو هيئة التدريس بنجاح" })
       fetchFacultyMembers()
       setShowDeleteConfirm(null)
     } catch (error) {
       console.error("Error deleting member:", error)
-      showMessage("error", "حدث خطأ في حذف العضو")
+      setMessage({ type: "error", text: "حدث خطأ في حذف العضو" })
+    } finally {
+      setIsDeleting(false)
     }
   }
 
@@ -145,6 +172,7 @@ export default function FacultyMembersManagement() {
       biography: member.biography,
       image: null,
     })
+    setFormErrors({})
     setShowForm(true)
   }
 
@@ -157,13 +185,7 @@ export default function FacultyMembersManagement() {
     })
     setEditingMember(null)
     setShowForm(false)
-  }
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      setFormData({ ...formData, image: file })
-    }
+    setFormErrors({})
   }
 
   if (isLoading) {
@@ -195,7 +217,10 @@ export default function FacultyMembersManagement() {
               </div>
             </div>
             <Button
-              onClick={() => setShowForm(true)}
+              onClick={() => {
+                resetForm()
+                setShowForm(true)
+              }}
               className="btn-primary text-academy-blue font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               <Plus size={20} className="ml-2" />
@@ -208,201 +233,112 @@ export default function FacultyMembersManagement() {
       {/* Enhanced Success/Error Messages */}
       {message && (
         <div className="container mx-auto px-4 py-4">
-          <div
-            className={`flex items-center p-4 rounded-xl shadow-lg slide-up ${
-              message.type === "success"
-                ? "alert-success text-green-800"
-                : "alert-error text-red-800"
-            }`}
-          >
-            {message.type === "success" ? (
-              <div className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-full mr-3">
-                <Check size={16} className="text-green-600" />
-              </div>
-            ) : (
-              <div className="flex items-center justify-center w-8 h-8 bg-red-100 rounded-full mr-3">
-                <AlertCircle size={16} className="text-red-600" />
-              </div>
-            )}
-            <span className="font-medium">{message.text}</span>
-          </div>
-        </div>
-      )}
-
-      {/* Enhanced Delete Confirmation Modal */}
-      {showDeleteConfirm && (
-        <div className="fixed inset-0 delete-modal z-50 flex items-center justify-center p-4 slide-up">
-          <Card className="delete-confirm-card w-full max-w-md border-0 shadow-2xl">
-            <CardHeader className="text-center pb-6">
-              <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trash2 className="text-red-500" size={32} />
-              </div>
-              <CardTitle className="text-academy-blue text-2xl font-bold">تأكيد الحذف</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center pb-8">
-              <p className="text-academy-dark-gray text-lg mb-8 leading-relaxed">
-                هل أنت متأكد من حذف هذا العضو؟<br />
-                <span className="text-red-600 font-semibold">لا يمكن التراجع عن هذا الإجراء.</span>
-              </p>
-              <div className="flex gap-4">
-                <Button
-                  onClick={() => handleDelete(showDeleteConfirm)}
-                  className="bg-red-500 text-white hover:bg-red-600 font-bold text-lg px-6 py-3 rounded-xl flex-1 hover:scale-105 transition-all duration-300 shadow-lg"
-                >
-                  <Trash2 size={20} className="mr-2" />
-                  حذف نهائياً
-                </Button>
-                <Button
-                  onClick={() => setShowDeleteConfirm(null)}
-                  className="btn-secondary text-academy-blue font-bold text-lg px-6 py-3 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
-                >
-                  <X size={20} className="mr-2" />
-                  إلغاء
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          <EnhancedMessage
+            type={message.type}
+            message={message.text}
+            onClose={() => setMessage(null)}
+          />
         </div>
       )}
 
       {/* Enhanced Add/Edit Form Modal */}
-      {showForm && (
-        <div className="fixed inset-0 form-modal z-50 flex items-center justify-center p-4 slide-up">
-          <Card className="form-container w-full max-w-2xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl">
-            <CardHeader className="border-b border-academy-blue-100 bg-gradient-to-r from-academy-blue-50 to-academy-gold-50">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-academy-blue/10 rounded-lg flex items-center justify-center">
-                    <GraduationCap className="text-academy-blue" size={20} />
-                  </div>
-                  <CardTitle className="text-academy-blue text-xl font-bold">
-                    {editingMember ? "تعديل عضو هيئة التدريس" : "إضافة عضو جديد"}
-                  </CardTitle>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={resetForm}
-                  className="text-academy-dark-gray hover:text-academy-blue hover:bg-academy-blue/5 rounded-lg"
-                >
-                  <X size={20} />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Enhanced Image Upload */}
-                <div>
-                  <Label htmlFor="image" className="text-academy-blue font-bold text-lg mb-3 block">
-                    صورة العضو
-                  </Label>
-                  <div className="mt-2">
-                    <input type="file" id="image" accept="image/*" onChange={handleImageChange} className="hidden" />
-                    <label
-                      htmlFor="image"
-                      className="file-upload-area flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer"
-                    >
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <div className="w-16 h-16 bg-academy-gold/20 rounded-full flex items-center justify-center mb-4">
-                          <Upload className="text-academy-gold" size={24} />
-                        </div>
-                        <span className="text-academy-blue font-semibold text-lg mb-2">
-                          {formData.image ? formData.image.name : "اختر صورة العضو"}
-                        </span>
-                        <span className="text-academy-dark-gray text-sm">PNG, JPG أو JPEG (الحد الأقصى 5MB)</span>
-                      </div>
-                    </label>
-                  </div>
-                </div>
+      <EnhancedFormModal
+        isOpen={showForm}
+        onClose={resetForm}
+        title={editingMember ? "تعديل عضو هيئة التدريس" : "إضافة عضو جديد"}
+        size="lg"
+      >
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <EnhancedImageUpload
+            onImageChange={(file) => {
+              setFormData({ ...formData, image: file })
+              if (formErrors.image) {
+                setFormErrors({ ...formErrors, image: "" })
+              }
+            }}
+            currentImageUrl={editingMember?.image_url}
+            label="صورة العضو"
+            error={formErrors.image}
+          />
 
-                {/* Enhanced Name Field */}
-                <div>
-                  <Label htmlFor="name" className="text-academy-blue font-bold text-lg mb-3 block">
-                    اسم العضو *
-                  </Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    className="form-input mt-2 h-12 text-lg rounded-xl border-2"
-                    placeholder="أدخل اسم عضو هيئة التدريس الكامل"
-                  />
-                </div>
+          <EnhancedFormField
+            type="input"
+            label="اسم العضو"
+            placeholder="أدخل اسم عضو هيئة التدريس الكامل"
+            value={formData.name}
+            onChange={(value) => {
+              setFormData({ ...formData, name: value })
+              if (formErrors.name) {
+                setFormErrors({ ...formErrors, name: "" })
+              }
+            }}
+            required
+            error={formErrors.name}
+          />
 
-                {/* Enhanced Specialization Field */}
-                <div>
-                  <Label htmlFor="specialization" className="text-academy-blue font-bold text-lg mb-3 block">
-                    التخصص *
-                  </Label>
-                  <Input
-                    id="specialization"
-                    type="text"
-                    value={formData.specialization}
-                    onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
-                    required
-                    className="form-input mt-2 h-12 text-lg rounded-xl border-2"
-                    placeholder="مثال: إدارة الأعمال، التسويق، المحاسبة"
-                  />
-                </div>
+          <EnhancedFormField
+            type="input"
+            label="التخصص"
+            placeholder="مثال: إدارة الأعمال، التسويق، المحاسبة"
+            value={formData.specialization}
+            onChange={(value) => {
+              setFormData({ ...formData, specialization: value })
+              if (formErrors.specialization) {
+                setFormErrors({ ...formErrors, specialization: "" })
+              }
+            }}
+            required
+            error={formErrors.specialization}
+          />
 
-                {/* Enhanced Biography Field */}
-                <div>
-                  <Label htmlFor="biography" className="text-academy-blue font-bold text-lg mb-3 block">
-                    السيرة الموجزة *
-                  </Label>
-                  <Textarea
-                    id="biography"
-                    value={formData.biography}
-                    onChange={(e) => setFormData({ ...formData, biography: e.target.value })}
-                    required
-                    rows={6}
-                    className="form-input mt-2 text-lg rounded-xl border-2 resize-none"
-                    placeholder="أدخل السيرة الموجزة للعضو شاملة المؤهلات الأكاديمية والخبرات المهنية"
-                  />
-                </div>
+          <EnhancedFormField
+            type="textarea"
+            label="السيرة الموجزة"
+            placeholder="أدخل السيرة الموجزة للعضو شاملة المؤهلات الأكاديمية والخبرات المهنية"
+            value={formData.biography}
+            onChange={(value) => {
+              setFormData({ ...formData, biography: value })
+              if (formErrors.biography) {
+                setFormErrors({ ...formErrors, biography: "" })
+              }
+            }}
+            rows={6}
+            required
+            error={formErrors.biography}
+          />
 
-                {/* Enhanced Form Actions */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-academy-blue-100">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="loading-spinner w-5 h-5 border-2 border-academy-blue border-t-transparent rounded-full mr-3"></div>
-                        جاري الحفظ...
-                      </>
-                    ) : (
-                      <>
-                        {editingMember ? "تحديث العضو" : "إضافة العضو"}
-                        <Check size={20} className="mr-2" />
-                      </>
-                    )}
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={resetForm}
-                    className="btn-secondary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
-                  >
-                    <X size={20} className="mr-2" />
-                    إلغاء
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+          <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-academy-blue-100">
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
+            >
+              {isSubmitting ? (
+                <>
+                  <div className="loading-spinner w-5 h-5 border-2 border-academy-blue border-t-transparent rounded-full mr-3"></div>
+                  جاري الحفظ...
+                </>
+              ) : (
+                editingMember ? "تحديث العضو" : "إضافة العضو"
+              )}
+            </Button>
+            <Button
+              type="button"
+              onClick={resetForm}
+              className="btn-secondary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
+            >
+              إلغاء
+            </Button>
+          </div>
+        </form>
+      </EnhancedFormModal>
 
       {/* Enhanced Faculty Members Grid */}
       <div className="container mx-auto px-4 py-12">
         {facultyMembers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {facultyMembers.map((member) => (
-              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl">
+              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-300">
                 <CardContent className="p-0">
                   {/* Enhanced Member Image */}
                   <div className="relative h-64 overflow-hidden rounded-t-xl">
@@ -410,7 +346,8 @@ export default function FacultyMembersManagement() {
                       src={member.image_url || "/placeholder.svg?height=400&width=400&text=عضو+هيئة+التدريس"}
                       alt={member.name}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="object-contain bg-gray-50 group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     <div className="action-buttons absolute top-3 left-3 flex gap-2">
@@ -455,7 +392,10 @@ export default function FacultyMembersManagement() {
               لم يتم إضافة أعضاء هيئة التدريس بعد. ابدأ بإضافة أول عضو.
             </p>
             <Button
-              onClick={() => setShowForm(true)}
+              onClick={() => {
+                resetForm()
+                setShowForm(true)
+              }}
               className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
             >
               <Plus size={24} className="ml-2" />
@@ -464,6 +404,15 @@ export default function FacultyMembersManagement() {
           </div>
         )}
       </div>
+
+      {/* Enhanced Delete Confirmation */}
+      <EnhancedDeleteConfirmation
+        isOpen={!!showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(null)}
+        onConfirm={() => showDeleteConfirm && handleDelete(showDeleteConfirm)}
+        itemName={facultyMembers.find(m => m.id === showDeleteConfirm)?.name}
+        isLoading={isDeleting}
+      />
     </div>
   )
 }

@@ -6,10 +6,13 @@ import { useState, useEffect } from "react"
 import { supabase, type Trainer } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle, Award } from "lucide-react"
+import { Plus, Edit, Trash2, Award } from "lucide-react"
 import Image from "next/image"
+import { EnhancedFormModal } from "@/components/ui/enhanced-form-modal"
+import { EnhancedImageUpload } from "@/components/ui/enhanced-image-upload"
+import { EnhancedFormField } from "@/components/ui/enhanced-form-field"
+import { EnhancedDeleteConfirmation } from "@/components/ui/enhanced-delete-confirmation"
+import { EnhancedMessage } from "@/components/ui/enhanced-success-message"
 
 export default function TrainersManagement() {
   const [trainers, setTrainers] = useState<Trainer[]>([])
@@ -19,6 +22,7 @@ export default function TrainersManagement() {
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -26,6 +30,8 @@ export default function TrainersManagement() {
     specialization: "",
     image: null as File | null,
   })
+
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
 
   useEffect(() => {
     fetchTrainers()
@@ -39,15 +45,10 @@ export default function TrainersManagement() {
       setTrainers(data || [])
     } catch (error) {
       console.error("Error fetching trainers:", error)
-      showMessage("error", "حدث خطأ في تحميل البيانات")
+      setMessage({ type: "error", text: "حدث خطأ في تحميل البيانات" })
     } finally {
       setIsLoading(false)
     }
-  }
-
-  const showMessage = (type: "success" | "error", text: string) => {
-    setMessage({ type, text })
-    setTimeout(() => setMessage(null), 5000)
   }
 
   const uploadImage = async (file: File): Promise<string | null> => {
@@ -69,8 +70,28 @@ export default function TrainersManagement() {
     }
   }
 
+  const validateForm = () => {
+    const errors: Record<string, string> = {}
+    
+    if (!formData.name.trim()) {
+      errors.name = "اسم المدرب مطلوب"
+    }
+    
+    if (!formData.specialization.trim()) {
+      errors.specialization = "التخصص مطلوب"
+    }
+    
+    setFormErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!validateForm()) {
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
@@ -97,13 +118,13 @@ export default function TrainersManagement() {
         const { error } = await supabase.from("trainers").update(trainerData).eq("id", editingTrainer.id)
 
         if (error) throw error
-        showMessage("success", "تم تحديث المدرب بنجاح")
+        setMessage({ type: "success", text: "تم تحديث المدرب بنجاح" })
       } else {
         // Add new trainer
         const { error } = await supabase.from("trainers").insert([trainerData])
 
         if (error) throw error
-        showMessage("success", "تم إضافة المدرب بنجاح")
+        setMessage({ type: "success", text: "تم إضافة المدرب بنجاح" })
       }
 
       // Reset form and refresh data
@@ -111,23 +132,26 @@ export default function TrainersManagement() {
       fetchTrainers()
     } catch (error) {
       console.error("Error saving trainer:", error)
-      showMessage("error", "حدث خطأ في حفظ البيانات")
+      setMessage({ type: "error", text: "حدث خطأ في حفظ البيانات" })
     } finally {
       setIsSubmitting(false)
     }
   }
 
   const handleDelete = async (id: string) => {
+    setIsDeleting(true)
     try {
       const { error } = await supabase.from("trainers").delete().eq("id", id)
 
       if (error) throw error
-      showMessage("success", "تم حذف المدرب بنجاح")
+      setMessage({ type: "success", text: "تم حذف المدرب بنجاح" })
       fetchTrainers()
       setShowDeleteConfirm(null)
     } catch (error) {
       console.error("Error deleting trainer:", error)
-      showMessage("error", "حدث خطأ في حذف المدرب")
+      setMessage({ type: "error", text: "حدث خطأ في حذف المدرب" })
+    } finally {
+      setIsDeleting(false)
     }
   }
 
@@ -138,6 +162,7 @@ export default function TrainersManagement() {
       specialization: trainer.specialization,
       image: null,
     })
+    setFormErrors({})
     setShowForm(true)
   }
 
@@ -149,13 +174,7 @@ export default function TrainersManagement() {
     })
     setEditingTrainer(null)
     setShowForm(false)
-  }
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      setFormData({ ...formData, image: file })
-    }
+    setFormErrors({})
   }
 
   if (isLoading) {
@@ -180,7 +199,10 @@ export default function TrainersManagement() {
               <p className="text-academy-dark-gray">إضافة وتعديل وحذف المدربين المعتمدين</p>
             </div>
             <Button
-              onClick={() => setShowForm(true)}
+              onClick={() => {
+                resetForm()
+                setShowForm(true)
+              }}
               className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold"
             >
               <Plus size={20} className="ml-2" />
@@ -190,177 +212,109 @@ export default function TrainersManagement() {
         </div>
       </div>
 
-      {/* Success/Error Messages */}
+      {/* Enhanced Success/Error Messages */}
       {message && (
         <div className="container mx-auto px-4 py-4">
-          <div
-            className={`flex items-center p-4 rounded-lg ${
-              message.type === "success"
-                ? "bg-green-100 text-green-800 border border-green-200"
-                : "bg-red-100 text-red-800 border border-red-200"
-            }`}
-          >
-            {message.type === "success" ? (
-              <Check size={20} className="ml-2" />
-            ) : (
-              <AlertCircle size={20} className="ml-2" />
-            )}
-            {message.text}
+          <EnhancedMessage
+            type={message.type}
+            message={message.text}
+            onClose={() => setMessage(null)}
+          />
+        </div>
+      )}
+
+      {/* Enhanced Add/Edit Form */}
+      <EnhancedFormModal
+        isOpen={showForm}
+        onClose={resetForm}
+        title={editingTrainer ? "تعديل المدرب" : "إضافة مدرب جديد"}
+        size="lg"
+      >
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <EnhancedImageUpload
+            onImageChange={(file) => {
+              setFormData({ ...formData, image: file })
+              if (formErrors.image) {
+                setFormErrors({ ...formErrors, image: "" })
+              }
+            }}
+            currentImageUrl={editingTrainer?.image_url}
+            label="صورة المدرب"
+            error={formErrors.image}
+          />
+
+          <EnhancedFormField
+            type="input"
+            label="اسم المدرب"
+            placeholder="أدخل اسم المدرب"
+            value={formData.name}
+            onChange={(value) => {
+              setFormData({ ...formData, name: value })
+              if (formErrors.name) {
+                setFormErrors({ ...formErrors, name: "" })
+              }
+            }}
+            required
+            error={formErrors.name}
+          />
+
+          <EnhancedFormField
+            type="input"
+            label="التخصص"
+            placeholder="أدخل تخصص المدرب"
+            value={formData.specialization}
+            onChange={(value) => {
+              setFormData({ ...formData, specialization: value })
+              if (formErrors.specialization) {
+                setFormErrors({ ...formErrors, specialization: "" })
+              }
+            }}
+            required
+            error={formErrors.specialization}
+          />
+
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold flex-1"
+            >
+              {isSubmitting ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-academy-blue border-t-transparent rounded-full animate-spin ml-2"></div>
+                  جاري الحفظ...
+                </>
+              ) : (
+                editingTrainer ? "تحديث المدرب" : "إضافة المدرب"
+              )}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={resetForm}
+              className="border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white flex-1 bg-transparent"
+            >
+              إلغاء
+            </Button>
           </div>
-        </div>
-      )}
+        </form>
+      </EnhancedFormModal>
 
-      {/* Delete Confirmation Modal */}
-      {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <Card className="w-full max-w-md">
-            <CardHeader>
-              <CardTitle className="text-academy-blue text-center">تأكيد الحذف</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trash2 className="text-red-500" size={24} />
-              </div>
-              <p className="text-academy-dark-gray mb-6">
-                هل أنت متأكد من حذف هذا المدرب؟ لا يمكن التراجع عن هذا الإجراء.
-              </p>
-              <div className="flex gap-3">
-                <Button
-                  onClick={() => handleDelete(showDeleteConfirm)}
-                  className="bg-red-500 text-white hover:bg-red-600 flex-1"
-                >
-                  حذف
-                </Button>
-                <Button
-                  onClick={() => setShowDeleteConfirm(null)}
-                  variant="outline"
-                  className="border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white flex-1 bg-transparent"
-                >
-                  إلغاء
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
-
-      {/* Add/Edit Form */}
-      {showForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <CardHeader>
-              <div className="flex justify-between items-center">
-                <CardTitle className="text-academy-blue">
-                  {editingTrainer ? "تعديل المدرب" : "إضافة مدرب جديد"}
-                </CardTitle>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={resetForm}
-                  className="text-academy-dark-gray hover:text-academy-blue"
-                >
-                  <X size={20} />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Image Upload */}
-                <div>
-                  <Label htmlFor="image" className="text-academy-blue font-semibold">
-                    صورة المدرب
-                  </Label>
-                  <div className="mt-2">
-                    <input type="file" id="image" accept="image/*" onChange={handleImageChange} className="hidden" />
-                    <label
-                      htmlFor="image"
-                      className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-academy-gold rounded-lg cursor-pointer hover:bg-academy-gold/5 transition-colors duration-200"
-                    >
-                      <Upload className="text-academy-gold mb-2" size={24} />
-                      <span className="text-academy-blue font-medium">
-                        {formData.image ? formData.image.name : "اختر صورة المدرب"}
-                      </span>
-                    </label>
-                  </div>
-                </div>
-
-                {/* Name */}
-                <div>
-                  <Label htmlFor="name" className="text-academy-blue font-semibold">
-                    اسم المدرب *
-                  </Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    className="mt-2 border-academy-gold/30 focus:border-academy-gold"
-                    placeholder="أدخل اسم المدرب"
-                  />
-                </div>
-
-                {/* Specialization */}
-                <div>
-                  <Label htmlFor="specialization" className="text-academy-blue font-semibold">
-                    التخصص *
-                  </Label>
-                  <Input
-                    id="specialization"
-                    type="text"
-                    value={formData.specialization}
-                    onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
-                    required
-                    className="mt-2 border-academy-gold/30 focus:border-academy-gold"
-                    placeholder="أدخل تخصص المدرب"
-                  />
-                </div>
-
-                {/* Form Actions */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold flex-1"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-academy-blue border-t-transparent rounded-full animate-spin ml-2"></div>
-                        جاري الحفظ...
-                      </>
-                    ) : (
-                      <>{editingTrainer ? "تحديث المدرب" : "إضافة المدرب"}</>
-                    )}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={resetForm}
-                    className="border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white flex-1 bg-transparent"
-                  >
-                    إلغاء
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      )}
-
-      {/* Trainers List */}
+      {/* Enhanced Trainers List */}
       <div className="container mx-auto px-4 py-8">
         {trainers.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {trainers.map((trainer) => (
               <Card key={trainer.id} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md">
                 <CardContent className="p-0">
-                  {/* Trainer Image */}
+                  {/* Enhanced Trainer Image */}
                   <div className="relative h-56 overflow-hidden">
                     <Image
                       src={trainer.image_url || "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"}
                       alt={trainer.name}
                       fill
-                      className="object-cover"
+                      className="object-contain bg-gray-50 group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
                     <div className="absolute top-2 left-2 flex gap-2">
                       <Button
@@ -384,7 +338,7 @@ export default function TrainersManagement() {
                     </div>
                   </div>
 
-                  {/* Trainer Info */}
+                  {/* Enhanced Trainer Info */}
                   <div className="p-4 text-center">
                     <h3 className="text-lg font-bold text-academy-blue mb-2 line-clamp-2">{trainer.name}</h3>
                     <div className="bg-academy-gray px-3 py-1 rounded-full">
@@ -403,7 +357,10 @@ export default function TrainersManagement() {
             <h3 className="text-2xl font-bold text-academy-blue mb-4">لا توجد مدربين</h3>
             <p className="text-academy-dark-gray mb-6">لم يتم إضافة المدربين المعتمدين بعد.</p>
             <Button
-              onClick={() => setShowForm(true)}
+              onClick={() => {
+                resetForm()
+                setShowForm(true)
+              }}
               className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold"
             >
               <Plus size={20} className="ml-2" />
@@ -412,6 +369,15 @@ export default function TrainersManagement() {
           </div>
         )}
       </div>
+
+      {/* Enhanced Delete Confirmation */}
+      <EnhancedDeleteConfirmation
+        isOpen={!!showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(null)}
+        onConfirm={() => showDeleteConfirm && handleDelete(showDeleteConfirm)}
+        itemName={trainers.find(t => t.id === showDeleteConfirm)?.name}
+        isLoading={isDeleting}
+      />
     </div>
   )
 }
