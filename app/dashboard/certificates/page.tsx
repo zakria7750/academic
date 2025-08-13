@@ -441,8 +441,8 @@ export default function CertificatesManagement() {
               <DialogTitle className="text-2xl text-academy-dark-gray text-center">تعديل الشهادة</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleEdit} className="space-y-6">
-              <div className="space-y-6">
-                <div>
+              <div className="space-y-6 bg-white z-50">
+                <div> 
                   <label className="block text-sm font-semibold text-academy-dark-gray mb-3">رقم الشهادة *</label>
                   <div className="relative">
                     <Hash className="absolute right-3 top-1/2 transform -translate-y-1/2 text-academy-yellow w-5 h-5" />

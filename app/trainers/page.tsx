@@ -214,7 +214,7 @@ export default async function TrainersPage() {
               <div className="w-12 h-12 bg-academy-blue rounded-full flex items-center justify-center">
                 <CheckCircle className="text-academy-gold" size={24} />
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-academy-blue">شروط الحصول على ��عتماد الأكاديمية</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-academy-blue">شروط الحصول على الاعتماد الأكاديمية</h2>
             </div>
             <div className="max-w-4xl mx-auto">
               <p className="text-xl text-academy-dark-gray mb-6">

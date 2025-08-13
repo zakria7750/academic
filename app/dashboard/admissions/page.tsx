@@ -343,7 +343,7 @@ export default function AdmissionsManagement() {
                   </DialogDescription>
                 </DialogHeader>
                 <form id="add-student-form" action={handleAddStudent} className="space-y-4 px-1">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="grid grid-cols-1 bg-white sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="fullName" className="text-sm font-medium">
                         الاسم الكامل *
