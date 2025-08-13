@@ -259,6 +259,7 @@ export default function FacultyMembersManagement() {
             currentImageUrl={editingMember?.image_url}
             label="صورة العضو"
             error={formErrors.image}
+            isOval={true}
           />
 
           <EnhancedFormField
@@ -338,45 +339,57 @@ export default function FacultyMembersManagement() {
         {facultyMembers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {facultyMembers.map((member) => (
-              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
                 <CardContent className="p-0">
-                  {/* Enhanced Member Image */}
-                  <div className="relative h-64 overflow-hidden rounded-t-xl">
-                    <Image
-                      src={member.image_url || "/placeholder.svg?height=400&width=400&text=عضو+هيئة+التدريس"}
-                      alt={member.name}
-                      fill
-                      className="object-contain bg-gray-50 group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    <div className="action-buttons absolute top-3 left-3 flex gap-2">
+                  {/* Enhanced Member Image - Hexagonal Shape */}
+                  <div className="relative h-80 bg-gradient-to-br from-academy-blue-50 to-academy-gold-50 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-56 h-72">
+                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-gold opacity-20 rounded-3xl transform rotate-6"></div>
+                      <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-500 bg-white">
+                        <Image
+                          src={member.image_url || "/placeholder.svg?height=400&width=400&text=عضو+هيئة+التدريس"}
+                          alt={member.name}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Action Buttons */}
+                    <div className="action-buttons absolute top-4 left-4 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="w-10 h-10 bg-academy-gold/90 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl"
+                        className="w-10 h-10 bg-academy-gold/90 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0"
                       >
                         <Edit size={16} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(member.id)}
-                        className="w-10 h-10 bg-red-500/90 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl"
+                        className="w-10 h-10 bg-red-500/90 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0"
+                        style={{ transitionDelay: '50ms' }}
                       >
                         <Trash2 size={16} />
                       </Button>
                     </div>
-                    <div className="absolute bottom-3 right-3 left-3">
-                      <h3 className="text-xl font-bold text-white mb-1 line-clamp-2">{member.name}</h3>
+                    
+                    {/* Member Name Overlay */}
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-xl font-bold text-white mb-1 line-clamp-2 drop-shadow-lg">{member.name}</h3>
                     </div>
                   </div>
 
                   {/* Enhanced Member Info */}
-                  <div className="p-6">
-                    <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-xl text-sm font-bold mb-4 inline-block border border-academy-gold/30">
-                      {member.specialization}
+                  <div className="p-6 bg-white">
+                    <div className="flex items-center justify-center mb-4">
+                      <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-6 py-3 rounded-full text-sm font-bold border border-academy-gold/30 shadow-sm">
+                        {member.specialization}
+                      </div>
                     </div>
-                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.biography}</p>
+                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4 text-center">{member.biography}</p>
                   </div>
                 </CardContent>
               </Card>

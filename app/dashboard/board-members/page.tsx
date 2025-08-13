@@ -256,6 +256,7 @@ export default function BoardMembersManagement() {
             currentImageUrl={editingMember?.image_url}
             label="صورة العضو"
             error={formErrors.image}
+            isOval={true}
           />
 
           <EnhancedFormField
@@ -335,45 +336,59 @@ export default function BoardMembersManagement() {
         {boardMembers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {boardMembers.map((member) => (
-              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden bg-white">
                 <CardContent className="p-0">
-                  {/* Enhanced Member Image */}
-                  <div className="relative h-56 overflow-hidden rounded-t-xl">
-                    <Image
-                      src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
-                      alt={member.name}
-                      fill
-                      className="object-contain bg-gray-50 group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, (max-width: 1536px) 33vw, 25vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    <div className="action-buttons absolute top-3 left-3 flex gap-2">
+                  {/* Enhanced Member Image - Diamond Shape */}
+                  <div className="relative h-72 bg-gradient-to-br from-academy-blue-50 to-academy-gold-50 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-48 h-48">
+                      {/* Background decorative elements */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/10 via-academy-gold/10 to-academy-blue/10 rounded-full transform scale-110 rotate-45"></div>
+                      <div className="absolute inset-4 bg-gradient-to-tr from-academy-gold/20 to-academy-blue/20 rounded-full transform rotate-12"></div>
+                      
+                      {/* Main image container */}
+                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl transform group-hover:scale-110 transition-all duration-500 bg-white ring-4 ring-white">
+                        <Image
+                          src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
+                          alt={member.name}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, (max-width: 1536px) 33vw, 25vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Action Buttons */}
+                    <div className="action-buttons absolute top-4 left-4 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="w-10 h-10 bg-academy-gold/90 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl"
+                        className="w-10 h-10 bg-academy-gold/90 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0"
                       >
                         <Edit size={16} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(member.id)}
-                        className="w-10 h-10 bg-red-500/90 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl"
+                        className="w-10 h-10 bg-red-500/90 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0"
+                        style={{ transitionDelay: '50ms' }}
                       >
                         <Trash2 size={16} />
                       </Button>
                     </div>
-                    <div className="absolute bottom-3 right-3 left-3">
-                      <h3 className="text-xl font-bold text-white mb-1 line-clamp-2">{member.name}</h3>
-                    </div>
                   </div>
 
                   {/* Enhanced Member Info */}
-                  <div className="p-6">
-                    <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-xl text-sm font-bold mb-4 inline-block border border-academy-gold/30">
-                      {member.position}
+                  <div className="p-6 text-center space-y-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-academy-blue mb-2 line-clamp-2">{member.name}</h3>
+                      <div className="inline-flex items-center justify-center">
+                        <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-full text-sm font-bold border border-academy-gold/30 shadow-sm">
+                          {member.position}
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.experience}</p>
+                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3">{member.experience}</p>
                   </div>
                 </CardContent>
               </Card>

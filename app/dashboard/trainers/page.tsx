@@ -241,6 +241,7 @@ export default function TrainersManagement() {
             currentImageUrl={editingTrainer?.image_url}
             label="صورة المدرب"
             error={formErrors.image}
+            isOval={true}
           />
 
           <EnhancedFormField
@@ -305,44 +306,60 @@ export default function TrainersManagement() {
         {trainers.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {trainers.map((trainer) => (
-              <Card key={trainer.id} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+              <Card key={trainer.id} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md overflow-hidden bg-white">
                 <CardContent className="p-0">
-                  {/* Enhanced Trainer Image */}
-                  <div className="relative h-56 overflow-hidden">
-                    <Image
-                      src={trainer.image_url || "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"}
-                      alt={trainer.name}
-                      fill
-                      className="object-contain bg-gray-50 group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                    <div className="absolute top-2 left-2 flex gap-2">
+                  {/* Enhanced Trainer Image - Badge Style */}
+                  <div className="relative h-64 bg-gradient-to-br from-academy-gold-50 to-academy-blue-50 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-40 h-40">
+                      {/* Certification Badge Background */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold opacity-80 rounded-full transform scale-110"></div>
+                      <div className="absolute inset-2 bg-white rounded-full shadow-xl"></div>
+                      
+                      {/* Main image container */}
+                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg transform group-hover:scale-105 transition-all duration-300 ring-4 ring-academy-gold/50">
+                        <Image
+                          src={trainer.image_url || "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"}
+                          alt={trainer.name}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        />
+                      </div>
+                      
+                      {/* Certification Badge */}
+                      <div className="absolute -top-2 -right-2 bg-academy-gold text-academy-blue px-2 py-1 rounded-full text-xs font-bold flex items-center space-x-1 space-x-reverse shadow-lg">
+                        <Award size={12} />
+                        <span>معتمد</span>
+                      </div>
+                    </div>
+                    
+                    {/* Action Buttons */}
+                    <div className="absolute top-3 left-3 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(trainer)}
-                        className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 w-8 h-8"
+                        className="w-8 h-8 bg-academy-gold text-academy-blue hover:bg-academy-gold/90 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100"
                       >
                         <Edit size={14} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(trainer.id)}
-                        className="bg-red-500 text-white hover:bg-red-600 w-8 h-8"
+                        className="w-8 h-8 bg-red-500 text-white hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100"
+                        style={{ transitionDelay: '50ms' }}
                       >
                         <Trash2 size={14} />
                       </Button>
                     </div>
-                    <div className="absolute top-2 right-2 bg-academy-gold text-academy-blue px-2 py-1 rounded-full text-xs font-bold flex items-center space-x-1 space-x-reverse">
-                      <Award size={10} />
-                      <span>معتمد</span>
-                    </div>
                   </div>
 
                   {/* Enhanced Trainer Info */}
-                  <div className="p-4 text-center">
-                    <h3 className="text-lg font-bold text-academy-blue mb-2 line-clamp-2">{trainer.name}</h3>
-                    <div className="bg-academy-gray px-3 py-1 rounded-full">
-                      <span className="text-academy-blue font-semibold text-sm">{trainer.specialization}</span>
+                  <div className="p-6 text-center space-y-3">
+                    <h3 className="text-lg font-bold text-academy-blue line-clamp-2">{trainer.name}</h3>
+                    <div className="inline-flex items-center justify-center">
+                      <div className="bg-academy-gray px-4 py-2 rounded-full border border-academy-gold/20">
+                        <span className="text-academy-blue font-semibold text-sm">{trainer.specialization}</span>
+                      </div>
                     </div>
                   </div>
                 </CardContent>

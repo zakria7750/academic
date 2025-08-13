@@ -15,6 +15,7 @@ interface EnhancedImageUploadProps {
   required?: boolean
   className?: string
   preview?: boolean
+  isOval?: boolean // New prop for oval display
 }
 
 export function EnhancedImageUpload({
@@ -25,7 +26,8 @@ export function EnhancedImageUpload({
   maxSize = 5,
   required = false,
   className = "",
-  preview = true
+  preview = true,
+  isOval = false
 }: EnhancedImageUploadProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
@@ -107,37 +109,57 @@ export function EnhancedImageUpload({
   const displayImageUrl = previewUrl || currentImageUrl
 
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div className={`space-y-4 ${className}`}>
       <Label className="text-academy-blue font-semibold text-base">
         {label} {required && <span className="text-red-500">*</span>}
       </Label>
       
-      {/* Image Preview */}
+      {/* Enhanced Image Preview - Oval Style */}
       {displayImageUrl && (
-        <div className="relative w-full max-w-sm mx-auto">
-          <div className="relative bg-gray-50 rounded-xl overflow-hidden border-2 border-gray-200 group">
-            <div className="relative w-full" style={{ aspectRatio: '4/3' }}>
+        <div className="flex flex-col items-center space-y-4">
+          <div className={`relative group ${isOval ? 'w-48 h-64' : 'w-full max-w-sm'}`}>
+            <div className={`relative bg-gray-50 overflow-hidden border-4 border-white shadow-lg group-hover:shadow-xl transition-all duration-300 ${
+              isOval 
+                ? 'rounded-full aspect-[3/4] ring-2 ring-academy-gold/30 group-hover:ring-academy-gold/60' 
+                : 'rounded-xl aspect-[4/3] border-gray-200 group-hover:border-academy-gold/40'
+            }`}>
               <Image
                 src={displayImageUrl}
                 alt="معاينة الصورة"
                 fill
-                className="object-contain group-hover:scale-105 transition-transform duration-300"
+                className={`object-cover group-hover:scale-105 transition-transform duration-300 ${
+                  isOval ? 'object-center' : ''
+                }`}
                 sizes="(max-width: 400px) 100vw, 400px"
               />
+              {/* Oval Gradient Overlay */}
+              {isOval && (
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-full"></div>
+              )}
+              
+              {/* Remove Button */}
+              <Button
+                type="button"
+                variant="destructive"
+                size="icon"
+                className="absolute top-2 left-2 h-8 w-8 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={clearImage}
+              >
+                <X size={16} />
+              </Button>
             </div>
-            <Button
-              type="button"
-              variant="destructive"
-              size="icon"
-              className="absolute top-2 left-2 h-8 w-8 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
-              onClick={clearImage}
-            >
-              <X size={16} />
-            </Button>
           </div>
-          <p className="text-sm text-gray-600 text-center mt-2">
-            {selectedFile ? `ملف جديد: ${selectedFile.name}` : 'الصورة الحالية'}
-          </p>
+          
+          <div className="text-center">
+            <p className="text-sm text-gray-600 font-medium">
+              {selectedFile ? `ملف جديد: ${selectedFile.name}` : 'الصورة الحالية'}
+            </p>
+            {isOval && (
+              <p className="text-xs text-gray-500 mt-1">
+                يُنصح برفع صورة شخصية واضحة بجودة عالية
+              </p>
+            )}
+          </div>
         </div>
       )}
 
@@ -190,9 +212,14 @@ export function EnhancedImageUpload({
               </Button>
             </div>
             
-            <p className="text-sm text-gray-400">
-              PNG, JPG أو JPEG (الحد الأقصى {maxSize} ميجابايت)
-            </p>
+            <div className="text-sm text-gray-400 space-y-1">
+              <p>PNG, JPG أو JPEG (الحد الأقصى {maxSize} ميجابايت)</p>
+              {isOval && (
+                <p className="text-xs font-medium text-academy-blue">
+                  صورة شخصية • سيتم عرضها بشكل بيضاوي
+                </p>
+              )}
+            </div>
           </div>
         </div>
       )}
