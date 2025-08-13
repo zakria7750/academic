@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle } from "lucide-react"
+import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle, Users } from "lucide-react"
 import Image from "next/image"
 
 export default function BoardMembersManagement() {
@@ -175,18 +175,25 @@ export default function BoardMembersManagement() {
   }
 
   return (
-    <div className="min-h-screen bg-academy-gray">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div>
-              <h1 className="text-3xl font-bold text-academy-blue">إدارة مجلس الإدارة</h1>
-              <p className="text-academy-dark-gray">إضافة وتعديل وحذف أعضاء مجلس الإدارة</p>
+    <div className="min-h-screen bg-gradient-to-br from-academy-gray-light via-academy-gray to-academy-blue-50">
+      {/* Enhanced Header */}
+      <div className="bg-gradient-to-r from-academy-blue-dark via-academy-blue to-academy-blue-light shadow-xl border-b border-academy-gold/20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+            <div className="text-white">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-12 h-12 bg-academy-gold/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                  <Users className="text-academy-gold" size={24} />
+                </div>
+                <div>
+                  <h1 className="text-3xl md:text-4xl font-bold tracking-tight">إدارة مجلس الإدارة</h1>
+                  <p className="text-white/80 text-lg">إضافة وتعديل وحذف أعضاء مجلس الإدارة</p>
+                </div>
+              </div>
             </div>
             <Button
               onClick={() => setShowForm(true)}
-              className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold"
+              className="btn-primary text-academy-blue font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               <Plus size={20} className="ml-2" />
               إضافة عضو جديد
@@ -195,67 +202,83 @@ export default function BoardMembersManagement() {
         </div>
       </div>
 
-      {/* Success/Error Messages */}
+      {/* Enhanced Success/Error Messages */}
       {message && (
         <div className="container mx-auto px-4 py-4">
           <div
-            className={`flex items-center p-4 rounded-lg ${
+            className={`flex items-center p-4 rounded-xl shadow-lg slide-up ${
               message.type === "success"
-                ? "bg-green-100 text-green-800 border border-green-200"
-                : "bg-red-100 text-red-800 border border-red-200"
+                ? "alert-success text-green-800"
+                : "alert-error text-red-800"
             }`}
           >
             {message.type === "success" ? (
-              <Check size={20} className="ml-2" />
+              <div className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-full mr-3">
+                <Check size={16} className="text-green-600" />
+              </div>
             ) : (
-              <AlertCircle size={20} className="ml-2" />
+              <div className="flex items-center justify-center w-8 h-8 bg-red-100 rounded-full mr-3">
+                <AlertCircle size={16} className="text-red-600" />
+              </div>
             )}
-            {message.text}
+            <span className="font-medium">{message.text}</span>
           </div>
         </div>
       )}
 
-      {/* Add/Edit Form */}
+      {/* Enhanced Add/Edit Form Modal */}
       {showForm && (
-        <div className="fixed inset-0  z-50 flex items-center justify-center p-4">
-          <Card className="w-full max-w-2xl bg-white max-h-[90vh] overflow-y-auto">
-            <CardHeader>
+        <div className="fixed inset-0 form-modal z-50 flex items-center justify-center p-4 slide-up">
+          <Card className="form-container w-full max-w-2xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl">
+            <CardHeader className="border-b border-academy-blue-100 bg-gradient-to-r from-academy-blue-50 to-academy-gold-50">
               <div className="flex justify-between items-center">
-                <CardTitle className="text-academy-blue">{editingMember ? "تعديل العضو" : "إضافة عضو جديد"}</CardTitle>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-academy-blue/10 rounded-lg flex items-center justify-center">
+                    <Users className="text-academy-blue" size={20} />
+                  </div>
+                  <CardTitle className="text-academy-blue text-xl font-bold">
+                    {editingMember ? "تعديل عضو مجلس الإدارة" : "إضافة عضو جديد"}
+                  </CardTitle>
+                </div>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={resetForm}
-                  className="text-academy-dark-gray hover:text-academy-blue"
+                  className="text-academy-dark-gray hover:text-academy-blue hover:bg-academy-blue/5 rounded-lg"
                 >
                   <X size={20} />
                 </Button>
               </div>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Image Upload */}
+            <CardContent className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Enhanced Image Upload */}
                 <div>
-                  <Label htmlFor="image" className="text-academy-blue font-semibold">
+                  <Label htmlFor="image" className="text-academy-blue font-bold text-lg mb-3 block">
                     صورة العضو
                   </Label>
                   <div className="mt-2">
                     <input type="file" id="image" accept="image/*" onChange={handleImageChange} className="hidden" />
                     <label
                       htmlFor="image"
-                      className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-academy-gold rounded-lg cursor-pointer hover:bg-academy-gold/5 transition-colors duration-200"
+                      className="file-upload-area flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer"
                     >
-                      <Upload className="text-academy-gold mb-2" size={24} />
-                      <span className="text-academy-blue font-medium">
-                        {formData.image ? formData.image.name : "اختر صورة العضو"}
-                      </span>
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <div className="w-16 h-16 bg-academy-gold/20 rounded-full flex items-center justify-center mb-4">
+                          <Upload className="text-academy-gold" size={24} />
+                        </div>
+                        <span className="text-academy-blue font-semibold text-lg mb-2">
+                          {formData.image ? formData.image.name : "اختر صورة العضو"}
+                        </span>
+                        <span className="text-academy-dark-gray text-sm">PNG, JPG أو JPEG (الحد الأقصى 5MB)</span>
+                      </div>
                     </label>
                   </div>
                 </div>
 
-                {/* Name */}
+                {/* Enhanced Name Field */}
                 <div>
-                  <Label htmlFor="name" className="text-academy-blue font-semibold">
+                  <Label htmlFor="name" className="text-academy-blue font-bold text-lg mb-3 block">
                     اسم العضو *
                   </Label>
                   <Input
@@ -264,14 +287,14 @@ export default function BoardMembersManagement() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                    className="mt-2 border-academy-gold/30 focus:border-academy-gold"
-                    placeholder="أدخل اسم العضو"
+                    className="form-input mt-2 h-12 text-lg rounded-xl border-2"
+                    placeholder="أدخل اسم العضو الكامل"
                   />
                 </div>
 
-                {/* Position */}
+                {/* Enhanced Position Field */}
                 <div>
-                  <Label htmlFor="position" className="text-academy-blue font-semibold">
+                  <Label htmlFor="position" className="text-academy-blue font-bold text-lg mb-3 block">
                     منصب العضو *
                   </Label>
                   <Input
@@ -280,14 +303,14 @@ export default function BoardMembersManagement() {
                     value={formData.position}
                     onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                     required
-                    className="mt-2 border-academy-gold/30 focus:border-academy-gold"
-                    placeholder="أدخل منصب العضو"
+                    className="form-input mt-2 h-12 text-lg rounded-xl border-2"
+                    placeholder="مثال: رئيس مجلس الإدارة، نائب الرئيس"
                   />
                 </div>
 
-                {/* Experience */}
+                {/* Enhanced Experience Field */}
                 <div>
-                  <Label htmlFor="experience" className="text-academy-blue font-semibold">
+                  <Label htmlFor="experience" className="text-academy-blue font-bold text-lg mb-3 block">
                     خبرة العضو *
                   </Label>
                   <Textarea
@@ -295,34 +318,37 @@ export default function BoardMembersManagement() {
                     value={formData.experience}
                     onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                     required
-                    rows={4}
-                    className="mt-2 border-academy-gold/30 focus:border-academy-gold resize-none"
-                    placeholder="أدخل وصف خبرة العضو"
+                    rows={5}
+                    className="form-input mt-2 text-lg rounded-xl border-2 resize-none"
+                    placeholder="أدخل وصف مفصل لخبرة العضو ومؤهلاته الأكاديمية والمهنية"
                   />
                 </div>
 
-                {/* Form Actions */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                {/* Enhanced Form Actions */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-academy-blue-100">
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold flex-1"
+                    className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-academy-blue border-t-transparent rounded-full animate-spin ml-2"></div>
+                        <div className="loading-spinner w-5 h-5 border-2 border-academy-blue border-t-transparent rounded-full mr-3"></div>
                         جاري الحفظ...
                       </>
                     ) : (
-                      <>{editingMember ? "تحديث العضو" : "إضافة العضو"}</>
+                      <>
+                        {editingMember ? "تحديث العضو" : "إضافة العضو"}
+                        <Check size={20} className="mr-2" />
+                      </>
                     )}
                   </Button>
                   <Button
                     type="button"
-                    variant="outline"
                     onClick={resetForm}
-                    className="border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white flex-1 bg-transparent"
+                    className="btn-secondary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
                   >
+                    <X size={20} className="mr-2" />
                     إلغاء
                   </Button>
                 </div>
@@ -332,63 +358,68 @@ export default function BoardMembersManagement() {
         </div>
       )}
 
-      {/* Board Members List */}
-      <div className="container mx-auto px-4 py-8">
+      {/* Enhanced Board Members Grid */}
+      <div className="container mx-auto px-4 py-12">
         {boardMembers.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {boardMembers.map((member) => (
-              <Card key={member.id} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl">
                 <CardContent className="p-0">
-                  {/* Member Image */}
-                  <div className="relative h-48 overflow-hidden">
+                  {/* Enhanced Member Image */}
+                  <div className="relative h-56 overflow-hidden rounded-t-xl">
                     <Image
                       src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
                       alt={member.name}
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute top-2 left-2 flex gap-2">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="action-buttons absolute top-3 left-3 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 w-8 h-8"
+                        className="w-10 h-10 bg-academy-gold/90 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl"
                       >
-                        <Edit size={14} />
+                        <Edit size={16} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => handleDelete(member.id)}
-                        className="bg-red-500 text-white hover:bg-red-600 w-8 h-8"
+                        className="w-10 h-10 bg-red-500/90 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl"
                       >
-                        <Trash2 size={14} />
+                        <Trash2 size={16} />
                       </Button>
+                    </div>
+                    <div className="absolute bottom-3 right-3 left-3">
+                      <h3 className="text-xl font-bold text-white mb-1 line-clamp-2">{member.name}</h3>
                     </div>
                   </div>
 
-                  {/* Member Info */}
-                  <div className="p-4">
-                    <h3 className="text-lg font-bold text-academy-blue mb-2 line-clamp-2">{member.name}</h3>
-                    <div className="bg-academy-gold text-academy-blue px-2 py-1 rounded-full text-xs font-semibold mb-3 inline-block">
+                  {/* Enhanced Member Info */}
+                  <div className="p-6">
+                    <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-xl text-sm font-bold mb-4 inline-block border border-academy-gold/30">
                       {member.position}
                     </div>
-                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3">{member.experience}</p>
+                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.experience}</p>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
         ) : (
-          <div className="text-center py-16">
-            <div className="w-24 h-24 bg-academy-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-academy-gold text-4xl">👥</span>
+          <div className="text-center py-20 fade-in">
+            <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/10 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+              <Users className="text-academy-gold" size={48} />
             </div>
-            <h3 className="text-2xl font-bold text-academy-blue mb-4">لا توجد أعضاء</h3>
-            <p className="text-academy-dark-gray mb-6">لم يتم إضافة أعضاء مجلس الإدارة بعد.</p>
+            <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد أعضاء</h3>
+            <p className="text-academy-dark-gray text-lg mb-8 max-w-md mx-auto">
+              لم يتم إضافة أعضاء مجلس الإدارة بعد. ابدأ بإضافة أول عضو.
+            </p>
             <Button
               onClick={() => setShowForm(true)}
-              className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 font-bold"
+              className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
             >
-              <Plus size={20} className="ml-2" />
+              <Plus size={24} className="ml-2" />
               إضافة أول عضو
             </Button>
           </div>
