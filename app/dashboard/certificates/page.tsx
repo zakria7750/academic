@@ -434,9 +434,9 @@ export default function CertificatesManagement() {
                   className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-r-4 border-r-academy-gold"
                 >
                   <CardContent className="p-6">
-                    <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+                    <div className="flex flex-col gap-4">
                       {/* Certificate Info */}
-                      <div className="flex-1">
+                      <div className="w-full">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                           <div className="flex items-center gap-3">
                             <div className="p-2 bg-academy-gold/20 rounded-lg">
@@ -452,21 +452,36 @@ export default function CertificatesManagement() {
                           </Badge>
                         </div>
                         
-                        <div className="flex items-center gap-2 text-academy-dark-gray">
+                        <div className="flex items-center gap-2 text-academy-dark-gray mb-4">
                           <Calendar className="w-4 h-4 text-academy-gold" />
                           <span className="font-medium">
                             تاريخ الإصدار: {formatDate(certificate.issue_date)}
                           </span>
                         </div>
+                        
+                        {/* Certificate Image Preview */}
+                        {certificate.certificate_image && (
+                          <div className="mt-4 mb-4">
+                            <img
+                              src={certificate.certificate_image}
+                              alt={`شهادة رقم ${certificate.certificate_number}`}
+                              className="w-full h-auto max-h-80 object-contain rounded-lg border border-academy-gold/20 bg-white shadow-sm"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement
+                                target.style.display = 'none'
+                              }}
+                            />
+                          </div>
+                        )}
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-2">
+                      <div className="flex flex-row gap-3 pt-4 border-t border-gray-200">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => openEditDialog(certificate)}
-                          className="border-academy-gold text-academy-gold hover:bg-academy-gold hover:text-white font-medium"
+                          className="flex-1 border-academy-gold text-academy-gold hover:bg-academy-gold hover:text-white font-medium"
                         >
                           <Edit className="w-4 h-4 ml-1" />
                           تعديل
@@ -475,7 +490,7 @@ export default function CertificatesManagement() {
                           variant="outline"
                           size="sm"
                           onClick={() => openDeleteDialog(certificate)}
-                          className="border-red-300 text-red-600 hover:bg-red-600 hover:text-white font-medium"
+                          className="flex-1 border-red-300 text-red-600 hover:bg-red-600 hover:text-white font-medium"
                         >
                           <Trash2 className="w-4 h-4 ml-1" />
                           حذف

@@ -338,15 +338,14 @@ export default function TrainersManagement() {
                       <Button
                         size="icon"
                         onClick={() => handleEdit(trainer)}
-                        className="w-8 h-8 bg-academy-gold text-academy-blue hover:bg-academy-gold/90 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100"
+                        className="w-8 h-8 bg-academy-gold text-academy-blue hover:bg-academy-gold/90 shadow-lg transition-all duration-300 hover:scale-110"
                       >
                         <Edit size={14} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(trainer.id)}
-                        className="w-8 h-8 bg-red-500 text-white hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100"
-                        style={{ transitionDelay: '50ms' }}
+                        className="w-8 h-8 bg-red-500 text-white hover:bg-red-600 shadow-lg transition-all duration-300 hover:scale-110"
                       >
                         <Trash2 size={14} />
                       </Button>
