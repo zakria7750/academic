@@ -271,7 +271,7 @@ export default function InternationalAccreditationsManagement() {
                         <img
                           src={accreditation.image_url || "/placeholder.svg"}
                           alt={accreditation.title}
-                          className="w-full h-48 object-cover"
+                          className="w-full h-48 object-contain bg-white"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement
                             target.src = "/international-accreditation-certificate.png"

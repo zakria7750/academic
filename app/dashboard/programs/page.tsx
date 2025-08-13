@@ -485,29 +485,29 @@ export default function ProgramsManagement() {
         {filteredPrograms.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredPrograms.map((program) => (
-              <Card key={program.id} className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg bg-white/90 backdrop-blur-sm overflow-hidden">
+              <Card key={program.id} className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg bg-white rounded-2xl overflow-hidden">
                 <CardContent className="p-0">
-                  {/* Program Image */}
+                  {/* Program Image - Full Width */}
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={program.image_url || "/placeholder.svg?height=300&width=300&text=برنامج+تعليمي"}
                       alt={program.name}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover w-full group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute top-3 left-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    <div className="absolute top-3 left-3 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(program)}
-                        className="bg-academy-gold/90 text-academy-blue hover:bg-academy-gold w-8 h-8 shadow-lg"
+                        className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90 w-8 h-8 shadow-lg transition-all duration-300 hover:scale-110"
                       >
                         <Edit size={14} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(program.id)}
-                        className="bg-red-500/90 text-white hover:bg-red-600 w-8 h-8 shadow-lg"
+                        className="bg-red-500 text-white hover:bg-red-600 w-8 h-8 shadow-lg transition-all duration-300 hover:scale-110"
                       >
                         <Trash2 size={14} />
                       </Button>

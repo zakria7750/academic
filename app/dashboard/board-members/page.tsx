@@ -336,17 +336,16 @@ export default function BoardMembersManagement() {
         {boardMembers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {boardMembers.map((member) => (
-              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden bg-white">
+              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-white rounded-2xl">
                 <CardContent className="p-0">
-                  {/* Enhanced Member Image - Diamond Shape */}
-                  <div className="relative h-72 bg-gradient-to-br from-academy-blue-50 to-academy-gold-50 flex items-center justify-center overflow-hidden">
-                    <div className="relative w-48 h-48">
+                  {/* Enhanced Member Image - Matching Trainers Design */}
+                  <div className="relative h-64 bg-gradient-to-br from-academy-blue-50 to-academy-gold-50 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-40 h-40">
                       {/* Background decorative elements */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/10 via-academy-gold/10 to-academy-blue/10 rounded-full transform scale-110 rotate-45"></div>
-                      <div className="absolute inset-4 bg-gradient-to-tr from-academy-gold/20 to-academy-blue/20 rounded-full transform rotate-12"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/20 to-academy-gold/20 rounded-full transform scale-110"></div>
                       
-                      {/* Main image container */}
-                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl transform group-hover:scale-110 transition-all duration-500 bg-white ring-4 ring-white">
+                      {/* Main image container - matching trainers style */}
+                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg transform group-hover:scale-105 transition-all duration-300 ring-4 ring-academy-gold/50">
                         <Image
                           src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
                           alt={member.name}
@@ -354,38 +353,40 @@ export default function BoardMembersManagement() {
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, (max-width: 1536px) 33vw, 25vw"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                      </div>
+                      
+                      {/* Leadership Badge */}
+                      <div className="absolute -top-2 -right-2 bg-academy-gold text-academy-blue px-2 py-1 rounded-full text-xs font-bold flex items-center space-x-1 space-x-reverse shadow-lg">
+                        <Users size={12} />
+                        <span>مجلس الإدارة</span>
                       </div>
                     </div>
                     
-                    {/* Action Buttons */}
-                    <div className="action-buttons absolute top-4 left-4 flex gap-2">
+                    {/* Action Buttons - Always Visible */}
+                    <div className="absolute top-3 left-3 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="w-10 h-10 bg-academy-gold/90 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0"
+                        className="w-8 h-8 bg-academy-gold text-academy-blue hover:bg-academy-gold/90 shadow-lg transition-all duration-300 hover:scale-110"
                       >
-                        <Edit size={16} />
+                        <Edit size={14} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(member.id)}
-                        className="w-10 h-10 bg-red-500/90 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0"
-                        style={{ transitionDelay: '50ms' }}
+                        className="w-8 h-8 bg-red-500 text-white hover:bg-red-600 shadow-lg transition-all duration-300 hover:scale-110"
                       >
-                        <Trash2 size={16} />
+                        <Trash2 size={14} />
                       </Button>
                     </div>
                   </div>
 
                   {/* Enhanced Member Info */}
-                  <div className="p-6 text-center space-y-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-academy-blue mb-2 line-clamp-2">{member.name}</h3>
-                      <div className="inline-flex items-center justify-center">
-                        <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-full text-sm font-bold border border-academy-gold/30 shadow-sm">
-                          {member.position}
-                        </div>
+                  <div className="p-6 text-center space-y-3">
+                    <h3 className="text-lg font-bold text-academy-blue line-clamp-2">{member.name}</h3>
+                    <div className="inline-flex items-center justify-center">
+                      <div className="bg-academy-gray px-4 py-2 rounded-full border border-academy-gold/20">
+                        <span className="text-academy-blue text-sm font-bold">{member.position}</span>
                       </div>
                     </div>
                     <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3">{member.experience}</p>
