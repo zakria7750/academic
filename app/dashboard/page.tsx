@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Users, BookOpen, Award, GraduationCap, UserCheck, UserPlus, Newspaper, FileText } from "lucide-react"
+import { Users, BookOpen, Award, GraduationCap, UserCheck, UserPlus, Newspaper, FileText, Shield } from "lucide-react"
 
 export default function DashboardPage() {
   const adminSections = [
@@ -34,6 +34,11 @@ export default function DashboardPage() {
       title: "إدارة طلبات الاعتماد",
       icon: Award,
       href: "/dashboard/accreditations",
+    },
+    {
+      title: "إدارة الاعتمادات الدولية",
+      icon: Shield,
+      href: "/dashboard/international-accreditations",
     },
     {
       title: "إدارة شبكة الخريجين",
