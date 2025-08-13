@@ -152,11 +152,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
     <div className="space-y-6">
       {message && (
         <Alert
-          className={`${
-            message.type === "success" 
-              ? "border-green-200 bg-green-50/80 backdrop-blur-sm shadow-md" 
-              : "border-red-200 bg-red-50/80 backdrop-blur-sm shadow-md"
-          } rounded-xl`}
+          className={`${message.type === "success" ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}
         >
           {message.type === "success" ? (
             <CheckCircle className="h-4 w-4 text-green-600" />
@@ -170,99 +166,79 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
       )}
 
       <Tabs defaultValue="graduates" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 bg-white/80 backdrop-blur-sm shadow-md">
-          <TabsTrigger value="graduates" className="flex items-center gap-2 data-[state=active]:bg-academy-blue data-[state=active]:text-white font-medium">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="graduates" className="flex items-center gap-2">
             <Users className="w-4 h-4" />
             الخريجون ({graduates.length})
           </TabsTrigger>
-          <TabsTrigger value="applications" className="flex items-center gap-2 data-[state=active]:bg-academy-blue data-[state=active]:text-white font-medium">
+          <TabsTrigger value="applications" className="flex items-center gap-2">
             <Clock className="w-4 h-4" />
             طلبات التقديم ({pendingApplications.length})
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="graduates" className="space-y-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-academy-gold/20">
-            <h2 className="text-xl sm:text-2xl font-bold text-academy-blue">الخريجون المعتمدون</h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold text-academy-blue">الخريجون المعتمدون</h2>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="w-full sm:w-auto bg-gradient-to-r from-academy-gold to-academy-gold-light text-academy-blue hover:from-academy-gold-dark hover:to-academy-gold font-bold px-6 py-3 rounded-xl shadow-lg">
+                <Button className="bg-academy-blue hover:bg-blue-600">
                   <Plus className="w-4 h-4 ml-2" />
                   إضافة خريج
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white shadow-2xl">
-                <DialogHeader className="border-b border-academy-gold/20 pb-4">
-                  <DialogTitle className="text-academy-blue font-bold text-lg sm:text-xl">إضافة خريج جديد</DialogTitle>
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle>إضافة خريج جديد</DialogTitle>
                 </DialogHeader>
                 <GraduateForm onSubmit={handleAddGraduate} />
               </DialogContent>
             </Dialog>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {graduates.map((graduate) => (
-              <Card key={graduate.id} className="hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm group">
+              <Card key={graduate.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-3">
-                  <div className="flex justify-between items-start gap-3">
-                    <div className="min-w-0 flex-1">
-                      <CardTitle className="text-base sm:text-lg text-academy-blue truncate">{graduate.name}</CardTitle>
-                      <p className="text-xs sm:text-sm text-academy-dark-gray truncate">{graduate.specialization}</p>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="text-lg text-academy-blue">{graduate.name}</CardTitle>
+                      <p className="text-sm text-academy-dark-gray">{graduate.specialization}</p>
                     </div>
-                    <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        onClick={() => setEditingGraduate(graduate)}
-                        className="border-academy-gold text-academy-gold hover:bg-academy-gold hover:text-white bg-white p-2"
-                      >
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="outline" onClick={() => setEditingGraduate(graduate)}>
                         <Edit className="w-4 h-4" />
                       </Button>
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        onClick={() => handleDeleteGraduate(graduate.id)}
-                        className="border-red-300 text-red-600 hover:bg-red-50 bg-white p-2"
-                      >
+                      <Button size="sm" variant="outline" onClick={() => handleDeleteGraduate(graduate.id)}>
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex items-center text-xs sm:text-sm text-academy-dark-gray">
-                    <Briefcase className="w-4 h-4 ml-2 text-academy-gold flex-shrink-0" />
-                    <span className="truncate">{graduate.current_position}</span>
+                  <div className="flex items-center text-sm text-academy-dark-gray">
+                    <Briefcase className="w-4 h-4 ml-2 text-academy-blue" />
+                    {graduate.current_position}
                   </div>
-                  <div className="flex items-center justify-between text-xs sm:text-sm text-academy-dark-gray">
-                    <div className="flex items-center min-w-0 flex-1">
-                      <MapPin className="w-4 h-4 ml-1 text-academy-gold flex-shrink-0" />
-                      <span className="truncate">{graduate.country}</span>
+                  <div className="flex items-center justify-between text-sm text-academy-dark-gray">
+                    <div className="flex items-center">
+                      <MapPin className="w-4 h-4 ml-1 text-academy-blue" />
+                      {graduate.country}
                     </div>
-                    <div className="flex items-center flex-shrink-0 ml-2">
-                      <Calendar className="w-4 h-4 ml-1 text-academy-gold" />
-                      <span>{graduate.graduation_year}</span>
+                    <div className="flex items-center">
+                      <Calendar className="w-4 h-4 ml-1 text-academy-blue" />
+                      {graduate.graduation_year}
                     </div>
                   </div>
-                  <p className="text-xs sm:text-sm text-academy-dark-gray line-clamp-3 leading-relaxed">{graduate.success_story}</p>
+                  <p className="text-sm text-academy-dark-gray line-clamp-3">{graduate.success_story}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          {graduates.length === 0 && (
-            <div className="text-center py-12 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg">
-              <Users className="w-16 h-16 text-academy-gold mx-auto mb-4" />
-              <h3 className="text-lg sm:text-xl font-semibold text-academy-blue mb-2">لا يوجد خريجون</h3>
-              <p className="text-academy-dark-gray text-sm sm:text-base">لم يتم إضافة أي خريجين بعد</p>
-            </div>
-          )}
         </TabsContent>
 
         <TabsContent value="applications" className="space-y-6">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-academy-gold/20">
-            <h2 className="text-xl sm:text-2xl font-bold text-academy-blue">طلبات التقديم</h2>
-          </div>
+          <h2 className="text-2xl font-bold text-academy-blue">طلبات التقديم</h2>
 
           <div className="space-y-4">
             {pendingApplications.map((application) => (
@@ -275,10 +251,10 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
             ))}
 
             {pendingApplications.length === 0 && (
-              <Card className="bg-white/80 backdrop-blur-sm shadow-lg">
+              <Card>
                 <CardContent className="text-center py-8">
-                  <Clock className="w-12 h-12 text-academy-gold mx-auto mb-4" />
-                  <p className="text-academy-dark-gray text-sm sm:text-base">لا توجد طلبات معلقة حالياً</p>
+                  <Clock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-academy-dark-gray">لا توجد طلبات معلقة حالياً</p>
                 </CardContent>
               </Card>
             )}
@@ -288,9 +264,9 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
 
       {/* Edit Graduate Dialog */}
       <Dialog open={!!editingGraduate} onOpenChange={() => setEditingGraduate(null)}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white shadow-2xl">
-          <DialogHeader className="border-b border-academy-gold/20 pb-4">
-            <DialogTitle className="text-academy-blue font-bold text-lg sm:text-xl">تعديل بيانات الخريج</DialogTitle>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>تعديل بيانات الخريج</DialogTitle>
           </DialogHeader>
           {editingGraduate && <GraduateForm onSubmit={handleUpdateGraduate} initialData={editingGraduate} />}
         </DialogContent>
@@ -307,85 +283,48 @@ function GraduateForm({
   initialData?: Graduate
 }) {
   return (
-    <form action={onSubmit} className="space-y-4 p-1">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white">
+    <form action={onSubmit} className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-academy-blue font-medium">الاسم الكامل</Label>
-          <Input 
-            id="name" 
-            name="name" 
-            required 
-            defaultValue={initialData?.name} 
-            className="border-academy-gold/30 focus:border-academy-gold bg-white"
-          />
+          <Label htmlFor="name">الاسم الكامل</Label>
+          <Input id="name" name="name" required defaultValue={initialData?.name} />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="specialization" className="text-academy-blue font-medium">التخصص</Label>
-          <Input 
-            id="specialization" 
-            name="specialization" 
-            required 
-            defaultValue={initialData?.specialization} 
-            className="border-academy-gold/30 focus:border-academy-gold bg-white"
-          />
+          <Label htmlFor="specialization">التخصص</Label>
+          <Input id="specialization" name="specialization" required defaultValue={initialData?.specialization} />
         </div>
       </div>
 
-      <div className="space-y-2 bg-white">
-        <Label htmlFor="current_position" className="text-academy-blue font-medium">المنصب الحالي</Label>
-        <Input 
-          id="current_position" 
-          name="current_position" 
-          required 
-          defaultValue={initialData?.current_position} 
-          className="border-academy-gold/30 focus:border-academy-gold bg-white"
-        />
+      <div className="space-y-2">
+        <Label htmlFor="current_position">المنصب الحالي</Label>
+        <Input id="current_position" name="current_position" required defaultValue={initialData?.current_position} />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="country" className="text-academy-blue font-medium">البلد</Label>
-          <Input 
-            id="country" 
-            name="country" 
-            required 
-            defaultValue={initialData?.country} 
-            className="border-academy-gold/30 focus:border-academy-gold bg-white"
-          />
+          <Label htmlFor="country">البلد</Label>
+          <Input id="country" name="country" required defaultValue={initialData?.country} />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="graduation_year" className="text-academy-blue font-medium">سنة التخرج</Label>
+          <Label htmlFor="graduation_year">سنة التخرج</Label>
           <Input
             id="graduation_year"
             name="graduation_year"
             type="number"
             required
             defaultValue={initialData?.graduation_year}
-            className="border-academy-gold/30 focus:border-academy-gold bg-white"
           />
         </div>
       </div>
 
-      <div className="space-y-2 bg-white">
-        <Label htmlFor="success_story" className="text-academy-blue font-medium">قصة النجاح</Label>
-        <Textarea 
-          id="success_story" 
-          name="success_story" 
-          rows={4} 
-          required 
-          defaultValue={initialData?.success_story} 
-          className="border-academy-gold/30 focus:border-academy-gold bg-white resize-none"
-        />
+      <div className="space-y-2">
+        <Label htmlFor="success_story">قصة النجاح</Label>
+        <Textarea id="success_story" name="success_story" rows={4} required defaultValue={initialData?.success_story} />
       </div>
 
-      <div className="pt-4 border-t border-academy-gold/20">
-        <Button 
-          type="submit" 
-          className="w-full bg-gradient-to-r from-academy-gold to-academy-gold-light text-academy-blue hover:from-academy-gold-dark hover:to-academy-gold font-bold py-2.5"
-        >
-          {initialData ? "تحديث" : "إضافة"} الخريج
-        </Button>
-      </div>
+      <Button type="submit" className="w-full bg-academy-blue hover:bg-blue-600">
+        {initialData ? "تحديث" : "إضافة"} الخريج
+      </Button>
     </form>
   )
 }
@@ -409,31 +348,31 @@ function ApplicationCard({
   }
 
   return (
-    <Card className="border-r-4 border-r-academy-gold bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+    <Card className="border-r-4 border-r-yellow-400">
       <CardHeader>
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3">
-          <div className="min-w-0 flex-1">
-            <CardTitle className="text-base sm:text-lg text-academy-blue truncate">{application.name}</CardTitle>
-            <p className="text-xs sm:text-sm text-academy-dark-gray truncate">{application.email}</p>
+        <div className="flex justify-between items-start">
+          <div>
+            <CardTitle className="text-lg text-academy-blue">{application.name}</CardTitle>
+            <p className="text-sm text-academy-dark-gray">{application.email}</p>
           </div>
-          <Badge variant="outline" className="text-academy-gold border-academy-gold bg-academy-gold/10 self-start sm:self-center">
+          <Badge variant="outline" className="text-yellow-600 border-yellow-600">
             معلق
           </Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <span className="font-semibold text-academy-blue">التخصص:</span>
-            <p className="truncate">{application.specialization}</p>
+            <p>{application.specialization}</p>
           </div>
           <div>
             <span className="font-semibold text-academy-blue">المنصب:</span>
-            <p className="truncate">{application.current_position}</p>
+            <p>{application.current_position}</p>
           </div>
           <div>
             <span className="font-semibold text-academy-blue">البلد:</span>
-            <p className="truncate">{application.country}</p>
+            <p>{application.country}</p>
           </div>
           <div>
             <span className="font-semibold text-academy-blue">سنة التخرج:</span>
@@ -443,14 +382,14 @@ function ApplicationCard({
 
         <div>
           <span className="font-semibold text-academy-blue">قصة النجاح:</span>
-          <p className="text-xs sm:text-sm text-academy-dark-gray mt-1 line-clamp-3">{application.success_story}</p>
+          <p className="text-sm text-academy-dark-gray mt-1">{application.success_story}</p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2 pt-4">
+        <div className="flex gap-2 pt-4">
           <Dialog open={showProcessDialog === "approve"} onOpenChange={() => setShowProcessDialog(null)}>
             <DialogTrigger asChild>
               <Button
-                className="bg-green-600 hover:bg-green-700 text-white font-bold flex-1 py-2"
+                className="bg-green-600 hover:bg-green-700"
                 disabled={isProcessing}
                 onClick={() => setShowProcessDialog("approve")}
               >
@@ -458,25 +397,19 @@ function ApplicationCard({
                 قبول
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-white shadow-2xl">
-              <DialogHeader className="border-b border-academy-gold/20 pb-4">
-                <DialogTitle className="text-academy-blue font-bold">قبول الطلب</DialogTitle>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>قبول الطلب</DialogTitle>
               </DialogHeader>
-              <div className="space-y-4 p-1">
-                <div className="bg-white">
-                  <Label htmlFor="approve-message" className="text-academy-blue font-medium">رسالة للمتقدم (اختيارية)</Label>
-                  <Textarea
-                    id="approve-message"
-                    value={adminMessage}
-                    onChange={(e) => setAdminMessage(e.target.value)}
-                    placeholder="رسالة ترحيب أو تهنئة..."
-                    className="mt-2 border-academy-gold/30 focus:border-academy-gold bg-white"
-                  />
-                </div>
-                <Button 
-                  onClick={() => handleProcess("approve")} 
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5"
-                >
+              <div className="space-y-4">
+                <Label htmlFor="approve-message">رسالة للمتقدم (اختيارية)</Label>
+                <Textarea
+                  id="approve-message"
+                  value={adminMessage}
+                  onChange={(e) => setAdminMessage(e.target.value)}
+                  placeholder="رسالة ترحيب أو تهنئة..."
+                />
+                <Button onClick={() => handleProcess("approve")} className="w-full bg-green-600 hover:bg-green-700">
                   تأكيد القبول
                 </Button>
               </div>
@@ -487,7 +420,7 @@ function ApplicationCard({
             <DialogTrigger asChild>
               <Button
                 variant="outline"
-                className="border-red-600 text-red-600 hover:bg-red-50 bg-white font-bold flex-1 py-2"
+                className="border-red-600 text-red-600 hover:bg-red-50 bg-transparent"
                 disabled={isProcessing}
                 onClick={() => setShowProcessDialog("reject")}
               >
@@ -495,25 +428,22 @@ function ApplicationCard({
                 رفض
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-white shadow-2xl">
-              <DialogHeader className="border-b border-red-200 pb-4">
-                <DialogTitle className="text-red-600 font-bold">رفض الطلب</DialogTitle>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>رفض الطلب</DialogTitle>
               </DialogHeader>
-              <div className="space-y-4 p-1">
-                <div className="bg-white">
-                  <Label htmlFor="reject-message" className="text-academy-blue font-medium">سبب الرفض</Label>
-                  <Textarea
-                    id="reject-message"
-                    value={adminMessage}
-                    onChange={(e) => setAdminMessage(e.target.value)}
-                    placeholder="يرجى توضيح سبب الرفض..."
-                    required
-                    className="mt-2 border-academy-gold/30 focus:border-academy-gold bg-white"
-                  />
-                </div>
+              <div className="space-y-4">
+                <Label htmlFor="reject-message">سبب الرفض</Label>
+                <Textarea
+                  id="reject-message"
+                  value={adminMessage}
+                  onChange={(e) => setAdminMessage(e.target.value)}
+                  placeholder="يرجى توضيح سبب الرفض..."
+                  required
+                />
                 <Button
                   onClick={() => handleProcess("reject")}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5"
+                  className="w-full bg-red-600 hover:bg-red-700"
                   disabled={!adminMessage.trim()}
                 >
                   تأكيد الرفض

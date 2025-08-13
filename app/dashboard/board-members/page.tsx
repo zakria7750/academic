@@ -6,13 +6,11 @@ import { useState, useEffect } from "react"
 import { supabase, type BoardMember } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Plus, Edit, Trash2, Users } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle, Users } from "lucide-react"
 import Image from "next/image"
-import { EnhancedFormModal } from "@/components/ui/enhanced-form-modal"
-import { EnhancedImageUpload } from "@/components/ui/enhanced-image-upload"
-import { EnhancedFormField } from "@/components/ui/enhanced-form-field"
-import { EnhancedDeleteConfirmation } from "@/components/ui/enhanced-delete-confirmation"
-import { EnhancedMessage } from "@/components/ui/enhanced-success-message"
 
 export default function BoardMembersManagement() {
   const [boardMembers, setBoardMembers] = useState<BoardMember[]>([])
@@ -21,8 +19,6 @@ export default function BoardMembersManagement() {
   const [editingMember, setEditingMember] = useState<BoardMember | null>(null)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null)
-  const [isDeleting, setIsDeleting] = useState(false)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -31,8 +27,6 @@ export default function BoardMembersManagement() {
     experience: "",
     image: null as File | null,
   })
-
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
 
   useEffect(() => {
     fetchBoardMembers()
@@ -46,10 +40,15 @@ export default function BoardMembersManagement() {
       setBoardMembers(data || [])
     } catch (error) {
       console.error("Error fetching board members:", error)
-      setMessage({ type: "error", text: "حدث خطأ في تحميل البيانات" })
+      showMessage("error", "حدث خطأ في تحميل البيانات")
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const showMessage = (type: "success" | "error", text: string) => {
+    setMessage({ type, text })
+    setTimeout(() => setMessage(null), 5000)
   }
 
   const uploadImage = async (file: File): Promise<string | null> => {
@@ -71,32 +70,8 @@ export default function BoardMembersManagement() {
     }
   }
 
-  const validateForm = () => {
-    const errors: Record<string, string> = {}
-    
-    if (!formData.name.trim()) {
-      errors.name = "اسم العضو مطلوب"
-    }
-    
-    if (!formData.position.trim()) {
-      errors.position = "منصب العضو مطلوب"
-    }
-    
-    if (!formData.experience.trim()) {
-      errors.experience = "خبرة العضو مطلوبة"
-    }
-    
-    setFormErrors(errors)
-    return Object.keys(errors).length === 0
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    if (!validateForm()) {
-      return
-    }
-
     setIsSubmitting(true)
 
     try {
@@ -124,13 +99,13 @@ export default function BoardMembersManagement() {
         const { error } = await supabase.from("board_members").update(memberData).eq("id", editingMember.id)
 
         if (error) throw error
-        setMessage({ type: "success", text: "تم تحديث العضو بنجاح" })
+        showMessage("success", "تم تحديث العضو بنجاح")
       } else {
         // Add new member
         const { error } = await supabase.from("board_members").insert([memberData])
 
         if (error) throw error
-        setMessage({ type: "success", text: "تم إضافة العضو بنجاح" })
+        showMessage("success", "تم إضافة العضو بنجاح")
       }
 
       // Reset form and refresh data
@@ -138,26 +113,24 @@ export default function BoardMembersManagement() {
       fetchBoardMembers()
     } catch (error) {
       console.error("Error saving member:", error)
-      setMessage({ type: "error", text: "حدث خطأ في حفظ البيانات" })
+      showMessage("error", "حدث خطأ في حفظ البيانات")
     } finally {
       setIsSubmitting(false)
     }
   }
 
   const handleDelete = async (id: string) => {
-    setIsDeleting(true)
+    if (!confirm("هل أنت متأكد من حذف هذا العضو؟")) return
+
     try {
       const { error } = await supabase.from("board_members").delete().eq("id", id)
 
       if (error) throw error
-      setMessage({ type: "success", text: "تم حذف العضو بنجاح" })
+      showMessage("success", "تم حذف العضو بنجاح")
       fetchBoardMembers()
-      setShowDeleteConfirm(null)
     } catch (error) {
       console.error("Error deleting member:", error)
-      setMessage({ type: "error", text: "حدث خطأ في حذف العضو" })
-    } finally {
-      setIsDeleting(false)
+      showMessage("error", "حدث خطأ في حذف العضو")
     }
   }
 
@@ -169,7 +142,6 @@ export default function BoardMembersManagement() {
       experience: member.experience,
       image: null,
     })
-    setFormErrors({})
     setShowForm(true)
   }
 
@@ -182,7 +154,13 @@ export default function BoardMembersManagement() {
     })
     setEditingMember(null)
     setShowForm(false)
-    setFormErrors({})
+  }
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setFormData({ ...formData, image: file })
+    }
   }
 
   if (isLoading) {
@@ -214,10 +192,7 @@ export default function BoardMembersManagement() {
               </div>
             </div>
             <Button
-              onClick={() => {
-                resetForm()
-                setShowForm(true)
-              }}
+              onClick={() => setShowForm(true)}
               className="btn-primary text-academy-blue font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               <Plus size={20} className="ml-2" />
@@ -230,175 +205,202 @@ export default function BoardMembersManagement() {
       {/* Enhanced Success/Error Messages */}
       {message && (
         <div className="container mx-auto px-4 py-4">
-          <EnhancedMessage
-            type={message.type}
-            message={message.text}
-            onClose={() => setMessage(null)}
-          />
+          <div
+            className={`flex items-center p-4 rounded-xl shadow-lg slide-up ${
+              message.type === "success"
+                ? "alert-success text-green-800"
+                : "alert-error text-red-800"
+            }`}
+          >
+            {message.type === "success" ? (
+              <div className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-full mr-3">
+                <Check size={16} className="text-green-600" />
+              </div>
+            ) : (
+              <div className="flex items-center justify-center w-8 h-8 bg-red-100 rounded-full mr-3">
+                <AlertCircle size={16} className="text-red-600" />
+              </div>
+            )}
+            <span className="font-medium">{message.text}</span>
+          </div>
         </div>
       )}
 
       {/* Enhanced Add/Edit Form Modal */}
-      <EnhancedFormModal
-        isOpen={showForm}
-        onClose={resetForm}
-        title={editingMember ? "تعديل عضو مجلس الإدارة" : "إضافة عضو جديد"}
-        size="lg"
-      >
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <EnhancedImageUpload
-            onImageChange={(file) => {
-              setFormData({ ...formData, image: file })
-              if (formErrors.image) {
-                setFormErrors({ ...formErrors, image: "" })
-              }
-            }}
-            currentImageUrl={editingMember?.image_url}
-            label="صورة العضو"
-            error={formErrors.image}
-            isOval={true}
-          />
+      {showForm && (
+        <div className="fixed inset-0 form-modal z-50 flex items-center justify-center p-4 slide-up">
+          <Card className="form-container w-full max-w-2xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl">
+            <CardHeader className="border-b border-academy-blue-100 bg-gradient-to-r from-academy-blue-50 to-academy-gold-50">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-academy-blue/10 rounded-lg flex items-center justify-center">
+                    <Users className="text-academy-blue" size={20} />
+                  </div>
+                  <CardTitle className="text-academy-blue text-xl font-bold">
+                    {editingMember ? "تعديل عضو مجلس الإدارة" : "إضافة عضو جديد"}
+                  </CardTitle>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={resetForm}
+                  className="text-academy-dark-gray hover:text-academy-blue hover:bg-academy-blue/5 rounded-lg"
+                >
+                  <X size={20} />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Enhanced Image Upload */}
+                <div>
+                  <Label htmlFor="image" className="text-academy-blue font-bold text-lg mb-3 block">
+                    صورة العضو
+                  </Label>
+                  <div className="mt-2">
+                    <input type="file" id="image" accept="image/*" onChange={handleImageChange} className="hidden" />
+                    <label
+                      htmlFor="image"
+                      className="file-upload-area flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer"
+                    >
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <div className="w-16 h-16 bg-academy-gold/20 rounded-full flex items-center justify-center mb-4">
+                          <Upload className="text-academy-gold" size={24} />
+                        </div>
+                        <span className="text-academy-blue font-semibold text-lg mb-2">
+                          {formData.image ? formData.image.name : "اختر صورة العضو"}
+                        </span>
+                        <span className="text-academy-dark-gray text-sm">PNG, JPG أو JPEG (الحد الأقصى 5MB)</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
 
-          <EnhancedFormField
-            type="input"
-            label="اسم العضو"
-            placeholder="أدخل اسم العضو الكامل"
-            value={formData.name}
-            onChange={(value) => {
-              setFormData({ ...formData, name: value })
-              if (formErrors.name) {
-                setFormErrors({ ...formErrors, name: "" })
-              }
-            }}
-            required
-            error={formErrors.name}
-          />
+                {/* Enhanced Name Field */}
+                <div>
+                  <Label htmlFor="name" className="text-academy-blue font-bold text-lg mb-3 block">
+                    اسم العضو *
+                  </Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                    className="form-input mt-2 h-12 text-lg rounded-xl border-2"
+                    placeholder="أدخل اسم العضو الكامل"
+                  />
+                </div>
 
-          <EnhancedFormField
-            type="input"
-            label="منصب العضو"
-            placeholder="مثال: رئيس مجلس الإدارة، نائب الرئيس"
-            value={formData.position}
-            onChange={(value) => {
-              setFormData({ ...formData, position: value })
-              if (formErrors.position) {
-                setFormErrors({ ...formErrors, position: "" })
-              }
-            }}
-            required
-            error={formErrors.position}
-          />
+                {/* Enhanced Position Field */}
+                <div>
+                  <Label htmlFor="position" className="text-academy-blue font-bold text-lg mb-3 block">
+                    منصب العضو *
+                  </Label>
+                  <Input
+                    id="position"
+                    type="text"
+                    value={formData.position}
+                    onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                    required
+                    className="form-input mt-2 h-12 text-lg rounded-xl border-2"
+                    placeholder="مثال: رئيس مجلس الإدارة، نائب الرئيس"
+                  />
+                </div>
 
-          <EnhancedFormField
-            type="textarea"
-            label="خبرة العضو"
-            placeholder="أدخل وصف مفصل لخبرة العضو ومؤهلاته الأكاديمية والمهنية"
-            value={formData.experience}
-            onChange={(value) => {
-              setFormData({ ...formData, experience: value })
-              if (formErrors.experience) {
-                setFormErrors({ ...formErrors, experience: "" })
-              }
-            }}
-            rows={5}
-            required
-            error={formErrors.experience}
-          />
+                {/* Enhanced Experience Field */}
+                <div>
+                  <Label htmlFor="experience" className="text-academy-blue font-bold text-lg mb-3 block">
+                    خبرة العضو *
+                  </Label>
+                  <Textarea
+                    id="experience"
+                    value={formData.experience}
+                    onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                    required
+                    rows={5}
+                    className="form-input mt-2 text-lg rounded-xl border-2 resize-none"
+                    placeholder="أدخل وصف مفصل لخبرة العضو ومؤهلاته الأكاديمية والمهنية"
+                  />
+                </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-academy-blue-100">
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="loading-spinner w-5 h-5 border-2 border-academy-blue border-t-transparent rounded-full mr-3"></div>
-                  جاري الحفظ...
-                </>
-              ) : (
-                editingMember ? "تحديث العضو" : "إضافة العضو"
-              )}
-            </Button>
-            <Button
-              type="button"
-              onClick={resetForm}
-              className="btn-secondary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
-            >
-              إلغاء
-            </Button>
-          </div>
-        </form>
-      </EnhancedFormModal>
+                {/* Enhanced Form Actions */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-academy-blue-100">
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="loading-spinner w-5 h-5 border-2 border-academy-blue border-t-transparent rounded-full mr-3"></div>
+                        جاري الحفظ...
+                      </>
+                    ) : (
+                      <>
+                        {editingMember ? "تحديث العضو" : "إضافة العضو"}
+                        <Check size={20} className="mr-2" />
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={resetForm}
+                    className="btn-secondary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
+                  >
+                    <X size={20} className="mr-2" />
+                    إلغاء
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       {/* Enhanced Board Members Grid */}
       <div className="container mx-auto px-4 py-12">
         {boardMembers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {boardMembers.map((member) => (
-              <Card key={member.id} className="member-card group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white overflow-hidden">
+              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl">
                 <CardContent className="p-0">
-                  {/* Enhanced Member Image - Executive Circle Design */}
-                  <div className="relative h-72 bg-gradient-to-br from-academy-blue-50 via-white to-academy-gold-50 flex items-center justify-center overflow-hidden">
-                    <div className="relative w-48 h-48">
-                      {/* Executive Ring Decoration */}
-                      <div className="absolute inset-0 border-4 border-academy-gold/30 rounded-full animate-pulse"></div>
-                      <div className="absolute inset-2 border-2 border-academy-blue/20 rounded-full"></div>
-                      <div className="absolute inset-4 border border-academy-gold/40 rounded-full"></div>
-                      
-                      {/* Main image container */}
-                      <div className="relative inset-6 absolute rounded-full overflow-hidden shadow-2xl transform group-hover:scale-110 transition-all duration-500 bg-white ring-2 ring-white">
-                        <Image
-                          src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
-                          alt={member.name}
-                          fill
-                          className="object-contain p-2"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, (max-width: 1536px) 33vw, 25vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent"></div>
-                      </div>
-
-                      {/* Excellence Badge */}
-                      <div className="absolute -top-2 -right-2 bg-academy-gold text-academy-blue p-2 rounded-full shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform duration-300">
-                        <Users size={16} fill="currentColor" />
-                      </div>
-
-                      {/* Leadership Badge */}
-                      <div className="absolute -bottom-2 -left-2 bg-academy-blue text-academy-gold p-2 rounded-full shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform duration-300">
-                        <Edit size={16} />
-                      </div>
-                    </div>
-                    
-                    {/* Action Buttons - Enhanced Visibility */}
-                    <div className="absolute top-3 left-3 flex gap-2">
+                  {/* Enhanced Member Image */}
+                  <div className="relative h-56 overflow-hidden rounded-t-xl">
+                    <Image
+                      src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
+                      alt={member.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="action-buttons absolute top-3 left-3 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="w-10 h-10 bg-academy-gold text-academy-blue hover:bg-academy-gold-dark shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 rounded-full"
+                        className="w-10 h-10 bg-academy-gold/90 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl"
                       >
                         <Edit size={16} />
                       </Button>
                       <Button
                         size="icon"
-                        onClick={() => setShowDeleteConfirm(member.id)}
-                        className="w-10 h-10 bg-red-500 text-white hover:bg-red-600 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 rounded-full"
+                        onClick={() => handleDelete(member.id)}
+                        className="w-10 h-10 bg-red-500/90 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl"
                       >
                         <Trash2 size={16} />
                       </Button>
                     </div>
+                    <div className="absolute bottom-3 right-3 left-3">
+                      <h3 className="text-xl font-bold text-white mb-1 line-clamp-2">{member.name}</h3>
+                    </div>
                   </div>
 
                   {/* Enhanced Member Info */}
-                  <div className="p-6 text-center space-y-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-academy-blue mb-2 line-clamp-2 group-hover:text-academy-gold transition-colors duration-300">{member.name}</h3>
-                      <div className="inline-flex items-center justify-center">
-                        <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-full text-sm font-bold border border-academy-gold/30 shadow-sm">
-                          {member.position}
-                        </div>
-                      </div>
+                  <div className="p-6">
+                    <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-xl text-sm font-bold mb-4 inline-block border border-academy-gold/30">
+                      {member.position}
                     </div>
-                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3">{member.experience}</p>
+                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.experience}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -414,10 +416,7 @@ export default function BoardMembersManagement() {
               لم يتم إضافة أعضاء مجلس الإدارة بعد. ابدأ بإضافة أول عضو.
             </p>
             <Button
-              onClick={() => {
-                resetForm()
-                setShowForm(true)
-              }}
+              onClick={() => setShowForm(true)}
               className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
             >
               <Plus size={24} className="ml-2" />
@@ -426,15 +425,6 @@ export default function BoardMembersManagement() {
           </div>
         )}
       </div>
-
-      {/* Enhanced Delete Confirmation */}
-      <EnhancedDeleteConfirmation
-        isOpen={!!showDeleteConfirm}
-        onClose={() => setShowDeleteConfirm(null)}
-        onConfirm={() => showDeleteConfirm && handleDelete(showDeleteConfirm)}
-        itemName={boardMembers.find(m => m.id === showDeleteConfirm)?.name}
-        isLoading={isDeleting}
-      />
     </div>
   )
 }
