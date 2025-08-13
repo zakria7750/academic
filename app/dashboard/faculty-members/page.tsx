@@ -341,52 +341,47 @@ export default function FacultyMembersManagement() {
             {facultyMembers.map((member) => (
               <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden bg-white rounded-2xl">
                 <CardContent className="p-0">
-                  {/* Enhanced Member Image - Matching Board Members Design */}
-                  <div className="relative h-64 bg-gradient-to-br from-academy-blue-50 to-academy-gold-50 flex items-center justify-center overflow-hidden">
-                    <div className="relative w-40 h-40">
-                      {/* Background decorative elements */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/20 to-academy-gold/20 rounded-full transform scale-110"></div>
-                      
-                      {/* Main image container - no cropping, matching board design */}
-                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg transform group-hover:scale-105 transition-all duration-300 ring-4 ring-academy-gold/50 bg-white">
+                  {/* Enhanced Member Image - Hexagonal Shape with Board-style modifications */}
+                  <div className="relative h-80 bg-gradient-to-br from-academy-blue-50 to-academy-gold-50 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-56 h-72">
+                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-gold opacity-20 rounded-3xl transform rotate-6"></div>
+                      <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-500 bg-white">
                         <Image
-                          src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+هيئة+التدريس"}
+                          src={member.image_url || "/placeholder.svg?height=400&width=400&text=عضو+هيئة+التدريس"}
                           alt={member.name}
                           fill
-                          className="object-contain p-2"
+                          className="object-contain p-3"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       </div>
-                      
-                      {/* Faculty Badge */}
-                      <div className="absolute -top-2 -right-2 bg-academy-gold text-academy-blue px-2 py-1 rounded-full text-xs font-bold flex items-center space-x-1 space-x-reverse shadow-lg">
-                        <Users size={12} />
-                        <span>هيئة التدريس</span>
-                      </div>
                     </div>
                     
-                    {/* Action Buttons - Enhanced Visibility */}
-                    <div className="absolute top-3 left-3 flex gap-2">
+                    {/* Action Buttons - Board-style always visible */}
+                    <div className="action-buttons absolute top-4 left-4 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="w-10 h-10 bg-academy-gold text-academy-blue hover:bg-academy-gold-dark shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 rounded-full"
+                        className="w-10 h-10 bg-academy-gold text-academy-blue hover:bg-academy-gold-dark shadow-xl border-2 border-white backdrop-blur-sm rounded-full transition-all duration-300 hover:scale-110"
                       >
                         <Edit size={16} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(member.id)}
-                        className="w-10 h-10 bg-red-500 text-white hover:bg-red-600 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 rounded-full"
+                        className="w-10 h-10 bg-red-500 text-white hover:bg-red-600 shadow-xl border-2 border-white backdrop-blur-sm rounded-full transition-all duration-300 hover:scale-110"
                       >
                         <Trash2 size={16} />
                       </Button>
                     </div>
+                    
+                    {/* Member Name Overlay - Enhanced */}
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-xl font-bold text-white mb-1 line-clamp-2 drop-shadow-lg">{member.name}</h3>
+                    </div>
                   </div>
 
-                  {/* Enhanced Member Info */}
+                  {/* Enhanced Member Info - Board-style layout */}
                   <div className="p-6 text-center space-y-3">
-                    <h3 className="text-lg font-bold text-academy-blue line-clamp-2">{member.name}</h3>
                     <div className="inline-flex items-center justify-center">
                       <div className="bg-academy-gray px-4 py-2 rounded-full border border-academy-gold/20">
                         <span className="text-academy-blue text-sm font-bold">{member.specialization}</span>
