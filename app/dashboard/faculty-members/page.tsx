@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import { supabase, type FacultyMember } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Plus, Edit, Trash2, GraduationCap } from "lucide-react"
+import { Plus, Edit, Trash2, GraduationCap, Users } from "lucide-react"
 import Image from "next/image"
 import { EnhancedFormModal } from "@/components/ui/enhanced-form-modal"
 import { EnhancedImageUpload } from "@/components/ui/enhanced-image-upload"
@@ -339,71 +339,69 @@ export default function FacultyMembersManagement() {
         {facultyMembers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {facultyMembers.map((member) => (
-              <Card key={member.id} className="member-card group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white overflow-hidden">
+              <Card key={member.id} className="member-card group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white overflow-hidden rounded-2xl">
                 <CardContent className="p-0">
-                  {/* Enhanced Member Image - Artistic Frame Design */}
-                  <div className="relative h-80 bg-gradient-to-br from-academy-blue-50 via-white to-academy-gold-50 flex items-center justify-center overflow-hidden">
-                    <div className="relative w-64 h-72">
-                      {/* Decorative background elements */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/10 via-academy-gold/5 to-academy-blue/10 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
-                      <div className="absolute inset-2 bg-gradient-to-tr from-academy-gold/10 to-academy-blue/10 rounded-3xl transform -rotate-3 group-hover:-rotate-6 transition-transform duration-500"></div>
+                  {/* Enhanced Member Image - Circular Design matching Board Members */}
+                  <div className="relative h-72 bg-gradient-to-br from-academy-blue-50 via-white to-academy-gold-50 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-48 h-48">
+                      {/* Decorative Ring Elements */}
+                      <div className="absolute inset-0 border-4 border-academy-gold/30 rounded-full animate-pulse"></div>
+                      <div className="absolute inset-2 border-2 border-academy-blue/20 rounded-full"></div>
+                      <div className="absolute inset-4 border border-academy-gold/40 rounded-full"></div>
                       
-                      {/* Main image container with artistic frame */}
-                      <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-500 bg-white border-4 border-white">
+                      {/* Main image container - Circular */}
+                      <div className="relative inset-6 absolute rounded-full overflow-hidden shadow-2xl transform group-hover:scale-110 transition-all duration-500 bg-white ring-2 ring-white">
                         <Image
-                          src={member.image_url || "/placeholder.svg?height=400&width=400&text=عضو+هيئة+التدريس"}
+                          src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+هيئة+التدريس"}
                           alt={member.name}
                           fill
-                          className="object-contain p-3"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-contain p-2"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, (max-width: 1536px) 33vw, 25vw"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/20 via-transparent to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent"></div>
                       </div>
 
-                      {/* Academic Badge */}
-                      <div className="absolute -top-3 -right-3 bg-academy-gold text-academy-blue px-4 py-2 rounded-full text-xs font-bold shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform duration-300">
-                        أستاذ
+                      {/* Faculty Badge */}
+                      <div className="absolute -top-2 -right-2 bg-academy-gold text-academy-blue p-2 rounded-full shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform duration-300">
+                        <GraduationCap size={16} fill="currentColor" />
                       </div>
 
-                      {/* Name overlay on image */}
-                      <div className="absolute bottom-3 left-3 right-3">
-                        <h3 className="text-lg font-bold text-white drop-shadow-lg text-center line-clamp-2">
-                          {member.name}
-                        </h3>
+                      {/* Academic Excellence Badge */}
+                      <div className="absolute -bottom-2 -left-2 bg-academy-blue text-academy-gold p-2 rounded-full shadow-lg border-2 border-white transform group-hover:scale-110 transition-transform duration-300">
+                        <Users size={16} />
                       </div>
                     </div>
                     
                     {/* Action Buttons - Enhanced Visibility */}
-                    <div className="action-buttons absolute top-4 left-4 flex gap-2">
+                    <div className="absolute top-3 left-3 flex gap-2">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="w-10 h-10 bg-academy-gold text-academy-blue hover:bg-academy-gold-dark shadow-xl border-2 border-white backdrop-blur-sm rounded-full transition-all duration-300 hover:scale-110"
+                        className="w-10 h-10 bg-academy-gold text-academy-blue hover:bg-academy-gold-dark shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 rounded-full"
                       >
                         <Edit size={16} />
                       </Button>
                       <Button
                         size="icon"
                         onClick={() => setShowDeleteConfirm(member.id)}
-                        className="w-10 h-10 bg-red-500 text-white hover:bg-red-600 shadow-xl border-2 border-white backdrop-blur-sm rounded-full transition-all duration-300 hover:scale-110"
+                        className="w-10 h-10 bg-red-500 text-white hover:bg-red-600 shadow-xl border-2 border-white transition-all duration-300 hover:scale-110 rounded-full"
                       >
                         <Trash2 size={16} />
                       </Button>
                     </div>
                   </div>
 
-                  {/* Enhanced Member Info */}
+                  {/* Enhanced Member Info - Matching Board Members Style */}
                   <div className="p-6 text-center space-y-4">
-                    {/* Specialization Badge */}
-                    <div className="flex items-center justify-center">
-                      <div className="flex items-center space-x-2 space-x-reverse bg-academy-blue/5 text-academy-blue px-4 py-2 rounded-full border border-academy-blue/20">
-                        <GraduationCap size={16} className="text-academy-gold flex-shrink-0" />
-                        <span className="font-semibold text-sm">{member.specialization}</span>
+                    <div>
+                      <h3 className="text-xl font-bold text-academy-blue mb-2 line-clamp-2 group-hover:text-academy-gold transition-colors duration-300">{member.name}</h3>
+                      <div className="inline-flex items-center justify-center">
+                        <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-full text-sm font-bold border border-academy-gold/30 shadow-sm">
+                          {member.specialization}
+                        </div>
                       </div>
                     </div>
-
-                    {/* Biography */}
-                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.biography}</p>
+                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3">{member.biography}</p>
                   </div>
                 </CardContent>
               </Card>
