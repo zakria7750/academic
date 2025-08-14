@@ -117,21 +117,21 @@ export default function AdmissionsManagement() {
     switch (status) {
       case "pending":
         return (
-          <Badge className="bg-yellow-100 text-yellow-800 border-yellow-300">
+          <Badge className="bg-yellow-100 text-yellow-800 border-yellow-300 rounded-full px-3 py-1 font-bold">
             <Clock className="w-3 h-3 ml-1" />
             قيد المراجعة
           </Badge>
         )
       case "accepted":
         return (
-          <Badge className="bg-green-100 text-green-800 border-green-300">
+          <Badge className="bg-green-100 text-green-800 border-green-300 rounded-full px-3 py-1 font-bold">
             <CheckCircle className="w-3 h-3 ml-1" />
             مقبول
           </Badge>
         )
       case "rejected":
         return (
-          <Badge className="bg-red-100 text-red-800 border-red-300">
+          <Badge className="bg-red-100 text-red-800 border-red-300 rounded-full px-3 py-1 font-bold">
             <XCircle className="w-3 h-3 ml-1" />
             مرفوض
           </Badge>
@@ -147,421 +147,490 @@ export default function AdmissionsManagement() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-academy-gray-light via-academy-gray to-academy-blue-50">
         <div className="text-center">
           <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-academy-blue" />
-          <p className="text-academy-blue">جاري تحميل البيانات...</p>
+          <p className="text-academy-blue font-semibold">جاري تحميل البيانات...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-academy-blue mb-2">إدارة القبول والتسجيل</h1>
-        <p className="text-academy-dark-gray">إدارة طلبات التسجيل والطلاب المقبولين</p>
+    <div className="min-h-screen bg-gradient-to-br from-academy-gray-light via-academy-gray to-academy-blue-50">
+      {/* Enhanced Header */}
+      <div className="bg-gradient-to-r from-academy-blue-dark via-academy-blue to-academy-blue-light shadow-xl border-b border-academy-gold/20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-white">
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-12 h-12 bg-academy-gold/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <Users className="text-academy-gold" size={24} />
+              </div>
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold tracking-tight">إدارة القبول والتسجيل</h1>
+                <p className="text-white/80 text-lg">إدارة طلبات التسجيل والطلاب المقبولين</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-blue-100">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600">إجمالي الطلبات</p>
-                <p className="text-2xl font-bold text-blue-800">{applications.length}</p>
+      <div className="container mx-auto px-4 py-8">
+        {/* Enhanced Statistics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card className="border-0 shadow-lg hover:shadow-xl bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-bold text-academy-blue mb-1">إجمالي الطلبات</p>
+                  <p className="text-3xl font-bold text-academy-blue">{applications.length}</p>
+                </div>
+                <div className="w-14 h-14 bg-gradient-to-br from-academy-blue/20 to-academy-blue/10 rounded-xl flex items-center justify-center">
+                  <Users className="w-8 h-8 text-academy-blue" />
+                </div>
               </div>
-              <Users className="w-8 h-8 text-blue-600" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-yellow-50 to-yellow-100">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-yellow-600">قيد المراجعة</p>
-                <p className="text-2xl font-bold text-yellow-800">{pendingApplications.length}</p>
+          <Card className="border-0 shadow-lg hover:shadow-xl bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-bold text-yellow-700 mb-1">قيد المراجعة</p>
+                  <p className="text-3xl font-bold text-yellow-800">{pendingApplications.length}</p>
+                </div>
+                <div className="w-14 h-14 bg-gradient-to-br from-yellow-200/60 to-yellow-100/40 rounded-xl flex items-center justify-center">
+                  <Clock className="w-8 h-8 text-yellow-600" />
+                </div>
               </div>
-              <Clock className="w-8 h-8 text-yellow-600" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-green-100">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-green-600">مقبول</p>
-                <p className="text-2xl font-bold text-green-800">{acceptedApplications.length}</p>
+          <Card className="border-0 shadow-lg hover:shadow-xl bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-bold text-green-700 mb-1">مقبول</p>
+                  <p className="text-3xl font-bold text-green-800">{acceptedApplications.length}</p>
+                </div>
+                <div className="w-14 h-14 bg-gradient-to-br from-green-200/60 to-green-100/40 rounded-xl flex items-center justify-center">
+                  <CheckCircle className="w-8 h-8 text-green-600" />
+                </div>
               </div>
-              <CheckCircle className="w-8 h-8 text-green-600" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-academy-gold/20 to-academy-gold/30">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-academy-blue">الطلاب المسجلين</p>
-                <p className="text-2xl font-bold text-academy-blue">{students.length}</p>
+          <Card className="border-0 shadow-lg hover:shadow-xl bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-bold text-academy-blue mb-1">الطلاب المسجلين</p>
+                  <p className="text-3xl font-bold text-academy-blue">{students.length}</p>
+                </div>
+                <div className="w-14 h-14 bg-gradient-to-br from-academy-gold/30 to-academy-gold/20 rounded-xl flex items-center justify-center">
+                  <GraduationCap className="w-8 h-8 text-academy-blue" />
+                </div>
               </div>
-              <GraduationCap className="w-8 h-8 text-academy-blue" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+            </CardContent>
+          </Card>
+        </div>
 
-      {/* Main Content */}
-      <Tabs defaultValue="applications" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2 bg-academy-gray">
-          <TabsTrigger
-            value="applications"
-            className="data-[state=active]:bg-academy-blue data-[state=active]:text-white"
-          >
-            الطلبات ({applications.length})
-          </TabsTrigger>
-          <TabsTrigger value="students" className="data-[state=active]:bg-academy-blue data-[state=active]:text-white">
-            الطلاب ({students.length})
-          </TabsTrigger>
-        </TabsList>
+        {/* Enhanced Main Content */}
+        <Tabs defaultValue="applications" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 bg-white rounded-xl shadow-md p-2 border-0">
+            <TabsTrigger
+              value="applications"
+              className="data-[state=active]:bg-academy-blue data-[state=active]:text-white rounded-lg font-bold transition-all duration-300"
+            >
+              <Users className="w-4 h-4 ml-2" />
+              الطلبات ({applications.length})
+            </TabsTrigger>
+            <TabsTrigger 
+              value="students" 
+              className="data-[state=active]:bg-academy-blue data-[state=active]:text-white rounded-lg font-bold transition-all duration-300"
+            >
+              <GraduationCap className="w-4 h-4 ml-2" />
+              الطلاب ({students.length})
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Applications Tab */}
-        <TabsContent value="applications" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-            {applications.map((application) => (
-              <Card key={application.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg font-bold text-academy-blue">{application.full_name}</CardTitle>
-                    {getStatusBadge(application.status)}
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center text-academy-dark-gray">
-                      <Mail className="w-4 h-4 ml-2 text-academy-gold" />
-                      {application.email}
+          {/* Enhanced Applications Tab */}
+          <TabsContent value="applications" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              {applications.map((application) => (
+                <Card key={application.id} className="border-0 shadow-lg hover:shadow-2xl bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
+                  <CardHeader className="pb-3 bg-gradient-to-r from-academy-blue-50 to-academy-gold-50 border-b border-academy-blue-100">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-lg font-bold text-academy-blue">{application.full_name}</CardTitle>
+                      {getStatusBadge(application.status)}
                     </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <Phone className="w-4 h-4 ml-2 text-academy-gold" />
-                      {application.phone}
+                  </CardHeader>
+                  <CardContent className="space-y-3 p-6 bg-white">
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <Mail className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{application.email}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <Phone className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{application.phone}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <Globe className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{application.country}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <GraduationCap className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{application.desired_program}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <BookOpen className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{application.desired_specialization}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <Calendar className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{new Date(application.created_at).toLocaleDateString("ar-SA")}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <Globe className="w-4 h-4 ml-2 text-academy-gold" />
-                      {application.country}
-                    </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <GraduationCap className="w-4 h-4 ml-2 text-academy-gold" />
-                      {application.desired_program}
-                    </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <BookOpen className="w-4 h-4 ml-2 text-academy-gold" />
-                      {application.desired_specialization}
-                    </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <Calendar className="w-4 h-4 ml-2 text-academy-gold" />
-                      {new Date(application.created_at).toLocaleDateString("ar-SA")}
-                    </div>
-                  </div>
 
-                  {application.status === "pending" && (
-                    <div className="flex gap-2 pt-3">
-                      <Button
-                        size="sm"
-                        className="flex-1 bg-green-600 hover:bg-green-700 text-white"
-                        onClick={() => {
-                          setSelectedApplication(application)
-                          setStatusAction("accepted")
-                          setShowStatusDialog(true)
-                        }}
-                        disabled={actionLoading === application.id}
-                      >
-                        {actionLoading === application.id ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : (
-                          <>
-                            <CheckCircle className="w-4 h-4 ml-1" />
-                            قبول
-                          </>
-                        )}
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="destructive"
-                        className="flex-1"
-                        onClick={() => {
-                          setSelectedApplication(application)
-                          setStatusAction("rejected")
-                          setShowStatusDialog(true)
-                        }}
-                        disabled={actionLoading === application.id}
-                      >
-                        {actionLoading === application.id ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : (
-                          <>
-                            <XCircle className="w-4 h-4 ml-1" />
-                            رفض
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {applications.length === 0 && (
-            <div className="text-center py-12">
-              <Users className="w-16 h-16 text-academy-gray mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-academy-dark-gray mb-2">لا توجد طلبات</h3>
-              <p className="text-academy-gray">لم يتم تقديم أي طلبات تسجيل بعد</p>
-            </div>
-          )}
-        </TabsContent>
-
-        {/* Students Tab */}
-        <TabsContent value="students" className="space-y-6">
-          <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-academy-blue">الطلاب المسجلين</h2>
-            <Dialog open={showAddStudentDialog} onOpenChange={setShowAddStudentDialog}>
-              <DialogTrigger asChild>
-                <Button className="bg-academy-gold text-academy-blue hover:bg-academy-gold/90">
-                  <Plus className="w-4 h-4 ml-2" />
-                  إضافة طالب
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto mx-2 sm:mx-auto">
-                <DialogHeader className="pb-4">
-                  <DialogTitle className="text-academy-blue text-lg sm:text-xl">إضافة طالب جديد</DialogTitle>
-                  <DialogDescription className="text-sm sm:text-base">
-                    املأ البيانات التالية لإضافة طالب جديد مباشرة
-                  </DialogDescription>
-                </DialogHeader>
-                <form id="add-student-form" action={handleAddStudent} className="space-y-4 px-1">
-                  <div className="grid grid-cols-1 bg-white sm:grid-cols-2 gap-3 sm:gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="fullName" className="text-sm font-medium">
-                        الاسم الكامل *
-                      </Label>
-                      <Input
-                        id="fullName"
-                        name="fullName"
-                        required
-                        className="h-10 text-sm"
-                        placeholder="أدخل الاسم الكامل"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium">
-                        البريد الإلكتروني *
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        className="h-10 text-sm"
-                        placeholder="example@email.com"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-sm font-medium">
-                        رقم الهاتف *
-                      </Label>
-                      <Input id="phone" name="phone" required className="h-10 text-sm" placeholder="رقم الهاتف" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="country" className="text-sm font-medium">
-                        البلد *
-                      </Label>
-                      <Input id="country" name="country" required className="h-10 text-sm" placeholder="اسم البلد" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="program" className="text-sm font-medium">
-                        البرنامج *
-                      </Label>
-                      <Select name="program" required>
-                        <SelectTrigger className="h-10 text-sm">
-                          <SelectValue placeholder="اختر البرنامج" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="دبلوم">دبلوم</SelectItem>
-                          <SelectItem value="بكالوريوس">بكالوريوس</SelectItem>
-                          <SelectItem value="ماجستير">ماجستير</SelectItem>
-                          <SelectItem value="دكتوراه">دكتوراه</SelectItem>
-                          <SelectItem value="دورة تدريبية">دورة تدريبية</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="specialization" className="text-sm font-medium">
-                        التخصص *
-                      </Label>
-                      <Input
-                        id="specialization"
-                        name="specialization"
-                        required
-                        className="h-10 text-sm"
-                        placeholder="التخصص المطلوب"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="currentQualification" className="text-sm font-medium">
-                      المؤهل الحالي *
-                    </Label>
-                    <Textarea
-                      id="currentQualification"
-                      name="currentQualification"
-                      required
-                      className="min-h-[80px] text-sm resize-none"
-                      placeholder="اكتب المؤهل الحالي والخبرات"
-                    />
-                  </div>
-                  <div className="flex flex-col sm:flex-row justify-end gap-2 pt-4 border-t">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setShowAddStudentDialog(false)}
-                      className="w-full sm:w-auto h-10 text-sm"
-                    >
-                      إلغاء
-                    </Button>
-                    <Button
-                      type="submit"
-                      className="w-full sm:w-auto h-10 text-sm bg-academy-gold text-academy-blue hover:bg-academy-gold/90"
-                      disabled={actionLoading === -1}
-                    >
-                      {actionLoading === -1 ? (
-                        <>
-                          <Loader2 className="w-4 h-4 ml-2 animate-spin" />
-                          جاري الإضافة...
-                        </>
-                      ) : (
-                        <>
-                          <UserPlus className="w-4 h-4 ml-2" />
-                          إضافة الطالب
-                        </>
-                      )}
-                    </Button>
-                  </div>
-                </form>
-              </DialogContent>
-            </Dialog>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-            {students.map((student) => (
-              <Card key={student.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg font-bold text-academy-blue">{student.full_name}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center text-academy-dark-gray">
-                      <Mail className="w-4 h-4 ml-2 text-academy-gold" />
-                      {student.email}
-                    </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <Phone className="w-4 h-4 ml-2 text-academy-gold" />
-                      {student.phone}
-                    </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <Globe className="w-4 h-4 ml-2 text-academy-gold" />
-                      {student.country}
-                    </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <GraduationCap className="w-4 h-4 ml-2 text-academy-gold" />
-                      {student.program}
-                    </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <BookOpen className="w-4 h-4 ml-2 text-academy-gold" />
-                      {student.specialization}
-                    </div>
-                    <div className="flex items-center text-academy-dark-gray">
-                      <Calendar className="w-4 h-4 ml-2 text-academy-gold" />
-                      {new Date(student.enrollment_date).toLocaleDateString("ar-SA")}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {students.length === 0 && (
-            <div className="text-center py-12">
-              <GraduationCap className="w-16 h-16 text-academy-gray mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-academy-dark-gray mb-2">لا يوجد طلاب</h3>
-              <p className="text-academy-gray">لم يتم تسجيل أي طلاب بعد</p>
-            </div>
-          )}
-        </TabsContent>
-      </Tabs>
-
-      {/* Status Update Dialog */}
-      <Dialog open={showStatusDialog} onOpenChange={setShowStatusDialog}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-academy-blue">
-              {statusAction === "accepted" ? "قبول الطلب" : "رفض الطلب"}
-            </DialogTitle>
-            <DialogDescription>
-              {statusAction === "accepted"
-                ? "سيتم قبول هذا الطلب وإضافة الطالب إلى قائمة المسجلين"
-                : "سيتم رفض هذا الطلب وإرسال إشعار للمتقدم"}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="statusMessage">رسالة توضيحية (اختيارية)</Label>
-              <Textarea
-                id="statusMessage"
-                value={statusMessage}
-                onChange={(e) => setStatusMessage(e.target.value)}
-                placeholder={
-                  statusAction === "accepted" ? "مبروك! تم قبولك في البرنامج..." : "نأسف لعدم قبول طلبك في هذا الوقت..."
-                }
-                rows={3}
-              />
-            </div>
-            <div className="flex justify-end gap-2">
-              <Button variant="outline" onClick={() => setShowStatusDialog(false)}>
-                إلغاء
-              </Button>
-              <Button
-                onClick={handleStatusUpdate}
-                className={
-                  statusAction === "accepted"
-                    ? "bg-green-600 hover:bg-green-700 text-white"
-                    : "bg-red-600 hover:bg-red-700 text-white"
-                }
-                disabled={actionLoading !== null}
-              >
-                {actionLoading !== null ? (
-                  <>
-                    <Loader2 className="w-4 h-4 ml-2 animate-spin" />
-                    جاري المعالجة...
-                  </>
-                ) : (
-                  <>
-                    {statusAction === "accepted" ? (
-                      <CheckCircle className="w-4 h-4 ml-2" />
-                    ) : (
-                      <XCircle className="w-4 h-4 ml-2" />
+                    {application.status === "pending" && (
+                      <div className="flex gap-3 pt-4 border-t border-academy-blue-100">
+                        <Button
+                          size="sm"
+                          className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105"
+                          onClick={() => {
+                            setSelectedApplication(application)
+                            setStatusAction("accepted")
+                            setShowStatusDialog(true)
+                          }}
+                          disabled={actionLoading === application.id}
+                        >
+                          {actionLoading === application.id ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <>
+                              <CheckCircle className="w-4 h-4 ml-1" />
+                              قبول
+                            </>
+                          )}
+                        </Button>
+                        <Button
+                          size="sm"
+                          className="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105"
+                          onClick={() => {
+                            setSelectedApplication(application)
+                            setStatusAction("rejected")
+                            setShowStatusDialog(true)
+                          }}
+                          disabled={actionLoading === application.id}
+                        >
+                          {actionLoading === application.id ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <>
+                              <XCircle className="w-4 h-4 ml-1" />
+                              رفض
+                            </>
+                          )}
+                        </Button>
+                      </div>
                     )}
-                    {statusAction === "accepted" ? "قبول الطلب" : "رفض الطلب"}
-                  </>
-                )}
-              </Button>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+
+            {applications.length === 0 && (
+              <div className="text-center py-20 fade-in">
+                <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/10 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+                  <Users className="w-16 h-16 text-academy-gold" />
+                </div>
+                <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد طلبات</h3>
+                <p className="text-academy-dark-gray text-lg">لم يتم تقديم أي طلبات تسجيل بعد</p>
+              </div>
+            )}
+          </TabsContent>
+
+          {/* Enhanced Students Tab */}
+          <TabsContent value="students" className="space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-academy-blue">الطلاب المسجلين</h2>
+              <Dialog open={showAddStudentDialog} onOpenChange={setShowAddStudentDialog}>
+                <DialogTrigger asChild>
+                  <Button className="btn-primary text-academy-blue font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <Plus className="w-4 h-4 ml-2" />
+                    إضافة طالب
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto mx-2 sm:mx-auto bg-white rounded-2xl border-0 shadow-2xl">
+                  <DialogHeader className="pb-4 border-b border-academy-blue-100 bg-gradient-to-r from-academy-blue-50 to-academy-gold-50 -m-6 mb-6 p-6 rounded-t-2xl">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-academy-blue/10 rounded-lg flex items-center justify-center">
+                        <UserPlus className="text-academy-blue" size={20} />
+                      </div>
+                      <div>
+                        <DialogTitle className="text-academy-blue text-xl font-bold">إضافة طالب جديد</DialogTitle>
+                        <DialogDescription className="text-academy-dark-gray">
+                          املأ البيانات التالية لإضافة طالب جديد مباشرة
+                        </DialogDescription>
+                      </div>
+                    </div>
+                  </DialogHeader>
+                  <form id="add-student-form" action={handleAddStudent} className="space-y-6 px-1 bg-white">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="fullName" className="text-academy-blue font-bold">
+                          الاسم الكامل *
+                        </Label>
+                        <Input
+                          id="fullName"
+                          name="fullName"
+                          required
+                          className="h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white"
+                          placeholder="أدخل الاسم الكامل"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email" className="text-academy-blue font-bold">
+                          البريد الإلكتروني *
+                        </Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          className="h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white"
+                          placeholder="example@email.com"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone" className="text-academy-blue font-bold">
+                          رقم الهاتف *
+                        </Label>
+                        <Input 
+                          id="phone" 
+                          name="phone" 
+                          required 
+                          className="h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white" 
+                          placeholder="رقم الهاتف" 
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="country" className="text-academy-blue font-bold">
+                          البلد *
+                        </Label>
+                        <Input 
+                          id="country" 
+                          name="country" 
+                          required 
+                          className="h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white" 
+                          placeholder="اسم البلد" 
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="program" className="text-academy-blue font-bold">
+                          البرنامج *
+                        </Label>
+                        <Select name="program" required>
+                          <SelectTrigger className="h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white">
+                            <SelectValue placeholder="اختر البرنامج" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-white">
+                            <SelectItem value="دبلوم">دبلوم</SelectItem>
+                            <SelectItem value="بكالوريوس">بكالوريوس</SelectItem>
+                            <SelectItem value="ماجستير">ماجستير</SelectItem>
+                            <SelectItem value="دكتوراه">دكتوراه</SelectItem>
+                            <SelectItem value="دورة تدريبية">دورة تدريبية</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="specialization" className="text-academy-blue font-bold">
+                          التخصص *
+                        </Label>
+                        <Input
+                          id="specialization"
+                          name="specialization"
+                          required
+                          className="h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white"
+                          placeholder="التخصص المطلوب"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="currentQualification" className="text-academy-blue font-bold">
+                        المؤهل الحالي *
+                      </Label>
+                      <Textarea
+                        id="currentQualification"
+                        name="currentQualification"
+                        required
+                        className="min-h-[100px] text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold resize-none bg-white"
+                        placeholder="اكتب المؤهل الحالي والخبرات"
+                      />
+                    </div>
+                    <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6 border-t border-academy-blue-100">
+                      <Button
+                        type="button"
+                        onClick={() => setShowAddStudentDialog(false)}
+                        className="btn-secondary text-academy-blue font-bold text-lg px-8 py-3 rounded-xl flex-1 sm:flex-none hover:scale-105 transition-all duration-300"
+                      >
+                        إلغاء
+                      </Button>
+                      <Button
+                        type="submit"
+                        className="btn-primary text-academy-blue font-bold text-lg px-8 py-3 rounded-xl flex-1 sm:flex-none hover:scale-105 transition-all duration-300"
+                        disabled={actionLoading === -1}
+                      >
+                        {actionLoading === -1 ? (
+                          <>
+                            <Loader2 className="w-4 h-4 ml-2 animate-spin" />
+                            جاري الإضافة...
+                          </>
+                        ) : (
+                          <>
+                            <UserPlus className="w-4 h-4 ml-2" />
+                            إضافة الطالب
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </form>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              {students.map((student) => (
+                <Card key={student.id} className="border-0 shadow-lg hover:shadow-2xl bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
+                  <CardHeader className="pb-3 bg-gradient-to-r from-academy-blue-50 to-academy-gold-50 border-b border-academy-blue-100">
+                    <CardTitle className="text-lg font-bold text-academy-blue">{student.full_name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3 p-6 bg-white">
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <Mail className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{student.email}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <Phone className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{student.phone}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <Globe className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{student.country}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <GraduationCap className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{student.program}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <BookOpen className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{student.specialization}</span>
+                      </div>
+                      <div className="flex items-center text-academy-dark-gray p-2 bg-academy-gray-light rounded-lg">
+                        <Calendar className="w-4 h-4 ml-2 text-academy-gold" />
+                        <span className="font-medium">{new Date(student.enrollment_date).toLocaleDateString("ar-SA")}</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {students.length === 0 && (
+              <div className="text-center py-20 fade-in">
+                <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/10 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+                  <GraduationCap className="w-16 h-16 text-academy-gold" />
+                </div>
+                <h3 className="text-3xl font-bold text-academy-blue mb-4">لا يوجد طلاب</h3>
+                <p className="text-academy-dark-gray text-lg">لم يتم تسجيل أي طلاب بعد</p>
+              </div>
+            )}
+          </TabsContent>
+        </Tabs>
+
+        {/* Enhanced Status Update Dialog */}
+        <Dialog open={showStatusDialog} onOpenChange={setShowStatusDialog}>
+          <DialogContent className="max-w-md bg-white rounded-2xl border-0 shadow-2xl">
+            <DialogHeader className="pb-4 border-b border-academy-blue-100 bg-gradient-to-r from-academy-blue-50 to-academy-gold-50 -m-6 mb-6 p-6 rounded-t-2xl">
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                  statusAction === "accepted" 
+                    ? "bg-green-100" 
+                    : "bg-red-100"
+                }`}>
+                  {statusAction === "accepted" ? (
+                    <CheckCircle className="text-green-600" size={20} />
+                  ) : (
+                    <XCircle className="text-red-600" size={20} />
+                  )}
+                </div>
+                <div>
+                  <DialogTitle className="text-academy-blue text-xl font-bold">
+                    {statusAction === "accepted" ? "قبول الطلب" : "رفض الطلب"}
+                  </DialogTitle>
+                  <DialogDescription className="text-academy-dark-gray">
+                    {statusAction === "accepted"
+                      ? "سيتم قبول هذا الطلب وإضافة الطالب إلى قائمة المسجلين"
+                      : "سيتم رفض هذا الطلب وإرسال إشعار للمتقدم"}
+                  </DialogDescription>
+                </div>
+              </div>
+            </DialogHeader>
+            <div className="space-y-6 bg-white">
+              <div className="space-y-3">
+                <Label htmlFor="statusMessage" className="text-academy-blue font-bold text-lg">رسالة توضيحية (اختيارية)</Label>
+                <Textarea
+                  id="statusMessage"
+                  value={statusMessage}
+                  onChange={(e) => setStatusMessage(e.target.value)}
+                  placeholder={
+                    statusAction === "accepted" 
+                      ? "مبروك! تم قبولك في البرنامج..." 
+                      : "نأسف لعدم قبول طلبك في هذا الوقت..."
+                  }
+                  rows={4}
+                  className="text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold resize-none bg-white"
+                />
+              </div>
+              <div className="flex justify-end gap-3 pt-4 border-t border-academy-blue-100">
+                <Button 
+                  onClick={() => setShowStatusDialog(false)}
+                  className="btn-secondary text-academy-blue font-bold px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300"
+                >
+                  إلغاء
+                </Button>
+                <Button
+                  onClick={handleStatusUpdate}
+                  className={`font-bold px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300 ${
+                    statusAction === "accepted"
+                      ? "bg-green-600 hover:bg-green-700 text-white"
+                      : "bg-red-600 hover:bg-red-700 text-white"
+                  }`}
+                  disabled={actionLoading !== null}
+                >
+                  {actionLoading !== null ? (
+                    <>
+                      <Loader2 className="w-4 h-4 ml-2 animate-spin" />
+                      جاري المعالجة...
+                    </>
+                  ) : (
+                    <>
+                      {statusAction === "accepted" ? (
+                        <CheckCircle className="w-4 h-4 ml-2" />
+                      ) : (
+                        <XCircle className="w-4 h-4 ml-2" />
+                      )}
+                      {statusAction === "accepted" ? "قبول الطلب" : "رفض الطلب"}
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
     </div>
   )
 }
