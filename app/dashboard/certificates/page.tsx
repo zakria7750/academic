@@ -20,6 +20,9 @@ import {
   CheckCircle,
   XCircle,
   ImageIcon,
+  Award,
+  FileText,
+  Shield,
 } from "lucide-react"
 import {
   getCertificates,
@@ -174,59 +177,70 @@ export default function CertificatesManagement() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-academy-yellow/5 to-academy-yellow/10">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-academy-gray via-white to-academy-blue-50/30 p-6">
+      <div className="container mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-academy-dark-gray mb-2">إدارة الشهادات</h1>
-            <p className="text-xl text-academy-gray">إدارة شهادات الأكاديمية وإضافة شهادات جديدة</p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
+          <div className="text-center md:text-right">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-academy-blue to-academy-blue-700 bg-clip-text text-transparent mb-3">
+              إدارة الشهادات
+            </h1>
+            <p className="text-xl text-academy-dark-gray">إدارة شهادات الأكاديمية وإضافة شهادات جديدة</p>
           </div>
 
           <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
             <DialogTrigger asChild>
               <Button
-                className="mt-4 md:mt-0 bg-gradient-to-r from-academy-yellow to-academy-yellow/90 hover:from-academy-yellow/90 hover:to-academy-yellow text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3"
+                className="mt-6 md:mt-0 bg-gradient-to-r from-academy-gold to-academy-gold-light hover:from-academy-gold-dark hover:to-academy-gold text-academy-blue font-bold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-academy-gold-dark/20"
                 onClick={resetForm}
               >
-                <Plus className="w-5 h-5 ml-2" />
+                <Plus className="w-5 h-5 mr-2" />
                 إضافة شهادة جديدة
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle className="text-2xl text-academy-dark-gray text-center">إضافة شهادة جديدة</DialogTitle>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-2 border-academy-blue/10 shadow-2xl">
+              <DialogHeader className="text-center">
+                <DialogTitle className="text-2xl font-bold text-academy-blue flex items-center justify-center gap-3">
+                  <Award className="w-8 h-8 text-academy-gold" />
+                  إضافة شهادة جديدة
+                </DialogTitle>
               </DialogHeader>
               <form onSubmit={handleAdd} className="space-y-6">
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-sm font-semibold text-academy-dark-gray mb-3">رقم الشهادة *</label>
+                    <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
+                      <Hash className="w-4 h-4 text-academy-gold" />
+                      رقم الشهادة *
+                    </label>
                     <div className="relative">
-                      <Hash className="absolute right-3 top-1/2 transform -translate-y-1/2 text-academy-yellow w-5 h-5" />
+                      <Hash className="absolute right-4 top-1/2 transform -translate-y-1/2 text-academy-blue/60 w-5 h-5" />
                       <Input
                         type="text"
                         placeholder="أدخل رقم الشهادة"
                         value={formData.certificateNumber}
                         onChange={(e) => setFormData({ ...formData, certificateNumber: e.target.value })}
-                        className="pr-12 h-12 border-academy-yellow/30 focus:border-academy-yellow focus:ring-academy-yellow/20"
+                        className="pr-14 h-14 border-2 border-academy-blue/20 focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 rounded-xl transition-all duration-300 bg-white text-lg"
                         required
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-academy-dark-gray mb-3">صورة الشهادة *</label>
+                    <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
+                      <Upload className="w-4 h-4 text-academy-gold" />
+                      صورة الشهادة *
+                    </label>
                     <div className="relative">
-                      <div className="border-2 border-dashed border-academy-yellow/30 rounded-lg p-6 text-center hover:border-academy-yellow/50 transition-colors">
-                        <Upload className="w-12 h-12 text-academy-yellow mx-auto mb-4" />
-                        <p className="text-academy-gray mb-2">اسحب وأفلت صورة الشهادة هنا أو</p>
+                      <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
+                        <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
+                        <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة هنا أو</p>
                         <Button
                           type="button"
                           variant="outline"
-                          className="border-academy-yellow text-academy-yellow hover:bg-academy-yellow hover:text-white bg-transparent"
+                          className="border-2 border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white bg-transparent rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:-translate-y-1"
                           onClick={() => document.getElementById("certificate-upload")?.click()}
                         >
-                          <ImageIcon className="w-4 h-4 ml-2" />
+                          <ImageIcon className="w-4 h-4 mr-2" />
                           اختر صورة
                         </Button>
                         <input
@@ -238,7 +252,7 @@ export default function CertificatesManagement() {
                           required
                         />
                         {formData.certificateImage && (
-                          <p className="text-sm text-academy-yellow mt-2">
+                          <p className="text-sm text-academy-blue mt-3 font-medium">
                             تم اختيار: {formData.certificateImage.name}
                           </p>
                         )}
@@ -247,42 +261,45 @@ export default function CertificatesManagement() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-academy-dark-gray mb-3">تاريخ الإصدار</label>
+                    <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-academy-gold" />
+                      تاريخ الإصدار
+                    </label>
                     <div className="relative">
-                      <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 text-academy-yellow w-5 h-5" />
+                      <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 text-academy-blue/60 w-5 h-5" />
                       <Input
                         type="date"
                         value={formData.issueDate}
                         onChange={(e) => setFormData({ ...formData, issueDate: e.target.value })}
-                        className="pr-12 h-12 border-academy-yellow/30 focus:border-academy-yellow focus:ring-academy-yellow/20"
+                        className="pr-14 h-14 border-2 border-academy-blue/20 focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 rounded-xl transition-all duration-300 bg-white text-lg"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="flex justify-end space-x-3 space-x-reverse pt-6 border-t">
+                <div className="flex justify-end space-x-3 space-x-reverse pt-8 border-t border-academy-blue/20">
                   <Button
                     type="button"
                     variant="outline"
                     onClick={() => setShowAddDialog(false)}
                     disabled={isSubmitting}
-                    className="px-6"
+                    className="px-8 py-3 border-2 border-academy-blue/20 text-academy-blue hover:bg-academy-blue hover:text-white rounded-xl font-semibold transition-all duration-300"
                   >
                     إلغاء
                   </Button>
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-gradient-to-r from-academy-yellow to-academy-yellow/90 hover:from-academy-yellow/90 hover:to-academy-yellow text-white px-6"
+                    className="bg-gradient-to-r from-academy-blue to-academy-blue-700 hover:from-academy-blue-700 hover:to-academy-blue-800 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                        <Loader2 className="w-4 h-4 animate-spin mr-2" />
                         جاري الإضافة...
                       </>
                     ) : (
                       <>
-                        <Plus className="w-4 h-4 ml-2" />
+                        <Plus className="w-4 h-4 mr-2" />
                         إضافة الشهادة
                       </>
                     )}
@@ -294,66 +311,66 @@ export default function CertificatesManagement() {
         </div>
 
         {/* Search */}
-        <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-          <CardContent className="pt-6">
+        <Card className="mb-8 shadow-xl border-0 bg-white/90 backdrop-blur-sm rounded-3xl">
+          <CardContent className="pt-8 pb-6">
             <div className="relative">
-              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-academy-yellow w-5 h-5" />
+              <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-academy-blue/60 w-6 h-6" />
               <Input
                 type="text"
                 placeholder="البحث برقم الشهادة..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pr-12 h-12 border-academy-yellow/30 focus:border-academy-yellow focus:ring-academy-yellow/20"
+                className="pr-16 h-14 border-2 border-academy-blue/20 focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 rounded-xl transition-all duration-300 text-lg bg-white"
               />
             </div>
           </CardContent>
         </Card>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-            <CardContent className="pt-6">
-              <div className="flex items-center">
-                <div className="p-3 bg-academy-yellow/10 rounded-xl ml-4">
-                  <Hash className="w-8 h-8 text-academy-yellow" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+          <Card className="shadow-xl border-0 bg-gradient-to-br from-academy-blue to-academy-blue-700 text-white rounded-3xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <CardContent className="pt-8 pb-6">
+              <div className="flex items-center text-center">
+                <div className="p-4 bg-academy-gold/20 rounded-2xl ml-4">
+                  <Hash className="w-10 h-10 text-academy-gold" />
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-academy-dark-gray">{certificates.length}</p>
-                  <p className="text-academy-gray font-medium">إجمالي الشهادات</p>
+                  <p className="text-4xl font-bold text-academy-gold">{certificates.length}</p>
+                  <p className="text-academy-blue-100 font-medium text-lg">إجمالي الشهادات</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-            <CardContent className="pt-6">
-              <div className="flex items-center">
-                <div className="p-3 bg-green-100 rounded-xl ml-4">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
+          <Card className="shadow-xl border-0 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-3xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <CardContent className="pt-8 pb-6">
+              <div className="flex items-center text-center">
+                <div className="p-4 bg-green-100/20 rounded-2xl ml-4">
+                  <Shield className="w-10 h-10 text-green-100" />
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-academy-dark-gray">{certificates.length}</p>
-                  <p className="text-academy-gray font-medium">الشهادات المعتمدة</p>
+                  <p className="text-4xl font-bold text-green-100">{certificates.length}</p>
+                  <p className="text-green-100 font-medium text-lg">الشهادات المعتمدة</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-            <CardContent className="pt-6">
-              <div className="flex items-center">
-                <div className="p-3 bg-blue-100 rounded-xl ml-4">
-                  <Calendar className="w-8 h-8 text-blue-600" />
+          <Card className="shadow-xl border-0 bg-gradient-to-br from-academy-gold to-academy-gold-light text-academy-blue rounded-3xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <CardContent className="pt-8 pb-6">
+              <div className="flex items-center text-center">
+                <div className="p-4 bg-academy-blue/20 rounded-2xl ml-4">
+                  <Calendar className="w-10 h-10 text-academy-blue" />
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-academy-dark-gray">
+                  <p className="text-4xl font-bold text-academy-blue">
                     {
                       certificates.filter(
                         (cert) => new Date(cert.issue_date).getFullYear() === new Date().getFullYear(),
                       ).length
                     }
                   </p>
-                  <p className="text-academy-gray font-medium">شهادات هذا العام</p>
+                  <p className="text-academy-blue font-medium text-lg">شهادات هذا العام</p>
                 </div>
               </div>
             </CardContent>
@@ -362,22 +379,22 @@ export default function CertificatesManagement() {
 
         {/* Certificates List */}
         {isLoading ? (
-          <div className="flex justify-center items-center py-16">
+          <div className="flex justify-center items-center py-20">
             <div className="text-center">
-              <Loader2 className="w-12 h-12 animate-spin text-academy-yellow mx-auto mb-4" />
-              <p className="text-academy-gray">جاري تحميل الشهادات...</p>
+              <Loader2 className="w-16 h-16 animate-spin text-academy-blue mx-auto mb-6" />
+              <p className="text-xl text-academy-dark-gray">جاري تحميل الشهادات...</p>
             </div>
           </div>
         ) : (
           <div className="grid gap-6">
             {filteredCertificates.length === 0 ? (
-              <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-                <CardContent className="pt-6 text-center py-16">
-                  <Hash className="w-16 h-16 text-academy-yellow mx-auto mb-6" />
-                  <h3 className="text-xl font-semibold text-academy-dark-gray mb-2">
+              <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm rounded-3xl">
+                <CardContent className="pt-8 pb-6 text-center py-20">
+                  <FileText className="w-20 h-20 text-academy-blue/40 mx-auto mb-6" />
+                  <h3 className="text-2xl font-bold text-academy-blue mb-3">
                     {searchTerm ? "لا توجد شهادات تطابق البحث" : "لا توجد شهادات مضافة بعد"}
                   </h3>
-                  <p className="text-academy-gray">
+                  <p className="text-lg text-academy-dark-gray">
                     {searchTerm ? "جرب البحث بكلمات مختلفة" : "ابدأ بإضافة أول شهادة"}
                   </p>
                 </CardContent>
@@ -386,43 +403,45 @@ export default function CertificatesManagement() {
               filteredCertificates.map((certificate) => (
                 <Card
                   key={certificate.id}
-                  className="shadow-lg border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300"
+                  className="shadow-xl border-2 border-academy-blue/10 bg-white/90 backdrop-blur-sm rounded-3xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
                 >
-                  <CardContent className="pt-6">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-academy-gold to-academy-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-3xl"></div>
+                  
+                  <CardContent className="pt-8 pb-6">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                      <div className="flex-1 mb-4 md:mb-0">
-                        <div className="flex items-center mb-3">
-                          <Hash className="w-5 h-5 text-academy-yellow ml-2" />
-                          <span className="font-bold text-lg text-academy-dark-gray">
+                      <div className="flex-1 mb-6 md:mb-0">
+                        <div className="flex items-center mb-4">
+                          <Hash className="w-6 h-6 text-academy-gold ml-3" />
+                          <span className="font-bold text-2xl text-academy-blue">
                             {certificate.certificate_number}
                           </span>
-                          <Badge className="mr-3 bg-green-100 text-green-800 hover:bg-green-100 px-3 py-1">
+                          <Badge className="mr-4 bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 px-4 py-2 rounded-full text-sm font-semibold">
                             معتمدة
                           </Badge>
                         </div>
-                        <div className="flex items-center text-academy-gray">
-                          <Calendar className="w-4 h-4 ml-2" />
+                        <div className="flex items-center text-academy-dark-gray text-lg">
+                          <Calendar className="w-5 h-5 ml-3 text-academy-gold" />
                           <span>تاريخ الإصدار: {formatDate(certificate.issue_date)}</span>
                         </div>
                       </div>
 
-                      <div className="flex space-x-3 space-x-reverse">
+                      <div className="flex space-x-4 space-x-reverse">
                         <Button
                           variant="outline"
-                          size="sm"
+                          size="lg"
                           onClick={() => openEditDialog(certificate)}
-                          className="border-academy-yellow text-academy-yellow hover:bg-academy-yellow hover:text-white"
+                          className="border-2 border-academy-blue/20 text-academy-blue hover:bg-academy-blue hover:text-white rounded-xl font-semibold px-6 py-3 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
                         >
-                          <Edit className="w-4 h-4 ml-1" />
+                          <Edit className="w-4 h-4 mr-2" />
                           تعديل
                         </Button>
                         <Button
                           variant="outline"
-                          size="sm"
+                          size="lg"
                           onClick={() => openDeleteDialog(certificate)}
-                          className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50 border-2 border-red-200 hover:border-red-300 rounded-xl font-semibold px-6 py-3 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
                         >
-                          <Trash2 className="w-4 h-4 ml-1" />
+                          <Trash2 className="w-4 h-4 mr-2" />
                           حذف
                         </Button>
                       </div>
@@ -436,42 +455,49 @@ export default function CertificatesManagement() {
 
         {/* Edit Dialog */}
         <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="text-2xl text-academy-dark-gray text-center">تعديل الشهادة</DialogTitle>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-2 border-academy-blue/10 shadow-2xl">
+            <DialogHeader className="text-center">
+              <DialogTitle className="text-2xl font-bold text-academy-blue flex items-center justify-center gap-3">
+                <Edit className="w-8 h-8 text-academy-gold" />
+                تعديل الشهادة
+              </DialogTitle>
             </DialogHeader>
             <form onSubmit={handleEdit} className="space-y-6">
-              <div className="space-y-6 bg-white z-50">
+              <div className="space-y-6">
                 <div> 
-                  <label className="block text-sm font-semibold text-academy-dark-gray mb-3">رقم الشهادة *</label>
+                  <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
+                    <Hash className="w-4 h-4 text-academy-gold" />
+                    رقم الشهادة *
+                  </label>
                   <div className="relative">
-                    <Hash className="absolute right-3 top-1/2 transform -translate-y-1/2 text-academy-yellow w-5 h-5" />
+                    <Hash className="absolute right-4 top-1/2 transform -translate-y-1/2 text-academy-blue/60 w-5 h-5" />
                     <Input
                       type="text"
                       placeholder="أدخل رقم الشهادة"
                       value={formData.certificateNumber}
                       onChange={(e) => setFormData({ ...formData, certificateNumber: e.target.value })}
-                      className="pr-12 h-12 border-academy-yellow/30 focus:border-academy-yellow focus:ring-academy-yellow/20"
+                      className="pr-14 h-14 border-2 border-academy-blue/20 focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 rounded-xl transition-all duration-300 bg-white text-lg"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-academy-dark-gray mb-3">
+                  <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
+                    <Upload className="w-4 h-4 text-academy-gold" />
                     صورة الشهادة الجديدة (اختياري)
                   </label>
                   <div className="relative">
-                    <div className="border-2 border-dashed border-academy-yellow/30 rounded-lg p-6 text-center hover:border-academy-yellow/50 transition-colors">
-                      <Upload className="w-12 h-12 text-academy-yellow mx-auto mb-4" />
-                      <p className="text-academy-gray mb-2">اسحب وأفلت صورة الشهادة الجديدة هنا أو</p>
+                    <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
+                      <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
+                      <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة الجديدة هنا أو</p>
                       <Button
                         type="button"
                         variant="outline"
-                        className="border-academy-yellow text-academy-yellow hover:bg-academy-yellow hover:text-white bg-transparent"
+                        className="border-2 border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white bg-transparent rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:-translate-y-1"
                         onClick={() => document.getElementById("certificate-edit-upload")?.click()}
                       >
-                        <ImageIcon className="w-4 h-4 ml-2" />
+                        <ImageIcon className="w-4 h-4 mr-2" />
                         اختر صورة جديدة
                       </Button>
                       <input
@@ -482,49 +508,52 @@ export default function CertificatesManagement() {
                         className="hidden"
                       />
                       {formData.certificateImage && (
-                        <p className="text-sm text-academy-yellow mt-2">تم اختيار: {formData.certificateImage.name}</p>
+                        <p className="text-sm text-academy-blue mt-3 font-medium">تم اختيار: {formData.certificateImage.name}</p>
                       )}
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-academy-dark-gray mb-3">تاريخ الإصدار</label>
+                  <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-academy-gold" />
+                    تاريخ الإصدار
+                  </label>
                   <div className="relative">
-                    <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 text-academy-yellow w-5 h-5" />
+                    <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 text-academy-blue/60 w-5 h-5" />
                     <Input
                       type="date"
                       value={formData.issueDate}
                       onChange={(e) => setFormData({ ...formData, issueDate: e.target.value })}
-                      className="pr-12 h-12 border-academy-yellow/30 focus:border-academy-yellow focus:ring-academy-yellow/20"
+                      className="pr-14 h-14 border-2 border-academy-blue/20 focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 rounded-xl transition-all duration-300 bg-white text-lg"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-3 space-x-reverse pt-6 border-t">
+              <div className="flex justify-end space-x-3 space-x-reverse pt-8 border-t border-academy-blue/20">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setShowEditDialog(false)}
                   disabled={isSubmitting}
-                  className="px-6"
+                  className="px-8 py-3 border-2 border-academy-blue/20 text-academy-blue hover:bg-academy-blue hover:text-white rounded-xl font-semibold transition-all duration-300"
                 >
                   إلغاء
                 </Button>
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-gradient-to-r from-academy-yellow to-academy-yellow/90 hover:from-academy-yellow/90 hover:to-academy-yellow text-white px-6"
+                  className="bg-gradient-to-r from-academy-blue to-academy-blue-700 hover:from-academy-blue-700 hover:to-academy-blue-800 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                      <Loader2 className="w-4 h-4 animate-spin mr-2" />
                       جاري التحديث...
                     </>
                   ) : (
                     <>
-                      <CheckCircle className="w-4 h-4 ml-2" />
+                      <CheckCircle className="w-4 h-4 mr-2" />
                       حفظ التغييرات
                     </>
                   )}
@@ -536,42 +565,49 @@ export default function CertificatesManagement() {
 
         {/* Delete Dialog */}
         <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-          <DialogContent className="max-w-md">
-            <DialogHeader>
-              <DialogTitle className="text-xl text-center text-red-600">تأكيد الحذف</DialogTitle>
+          <DialogContent className="max-w-md bg-white rounded-3xl border-2 border-red-100 shadow-2xl">
+            <DialogHeader className="text-center">
+              <DialogTitle className="text-2xl font-bold text-red-600 flex items-center justify-center gap-3">
+                <XCircle className="w-8 h-8 text-red-500" />
+                تأكيد الحذف
+              </DialogTitle>
             </DialogHeader>
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="text-center">
-                <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-                <p className="text-academy-gray text-lg">هل أنت متأكد من حذف الشهادة رقم</p>
-                <p className="font-bold text-academy-dark-gray text-xl mt-2">
+                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <XCircle className="w-12 h-12 text-red-500" />
+                </div>
+                <p className="text-academy-dark-gray text-lg mb-3">هل أنت متأكد من حذف الشهادة رقم</p>
+                <p className="font-bold text-academy-blue text-2xl mb-4">
                   "{selectedCertificate?.certificate_number}"؟
                 </p>
-                <p className="text-sm text-red-600 mt-4 bg-red-50 p-3 rounded-lg">⚠️ هذا الإجراء لا يمكن التراجع عنه</p>
+                <div className="bg-gradient-to-r from-red-50 to-red-100 p-4 rounded-2xl border-2 border-red-200">
+                  <p className="text-sm text-red-700 font-semibold">⚠️ هذا الإجراء لا يمكن التراجع عنه</p>
+                </div>
               </div>
 
-              <div className="flex justify-end space-x-3 space-x-reverse">
+              <div className="flex justify-end space-x-4 space-x-reverse">
                 <Button
                   variant="outline"
                   onClick={() => setShowDeleteDialog(false)}
                   disabled={isSubmitting}
-                  className="px-6"
+                  className="px-8 py-3 border-2 border-academy-blue/20 text-academy-blue hover:bg-academy-blue hover:text-white rounded-xl font-semibold transition-all duration-300"
                 >
                   إلغاء
                 </Button>
                 <Button
                   onClick={handleDelete}
                   disabled={isSubmitting}
-                  className="bg-red-600 hover:bg-red-700 text-white px-6"
+                  className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                      <Loader2 className="w-4 h-4 animate-spin mr-2" />
                       جاري الحذف...
                     </>
                   ) : (
                     <>
-                      <Trash2 className="w-4 h-4 ml-2" />
+                      <Trash2 className="w-4 h-4 mr-2" />
                       حذف الشهادة
                     </>
                   )}
@@ -583,24 +619,38 @@ export default function CertificatesManagement() {
 
         {/* Result Dialog */}
         <Dialog open={showResultDialog} onOpenChange={setShowResultDialog}>
-          <DialogContent className="max-w-md">
-            <DialogHeader>
-              <DialogTitle className="text-center text-xl">
-                {result?.success ? "تم بنجاح! 🎉" : "حدث خطأ ❌"}
+          <DialogContent className="max-w-md bg-white rounded-3xl border-2 border-academy-blue/10 shadow-2xl">
+            <DialogHeader className="text-center">
+              <DialogTitle className="text-2xl font-bold text-center">
+                {result?.success ? (
+                  <span className="text-green-600 flex items-center justify-center gap-3">
+                    <CheckCircle className="w-8 h-8 text-green-500" />
+                    تم بنجاح! 🎉
+                  </span>
+                ) : (
+                  <span className="text-red-600 flex items-center justify-center gap-3">
+                    <XCircle className="w-8 h-8 text-red-500" />
+                    حدث خطأ ❌
+                  </span>
+                )}
               </DialogTitle>
             </DialogHeader>
-            <div className="flex items-center justify-center space-x-4 space-x-reverse p-6">
+            <div className="flex items-center justify-center p-8">
               {result?.success ? (
                 <div className="text-center">
-                  <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
-                  <p className="text-lg font-semibold text-green-800 mb-2">{result?.message}</p>
-                  <p className="text-green-600">تم تنفيذ العملية بنجاح</p>
+                  <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="w-12 h-12 text-green-600" />
+                  </div>
+                  <p className="text-xl font-bold text-green-800 mb-3">{result?.message}</p>
+                  <p className="text-green-600 text-lg">تم تنفيذ العملية بنجاح</p>
                 </div>
               ) : (
                 <div className="text-center">
-                  <XCircle className="w-16 h-16 text-red-600 mx-auto mb-4" />
-                  <p className="text-lg font-semibold text-red-800 mb-2">{result?.message}</p>
-                  <p className="text-red-600">يرجى المحاولة مرة أخرى</p>
+                  <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <XCircle className="w-12 h-12 text-red-600" />
+                  </div>
+                  <p className="text-xl font-bold text-red-800 mb-3">{result?.message}</p>
+                  <p className="text-red-600 text-lg">يرجى المحاولة مرة أخرى</p>
                 </div>
               )}
             </div>
