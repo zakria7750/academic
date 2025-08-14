@@ -12,10 +12,28 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 const createDummyClient = () => ({
   from: () => ({
-    select: () => Promise.resolve({ data: [], error: null }),
-    insert: () => Promise.resolve({ data: null, error: null }),
-    update: () => Promise.resolve({ data: null, error: null }),
-    delete: () => Promise.resolve({ data: null, error: null }),
+    select: () => ({
+      order: () => Promise.resolve({ data: [], error: null }),
+      eq: () => ({
+        order: () => Promise.resolve({ data: [], error: null }),
+      }),
+      then: (resolve: any) => resolve({ data: [], error: null }),
+    }),
+    insert: () => ({
+      select: () => Promise.resolve({ data: null, error: null }),
+      then: (resolve: any) => resolve({ data: null, error: null }),
+    }),
+    update: () => ({
+      eq: () => ({
+        select: () => Promise.resolve({ data: null, error: null }),
+        then: (resolve: any) => resolve({ data: null, error: null }),
+      }),
+      then: (resolve: any) => resolve({ data: null, error: null }),
+    }),
+    delete: () => ({
+      eq: () => Promise.resolve({ data: null, error: null }),
+      then: (resolve: any) => resolve({ data: null, error: null }),
+    }),
   }),
   auth: {
     getUser: () => Promise.resolve({ data: { user: null }, error: null }),
