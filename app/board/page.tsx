@@ -46,7 +46,7 @@ export default async function BoardPage() {
       </section>
 
       {/* Board Members Section */}
-      <section className="py-20 bg-academy-gray">
+      <section className="py-20 bg-gradient-to-br from-academy-gray to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-academy-blue mb-4">أعضاء مجلس الإدارة</h2>
@@ -60,30 +60,35 @@ export default async function BoardPage() {
               {boardMembers.map((member) => (
                 <Card
                   key={member.id}
-                  className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden"
+                  className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white overflow-hidden rounded-3xl relative"
                 >
-                  <CardContent className="p-0">
-                    {/* Member Image */}
-                    <div className="relative h-64 overflow-hidden">
-                      <Image
-                        src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
-                        alt={member.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <CardContent className="p-0 relative">
+                    <div className="relative p-6 pb-0">
+                      <div className="relative w-full aspect-square overflow-hidden rounded-full mx-auto mb-6 ring-4 ring-academy-gold/20 group-hover:ring-academy-gold/40 transition-all duration-500">
+                        <Image
+                          src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
+                          alt={member.name}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
+                      </div>
                     </div>
 
-                    {/* Member Info */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-academy-blue mb-2 group-hover:text-academy-gold transition-colors duration-300">
+                    <div className="px-6 pb-6 text-center">
+                      <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
                         {member.name}
                       </h3>
-                      <div className="bg-academy-gold text-academy-blue px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">
+                      <div className="bg-gradient-to-r from-academy-gold to-academy-gold/80 text-academy-blue px-4 py-2 rounded-full text-sm font-bold mb-4 inline-block shadow-md group-hover:shadow-lg transition-shadow duration-300">
                         {member.position}
                       </div>
-                      <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.experience}</p>
+                      <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3 group-hover:text-academy-blue/80 transition-colors duration-300">
+                        {member.experience}
+                      </p>
                     </div>
+
+                    <div className="absolute top-4 right-4 w-8 h-8 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute bottom-4 left-4 w-6 h-6 bg-academy-blue/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                   </CardContent>
                 </Card>
               ))}

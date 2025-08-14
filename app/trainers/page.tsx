@@ -144,52 +144,57 @@ export default async function TrainersPage() {
               {trainers.map((trainer) => (
                 <Card
                   key={trainer.id}
-                  className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden"
+                  className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white overflow-hidden relative"
                 >
                   <CardContent className="p-0">
-                    {/* Trainer Image */}
-                    <div className="relative h-64 overflow-hidden">
-                      <Image
-                        src={trainer.image_url || "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"}
-                        alt={trainer.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative p-6 pb-4">
+                      <div className="relative w-40 h-40 mx-auto mb-4 overflow-hidden rounded-full border-4 border-academy-gold shadow-lg group-hover:border-academy-blue transition-colors duration-300">
+                        <Image
+                          src={trainer.image_url || "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"}
+                          alt={trainer.name}
+                          fill
+                          className="object-contain bg-white group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
 
                       {/* Certified Badge */}
-                      <div className="absolute top-4 right-4 bg-academy-gold text-academy-blue px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center space-x-1 space-x-reverse">
+                      <div className="absolute top-4 right-4 bg-gradient-to-r from-academy-gold to-yellow-400 text-academy-blue px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center space-x-1 space-x-reverse transform group-hover:scale-110 transition-transform duration-300">
                         <Award size={12} />
                         <span>معتمد</span>
                       </div>
                     </div>
 
-                    {/* Trainer Info */}
-                    <div className="p-6 text-center">
+                    <div className="px-6 pb-6 text-center relative">
+                      {/* Decorative element */}
+                      <div className="w-16 h-1 bg-gradient-to-r from-academy-blue to-academy-gold mx-auto mb-4 rounded-full"></div>
+
                       <h3 className="text-lg font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
                         {trainer.name}
                       </h3>
 
                       {/* Specialization */}
-                      <div className="bg-academy-gray px-3 py-2 rounded-full mb-4">
+                      <div className="bg-gradient-to-r from-academy-gray to-gray-100 px-4 py-2 rounded-full mb-4 border border-academy-gold/20">
                         <span className="text-academy-blue font-semibold text-sm">{trainer.specialization}</span>
                       </div>
 
                       {/* Rating Stars */}
                       <div className="flex justify-center space-x-1 space-x-reverse mb-4">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={16} className="text-academy-gold fill-current" />
+                          <Star key={i} size={16} className="text-academy-gold fill-current drop-shadow-sm" />
                         ))}
                       </div>
 
                       {/* Contact Button */}
                       <Button
                         size="sm"
-                        className="bg-academy-blue text-white hover:bg-academy-gold hover:text-academy-blue font-bold px-6 py-2 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200"
+                        className="bg-gradient-to-r from-academy-blue to-blue-700 text-white hover:from-academy-gold hover:to-yellow-500 hover:text-academy-blue font-bold px-6 py-2 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-academy-blue"
                       >
                         تواصل معي
                       </Button>
                     </div>
+
+                    <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-academy-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-academy-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </CardContent>
                 </Card>
               ))}
