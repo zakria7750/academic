@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, BookOpen, Globe, Award, CheckCircle, Target, Lightbulb } from "lucide-react"
+import { Users, BookOpen, Globe, Award } from "lucide-react"
 import Image from "next/image"
 
 export default function HomePage() {
@@ -103,67 +103,213 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/academic-excellence-background.png"
+            alt="التميز الأكاديمي"
+            fill
+            className="object-cover opacity-10"
+          />
+        </div>
+
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 z-10"></div>
+
+        <div className="relative z-20 container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-academy-blue mb-4">لماذا أكاديمية المعرفة الدولية؟</h2>
-            <p className="text-xl text-academy-dark-gray max-w-3xl mx-auto">
+            <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue mb-6">لماذا أكاديمية المعرفة الدولية؟</h2>
+            <div className="w-24 h-1 bg-academy-gold mx-auto mb-6"></div>
+            <p className="text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed">
               نحن نقدم تعليماً متميزاً يجمع بين الأصالة والمعاصرة، مع التركيز على بناء شخصية الطالب وتطوير مهاراته العملية
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="text-academy-blue" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-academy-blue mb-4">جودة التعليم</h3>
-              <p className="text-academy-dark-gray">
-                نقدم برامج تعليمية معتمدة دولياً مع أحدث المناهج والتقنيات التعليمية
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Card 1: Global Vision */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm hover:scale-105">
+              <CardContent className="p-0">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/global-vision.png"
+                    alt="رؤية عالمية ورسالة واضحة"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors">
+                    رؤية عالمية ورسالة واضحة
+                  </h3>
+                  <p className="text-academy-dark-gray leading-relaxed">
+                    نسعى لتمكين المتعلمين والباحثين من الوصول إلى المعرفة الحديثة بأسلوب علمي متطور.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                <Target className="text-academy-blue" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-academy-blue mb-4">التخصص والتميز</h3>
-              <p className="text-academy-dark-gray">نركز على التخصصات المطلوبة في سوق العمل مع برامج متطورة ومتخصصة</p>
-            </div>
+            {/* Card 2: Academic Credibility */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm hover:scale-105">
+              <CardContent className="p-0">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/academic-credibility.png"
+                    alt="مصداقية أكاديمية"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors">
+                    مصداقية أكاديمية
+                  </h3>
+                  <p className="text-academy-dark-gray leading-relaxed">
+                    نعتمد معايير عالية في إعداد البرامج التدريبية والبحثية، مع التزام كامل بأخلاقيات المهنة.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                <Lightbulb className="text-academy-blue" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-academy-blue mb-4">الابتكار والإبداع</h3>
-              <p className="text-academy-dark-gray">
-                نشجع الطلاب على الابتكار والإبداع من خلال بيئة تعليمية محفزة ومتطورة
-              </p>
-            </div>
+            {/* Card 3: International Certificates */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm hover:scale-105">
+              <CardContent className="p-0">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/international-certificates.png"
+                    alt="شهادات معترف بها دولياً"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors">
+                    شهادات معترف بها دولياً
+                  </h3>
+                  <p className="text-academy-dark-gray leading-relaxed">
+                    نوفر شهادات يمكن التحقق من صحتها مباشرة عبر موقع الأكاديمية، مما يعزز مصداقيتها دولياً.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="text-academy-blue" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-academy-blue mb-4">هيئة تدريس متميزة</h3>
-              <p className="text-academy-dark-gray">نضم نخبة من أفضل الأساتذة والخبراء في مختلف التخصصات</p>
-            </div>
+            {/* Card 4: Program Diversity */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm hover:scale-105">
+              <CardContent className="p-0">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/program-diversity.png"
+                    alt="تنوع البرامج"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors">
+                    تنوع البرامج
+                  </h3>
+                  <p className="text-academy-dark-gray leading-relaxed">
+                    نقدم برامج متخصصة في مجالات الإدارة، العلوم الإنسانية، الدراسات الإسلامية، والبحث العلمي.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                <Globe className="text-academy-blue" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-academy-blue mb-4">الانتشار العالمي</h3>
-              <p className="text-academy-dark-gray">نخدم طلاباً من أكثر من 50 دولة حول العالم مع شراكات دولية متميزة</p>
-            </div>
+            {/* Card 5: Qualified Staff */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm hover:scale-105">
+              <CardContent className="p-0">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/qualified-staff.png"
+                    alt="كوادر مؤهلة"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors">
+                    كوادر مؤهلة
+                  </h3>
+                  <p className="text-academy-dark-gray leading-relaxed">
+                    نخبة من الخبراء والأكاديميين ذوي الخبرة العملية والعلمية.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                <Award className="text-academy-blue" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-academy-blue mb-4">الاعتماد الدولي</h3>
-              <p className="text-academy-dark-gray">شهاداتنا معتمدة دولياً ومعترف بها في جميع أنحاء العالم</p>
-            </div>
+            {/* Card 6: Motivating Environment */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm hover:scale-105">
+              <CardContent className="p-0">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/motivating-environment.png"
+                    alt="بيئة تعليمية محفزة"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors">
+                    بيئة تعليمية محفزة
+                  </h3>
+                  <p className="text-academy-dark-gray leading-relaxed">
+                    نعتمد نظام تعليم مبتكر يراعي الفروق الفردية ويحفز على الإبداع والمشاركة.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Card 7: Accreditations and Partnerships */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm hover:scale-105">
+              <CardContent className="p-0">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/accreditations-partnerships.png"
+                    alt="اعتمادات وشراكات"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors">
+                    اعتمادات وشراكات
+                  </h3>
+                  <p className="text-academy-dark-gray leading-relaxed">
+                    علاقات تعاون مع مؤسسات تعليمية وبحثية محلية ودولية.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Card 8: Post-Graduation Support */}
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white/90 backdrop-blur-sm hover:scale-105">
+              <CardContent className="p-0">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src="/post-graduation-support.png"
+                    alt="دعم المتعلم بعد التخرج"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors">
+                    دعم المتعلم بعد التخرج
+                  </h3>
+                  <p className="text-academy-dark-gray leading-relaxed">
+                    من خلال فرص النشر العلمي، والمشاركة في المؤتمرات، والتطوير المهني المستمر.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
