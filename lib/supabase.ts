@@ -1,19 +1,38 @@
 import { createClient as createSupabaseClient } from "@supabase/supabase-js"
 
+// Check if Supabase environment variables are available
+export const isSupabaseConfigured =
+  typeof process.env.NEXT_PUBLIC_SUPABASE_URL === "string" &&
+  process.env.NEXT_PUBLIC_SUPABASE_URL.length > 0 &&
+  typeof process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY === "string" &&
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.length > 0
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-if (!supabaseUrl) {
-  throw new Error("Missing environment variable: NEXT_PUBLIC_SUPABASE_URL")
-}
+const createDummyClient = () => ({
+  from: () => ({
+    select: () => Promise.resolve({ data: [], error: null }),
+    insert: () => Promise.resolve({ data: null, error: null }),
+    update: () => Promise.resolve({ data: null, error: null }),
+    delete: () => Promise.resolve({ data: null, error: null }),
+  }),
+  auth: {
+    getUser: () => Promise.resolve({ data: { user: null }, error: null }),
+    getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+  },
+})
 
-if (!supabaseAnonKey) {
-  throw new Error("Missing environment variable: NEXT_PUBLIC_SUPABASE_ANON_KEY")
-}
-
-export const supabase = createSupabaseClient(supabaseUrl, supabaseAnonKey)
+export const supabase =
+  isSupabaseConfigured && supabaseUrl && supabaseAnonKey
+    ? createSupabaseClient(supabaseUrl, supabaseAnonKey)
+    : createDummyClient()
 
 export function createClient() {
+  if (!isSupabaseConfigured || !supabaseUrl || !supabaseAnonKey) {
+    console.warn("Supabase environment variables are not set. Using dummy client.")
+    return createDummyClient()
+  }
   return createSupabaseClient(supabaseUrl, supabaseAnonKey)
 }
 
