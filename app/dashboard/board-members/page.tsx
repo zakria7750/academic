@@ -16,6 +16,8 @@ export default function BoardMembersManagement() {
   const [boardMembers, setBoardMembers] = useState<BoardMember[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [memberToDelete, setMemberToDelete] = useState<BoardMember | null>(null)
   const [editingMember, setEditingMember] = useState<BoardMember | null>(null)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -119,19 +121,26 @@ export default function BoardMembersManagement() {
     }
   }
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("هل أنت متأكد من حذف هذا العضو؟")) return
+  const handleDeleteConfirm = async () => {
+    if (!memberToDelete) return
 
     try {
-      const { error } = await supabase.from("board_members").delete().eq("id", id)
+      const { error } = await supabase.from("board_members").delete().eq("id", memberToDelete.id)
 
       if (error) throw error
       showMessage("success", "تم حذف العضو بنجاح")
       fetchBoardMembers()
+      setShowDeleteModal(false)
+      setMemberToDelete(null)
     } catch (error) {
       console.error("Error deleting member:", error)
       showMessage("error", "حدث خطأ في حذف العضو")
     }
+  }
+
+  const handleDeleteClick = (member: BoardMember) => {
+    setMemberToDelete(member)
+    setShowDeleteModal(true)
   }
 
   const handleEdit = (member: BoardMember) => {
@@ -226,10 +235,59 @@ export default function BoardMembersManagement() {
         </div>
       )}
 
+      {/* Enhanced Delete Confirmation Modal */}
+      {showDeleteModal && memberToDelete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 slide-up" style={{backdropFilter: 'blur(12px)', background: 'rgba(0, 31, 63, 0.8)'}}>
+          <Card className="w-full max-w-md bg-white border-0 shadow-2xl rounded-2xl overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-red-50 to-red-100 border-b border-red-200">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                  <Trash2 className="text-red-600" size={24} />
+                </div>
+                <CardTitle className="text-red-800 text-xl font-bold">تأكيد الحذف</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-6 bg-white">
+              <div className="text-center mb-6">
+                <div className="w-20 h-20 mx-auto mb-4 relative rounded-full overflow-hidden border-4 border-red-200">
+                  <Image
+                    src={memberToDelete.image_url || "/placeholder.svg?height=80&width=80&text=عضو"}
+                    alt={memberToDelete.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-lg font-bold text-academy-blue mb-2">{memberToDelete.name}</h3>
+                <p className="text-academy-dark-gray mb-4">هل أنت متأكد من حذف هذا العضو؟</p>
+                <p className="text-red-600 text-sm bg-red-50 p-3 rounded-lg border border-red-200">
+                  تحذير: لا يمكن التراجع عن هذا الإجراء
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <Button
+                  onClick={handleDeleteConfirm}
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-all duration-300"
+                >
+                  <Trash2 size={18} className="ml-2" />
+                  تأكيد الحذف
+                </Button>
+                <Button
+                  onClick={() => {setShowDeleteModal(false); setMemberToDelete(null)}}
+                  className="flex-1 bg-academy-gray hover:bg-academy-gray-medium text-academy-blue font-bold py-3 rounded-xl transition-all duration-300"
+                >
+                  <X size={18} className="ml-2" />
+                  إلغاء
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
       {/* Enhanced Add/Edit Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 form-modal z-50 flex items-center justify-center p-4 slide-up">
-          <Card className="form-container w-full max-w-2xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 slide-up" style={{backdropFilter: 'blur(8px)', background: 'rgba(0, 31, 63, 0.8)'}}>
+          <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto border-0 shadow-2xl bg-white rounded-2xl">
             <CardHeader className="border-b border-academy-blue-100 bg-gradient-to-r from-academy-blue-50 to-academy-gold-50">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
@@ -250,7 +308,7 @@ export default function BoardMembersManagement() {
                 </Button>
               </div>
             </CardHeader>
-            <CardContent className="p-8">
+            <CardContent className="p-8 bg-white">
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Enhanced Image Upload */}
                 <div>
@@ -261,7 +319,7 @@ export default function BoardMembersManagement() {
                     <input type="file" id="image" accept="image/*" onChange={handleImageChange} className="hidden" />
                     <label
                       htmlFor="image"
-                      className="file-upload-area flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer"
+                      className="file-upload-area flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-white border-2 border-dashed border-academy-gold/40 hover:border-academy-gold hover:bg-academy-gold/5 transition-all duration-300"
                     >
                       <div className="flex flex-col items-center justify-center pt-5 pb-6">
                         <div className="w-16 h-16 bg-academy-gold/20 rounded-full flex items-center justify-center mb-4">
@@ -287,7 +345,7 @@ export default function BoardMembersManagement() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                    className="form-input mt-2 h-12 text-lg rounded-xl border-2"
+                    className="form-input mt-2 h-12 text-lg rounded-xl border-2 bg-white"
                     placeholder="أدخل اسم العضو الكامل"
                   />
                 </div>
@@ -303,7 +361,7 @@ export default function BoardMembersManagement() {
                     value={formData.position}
                     onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                     required
-                    className="form-input mt-2 h-12 text-lg rounded-xl border-2"
+                    className="form-input mt-2 h-12 text-lg rounded-xl border-2 bg-white"
                     placeholder="مثال: رئيس مجلس الإدارة، نائب الرئيس"
                   />
                 </div>
@@ -319,7 +377,7 @@ export default function BoardMembersManagement() {
                     onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                     required
                     rows={5}
-                    className="form-input mt-2 text-lg rounded-xl border-2 resize-none"
+                    className="form-input mt-2 text-lg rounded-xl border-2 resize-none bg-white"
                     placeholder="أدخل وصف مفصل لخبرة العضو ومؤهلاته الأكاديمية والمهنية"
                   />
                 </div>
@@ -363,44 +421,48 @@ export default function BoardMembersManagement() {
         {boardMembers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {boardMembers.map((member) => (
-              <Card key={member.id} className="member-card group border-0 shadow-lg hover:shadow-2xl">
+              <Card key={member.id} className="group border-0 shadow-lg hover:shadow-2xl bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 relative">
                 <CardContent className="p-0">
-                  {/* Enhanced Member Image */}
-                  <div className="relative h-56 overflow-hidden rounded-t-xl">
-                    <Image
-                      src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
-                      alt={member.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    <div className="action-buttons absolute top-3 left-3 flex gap-2">
+                  {/* Enhanced Member Image - Oval Shape */}
+                  <div className="relative p-6 pb-3">
+                    <div className="relative w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-academy-gold/30 shadow-lg group-hover:border-academy-gold transition-all duration-300">
+                      <Image
+                        src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
+                        alt={member.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    
+                    {/* Action Buttons - Always visible on mobile, hover on desktop */}
+                    <div className="absolute top-3 left-3 flex gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-2 group-hover:translate-y-0">
                       <Button
                         size="icon"
                         onClick={() => handleEdit(member)}
-                        className="w-10 h-10 bg-academy-gold/90 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl"
+                        className="w-10 h-10 bg-academy-gold/95 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl hover:scale-110 transition-all duration-300"
                       >
                         <Edit size={16} />
                       </Button>
                       <Button
                         size="icon"
-                        onClick={() => handleDelete(member.id)}
-                        className="w-10 h-10 bg-red-500/90 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl"
+                        onClick={() => handleDeleteClick(member)}
+                        className="w-10 h-10 bg-red-500/95 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl hover:scale-110 transition-all duration-300"
                       >
                         <Trash2 size={16} />
                       </Button>
                     </div>
-                    <div className="absolute bottom-3 right-3 left-3">
-                      <h3 className="text-xl font-bold text-white mb-1 line-clamp-2">{member.name}</h3>
-                    </div>
                   </div>
 
                   {/* Enhanced Member Info */}
-                  <div className="p-6">
-                    <div className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 text-academy-blue px-4 py-2 rounded-xl text-sm font-bold mb-4 inline-block border border-academy-gold/30">
+                  <div className="px-6 pb-6">
+                    <h3 className="text-xl font-bold text-academy-blue mb-3 text-center group-hover:text-academy-gold transition-colors duration-300 line-clamp-2">
+                      {member.name}
+                    </h3>
+                    <div className="bg-gradient-to-r from-academy-gold to-academy-gold-light text-academy-blue px-4 py-2 rounded-full text-sm font-bold mb-4 text-center shadow-md">
                       {member.position}
                     </div>
-                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4">{member.experience}</p>
+                    <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4 text-center">{member.experience}</p>
                   </div>
                 </CardContent>
               </Card>
