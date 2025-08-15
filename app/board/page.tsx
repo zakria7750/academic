@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import type { BoardMember } from "@/lib/supabase"
 
+export const revalidate = 300; // ISR لمدة 5 دقائق
+
 async function getBoardMembers(): Promise<BoardMember[]> {
   const { data, error } = await supabase.from("board_members").select("*").order("created_at", { ascending: true })
 

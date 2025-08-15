@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { supabase, type BoardMember } from "@/lib/supabase"
+import { revalidateBoardPage } from "@/app/actions/board-members-actions"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -102,12 +103,14 @@ export default function BoardMembersManagement() {
 
         if (error) throw error
         showMessage("success", "تم تحديث العضو بنجاح")
+        await revalidateBoardPage()
       } else {
         // Add new member
         const { error } = await supabase.from("board_members").insert([memberData])
 
         if (error) throw error
         showMessage("success", "تم إضافة العضو بنجاح")
+        await revalidateBoardPage()
       }
 
       // Reset form and refresh data
@@ -128,6 +131,7 @@ export default function BoardMembersManagement() {
       const { error } = await supabase.from("board_members").delete().eq("id", memberToDelete.id)
 
       if (error) throw error
+      await revalidateBoardPage()
       showMessage("success", "تم حذف العضو بنجاح")
       fetchBoardMembers()
       setShowDeleteModal(false)
