@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -30,6 +30,7 @@ import {
   MapPin,
   Calendar,
   Briefcase,
+  Award,
 } from "lucide-react"
 
 interface GraduatesManagementProps {
@@ -38,68 +39,103 @@ interface GraduatesManagementProps {
 }
 
 export function GraduatesManagement({ initialGraduates, initialApplications }: GraduatesManagementProps) {
-  const [graduates, setGraduates] = useState(initialGraduates)
-  const [applications, setApplications] = useState(initialApplications)
+  const [graduates, setGraduates] = useState(initialGraduates || [])
+  const [applications, setApplications] = useState(initialApplications || [])
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [editingGraduate, setEditingGraduate] = useState<Graduate | null>(null)
   const [processingApplication, setProcessingApplication] = useState<number | null>(null)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const pendingApplications = applications.filter((app) => app.status === "pending")
-  const processedApplications = applications.filter((app) => app.status !== "pending")
+  useEffect(() => {
+    console.log("[v0] GraduatesManagement initialized with:", {
+      graduatesCount: initialGraduates?.length || 0,
+      applicationsCount: initialApplications?.length || 0,
+    })
+  }, [initialGraduates, initialApplications])
+
+  const pendingApplications = applications?.filter((app) => app.status === "pending") || []
+  const processedApplications = applications?.filter((app) => app.status !== "pending") || []
 
   async function handleAddGraduate(formData: FormData) {
-    const result = await addGraduate(formData)
-    if (result.success) {
-      setMessage({ type: "success", text: "تم إضافة الخريج بنجاح" })
-      setIsAddDialogOpen(false)
-      const newGraduate: Graduate = {
-        id: result.id,
-        name: formData.get("name") as string,
-        specialization: formData.get("specialization") as string,
-        current_position: formData.get("current_position") as string,
-        success_story: formData.get("success_story") as string,
-        country: formData.get("country") as string,
-        graduation_year: Number.parseInt(formData.get("graduation_year") as string),
-        created_at: new Date().toISOString(),
+    try {
+      setIsLoading(true)
+      console.log("[v0] Adding graduate...")
+      const result = await addGraduate(formData)
+      if (result.success) {
+        setMessage({ type: "success", text: "تم إضافة الخريج بنجاح" })
+        setIsAddDialogOpen(false)
+        const newGraduate: Graduate = {
+          id: result.id,
+          name: formData.get("name") as string,
+          specialization: formData.get("specialization") as string,
+          current_position: formData.get("current_position") as string,
+          success_story: formData.get("success_story") as string,
+          country: formData.get("country") as string,
+          graduation_year: Number.parseInt(formData.get("graduation_year") as string),
+          created_at: new Date().toISOString(),
+        }
+        setGraduates((prev) => [...prev, newGraduate])
+      } else {
+        setMessage({ type: "error", text: result.error || "حدث خطأ" })
       }
-      setGraduates((prev) => [...prev, newGraduate])
-    } else {
-      setMessage({ type: "error", text: result.error || "حدث خطأ" })
+    } catch (error) {
+      console.error("[v0] Error adding graduate:", error)
+      setMessage({ type: "error", text: "حدث خطأ في الاتصال" })
+    } finally {
+      setIsLoading(false)
     }
   }
 
   async function handleUpdateGraduate(formData: FormData) {
     if (!editingGraduate) return
 
-    const result = await updateGraduate(editingGraduate.id, formData)
-    if (result.success) {
-      setMessage({ type: "success", text: "تم تحديث الخريج بنجاح" })
-      setEditingGraduate(null)
-      const updatedGraduate: Graduate = {
-        id: editingGraduate.id,
-        name: formData.get("name") as string,
-        specialization: formData.get("specialization") as string,
-        current_position: formData.get("current_position") as string,
-        success_story: formData.get("success_story") as string,
-        country: formData.get("country") as string,
-        graduation_year: Number.parseInt(formData.get("graduation_year") as string),
-        created_at: editingGraduate.created_at,
+    try {
+      setIsLoading(true)
+      console.log("[v0] Updating graduate:", editingGraduate.id)
+      const result = await updateGraduate(editingGraduate.id, formData)
+      if (result.success) {
+        setMessage({ type: "success", text: "تم تحديث الخريج بنجاح" })
+        setEditingGraduate(null)
+        const updatedGraduate: Graduate = {
+          id: editingGraduate.id,
+          name: formData.get("name") as string,
+          specialization: formData.get("specialization") as string,
+          current_position: formData.get("current_position") as string,
+          success_story: formData.get("success_story") as string,
+          country: formData.get("country") as string,
+          graduation_year: Number.parseInt(formData.get("graduation_year") as string),
+          created_at: editingGraduate.created_at,
+        }
+        setGraduates((prev) => prev.map((g) => (g.id === editingGraduate.id ? updatedGraduate : g)))
+      } else {
+        setMessage({ type: "error", text: result.error || "حدث خطأ" })
       }
-      setGraduates((prev) => prev.map((g) => (g.id === editingGraduate.id ? updatedGraduate : g)))
-    } else {
-      setMessage({ type: "error", text: result.error || "حدث خطأ" })
+    } catch (error) {
+      console.error("[v0] Error updating graduate:", error)
+      setMessage({ type: "error", text: "حدث خطأ في الاتصال" })
+    } finally {
+      setIsLoading(false)
     }
   }
 
   async function handleDeleteGraduate(id: number) {
     if (confirm("هل أنت متأكد من حذف هذا الخريج؟")) {
-      const result = await deleteGraduate(id)
-      if (result.success) {
-        setMessage({ type: "success", text: "تم حذف الخريج بنجاح" })
-        setGraduates(graduates.filter((g) => g.id !== id))
-      } else {
-        setMessage({ type: "error", text: result.error || "حدث خطأ" })
+      try {
+        setIsLoading(true)
+        console.log("[v0] Deleting graduate:", id)
+        const result = await deleteGraduate(id)
+        if (result.success) {
+          setMessage({ type: "success", text: "تم حذف الخريج بنجاح" })
+          setGraduates(graduates.filter((g) => g.id !== id))
+        } else {
+          setMessage({ type: "error", text: result.error || "حدث خطأ" })
+        }
+      } catch (error) {
+        console.error("[v0] Error deleting graduate:", error)
+        setMessage({ type: "error", text: "حدث خطأ في الاتصال" })
+      } finally {
+        setIsLoading(false)
       }
     }
   }
@@ -108,6 +144,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
     setProcessingApplication(id)
 
     try {
+      console.log("[v0] Processing application:", { id, action, adminMessage })
       const result = await processGraduateApplication(id, action, adminMessage)
 
       if (result.success) {
@@ -142,10 +179,22 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
         setMessage({ type: "error", text: result.error || "حدث خطأ" })
       }
     } catch (error) {
+      console.error("[v0] Error processing application:", error)
       setMessage({ type: "error", text: "حدث خطأ في الاتصال" })
     }
 
     setProcessingApplication(null)
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-academy-blue mx-auto mb-4"></div>
+          <p className="text-academy-dark-gray">جاري التحميل...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -153,12 +202,10 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
       {message && (
         <Alert
           className={`${
-            message.type === "success" 
-              ? "border-green-200 bg-gradient-to-r from-green-50 to-green-100/50 shadow-lg" 
+            message.type === "success"
+              ? "border-green-200 bg-gradient-to-r from-green-50 to-green-100/50 shadow-lg"
               : "border-red-200 bg-gradient-to-r from-red-50 to-red-100/50 shadow-lg"
-          } rounded-xl border-l-4 ${
-            message.type === "success" ? "border-l-green-500" : "border-l-red-500"
-          }`}
+          } rounded-xl border-l-4 ${message.type === "success" ? "border-l-green-500" : "border-l-red-500"}`}
         >
           {message.type === "success" ? (
             <CheckCircle className="h-5 w-5 text-green-600" />
@@ -173,22 +220,28 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
 
       <Tabs defaultValue="graduates" className="w-full">
         <TabsList className="grid w-full grid-cols-2 bg-academy-gray/30 rounded-2xl p-2 h-auto">
-          <TabsTrigger value="graduates" className="flex items-center gap-3 text-base font-semibold py-4 px-6 rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:text-academy-blue transition-all duration-300">
+          <TabsTrigger
+            value="graduates"
+            className="flex items-center gap-3 text-base font-semibold py-4 px-6 rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:text-academy-blue transition-all duration-300"
+          >
             <div className="w-10 h-10 bg-academy-blue/10 rounded-full flex items-center justify-center">
               <Users className="w-5 h-5 text-academy-blue" />
             </div>
             <div className="text-right">
               <div className="text-sm font-bold">الخريجون المعتمدون</div>
-              <div className="text-xs text-academy-dark-gray">({graduates.length}) خريج</div>
+              <div className="text-xs text-academy-dark-gray">({graduates?.length || 0}) خريج</div>
             </div>
           </TabsTrigger>
-          <TabsTrigger value="applications" className="flex items-center gap-3 text-base font-semibold py-4 px-6 rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:text-academy-blue transition-all duration-300">
+          <TabsTrigger
+            value="applications"
+            className="flex items-center gap-3 text-base font-semibold py-4 px-6 rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:text-academy-blue transition-all duration-300"
+          >
             <div className="w-10 h-10 bg-academy-gold/10 rounded-full flex items-center justify-center">
               <Clock className="w-5 h-5 text-academy-gold" />
             </div>
             <div className="text-right">
               <div className="text-sm font-bold">طلبات التقديم</div>
-              <div className="text-xs text-academy-dark-gray">({pendingApplications.length}) طلب معلق</div>
+              <div className="text-xs text-academy-dark-gray">({pendingApplications?.length || 0}) طلب معلق</div>
             </div>
           </TabsTrigger>
         </TabsList>
@@ -217,22 +270,37 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {graduates.map((graduate) => (
-              <Card key={graduate.id} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden rounded-3xl relative">
+            {graduates?.map((graduate) => (
+              <Card
+                key={graduate.id}
+                className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden rounded-3xl relative"
+              >
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-academy-gold/20 to-academy-blue/20 rounded-bl-3xl"></div>
                 <CardHeader className="pb-4 relative">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
-                      <CardTitle className="text-xl font-bold text-academy-blue mb-2 group-hover:text-academy-gold transition-colors duration-300">{graduate.name}</CardTitle>
+                      <CardTitle className="text-xl font-bold text-academy-blue mb-2 group-hover:text-academy-gold transition-colors duration-300">
+                        {graduate.name}
+                      </CardTitle>
                       <div className="bg-gradient-to-r from-academy-blue/10 to-academy-blue/5 text-academy-blue px-3 py-1 rounded-full text-sm font-medium inline-block">
                         {graduate.specialization}
                       </div>
                     </div>
                     <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Button size="sm" variant="outline" onClick={() => setEditingGraduate(graduate)} className="h-9 w-9 p-0 border-academy-blue/20 hover:border-academy-blue hover:bg-academy-blue hover:text-white rounded-xl transition-all duration-300">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => setEditingGraduate(graduate)}
+                        className="h-9 w-9 p-0 border-academy-blue/20 hover:border-academy-blue hover:bg-academy-blue hover:text-white rounded-xl transition-all duration-300"
+                      >
                         <Edit className="w-4 h-4" />
                       </Button>
-                      <Button size="sm" variant="outline" onClick={() => handleDeleteGraduate(graduate.id)} className="h-9 w-9 p-0 border-red-200 hover:border-red-500 hover:bg-red-500 hover:text-white rounded-xl transition-all duration-300">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleDeleteGraduate(graduate.id)}
+                        className="h-9 w-9 p-0 border-red-200 hover:border-red-500 hover:bg-red-500 hover:text-white rounded-xl transition-all duration-300"
+                      >
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
@@ -260,12 +328,18 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
                     </div>
                   </div>
                   <div className="bg-gradient-to-r from-academy-gray/10 to-academy-gray/5 rounded-xl p-4">
-                    <p className="text-sm text-academy-dark-gray leading-relaxed line-clamp-3">{graduate.success_story}</p>
+                    <p className="text-sm text-academy-dark-gray leading-relaxed line-clamp-3">
+                      {graduate.success_story}
+                    </p>
                   </div>
                 </CardContent>
                 <div className="absolute bottom-4 left-4 w-6 h-6 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </Card>
-            ))}
+            )) || (
+              <div className="col-span-full text-center py-8">
+                <p className="text-academy-dark-gray">لا توجد خريجين مضافين حالياً</p>
+              </div>
+            )}
           </div>
         </TabsContent>
 
@@ -276,16 +350,16 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
           </div>
 
           <div className="space-y-4">
-            {pendingApplications.map((application) => (
-              <ApplicationCard
-                key={application.id}
-                application={application}
-                onProcess={handleProcessApplication}
-                isProcessing={processingApplication === application.id}
-              />
-            ))}
-
-            {pendingApplications.length === 0 && (
+            {pendingApplications && pendingApplications.length > 0 ? (
+              pendingApplications.map((application) => (
+                <ApplicationCard
+                  key={application.id}
+                  application={application}
+                  onProcess={handleProcessApplication}
+                  isProcessing={processingApplication === application.id}
+                />
+              ))
+            ) : (
               <Card>
                 <CardContent className="text-center py-8">
                   <Clock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -297,7 +371,6 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
         </TabsContent>
       </Tabs>
 
-      {/* Edit Graduate Dialog */}
       <Dialog open={!!editingGraduate} onOpenChange={() => setEditingGraduate(null)}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
           <DialogHeader className="text-center pb-4">
@@ -326,14 +399,26 @@ function GraduateForm({
             <Users className="w-4 h-4 ml-2" />
             الاسم الكامل
           </Label>
-          <Input id="name" name="name" required defaultValue={initialData?.name} className="rounded-xl border-academy-blue/20 focus:border-academy-blue" />
+          <Input
+            id="name"
+            name="name"
+            required
+            defaultValue={initialData?.name}
+            className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
+          />
         </div>
         <div className="space-y-3">
           <Label htmlFor="specialization" className="text-base font-semibold text-academy-blue flex items-center">
             <Award className="w-4 h-4 ml-2" />
             التخصص
           </Label>
-          <Input id="specialization" name="specialization" required defaultValue={initialData?.specialization} className="rounded-xl border-academy-blue/20 focus:border-academy-blue" />
+          <Input
+            id="specialization"
+            name="specialization"
+            required
+            defaultValue={initialData?.specialization}
+            className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
+          />
         </div>
       </div>
 
@@ -342,7 +427,13 @@ function GraduateForm({
           <Briefcase className="w-4 h-4 ml-2" />
           المنصب الحالي
         </Label>
-        <Input id="current_position" name="current_position" required defaultValue={initialData?.current_position} className="rounded-xl border-academy-blue/20 focus:border-academy-blue" />
+        <Input
+          id="current_position"
+          name="current_position"
+          required
+          defaultValue={initialData?.current_position}
+          className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -351,7 +442,13 @@ function GraduateForm({
             <MapPin className="w-4 h-4 ml-2" />
             البلد
           </Label>
-          <Input id="country" name="country" required defaultValue={initialData?.country} className="rounded-xl border-academy-blue/20 focus:border-academy-blue" />
+          <Input
+            id="country"
+            name="country"
+            required
+            defaultValue={initialData?.country}
+            className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
+          />
         </div>
         <div className="space-y-3">
           <Label htmlFor="graduation_year" className="text-base font-semibold text-academy-blue flex items-center">
@@ -374,18 +471,21 @@ function GraduateForm({
           <CheckCircle className="w-4 h-4 ml-2" />
           قصة النجاح
         </Label>
-        <Textarea 
-          id="success_story" 
-          name="success_story" 
-          rows={5} 
-          required 
-          defaultValue={initialData?.success_story} 
+        <Textarea
+          id="success_story"
+          name="success_story"
+          rows={5}
+          required
+          defaultValue={initialData?.success_story}
           className="rounded-xl border-academy-blue/20 focus:border-academy-blue min-h-[120px]"
           placeholder="اكتب قصة نجاح ملهمة تعكس إنجازات الخريج..."
         />
       </div>
 
-      <Button type="submit" className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-600 hover:from-academy-blue-600 hover:to-academy-blue-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+      <Button
+        type="submit"
+        className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-600 hover:from-academy-blue-600 hover:to-academy-blue-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+      >
         {initialData ? (
           <>
             <Edit className="w-5 h-5 ml-2" />
@@ -509,7 +609,9 @@ function ApplicationCard({
               </DialogHeader>
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="approve-message" className="text-base font-semibold text-academy-blue">رسالة ترحيب للخريج الجديد (اختيارية)</Label>
+                  <Label htmlFor="approve-message" className="text-base font-semibold text-academy-blue">
+                    رسالة ترحيب للخريج الجديد (اختيارية)
+                  </Label>
                   <Textarea
                     id="approve-message"
                     value={adminMessage}
@@ -518,7 +620,10 @@ function ApplicationCard({
                     className="mt-3 min-h-[100px] rounded-xl"
                   />
                 </div>
-                <Button onClick={() => handleProcess("approve")} className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 rounded-xl shadow-lg">
+                <Button
+                  onClick={() => handleProcess("approve")}
+                  className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 rounded-xl shadow-lg"
+                >
                   <CheckCircle className="w-5 h-5 ml-2" />
                   تأكيد القبول
                 </Button>
@@ -545,7 +650,9 @@ function ApplicationCard({
               </DialogHeader>
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="reject-message" className="text-base font-semibold text-academy-blue">سبب الرفض</Label>
+                  <Label htmlFor="reject-message" className="text-base font-semibold text-academy-blue">
+                    سبب الرفض
+                  </Label>
                   <Textarea
                     id="reject-message"
                     value={adminMessage}
