@@ -7,6 +7,8 @@ import Link from "next/link"
 import type { Trainer } from "@/lib/supabase"
 import AccreditationApplicationForm from "@/components/accreditation-application-form"
 
+export const revalidate = 300; // ISR لمدة 5 دقائق
+
 async function getTrainers(): Promise<Trainer[]> {
   const { data, error } = await supabase.from("trainers").select("*").order("created_at", { ascending: true })
 

@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { supabase, type Trainer } from "@/lib/supabase"
+import { revalidateTrainersPage } from "@/app/actions/trainers-actions"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -99,12 +100,14 @@ export default function TrainersManagement() {
 
         if (error) throw error
         showMessage("success", "تم تحديث المدرب بنجاح")
+        await revalidateTrainersPage()
       } else {
         // Add new trainer
         const { error } = await supabase.from("trainers").insert([trainerData])
 
         if (error) throw error
         showMessage("success", "تم إضافة المدرب بنجاح")
+        await revalidateTrainersPage()
       }
 
       // Reset form and refresh data
@@ -125,6 +128,7 @@ export default function TrainersManagement() {
       const { error } = await supabase.from("trainers").delete().eq("id", trainerToDelete.id)
 
       if (error) throw error
+      await revalidateTrainersPage()
       showMessage("success", "تم حذف المدرب بنجاح")
       fetchTrainers()
       setShowDeleteModal(false)
