@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, Clock } from "lucide-react"
 import Image from "next/image"
 
+export const revalidate = 300; // ISR لمدة 5 دقائق
+
 export default async function BlogPage() {
   const { data: news } = await getAllNews()
 
