@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { supabase, type FacultyMember } from "@/lib/supabase"
+import { revalidateFacultyPage } from "@/app/actions/faculty-members-actions"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -105,12 +106,14 @@ export default function FacultyMembersManagement() {
 
         if (error) throw error
         showMessage("success", "تم تحديث عضو هيئة التدريس بنجاح")
+        await revalidateFacultyPage()
       } else {
         // Add new member
         const { error } = await supabase.from("faculty_members").insert([memberData])
 
         if (error) throw error
         showMessage("success", "تم إضافة عضو هيئة التدريس بنجاح")
+        await revalidateFacultyPage()
       }
 
       // Reset form and refresh data
@@ -131,6 +134,7 @@ export default function FacultyMembersManagement() {
       const { error } = await supabase.from("faculty_members").delete().eq("id", memberToDelete.id)
 
       if (error) throw error
+      await revalidateFacultyPage()
       showMessage("success", "تم حذف عضو هيئة التدريس بنجاح")
       fetchFacultyMembers()
       setShowDeleteModal(false)

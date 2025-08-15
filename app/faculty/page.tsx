@@ -4,6 +4,8 @@ import Image from "next/image"
 import type { FacultyMember } from "@/lib/supabase"
 import { GraduationCap, BookOpen, Award } from "lucide-react"
 
+export const revalidate = 300; // 5 دقائق ISR
+
 async function getFacultyMembers(): Promise<FacultyMember[]> {
   const { data, error } = await supabase.from("faculty_members").select("*").order("created_at", { ascending: true })
 
