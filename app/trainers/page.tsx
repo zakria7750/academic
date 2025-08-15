@@ -335,11 +335,17 @@ export default async function TrainersPage() {
               كن جزءاً من نخبة المدربين المعتمدين في أكاديمية المعرفة الدولية وشارك خبراتك مع آلاف المتدربين
             </p>
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center">
-              <Link href="/admission">
-                <Button className="bg-gradient-to-r from-academy-gold to-academy-gold-600 hover:from-academy-gold-600 hover:to-academy-gold-700 text-academy-blue font-bold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                  تقدم للاعتماد
-                </Button>
-              </Link>
+              <Button 
+                onClick={() => {
+                  const form = document.getElementById('accreditation-form');
+                  if (form) {
+                    form.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="bg-gradient-to-r from-academy-gold to-academy-gold-600 hover:from-academy-gold-600 hover:to-academy-gold-700 text-academy-blue font-bold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
+                تقدم للاعتماد
+              </Button>
               <Link href="/about">
                 <Button
                   variant="outline"

@@ -52,7 +52,7 @@ export default function AccreditationApplicationForm() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-academy-blue via-academy-blue to-blue-900 relative overflow-hidden">
+    <section id="accreditation-form" className="py-20 bg-gradient-to-br from-academy-blue via-academy-blue to-blue-900 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-20 h-20 border-2 border-academy-gold rounded-full"></div>
