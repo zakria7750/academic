@@ -74,7 +74,7 @@ export default function DepartmentsPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/departments-hero-background.png"
-            alt="الأقسام الأكاديمية - أكاديمية المعرفة ال��ولية"
+            alt="الأقسام الأكاديمية - أكاديمية المعرفة الدولية"
             fill
             className="object-cover opacity-20"
           />
@@ -85,7 +85,7 @@ export default function DepartmentsPage() {
       <section className="py-16 bg-academy-gray">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-white border-0 shadow-lg text-center">
+            <Card className="bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-3xl overflow-hidden group border-2 border-academy-gold/20 hover:border-academy-gold/60shadow-lg text-center">
               <CardContent className="p-6">
                 <div className="w-12 h-12 bg-academy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="text-academy-gold" size={24} />
@@ -95,7 +95,7 @@ export default function DepartmentsPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-0 shadow-lg text-center">
+            <Card className="bg-white border-0 bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-3xl overflow-hidden group border-2 border-academy-gold/20 hover:border-academy-gold/60 shadow-lg text-center">
               <CardContent className="p-6">
                 <div className="w-12 h-12 bg-academy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                   <Target className="text-academy-gold" size={24} />
@@ -105,7 +105,7 @@ export default function DepartmentsPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-0 shadow-lg text-center">
+            <Card className="bg-white border-0 bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-3xl overflow-hidden group border-2 border-academy-gold/20 hover:border-academy-gold/60 shadow-lg text-center">
               <CardContent className="p-6">
                 <div className="w-12 h-12 bg-academy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                   <Award className="text-academy-gold" size={24} />
@@ -134,7 +134,7 @@ export default function DepartmentsPage() {
               return (
                 <Card
                   key={department.id}
-                  className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden"
+                  className="group hover:shadow-2xl bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-3xl overflow-hidden group border-2 border-academy-gold/20 hover:border-academy-gold/60 transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden"
                 >
                   <CardContent className="p-0">
                     {/* Department Image */}
