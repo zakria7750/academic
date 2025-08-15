@@ -10,8 +10,6 @@ import type { Trainer } from "@/lib/supabase"
 import AccreditationApplicationForm from "@/components/accreditation-application-form"
 import { useEffect, useState } from "react"
 
-export const revalidate = 300 // ISR لمدة 5 دقائق
-
 export default function TrainersPage() {
   const [trainers, setTrainers] = useState<Trainer[]>([])
   const [loading, setLoading] = useState(true)
@@ -89,7 +87,7 @@ export default function TrainersPage() {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto text-center text-white">
             <div className="inline-block p-4 bg-white/10 rounded-full mb-8 backdrop-blur-sm">
-              <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="text-academy-blue" size={40} />
               </div>
             </div>
