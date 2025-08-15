@@ -1,3 +1,5 @@
+"use client"
+
 import { supabase } from "@/lib/supabase"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -6,22 +8,29 @@ import Image from "next/image"
 import Link from "next/link"
 import type { Trainer } from "@/lib/supabase"
 import AccreditationApplicationForm from "@/components/accreditation-application-form"
+import { useEffect, useState } from "react"
 
-export const revalidate = 300; // ISR لمدة 5 دقائق
+export const revalidate = 300 // ISR لمدة 5 دقائق
 
-async function getTrainers(): Promise<Trainer[]> {
-  const { data, error } = await supabase.from("trainers").select("*").order("created_at", { ascending: true })
+export default function TrainersPage() {
+  const [trainers, setTrainers] = useState<Trainer[]>([])
+  const [loading, setLoading] = useState(true)
 
-  if (error) {
-    console.error("Error fetching trainers:", error)
-    return []
-  }
+  useEffect(() => {
+    async function getTrainers() {
+      const { data, error } = await supabase.from("trainers").select("*").order("created_at", { ascending: true })
 
-  return data || []
-}
+      if (error) {
+        console.error("Error fetching trainers:", error)
+        setTrainers([])
+      } else {
+        setTrainers(data || [])
+      }
+      setLoading(false)
+    }
 
-export default async function TrainersPage() {
-  const trainers = await getTrainers()
+    getTrainers()
+  }, [])
 
   const requirements = [
     {
@@ -60,6 +69,17 @@ export default async function TrainersPage() {
       color: "bg-gradient-to-br from-red-500 to-red-600",
     },
   ]
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-academy-gold border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-academy-blue font-semibold">جاري تحميل البيانات...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen">
@@ -101,7 +121,9 @@ export default async function TrainersPage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Award className="text-academy-gold" size={28} />
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">{trainers.length}+</h3>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
+                  {trainers.length}+
+                </h3>
                 <p className="text-academy-dark-gray font-semibold text-lg">مدرب معتمد</p>
                 <div className="absolute top-4 right-4 w-6 h-6 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </CardContent>
@@ -112,7 +134,9 @@ export default async function TrainersPage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Users className="text-academy-blue" size={28} />
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">15+</h3>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
+                  15+
+                </h3>
                 <p className="text-academy-dark-gray font-semibold text-lg">تخصص مختلف</p>
                 <div className="absolute top-4 right-4 w-6 h-6 bg-academy-blue/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </CardContent>
@@ -123,7 +147,9 @@ export default async function TrainersPage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-gold rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Star className="text-white" size={28} />
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">98%</h3>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
+                  98%
+                </h3>
                 <p className="text-academy-dark-gray font-semibold text-lg">معدل الرضا</p>
                 <div className="absolute top-4 right-4 w-6 h-6 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </CardContent>
@@ -188,7 +214,12 @@ export default async function TrainersPage() {
                       {/* Enhanced Rating Stars */}
                       <div className="flex justify-center space-x-1 space-x-reverse mb-4">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={18} className="text-academy-gold fill-current drop-shadow-md group-hover:scale-110 transition-transform duration-200" style={{transitionDelay: `${i * 50}ms`}} />
+                          <Star
+                            key={i}
+                            size={18}
+                            className="text-academy-gold fill-current drop-shadow-md group-hover:scale-110 transition-transform duration-200"
+                            style={{ transitionDelay: `${i * 50}ms` }}
+                          />
                         ))}
                       </div>
 
@@ -204,7 +235,7 @@ export default async function TrainersPage() {
                     {/* Enhanced Decorative Corner Elements */}
                     <div className="absolute top-3 left-3 w-8 h-8 border-t-4 border-l-4 border-academy-gold rounded-tl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute bottom-3 right-3 w-8 h-8 border-b-4 border-r-4 border-academy-gold rounded-br-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    
+
                     {/* Additional Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/5 via-transparent to-academy-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
                   </CardContent>
@@ -230,7 +261,9 @@ export default async function TrainersPage() {
             <div className="inline-block p-3 bg-academy-blue/10 rounded-full mb-6">
               <CheckCircle className="text-academy-blue" size={32} />
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-academy-blue mb-6">شروط الحصول على الاعتماد</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-academy-blue mb-6">
+              شروط الحصول على الاعتماد
+            </h2>
             <div className="max-w-5xl mx-auto">
               <p className="text-xl lg:text-2xl text-academy-dark-gray mb-6">
                 <strong className="text-academy-blue">هل ترغب أن تكون ضمن قائمة مدربي أكاديمية المعرفة الدولية؟</strong>
@@ -267,7 +300,9 @@ export default async function TrainersPage() {
                       <h3 className="text-xl lg:text-2xl font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors duration-300">
                         {requirement.title}
                       </h3>
-                      <p className="text-academy-dark-gray leading-relaxed text-sm lg:text-base">{requirement.description}</p>
+                      <p className="text-academy-dark-gray leading-relaxed text-sm lg:text-base">
+                        {requirement.description}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
@@ -281,7 +316,9 @@ export default async function TrainersPage() {
               <div className="inline-block p-3 bg-academy-gold/10 rounded-full mb-6">
                 <Star className="text-academy-gold" size={32} />
               </div>
-              <h3 className="text-2xl lg:text-3xl font-bold text-academy-blue mb-4">مزايا الانضمام لقائمة المدربين المعتمدين</h3>
+              <h3 className="text-2xl lg:text-3xl font-bold text-academy-blue mb-4">
+                مزايا الانضمام لقائمة المدربين المعتمدين
+              </h3>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
@@ -290,7 +327,9 @@ export default async function TrainersPage() {
                   <div className="w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-md">
                     <CheckCircle className="text-academy-blue" size={16} />
                   </div>
-                  <p className="text-academy-dark-gray text-lg leading-relaxed">الحصول على شهادة مدرب معتمد من الأكاديمية</p>
+                  <p className="text-academy-dark-gray text-lg leading-relaxed">
+                    الحصول على شهادة مدرب معتمد من الأكاديمية
+                  </p>
                 </div>
                 <div className="flex items-start space-x-4 space-x-reverse">
                   <div className="w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-md">
@@ -306,13 +345,17 @@ export default async function TrainersPage() {
                   <div className="w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-md">
                     <CheckCircle className="text-academy-blue" size={16} />
                   </div>
-                  <p className="text-academy-dark-gray text-lg leading-relaxed">الحصول على شهادات لدوراته التدريبية برسوم رمزية</p>
+                  <p className="text-academy-dark-gray text-lg leading-relaxed">
+                    الحصول على شهادات لدوراته التدريبية برسوم رمزية
+                  </p>
                 </div>
                 <div className="flex items-start space-x-4 space-x-reverse">
                   <div className="w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-md">
                     <CheckCircle className="text-academy-blue" size={16} />
                   </div>
-                  <p className="text-academy-dark-gray text-lg leading-relaxed">الاستفادة من منصة الأكاديمية للتسويق والترويج</p>
+                  <p className="text-academy-dark-gray text-lg leading-relaxed">
+                    الاستفادة من منصة الأكاديمية للتسويق والترويج
+                  </p>
                 </div>
               </div>
             </div>
@@ -335,11 +378,11 @@ export default async function TrainersPage() {
               كن جزءاً من نخبة المدربين المعتمدين في أكاديمية المعرفة الدولية وشارك خبراتك مع آلاف المتدربين
             </p>
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center">
-              <Button 
+              <Button
                 onClick={() => {
-                  const form = document.getElementById('accreditation-form');
+                  const form = document.getElementById("accreditation-form")
                   if (form) {
-                    form.scrollIntoView({ behavior: 'smooth' });
+                    form.scrollIntoView({ behavior: "smooth" })
                   }
                 }}
                 className="bg-gradient-to-r from-academy-gold to-academy-gold-600 hover:from-academy-gold-600 hover:to-academy-gold-700 text-academy-blue font-bold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
