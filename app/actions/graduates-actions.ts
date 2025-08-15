@@ -160,6 +160,7 @@ export async function addGraduate(formData: FormData) {
     return { success: false, error: "حدث خطأ أثناء إضافة الخريج" }
   }
 
+  revalidatePath("/graduates")
   revalidatePath("/dashboard/graduates")
   return { success: true }
 }
@@ -185,6 +186,7 @@ export async function updateGraduate(id: number, formData: FormData) {
     return { success: false, error: "حدث خطأ أثناء تحديث الخريج" }
   }
 
+  revalidatePath("/graduates")
   revalidatePath("/dashboard/graduates")
   return { success: true }
 }
@@ -200,6 +202,7 @@ export async function deleteGraduate(id: number) {
     return { success: false, error: "حدث خطأ أثناء حذف الخريج" }
   }
 
+  revalidatePath("/graduates")
   revalidatePath("/dashboard/graduates")
   return { success: true }
 }
@@ -287,6 +290,7 @@ export async function processGraduateApplication(id: number, action: "approve" |
     console.error("Error sending response email:", emailError)
   }
 
+  revalidatePath("/graduates")
   revalidatePath("/dashboard/graduates")
   return { success: true }
 }

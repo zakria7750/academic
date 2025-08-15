@@ -3,6 +3,8 @@ import { GraduateCard } from "@/components/graduate-card"
 import { GraduateApplicationForm } from "@/components/graduate-application-form"
 import { GraduationCap, Users, Trophy, Globe } from "lucide-react"
 
+export const revalidate = 300; // ISR لمدة 5 دقائق
+
 export default async function GraduatesPage() {
   const graduates = await getGraduates()
 
