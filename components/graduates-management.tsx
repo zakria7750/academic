@@ -149,96 +149,131 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {message && (
         <Alert
-          className={`${message.type === "success" ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}
+          className={`${
+            message.type === "success" 
+              ? "border-green-200 bg-gradient-to-r from-green-50 to-green-100/50 shadow-lg" 
+              : "border-red-200 bg-gradient-to-r from-red-50 to-red-100/50 shadow-lg"
+          } rounded-xl border-l-4 ${
+            message.type === "success" ? "border-l-green-500" : "border-l-red-500"
+          }`}
         >
           {message.type === "success" ? (
-            <CheckCircle className="h-4 w-4 text-green-600" />
+            <CheckCircle className="h-5 w-5 text-green-600" />
           ) : (
-            <AlertCircle className="h-4 w-4 text-red-600" />
+            <AlertCircle className="h-5 w-5 text-red-600" />
           )}
-          <AlertDescription className={message.type === "success" ? "text-green-800" : "text-red-800"}>
+          <AlertDescription className={`${message.type === "success" ? "text-green-800" : "text-red-800"} font-medium`}>
             {message.text}
           </AlertDescription>
         </Alert>
       )}
 
       <Tabs defaultValue="graduates" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="graduates" className="flex items-center gap-2">
-            <Users className="w-4 h-4" />
-            الخريجون ({graduates.length})
+        <TabsList className="grid w-full grid-cols-2 bg-academy-gray/30 rounded-2xl p-2 h-auto">
+          <TabsTrigger value="graduates" className="flex items-center gap-3 text-base font-semibold py-4 px-6 rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:text-academy-blue transition-all duration-300">
+            <div className="w-10 h-10 bg-academy-blue/10 rounded-full flex items-center justify-center">
+              <Users className="w-5 h-5 text-academy-blue" />
+            </div>
+            <div className="text-right">
+              <div className="text-sm font-bold">الخريجون المعتمدون</div>
+              <div className="text-xs text-academy-dark-gray">({graduates.length}) خريج</div>
+            </div>
           </TabsTrigger>
-          <TabsTrigger value="applications" className="flex items-center gap-2">
-            <Clock className="w-4 h-4" />
-            طلبات التقديم ({pendingApplications.length})
+          <TabsTrigger value="applications" className="flex items-center gap-3 text-base font-semibold py-4 px-6 rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:text-academy-blue transition-all duration-300">
+            <div className="w-10 h-10 bg-academy-gold/10 rounded-full flex items-center justify-center">
+              <Clock className="w-5 h-5 text-academy-gold" />
+            </div>
+            <div className="text-right">
+              <div className="text-sm font-bold">طلبات التقديم</div>
+              <div className="text-xs text-academy-dark-gray">({pendingApplications.length}) طلب معلق</div>
+            </div>
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="graduates" className="space-y-6">
-          <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-academy-blue">الخريجون المعتمدون</h2>
+        <TabsContent value="graduates" className="space-y-8 mt-8">
+          <div className="flex justify-between items-center bg-gradient-to-r from-academy-blue/5 to-academy-blue/10 rounded-2xl p-6">
+            <div>
+              <h2 className="text-3xl font-bold text-academy-blue mb-2">الخريجون المعتمدون</h2>
+              <p className="text-academy-dark-gray">إدارة بيانات الخريجين المتميزين وقصص نجاحهم</p>
+            </div>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-academy-blue hover:bg-blue-600">
-                  <Plus className="w-4 h-4 ml-2" />
-                  إضافة خريج
+                <Button className="bg-gradient-to-r from-academy-blue to-academy-blue-600 hover:from-academy-blue-600 hover:to-academy-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                  <Plus className="w-5 h-5 ml-2" />
+                  إضافة خريج جديد
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
-                  <DialogTitle>إضافة خريج جديد</DialogTitle>
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
+                <DialogHeader className="text-center pb-4">
+                  <DialogTitle className="text-2xl font-bold text-academy-blue">إضافة خريج جديد</DialogTitle>
+                  <p className="text-academy-dark-gray mt-2">إضافة خريج متميز إلى شبكة الخريجين</p>
                 </DialogHeader>
                 <GraduateForm onSubmit={handleAddGraduate} />
               </DialogContent>
             </Dialog>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {graduates.map((graduate) => (
-              <Card key={graduate.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader className="pb-3">
+              <Card key={graduate.id} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg bg-white overflow-hidden rounded-3xl relative">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-academy-gold/20 to-academy-blue/20 rounded-bl-3xl"></div>
+                <CardHeader className="pb-4 relative">
                   <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-lg text-academy-blue">{graduate.name}</CardTitle>
-                      <p className="text-sm text-academy-dark-gray">{graduate.specialization}</p>
+                    <div className="flex-1">
+                      <CardTitle className="text-xl font-bold text-academy-blue mb-2 group-hover:text-academy-gold transition-colors duration-300">{graduate.name}</CardTitle>
+                      <div className="bg-gradient-to-r from-academy-blue/10 to-academy-blue/5 text-academy-blue px-3 py-1 rounded-full text-sm font-medium inline-block">
+                        {graduate.specialization}
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline" onClick={() => setEditingGraduate(graduate)}>
+                    <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <Button size="sm" variant="outline" onClick={() => setEditingGraduate(graduate)} className="h-9 w-9 p-0 border-academy-blue/20 hover:border-academy-blue hover:bg-academy-blue hover:text-white rounded-xl transition-all duration-300">
                         <Edit className="w-4 h-4" />
                       </Button>
-                      <Button size="sm" variant="outline" onClick={() => handleDeleteGraduate(graduate.id)}>
+                      <Button size="sm" variant="outline" onClick={() => handleDeleteGraduate(graduate.id)} className="h-9 w-9 p-0 border-red-200 hover:border-red-500 hover:bg-red-500 hover:text-white rounded-xl transition-all duration-300">
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center text-sm text-academy-dark-gray">
-                    <Briefcase className="w-4 h-4 ml-2 text-academy-blue" />
-                    {graduate.current_position}
-                  </div>
-                  <div className="flex items-center justify-between text-sm text-academy-dark-gray">
-                    <div className="flex items-center">
-                      <MapPin className="w-4 h-4 ml-1 text-academy-blue" />
-                      {graduate.country}
+                <CardContent className="space-y-4 pt-0">
+                  <div className="flex items-center text-academy-dark-gray bg-academy-gray/20 rounded-xl p-3">
+                    <div className="w-8 h-8 bg-academy-blue/10 rounded-lg flex items-center justify-center ml-3 flex-shrink-0">
+                      <Briefcase className="w-4 h-4 text-academy-blue" />
                     </div>
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 ml-1 text-academy-blue" />
-                      {graduate.graduation_year}
+                    <span className="font-medium text-sm">{graduate.current_position}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-academy-dark-gray">
+                      <div className="w-7 h-7 bg-academy-gold/10 rounded-lg flex items-center justify-center ml-2">
+                        <MapPin className="w-3 h-3 text-academy-gold" />
+                      </div>
+                      <span className="text-sm font-medium">{graduate.country}</span>
+                    </div>
+                    <div className="flex items-center text-academy-dark-gray">
+                      <div className="w-7 h-7 bg-academy-blue/10 rounded-lg flex items-center justify-center ml-2">
+                        <Calendar className="w-3 h-3 text-academy-blue" />
+                      </div>
+                      <span className="text-sm font-medium">{graduate.graduation_year}</span>
                     </div>
                   </div>
-                  <p className="text-sm text-academy-dark-gray line-clamp-3">{graduate.success_story}</p>
+                  <div className="bg-gradient-to-r from-academy-gray/10 to-academy-gray/5 rounded-xl p-4">
+                    <p className="text-sm text-academy-dark-gray leading-relaxed line-clamp-3">{graduate.success_story}</p>
+                  </div>
                 </CardContent>
+                <div className="absolute bottom-4 left-4 w-6 h-6 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </Card>
             ))}
           </div>
         </TabsContent>
 
-        <TabsContent value="applications" className="space-y-6">
-          <h2 className="text-2xl font-bold text-academy-blue">طلبات التقديم</h2>
+        <TabsContent value="applications" className="space-y-8 mt-8">
+          <div className="bg-gradient-to-r from-academy-gold/5 to-academy-gold/10 rounded-2xl p-6">
+            <h2 className="text-3xl font-bold text-academy-blue mb-2">طلبات التقديم</h2>
+            <p className="text-academy-dark-gray">مراجعة ومعالجة طلبات الانضمام إلى شبكة الخريجين</p>
+          </div>
 
           <div className="space-y-4">
             {pendingApplications.map((application) => (
@@ -264,9 +299,10 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
 
       {/* Edit Graduate Dialog */}
       <Dialog open={!!editingGraduate} onOpenChange={() => setEditingGraduate(null)}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>تعديل بيانات الخريج</DialogTitle>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
+          <DialogHeader className="text-center pb-4">
+            <DialogTitle className="text-2xl font-bold text-academy-blue">تعديل بيانات الخريج</DialogTitle>
+            <p className="text-academy-dark-gray mt-2">تحديث معلومات الخريج وقصة نجاحه</p>
           </DialogHeader>
           {editingGraduate && <GraduateForm onSubmit={handleUpdateGraduate} initialData={editingGraduate} />}
         </DialogContent>
@@ -283,47 +319,84 @@ function GraduateForm({
   initialData?: Graduate
 }) {
   return (
-    <form action={onSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="name">الاسم الكامل</Label>
-          <Input id="name" name="name" required defaultValue={initialData?.name} />
+    <form action={onSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-3">
+          <Label htmlFor="name" className="text-base font-semibold text-academy-blue flex items-center">
+            <Users className="w-4 h-4 ml-2" />
+            الاسم الكامل
+          </Label>
+          <Input id="name" name="name" required defaultValue={initialData?.name} className="rounded-xl border-academy-blue/20 focus:border-academy-blue" />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="specialization">التخصص</Label>
-          <Input id="specialization" name="specialization" required defaultValue={initialData?.specialization} />
+        <div className="space-y-3">
+          <Label htmlFor="specialization" className="text-base font-semibold text-academy-blue flex items-center">
+            <Award className="w-4 h-4 ml-2" />
+            التخصص
+          </Label>
+          <Input id="specialization" name="specialization" required defaultValue={initialData?.specialization} className="rounded-xl border-academy-blue/20 focus:border-academy-blue" />
         </div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="current_position">المنصب الحالي</Label>
-        <Input id="current_position" name="current_position" required defaultValue={initialData?.current_position} />
+      <div className="space-y-3">
+        <Label htmlFor="current_position" className="text-base font-semibold text-academy-blue flex items-center">
+          <Briefcase className="w-4 h-4 ml-2" />
+          المنصب الحالي
+        </Label>
+        <Input id="current_position" name="current_position" required defaultValue={initialData?.current_position} className="rounded-xl border-academy-blue/20 focus:border-academy-blue" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="country">البلد</Label>
-          <Input id="country" name="country" required defaultValue={initialData?.country} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-3">
+          <Label htmlFor="country" className="text-base font-semibold text-academy-blue flex items-center">
+            <MapPin className="w-4 h-4 ml-2" />
+            البلد
+          </Label>
+          <Input id="country" name="country" required defaultValue={initialData?.country} className="rounded-xl border-academy-blue/20 focus:border-academy-blue" />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="graduation_year">سنة التخرج</Label>
+        <div className="space-y-3">
+          <Label htmlFor="graduation_year" className="text-base font-semibold text-academy-blue flex items-center">
+            <Calendar className="w-4 h-4 ml-2" />
+            سنة التخرج
+          </Label>
           <Input
             id="graduation_year"
             name="graduation_year"
             type="number"
             required
             defaultValue={initialData?.graduation_year}
+            className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
           />
         </div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="success_story">قصة النجاح</Label>
-        <Textarea id="success_story" name="success_story" rows={4} required defaultValue={initialData?.success_story} />
+      <div className="space-y-3">
+        <Label htmlFor="success_story" className="text-base font-semibold text-academy-blue flex items-center">
+          <CheckCircle className="w-4 h-4 ml-2" />
+          قصة النجاح
+        </Label>
+        <Textarea 
+          id="success_story" 
+          name="success_story" 
+          rows={5} 
+          required 
+          defaultValue={initialData?.success_story} 
+          className="rounded-xl border-academy-blue/20 focus:border-academy-blue min-h-[120px]"
+          placeholder="اكتب قصة نجاح ملهمة تعكس إنجازات الخريج..."
+        />
       </div>
 
-      <Button type="submit" className="w-full bg-academy-blue hover:bg-blue-600">
-        {initialData ? "تحديث" : "إضافة"} الخريج
+      <Button type="submit" className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-600 hover:from-academy-blue-600 hover:to-academy-blue-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+        {initialData ? (
+          <>
+            <Edit className="w-5 h-5 ml-2" />
+            تحديث بيانات الخريج
+          </>
+        ) : (
+          <>
+            <Plus className="w-5 h-5 ml-2" />
+            إضافة خريج جديد
+          </>
+        )}
       </Button>
     </form>
   )
@@ -348,68 +421,105 @@ function ApplicationCard({
   }
 
   return (
-    <Card className="border-r-4 border-r-yellow-400">
-      <CardHeader>
+    <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden bg-gradient-to-r from-white to-academy-gold/5 relative">
+      <div className="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-academy-gold to-academy-gold-600"></div>
+      <CardHeader className="bg-gradient-to-r from-academy-gold/5 to-academy-gold/10 pb-4">
         <div className="flex justify-between items-start">
-          <div>
-            <CardTitle className="text-lg text-academy-blue">{application.name}</CardTitle>
-            <p className="text-sm text-academy-dark-gray">{application.email}</p>
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-academy-gold to-academy-gold-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+              {application.name.charAt(0)}
+            </div>
+            <div>
+              <CardTitle className="text-xl font-bold text-academy-blue mb-1">{application.name}</CardTitle>
+              <p className="text-sm text-academy-dark-gray font-medium">{application.email}</p>
+            </div>
           </div>
-          <Badge variant="outline" className="text-yellow-600 border-yellow-600">
+          <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-600 text-academy-blue font-bold px-3 py-1 rounded-full">
+            <Clock className="w-3 h-3 ml-1" />
             معلق
           </Badge>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <span className="font-semibold text-academy-blue">التخصص:</span>
-            <p>{application.specialization}</p>
+      <CardContent className="space-y-6 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-academy-blue/5 rounded-xl p-4">
+            <span className="font-bold text-academy-blue text-sm block mb-2 flex items-center">
+              <div className="w-6 h-6 bg-academy-blue/10 rounded-lg flex items-center justify-center ml-2">
+                <Users className="w-3 h-3 text-academy-blue" />
+              </div>
+              التخصص
+            </span>
+            <p className="font-medium text-academy-dark-gray">{application.specialization}</p>
           </div>
-          <div>
-            <span className="font-semibold text-academy-blue">المنصب:</span>
-            <p>{application.current_position}</p>
+          <div className="bg-academy-gold/5 rounded-xl p-4">
+            <span className="font-bold text-academy-blue text-sm block mb-2 flex items-center">
+              <div className="w-6 h-6 bg-academy-gold/10 rounded-lg flex items-center justify-center ml-2">
+                <Briefcase className="w-3 h-3 text-academy-gold" />
+              </div>
+              المنصب الحالي
+            </span>
+            <p className="font-medium text-academy-dark-gray">{application.current_position}</p>
           </div>
-          <div>
-            <span className="font-semibold text-academy-blue">البلد:</span>
-            <p>{application.country}</p>
+          <div className="bg-academy-blue/5 rounded-xl p-4">
+            <span className="font-bold text-academy-blue text-sm block mb-2 flex items-center">
+              <div className="w-6 h-6 bg-academy-blue/10 rounded-lg flex items-center justify-center ml-2">
+                <MapPin className="w-3 h-3 text-academy-blue" />
+              </div>
+              البلد
+            </span>
+            <p className="font-medium text-academy-dark-gray">{application.country}</p>
           </div>
-          <div>
-            <span className="font-semibold text-academy-blue">سنة التخرج:</span>
-            <p>{application.graduation_year}</p>
+          <div className="bg-academy-gold/5 rounded-xl p-4">
+            <span className="font-bold text-academy-blue text-sm block mb-2 flex items-center">
+              <div className="w-6 h-6 bg-academy-gold/10 rounded-lg flex items-center justify-center ml-2">
+                <Calendar className="w-3 h-3 text-academy-gold" />
+              </div>
+              سنة التخرج
+            </span>
+            <p className="font-medium text-academy-dark-gray">{application.graduation_year}</p>
           </div>
         </div>
 
-        <div>
-          <span className="font-semibold text-academy-blue">قصة النجاح:</span>
-          <p className="text-sm text-academy-dark-gray mt-1">{application.success_story}</p>
+        <div className="bg-gradient-to-r from-academy-gray/10 to-academy-gray/5 rounded-xl p-4">
+          <span className="font-bold text-academy-blue text-sm block mb-3 flex items-center">
+            <div className="w-6 h-6 bg-academy-blue/10 rounded-lg flex items-center justify-center ml-2">
+              <Award className="w-3 h-3 text-academy-blue" />
+            </div>
+            قصة النجاح
+          </span>
+          <p className="text-sm text-academy-dark-gray leading-relaxed">{application.success_story}</p>
         </div>
 
-        <div className="flex gap-2 pt-4">
+        <div className="flex gap-4 pt-2">
           <Dialog open={showProcessDialog === "approve"} onOpenChange={() => setShowProcessDialog(null)}>
             <DialogTrigger asChild>
               <Button
-                className="bg-green-600 hover:bg-green-700"
+                className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 disabled={isProcessing}
                 onClick={() => setShowProcessDialog("approve")}
               >
-                <CheckCircle className="w-4 h-4 ml-2" />
-                قبول
+                <CheckCircle className="w-5 h-5 ml-2" />
+                قبول الطلب
               </Button>
             </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>قبول الطلب</DialogTitle>
+            <DialogContent className="rounded-2xl">
+              <DialogHeader className="text-center pb-4">
+                <DialogTitle className="text-2xl font-bold text-green-600">قبول الطلب</DialogTitle>
+                <p className="text-academy-dark-gray mt-2">إضافة المتقدم إلى شبكة الخريجين</p>
               </DialogHeader>
-              <div className="space-y-4">
-                <Label htmlFor="approve-message">رسالة للمتقدم (اختيارية)</Label>
-                <Textarea
-                  id="approve-message"
-                  value={adminMessage}
-                  onChange={(e) => setAdminMessage(e.target.value)}
-                  placeholder="رسالة ترحيب أو تهنئة..."
-                />
-                <Button onClick={() => handleProcess("approve")} className="w-full bg-green-600 hover:bg-green-700">
+              <div className="space-y-6">
+                <div>
+                  <Label htmlFor="approve-message" className="text-base font-semibold text-academy-blue">رسالة ترحيب للخريج الجديد (اختيارية)</Label>
+                  <Textarea
+                    id="approve-message"
+                    value={adminMessage}
+                    onChange={(e) => setAdminMessage(e.target.value)}
+                    placeholder="مرحباً بك في شبكة خريجي أكاديمية المعرفة الدولية..."
+                    className="mt-3 min-h-[100px] rounded-xl"
+                  />
+                </div>
+                <Button onClick={() => handleProcess("approve")} className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 rounded-xl shadow-lg">
+                  <CheckCircle className="w-5 h-5 ml-2" />
                   تأكيد القبول
                 </Button>
               </div>
@@ -420,32 +530,37 @@ function ApplicationCard({
             <DialogTrigger asChild>
               <Button
                 variant="outline"
-                className="border-red-600 text-red-600 hover:bg-red-50 bg-transparent"
+                className="flex-1 border-2 border-red-500 text-red-600 hover:bg-red-50 bg-transparent font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 disabled={isProcessing}
                 onClick={() => setShowProcessDialog("reject")}
               >
-                <XCircle className="w-4 h-4 ml-2" />
-                رفض
+                <XCircle className="w-5 h-5 ml-2" />
+                رفض الطلب
               </Button>
             </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>رفض الطلب</DialogTitle>
+            <DialogContent className="rounded-2xl">
+              <DialogHeader className="text-center pb-4">
+                <DialogTitle className="text-2xl font-bold text-red-600">رفض الطلب</DialogTitle>
+                <p className="text-academy-dark-gray mt-2">يرجى توضيح أسباب عدم قبول الطلب</p>
               </DialogHeader>
-              <div className="space-y-4">
-                <Label htmlFor="reject-message">سبب الرفض</Label>
-                <Textarea
-                  id="reject-message"
-                  value={adminMessage}
-                  onChange={(e) => setAdminMessage(e.target.value)}
-                  placeholder="يرجى توضيح سبب الرفض..."
-                  required
-                />
+              <div className="space-y-6">
+                <div>
+                  <Label htmlFor="reject-message" className="text-base font-semibold text-academy-blue">سبب الرفض</Label>
+                  <Textarea
+                    id="reject-message"
+                    value={adminMessage}
+                    onChange={(e) => setAdminMessage(e.target.value)}
+                    placeholder="نأسف لعدم قبول طلبكم في الوقت الحالي بسبب..."
+                    required
+                    className="mt-3 min-h-[100px] rounded-xl"
+                  />
+                </div>
                 <Button
                   onClick={() => handleProcess("reject")}
-                  className="w-full bg-red-600 hover:bg-red-700"
+                  className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold py-3 rounded-xl shadow-lg"
                   disabled={!adminMessage.trim()}
                 >
+                  <XCircle className="w-5 h-5 ml-2" />
                   تأكيد الرفض
                 </Button>
               </div>
