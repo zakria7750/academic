@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { supabase, type Program } from "@/lib/supabase"
+import { revalidateProgramsPage } from "@/app/actions/programs-actions"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -109,12 +110,14 @@ export default function ProgramsManagement() {
 
         if (error) throw error
         showMessage("success", "تم تحديث البرنامج بنجاح")
+        await revalidateProgramsPage()
       } else {
         // Add new program
         const { error } = await supabase.from("programs").insert([programData])
 
         if (error) throw error
         showMessage("success", "تم إضافة البرنامج بنجاح")
+        await revalidateProgramsPage()
       }
 
       // Reset form and refresh data
@@ -135,6 +138,7 @@ export default function ProgramsManagement() {
       const { error } = await supabase.from("programs").delete().eq("id", programToDelete.id)
 
       if (error) throw error
+      await revalidateProgramsPage()
       showMessage("success", "تم حذف البرنامج بنجاح")
       fetchPrograms()
       setShowDeleteModal(false)

@@ -6,6 +6,8 @@ import Image from "next/image"
 import Link from "next/link"
 import type { Program } from "@/lib/supabase"
 
+export const revalidate = 300; // ISR لمدة 5 دقائق
+
 async function getPrograms(): Promise<Program[]> {
   const { data, error } = await supabase.from("programs").select("*").order("created_at", { ascending: true })
 
