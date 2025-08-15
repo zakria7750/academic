@@ -3,6 +3,7 @@
 import { supabase } from "@/lib/supabase"
 import { put } from "@vercel/blob"
 import { Resend } from "resend"
+import { revalidatePath } from "next/cache"
 
 const resendApiKey = process.env.RESEND_API_KEY
 const resend = resendApiKey ? new Resend(resendApiKey) : null
@@ -203,6 +204,7 @@ export async function addNews(formData: FormData) {
       }
     }
 
+    revalidatePath('/blog')
     return { success: true, message: "تم إضافة الخبر بنجاح" }
   } catch (error) {
     console.error("Error in addNews:", error)
@@ -237,6 +239,7 @@ export async function deleteNews(id: number) {
       return { success: false, message: "حدث خطأ أثناء الحذف" }
     }
 
+    revalidatePath('/blog')
     return { success: true, message: "تم حذف الخبر بنجاح" }
   } catch (error) {
     console.error("Error in deleteNews:", error)
