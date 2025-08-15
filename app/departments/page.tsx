@@ -8,7 +8,7 @@ const departments = [
   {
     id: "educational-psychological",
     title: "الأقسام التربوية والنفسية",
-    description: "أقسام متخصصة في التربية وعلم النفس والإرشاد",
+    description: "أقسام متخصصة في التربية وعلم النفس والإرشاد مع برامج حديثة ومبتكرة تواكب أحدث التطورات العالمية",
     programsCount: 6,
     image: "/educational-psychology-dept.png",
     icon: Brain,
@@ -18,7 +18,7 @@ const departments = [
   {
     id: "skills-development",
     title: "الأقسام المهارية والتطويرية",
-    description: "أقسام تركز على تطوير المهارات الشخصية والمهنية",
+    description: "أقسام تركز على تطوير المهارات الشخصية والمهنية بأساليب عملية ومعاصرة",
     programsCount: 3,
     image: "/skills-development-dept.png",
     icon: Target,
@@ -28,7 +28,7 @@ const departments = [
   {
     id: "academic-linguistic",
     title: "الأقسام الأكاديمية واللغوية",
-    description: "أقسام اللغات والدراسات الإسلامية والبحوث",
+    description: "أقسام اللغات والدراسات الإسلامية والبحوث بمنهجية أكاديمية رصينة ومتطورة",
     programsCount: 3,
     image: "/academic-linguistic-dept.png",
     icon: BookOpen,
@@ -38,7 +38,7 @@ const departments = [
   {
     id: "administrative-community",
     title: "الأقسام الإدارية والمجتمعية",
-    description: "أقسام إدارة الأعمال والتنمية المستدامة والذكاء الاصطناعي",
+    description: "أقسام إدارة الأعمال والتنمية المستدامة والذكاء الاصطناعي بخبرات عالمية",
     programsCount: 5,
     image: "/administrative-community-dept.png",
     icon: Users,
@@ -48,7 +48,7 @@ const departments = [
   {
     id: "health-agriculture",
     title: "الأقسام الصحية والزراعية",
-    description: "أقسام التغذية العلاجية والطب البديل والزراعة",
+    description: "أقسام التغذية العلاجية والطب البديل والزراعة بأحدث المعايير الدولية",
     programsCount: 3,
     image: "/health-agriculture-dept.png",
     icon: Award,
@@ -110,6 +110,7 @@ export default function DepartmentsPage() {
               <div className="flex items-center space-x-3 space-x-reverse bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                 <Award className="text-academy-gold text-xl" />
                 <span className="text-white font-semibold">100% معتمدة دولياً</span>
+
               </div>
             </div>
           </div>
@@ -154,6 +155,7 @@ export default function DepartmentsPage() {
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">100%</h3>
                 <p className="text-academy-dark-gray font-semibold text-center text-lg">معتمدة دولياً</p>
                 <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
+
               </CardContent>
             </Card>
           </div>
@@ -206,6 +208,7 @@ export default function DepartmentsPage() {
                     <div className="absolute bottom-4 right-4">
                       <div className={`w-14 h-14 ${department.color} rounded-2xl flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-500`}>
                         <Icon className="text-white text-xl" />
+
                       </div>
                     </div>
 
@@ -214,6 +217,7 @@ export default function DepartmentsPage() {
                       <div className="text-white text-center w-full">
                         <p className="text-lg font-semibold mb-2">اكتشف المزيد</p>
                         <p className="text-sm opacity-90">انقر لعرض التفاصيل الكاملة</p>
+
                       </div>
                     </div>
                   </div>
@@ -235,7 +239,7 @@ export default function DepartmentsPage() {
                         </span>
                       </div>
                       <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
-                    </div>
+       </div>
 
                     {/* Enhanced View Details Button */}
                     <Link href={`/departments/${department.id}`}>
@@ -276,6 +280,7 @@ export default function DepartmentsPage() {
               اختر القسم الذي يناسب اهتماماتك وأهدافك المهنية وانطلق نحو مستقبل مشرق
               <br />
               <span className="text-lg text-academy-gold-200">نحن هنا لمساعدتك في تحقيق أحلامك التعليمية</span>
+
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -283,8 +288,10 @@ export default function DepartmentsPage() {
                 <Button className="group bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue hover:from-academy-gold-dark hover:to-academy-gold font-bold px-10 py-4 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 border-0">
                   <span className="mr-2">سجل الآن</span>
                   <div className="w-3 h-3 bg-academy-blue rounded-full group-hover:animate-pulse"></div>
+
                 </Button>
               </Link>
+              
               <Link href="/programs">
                 <Button
                   variant="outline"
@@ -292,6 +299,7 @@ export default function DepartmentsPage() {
                 >
                   <span className="mr-2">استكشف البرامج</span>
                   <div className="w-3 h-3 bg-white rounded-full group-hover:animate-pulse"></div>
+
                 </Button>
               </Link>
             </div>
@@ -309,6 +317,7 @@ export default function DepartmentsPage() {
               <div className="flex items-center space-x-3 space-x-reverse bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                 <Users className="text-academy-gold text-lg" />
                 <span className="text-white font-medium">أساتذة متخصصون</span>
+
               </div>
             </div>
           </div>
