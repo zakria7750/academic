@@ -158,7 +158,7 @@ export default function VerificationPage() {
 
       {/* Result Dialog */}
       <Dialog open={showResult} onOpenChange={setShowResult}>
-        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle className="text-center text-3xl font-bold">
               {verificationResult?.success ? (
@@ -318,7 +318,7 @@ export default function VerificationPage() {
 
       {/* Full Image Dialog */}
       <Dialog open={showFullImage} onOpenChange={setShowFullImage}>
-        <DialogContent className="max-w-6xl max-h-[95vh] overflow-hidden p-2">
+        <DialogContent className="max-w-6xl max-h-[95vh] overflow-hidden p-2 bg-white">
           <DialogHeader className="pb-2">
             <DialogTitle className="text-center text-xl font-bold text-gray-800">عرض الشهادة بالحجم الكامل</DialogTitle>
           </DialogHeader>
