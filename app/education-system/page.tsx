@@ -23,160 +23,241 @@ import {
   Sparkles,
   Lightbulb,
   Zap,
+  ChevronRight,
+  Infinity,
+  Shield,
+  Gem,
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
 export default function EducationSystemPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-      {/* Premium Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-academy-blue/5 via-transparent to-academy-gold/5"></div>
-        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-academy-gold/10 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-gradient-to-br from-academy-blue/10 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-academy-gold/5 to-academy-blue/5 rounded-full blur-3xl"></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
+      {/* Ultra Premium Background Pattern */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(0,31,63,0.05),transparent_50%)] bg-[radial-gradient(circle_at_70%_80%,rgba(255,215,0,0.08),transparent_50%)]"></div>
+        <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-gradient-to-br from-academy-gold/10 via-academy-gold/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-academy-blue/8 via-academy-blue/4 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-br from-academy-gold/6 to-academy-blue/6 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        
+        {/* Floating Geometric Elements */}
+        <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-academy-gold/40 rotate-45 animate-pulse delay-300"></div>
+        <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-academy-blue/40 rounded-full animate-pulse delay-700"></div>
+        <div className="absolute top-1/2 left-3/4 w-2 h-2 bg-academy-gold/50 rotate-45 animate-pulse delay-1100"></div>
       </div>
 
-      {/* Premium Hero Section */}
-      <section className="relative overflow-hidden py-24 lg:py-32">
-        {/* Enhanced Background with Multiple Layers */}
+      {/* Ultra Premium Hero Section */}
+      <section className="relative overflow-hidden py-32 lg:py-40">
+        {/* Multi-layered Premium Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/70 to-academy-blue/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)]"></div>
         
-        {/* Premium Decorative Elements */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-48 h-48 bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-academy-gold/10 rounded-full blur-xl animate-pulse delay-500"></div>
-          <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-academy-gold/20 rounded-full blur-xl animate-pulse delay-1500"></div>
+        {/* Ultra Premium Decorative Elements */}
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/25 to-transparent rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/15 rounded-full blur-xl animate-pulse delay-500"></div>
+          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/25 rounded-full blur-xl animate-pulse delay-1500"></div>
+          
+          {/* Premium Geometric Patterns */}
+          <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/30 rotate-45 animate-pulse delay-2000"></div>
+          <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/20 rounded-full animate-pulse delay-2500"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Premium Icon Section */}
-            <div className="relative inline-block mb-12">
-              <div className="p-6 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl">
+            {/* Ultra Premium Icon Section */}
+            <div className="relative inline-block mb-16">
+              <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
                 <div className="relative">
-                  <div className="w-24 h-24 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center shadow-xl">
-                    <BookOpen className="text-academy-blue" size={48} />
+                  <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
+                    <BookOpen className="text-academy-blue drop-shadow-lg" size={60} />
                   </div>
-                  <div className="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-lg">
-                    <Crown size={20} className="text-academy-blue" />
+                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
+                    <Crown size={24} className="text-academy-blue" />
                   </div>
-                  <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-academy-gold rounded-full flex items-center justify-center shadow-lg">
-                    <Star size={16} className="text-academy-blue" />
+                  <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
+                    <Star size={20} className="text-academy-blue" />
+                  </div>
+                  <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
+                    <Gem size={16} className="text-academy-blue" />
                   </div>
                 </div>
               </div>
-              <div className="absolute -top-4 -left-4 w-6 h-6 bg-academy-gold rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-3 -right-5 w-5 h-5 bg-academy-gold-light rounded-full animate-pulse delay-700"></div>
-              <div className="absolute top-1/2 -left-8 w-3 h-3 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
+              
+              {/* Enhanced Floating Elements */}
+              <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
+              <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
+              <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
+              <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
             </div>
 
             {/* Premium Title Section */}
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+
                   نظام التعليم
                 </span>
               </h1>
-              <div className="flex items-center justify-center gap-6 mb-8">
-                <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse"></div>
-                <div className="w-24 h-1 bg-gradient-to-r from-transparent via-academy-gold to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={28} />
-                <div className="w-24 h-1 bg-gradient-to-r from-transparent via-academy-gold to-transparent"></div>
-                <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse"></div>
+              
+              {/* Enhanced Decorative Separator */}
+              <div className="flex items-center justify-center gap-8 mb-12">
+                <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
+                <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
+                <div className="relative">
+                  <Sparkles className="text-academy-gold animate-pulse" size={36} />
+                  <div className="absolute inset-0 animate-ping">
+                    <Sparkles className="text-academy-gold opacity-30" size={36} />
+                  </div>
+                </div>
+                <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
+                <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-academy-gold-light font-medium max-w-5xl mx-auto leading-relaxed mb-6">
+
                 نظام تعليمي متطور يجمع بين الأصالة والحداثة
               </p>
-              <p className="text-lg md:text-xl text-academy-gold-200 max-w-4xl mx-auto leading-relaxed">
-                نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية
+              <p className="text-xl md:text-2xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light">
+                نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
               </p>
             </div>
 
-            {/* Premium Features Preview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-20 max-w-5xl mx-auto">
-              {/* تعليم متطور */}
-              <div className="group">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 bg-gradient-to-br from-emerald-400/20 to-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <GraduationCap className="text-emerald-300" size={28} />
-                    </div>
-                    <h3 className="text-white font-bold text-lg mb-2">تعليم متطور</h3>
-                    <p className="text-emerald-300 text-sm">منهجيات حديثة وتقنيات متقدمة</p>
-                  </div>
+            {/* Ultra Premium Features Preview */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-24 max-w-6xl mx-auto">
+              <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/25 text-center group hover:scale-105 hover:bg-gradient-to-br hover:from-white/25 hover:to-white/15 transition-all duration-500 shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-gold/20">
+                  <Brain size={32} className="text-academy-blue" />
                 </div>
+                <h3 className="text-academy-gold font-bold text-xl mb-3">تعليم ذكي</h3>
+                <p className="text-academy-gold-200 text-lg leading-relaxed">منهجية متطورة</p>
               </div>
 
-              {/* مناهج حديثة */}
-              <div className="group">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Globe className="text-blue-300" size={28} />
-                    </div>
-                    <h3 className="text-white font-bold text-lg mb-2">مناهج حديثة</h3>
-                    <p className="text-blue-300 text-sm">محتوى محدث يواكب العصر الحديث</p>
-                  </div>
+              <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/25 text-center group hover:scale-105 hover:bg-gradient-to-br hover:from-white/25 hover:to-white/15 transition-all duration-500 shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-gold/20">
+                  <Globe size={32} className="text-academy-blue" />
                 </div>
+                <h3 className="text-academy-gold font-bold text-xl mb-3">مناهج حديثة</h3>
+                <p className="text-academy-gold-200 text-lg leading-relaxed">محتوى معاصر</p>
               </div>
 
-              {/* تقنيات متقدمة */}
-              <div className="group">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/10 to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 bg-gradient-to-br from-academy-gold/20 to-yellow-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Target className="text-academy-gold-light" size={28} />
-                    </div>
-                    <h3 className="text-white font-bold text-lg mb-2">تقنيات متقدمة</h3>
-                    <p className="text-academy-gold-light text-sm">أدوات تعليمية ذكية ومبتكرة</p>
-                  </div>
+              <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/25 text-center group hover:scale-105 hover:bg-gradient-to-br hover:from-white/25 hover:to-white/15 transition-all duration-500 shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-gold/20">
+                  <Target size={32} className="text-academy-blue" />
                 </div>
+                <h3 className="text-academy-gold font-bold text-xl mb-3">تقنيات متقدمة</h3>
+                <p className="text-academy-gold-200 text-lg leading-relaxed">أدوات ذكية</p>
               </div>
             </div>
 
-            {/* Premium Action Button */}
-            <div className="mt-16">
-              <Link href="/programs">
-                <Button className="group bg-gradient-to-r from-academy-gold to-academy-gold-dark hover:from-academy-gold-dark hover:to-academy-gold text-academy-blue font-bold px-12 py-5 text-xl rounded-3xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 border-0">
-                  <span className="mr-3">استكشف البرامج التعليمية</span>
-                  <Zap className="group-hover:rotate-12 transition-transform duration-300" size={20} />
-                </Button>
-              </Link>
+            {/* Ultra Premium Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-5xl mx-auto">
+              <div className="bg-white/95 backdrop-blur-2xl p-8 rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
+                <div className="text-4xl font-bold text-academy-blue mb-3 group-hover:scale-110 transition-transform duration-300">100%</div>
+                <div className="text-academy-darker-gray font-semibold text-lg">نجاح الطلاب</div>
+              </div>
+
+              <div className="bg-white/95 backdrop-blur-2xl p-8 rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
+                <div className="text-4xl font-bold text-academy-blue mb-3 group-hover:scale-110 transition-transform duration-300">24/7</div>
+                <div className="text-academy-darker-gray font-semibold text-lg">دعم متاح</div>
+              </div>
+
+              <div className="bg-white/95 backdrop-blur-2xl p-8 rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
+                <div className="text-4xl font-bold text-academy-blue mb-3 group-hover:scale-110 transition-transform duration-300">∞</div>
+                <div className="text-academy-darker-gray font-semibold text-lg">إمكانيات لا محدودة</div>
+              </div>
+
+              <div className="bg-white/95 backdrop-blur-2xl p-8 rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
+                <div className="text-4xl font-bold text-academy-blue mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <Shield size={32} className="mx-auto" />
+                </div>
+                <div className="text-academy-darker-gray font-semibold text-lg">تعليم مضمون</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Premium Education System Introduction */}
-      <section className="py-24 lg:py-32 relative overflow-hidden">
-        {/* Premium Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-blue-50"></div>
+      {/* Ultra Premium Overview Section */}
+      <section className="py-32 lg:py-40 relative overflow-hidden">
+        {/* Enhanced Background with Patterns */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50/80 to-blue-50/60"></div>
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-blue/10 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-gradient-to-br from-academy-gold/12 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-[400px] h-[400px] bg-gradient-to-br from-academy-blue/8 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+          
+          {/* Geometric Pattern Overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(0,31,63,0.03),transparent_50%)] bg-[radial-gradient(circle_at_75%_75%,rgba(255,215,0,0.05),transparent_50%)]"></div>
         </div>
 
         <div className="container mx-auto px-6 lg:px-8 relative z-10">
-          <div className="grid xl:grid-cols-2 gap-16 items-center">
-            
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
             {/* Enhanced Content Section */}
-            <div className="space-y-8">
-              {/* Premium Section Header */}
-              <div className="mb-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-xl flex items-center justify-center shadow-lg">
-                    <Lightbulb className="text-academy-gold" size={24} />
+            <div className="order-2 lg:order-1">
+              {/* Ultra Premium Section Header */}
+              <div className="mb-16">
+                <div className="relative inline-block mb-10">
+                  <div className="p-6 bg-white/90 backdrop-blur-xl rounded-3xl border border-slate-200/60 shadow-[0_20px_40px_rgba(0,0,0,0.1)]">
+                    <div className="relative">
+                      <div className="w-20 h-20 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-2xl flex items-center justify-center shadow-lg border border-academy-blue/10">
+                        <Lightbulb className="text-academy-blue" size={40} />
+                      </div>
+                      <div className="absolute -top-3 -right-3 w-8 h-8 bg-academy-gold rounded-full flex items-center justify-center shadow-lg">
+                        <Star size={16} className="text-academy-blue" />
+                      </div>
+                    </div>
                   </div>
-                  <h2 className="text-4xl lg:text-6xl font-bold text-academy-blue tracking-tight">نظام التعليم</h2>
+                  <div className="absolute -top-4 -left-4 w-5 h-5 bg-academy-gold rounded-full animate-pulse"></div>
+                  <div className="absolute -bottom-3 -right-5 w-4 h-4 bg-academy-blue rounded-full animate-pulse delay-500"></div>
                 </div>
-                <div className="w-24 h-1 bg-gradient-to-r from-academy-blue to-academy-gold rounded-full mb-6"></div>
+
+                <div className="mb-12">
+                  <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+                    نظرة عامة
+                  </h2>
+                  <div className="flex items-center gap-6 mb-10">
+                    <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+                    <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                    <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                    <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                    <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+                  </div>
+                  <p className="text-2xl md:text-3xl text-academy-dark-gray max-w-4xl leading-relaxed font-semibold mb-6">
+                    نقدم نظاماً تعليمياً شاملاً ومتكاملاً يجمع بين أفضل الممارسات التعليمية التقليدية والحديثة
+                  </p>
+                  <p className="text-xl text-academy-darker-gray max-w-3xl leading-relaxed">
+                    مع التركيز على التطبيق العملي والتفكير النقدي لإعداد خريجين مؤهلين لسوق العمل المعاصر
+                  </p>
+                </div>
+              </div>
+
+              {/* Enhanced Mini Features Grid */}
+              <div className="grid grid-cols-2 gap-6 lg:gap-8 mb-12">
+                <div className="bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 backdrop-blur-sm p-8 rounded-3xl border border-academy-blue/15 text-center group hover:scale-105 hover:shadow-xl transition-all duration-500">
+                  <div className="w-12 h-12 bg-academy-gold/90 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                    <Brain size={24} className="text-academy-blue" />
+                  </div>
+                  <h3 className="text-academy-blue font-bold text-lg mb-2">تعليم ذكي</h3>
+                  <p className="text-academy-darker-gray text-sm leading-relaxed">منهجية متطورة</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 backdrop-blur-sm p-8 rounded-3xl border border-academy-blue/15 text-center group hover:scale-105 hover:shadow-xl transition-all duration-500">
+                  <div className="w-12 h-12 bg-academy-gold/90 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                    <Globe size={24} className="text-academy-blue" />
+                  </div>
+                  <h3 className="text-academy-blue font-bold text-lg mb-2">مناهج حديثة</h3>
+                  <p className="text-academy-darker-gray text-sm leading-relaxed">محتوى معاصر</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 backdrop-blur-sm p-8 rounded-3xl border border-academy-blue/15 text-center group hover:scale-105 hover:shadow-xl transition-all duration-500">
+                  <div className="w-12 h-12 bg-academy-gold/90 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                    <Target size={24} className="text-academy-blue" />
+                  </div>
+                  <h3 className="text-academy-blue font-bold text-lg mb-2">تقنيات متقدمة</h3>
+                  <p className="text-academy-darker-gray text-sm leading-relaxed">أدوات ذكية</p>
+                </div>
               </div>
 
               {/* Enhanced Description */}
@@ -272,13 +353,17 @@ export default function EducationSystemPage() {
         </div>
       </section>
 
-      {/* Premium Teaching Methods */}
-      <section className="py-24 lg:py-32 relative overflow-hidden">
-        {/* Premium Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50"></div>
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-academy-gold/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-academy-blue/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+      {/* Ultra Premium Teaching Methods */}
+      <section className="py-32 lg:py-40 relative overflow-hidden">
+        {/* Ultra Premium Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50/90 via-white to-blue-50/70"></div>
+        <div className="absolute inset-0 opacity-25">
+          <div className="absolute top-20 right-20 w-[500px] h-[500px] bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-[400px] h-[400px] bg-gradient-to-br from-academy-blue/12 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-academy-gold/8 to-academy-blue/8 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          
+          {/* Enhanced Geometric Patterns */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(0,31,63,0.04),transparent_50%)] bg-[radial-gradient(circle_at_80%_70%,rgba(255,215,0,0.06),transparent_50%)]"></div>
         </div>
 
         <div className="container mx-auto px-6 lg:px-8 relative z-10">
@@ -321,6 +406,7 @@ export default function EducationSystemPage() {
               </p>
               <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
                 نقدم تجربة تعليمية شاملة ومتكاملة تجمع بين التعليم التقليدي والحديث مع أحدث التقنيات
+
               </p>
             </div>
           </div>
@@ -335,14 +421,14 @@ export default function EducationSystemPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-white/60 to-blue-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               <div className="relative h-72 overflow-hidden">
-                <Image
+  <Image
                   src="/classroom-learning.png"
                   alt="التعليم الحضوري"
-                  width={500}
-                  height={300}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  width={600}
+                  height={400}
+                  className="w-full h-full object-cover group-hover:scale-115 transition-transform duration-1000"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 
                 {/* Premium Badge */}
                 <div className="absolute top-6 right-6">
@@ -356,6 +442,7 @@ export default function EducationSystemPage() {
                   <div className="text-white text-center w-full">
                     <p className="text-2xl font-bold mb-3">تعلم تفاعلي</p>
                     <p className="text-lg opacity-90">في بيئة تعليمية متطورة</p>
+
                   </div>
                 </div>
               </div>
@@ -406,6 +493,7 @@ export default function EducationSystemPage() {
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
                       <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشاريع تعاونية</span>
+
                     </div>
                   </div>
                 </div>
@@ -415,6 +503,7 @@ export default function EducationSystemPage() {
                   <Link href="/programs">
                     <Button className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-dark hover:from-academy-blue-dark hover:to-slate-900 text-white font-bold py-4 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0 text-lg">
                       تعرف على المزيد
+
                     </Button>
                   </Link>
                 </div>
@@ -432,6 +521,7 @@ export default function EducationSystemPage() {
               
               {/* Premium Card Background Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-white/60 to-blue-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
 
               <div className="relative h-72 overflow-hidden">
                 <Image
