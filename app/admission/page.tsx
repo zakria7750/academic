@@ -538,30 +538,32 @@ export default function AdmissionPage() {
             </Card>
           </div>
 
-          {/* Doctoral Requirements */}
-          <div className="mb-16">
-            <Card className="border-0 shadow-lg bg-white">
-              <CardHeader className="bg-academy-gold text-academy-blue rounded-t-lg">
-                <CardTitle className="text-2xl font-bold flex items-center">
-                  <GraduationCap className="w-6 h-6 mr-3 text-academy-blue" />
+          {/* Ultra Premium Doctoral Requirements */}
+          <div className="mb-20">
+            <Card className="border-0 shadow-[0_24px_48px_rgba(0,0,0,0.12)] bg-white/95 backdrop-blur-xl rounded-[2rem] overflow-hidden hover:shadow-[0_32px_64px_rgba(0,0,0,0.18)] transition-all duration-700">
+              <CardHeader className="bg-gradient-to-r from-academy-blue via-academy-blue-light to-academy-blue-dark text-white p-10">
+                <CardTitle className="text-3xl font-bold flex items-center font-arabic tracking-wide">
+                  <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg backdrop-blur-sm border border-white/30">
+                    <GraduationCap className="w-8 h-8 text-white drop-shadow-md" />
+                  </div>
                   شروط الحصول على الدكتوراه المهنية
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <CardContent className="p-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {doctoralRequirements.map((req, index) => {
                     const Icon = req.icon
                     return (
                       <div
                         key={index}
-                        className="flex items-start space-x-4 space-x-reverse p-6 rounded-lg bg-academy-gray/50 hover:bg-academy-gold/10 border border-academy-gray transition-all duration-300 hover:shadow-md"
+                        className="group flex items-start space-x-6 space-x-reverse p-8 rounded-3xl bg-gradient-to-br from-slate-50/80 to-blue-50/60 hover:from-academy-blue/10 hover:to-academy-blue/5 border border-slate-200/60 hover:border-academy-blue/30 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
                       >
-                        <div className="w-12 h-12 bg-academy-gold rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-6 h-6 text-academy-blue" />
+                        <div className="w-16 h-16 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-blue-dark rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-blue/20">
+                          <Icon className="w-8 h-8 text-white drop-shadow-md" />
                         </div>
-                        <div>
-                          <h4 className="font-bold text-academy-gold mb-3 text-lg">{req.title}</h4>
-                          <p className="text-academy-dark-gray leading-relaxed">{req.description}</p>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-academy-blue group-hover:text-academy-blue-dark mb-4 text-xl font-arabic tracking-wide transition-colors duration-300">{req.title}</h4>
+                          <p className="text-academy-dark-gray leading-relaxed font-semibold text-lg font-arabic">{req.description}</p>
                         </div>
                       </div>
                     )
@@ -571,24 +573,28 @@ export default function AdmissionPage() {
             </Card>
           </div>
 
-          {/* General Requirements */}
+          {/* Ultra Premium General Requirements */}
           <div>
-            <Card className="border-0 shadow-lg bg-white">
-              <CardHeader className="bg-academy-gold text-academy-blue rounded-t-lg">
-                <CardTitle className="text-2xl font-bold flex items-center">
-                  <BookOpen className="w-6 h-6 mr-3 text-academy-blue" />
+            <Card className="border-0 shadow-[0_24px_48px_rgba(0,0,0,0.12)] bg-white/95 backdrop-blur-xl rounded-[2rem] overflow-hidden hover:shadow-[0_32px_64px_rgba(0,0,0,0.18)] transition-all duration-700">
+              <CardHeader className="bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold-dark text-academy-blue p-10">
+                <CardTitle className="text-3xl font-bold flex items-center font-arabic tracking-wide">
+                  <div className="w-12 h-12 bg-academy-blue/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg backdrop-blur-sm border border-academy-blue/30">
+                    <BookOpen className="w-8 h-8 text-academy-blue drop-shadow-md" />
+                  </div>
                   الشروط العامة
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <CardContent className="p-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {generalRequirements.map((req, index) => (
                     <div
                       key={index}
-                      className="flex items-center space-x-3 space-x-reverse p-4 rounded-lg bg-academy-gray/50 hover:bg-academy-gold/10 border border-academy-gray transition-all duration-300"
+                      className="group flex items-center space-x-6 space-x-reverse p-8 rounded-3xl bg-gradient-to-br from-slate-50/80 to-blue-50/60 hover:from-academy-gold/10 hover:to-academy-gold/5 border border-slate-200/60 hover:border-academy-gold/30 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
                     >
-                      <div className="w-3 h-3 bg-academy-blue rounded-full flex-shrink-0"></div>
-                      <p className="text-academy-gold font-medium text-lg">{req}</p>
+                      <div className="w-12 h-12 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-gold/20">
+                        <CheckCircle className="w-6 h-6 text-academy-blue drop-shadow-md" />
+                      </div>
+                      <p className="text-academy-blue group-hover:text-academy-gold font-bold text-xl font-arabic tracking-wide transition-colors duration-300 leading-relaxed">{req}</p>
                     </div>
                   ))}
                 </div>
