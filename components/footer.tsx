@@ -20,6 +20,12 @@ import {
   ChevronUp,
   Loader2,
   HelpCircle,
+  GraduationCap,
+  Crown,
+  UserCheck,
+  Newspaper,
+  Monitor,
+  Building2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { subscribeToNewsletter } from "@/app/actions/news-actions"
@@ -141,22 +147,26 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                "الأقسام الأكاديمية",
-                "هيئة التدريس",
-                "المدربين المعتمدين",
-                "الخريجون",
-                "نظام التعليم",
-                "المدونة والأخبار",
-              ].map((item) => (
-                <li key={item}>
-                  <Link
-                    href={`/${item.replace(/\s+/g, "-").toLowerCase()}`}
-                    className="text-gray-300 hover:text-academy-gold transition-colors duration-200 hover:translate-x-1 inline-block"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+                { name: "الأقسام الأكاديمية", href: "/departments", icon: Building2 },
+                { name: "هيئة التدريس", href: "/faculty", icon: GraduationCap },
+                { name: "المدربين المعتمدين", href: "/trainers", icon: UserCheck },
+                { name: "الخريجون", href: "/graduates", icon: Crown },
+                { name: "نظام التعليم", href: "/education-system", icon: Monitor },
+                { name: "المدونة والأخبار", href: "/blog", icon: Newspaper },
+              ].map((link) => {
+                const Icon = link.icon
+                return (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="flex items-center space-x-2 space-x-reverse text-gray-300 hover:text-academy-gold transition-colors duration-200 group hover:translate-x-1"
+                    >
+                      <Icon size={16} className="group-hover:scale-110 transition-transform duration-200" />
+                      <span>{link.name}</span>
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
           </div>
 
