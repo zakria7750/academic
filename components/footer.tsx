@@ -20,6 +20,17 @@ import {
   ChevronUp,
   Loader2,
   HelpCircle,
+  GraduationCap,
+  Crown,
+  UserCheck,
+  Newspaper,
+  Monitor,
+  Building2,
+  Code,
+  Palette,
+  Heart,
+  Sparkles,
+  Zap,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { subscribeToNewsletter } from "@/app/actions/news-actions"
@@ -141,22 +152,26 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                "الأقسام الأكاديمية",
-                "هيئة التدريس",
-                "المدربين المعتمدين",
-                "الخريجون",
-                "نظام التعليم",
-                "المدونة والأخبار",
-              ].map((item) => (
-                <li key={item}>
-                  <Link
-                    href={`/${item.replace(/\s+/g, "-").toLowerCase()}`}
-                    className="text-gray-300 hover:text-academy-gold transition-colors duration-200 hover:translate-x-1 inline-block"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+                { name: "الأقسام الأكاديمية", href: "/departments", icon: Building2 },
+                { name: "هيئة التدريس", href: "/faculty", icon: GraduationCap },
+                { name: "المدربين المعتمدين", href: "/trainers", icon: UserCheck },
+                { name: "الخريجون", href: "/graduates", icon: Crown },
+                { name: "نظام التعليم", href: "/education-system", icon: Monitor },
+                { name: "المدونة والأخبار", href: "/blog", icon: Newspaper },
+              ].map((link) => {
+                const Icon = link.icon
+                return (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="flex items-center space-x-2 space-x-reverse text-gray-300 hover:text-academy-gold transition-colors duration-200 group hover:translate-x-1"
+                    >
+                      <Icon size={16} className="group-hover:scale-110 transition-transform duration-200" />
+                      <span>{link.name}</span>
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
           </div>
 
@@ -295,6 +310,59 @@ export default function Footer() {
             <div className="text-xs text-gray-400 text-center">
               <BookOpen size={24} className="mx-auto mb-1 text-academy-gold" />
               <span>جودة التعليم</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Designer Credit Section */}
+        <div className="mt-8 pt-6 border-t border-academy-gold/20">
+          <div className="flex flex-col items-center justify-center space-y-4">
+            {/* Designer Badge */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold rounded-2xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+              <div className="relative bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue-600 text-white px-8 py-4 rounded-2xl border-2 border-academy-gold/30 shadow-2xl group-hover:shadow-academy-gold/25 transition-all duration-300 group-hover:scale-105">
+                <div className="flex items-center space-x-4 space-x-reverse">
+                  {/* Designer Icon */}
+                  <div className="relative">
+                    <div className="w-12 h-12 bg-gradient-to-br from-academy-gold to-academy-gold-light rounded-full flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                      <Code className="text-academy-blue" size={24} />
+                    </div>
+                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-academy-gold rounded-full flex items-center justify-center animate-pulse">
+                      <Sparkles className="text-academy-blue" size={12} />
+                    </div>
+                  </div>
+                  
+                  {/* Designer Info */}
+                  <div className="text-center">
+                    <div className="flex items-center space-x-2 space-x-reverse mb-1">
+                      <Palette className="text-academy-gold animate-pulse" size={16} />
+                      <span className="text-sm text-academy-gold font-medium">تم التصميم والتطوير بواسطة</span>
+                      <Heart className="text-red-400 animate-pulse" size={14} />
+                    </div>
+                    <div className="text-lg font-bold text-academy-gold">
+                      ENG/ZAKRIA AHMED
+                    </div>
+                    <div className="flex items-center justify-center space-x-2 space-x-reverse mt-1">
+                      <Zap className="text-academy-gold" size={12} />
+                      <span className="text-xs text-gray-300">Full Stack Developer</span>
+                      <Zap className="text-academy-gold" size={12} />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute top-2 left-2 w-2 h-2 bg-academy-gold rounded-full animate-ping"></div>
+                <div className="absolute bottom-2 right-2 w-1 h-1 bg-academy-gold-light rounded-full animate-pulse delay-1000"></div>
+              </div>
+            </div>
+            
+            {/* Crafted with Love Message */}
+            <div className="text-center">
+              <p className="text-xs text-gray-400 flex items-center justify-center space-x-2 space-x-reverse">
+                <span>مُصمم بعناية وحب</span>
+                <Heart className="text-red-400 animate-pulse" size={12} />
+                <span>لأكاديمية المعرفة الدولية</span>
+              </p>
             </div>
           </div>
         </div>
