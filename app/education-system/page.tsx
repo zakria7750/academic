@@ -94,10 +94,11 @@ export default function EducationSystemPage() {
               <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
             </div>
 
-            {/* Ultra Premium Title Section */}
-            <div className="mb-16">
-              <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold mb-10 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light via-white to-academy-gold-light bg-clip-text text-transparent drop-shadow-2xl">
+            {/* Premium Title Section */}
+            <div className="mb-12">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
+                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+
                   نظام التعليم
                 </span>
               </h1>
@@ -115,8 +116,8 @@ export default function EducationSystemPage() {
                 <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
                 <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
-              
-              <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-semibold max-w-6xl mx-auto leading-relaxed mb-8 drop-shadow-lg">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-academy-gold-light font-medium max-w-5xl mx-auto leading-relaxed mb-6">
+
                 نظام تعليمي متطور يجمع بين الأصالة والحداثة
               </p>
               <p className="text-xl md:text-2xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light">
@@ -366,65 +367,61 @@ export default function EducationSystemPage() {
         </div>
 
         <div className="container mx-auto px-6 lg:px-8 relative z-10">
-          {/* Ultra Premium Section Header */}
-          <div className="text-center mb-24">
-            <div className="relative inline-block mb-12">
-              <div className="p-8 bg-white/95 backdrop-blur-2xl rounded-[2rem] border border-slate-200/60 shadow-[0_24px_48px_rgba(0,0,0,0.12)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.18)] transition-all duration-700">
+          {/* Premium Section Header */}
+          <div className="text-center mb-20">
+            <div className="relative inline-block mb-8">
+              <div className="p-6 bg-white/90 backdrop-blur-xl rounded-3xl border border-slate-200/50 shadow-2xl">
                 <div className="relative">
-                  <div className="w-24 h-24 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-blue-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-blue/15">
-                    <Users className="text-academy-gold drop-shadow-lg" size={48} />
+                  <div className="w-20 h-20 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-3xl flex items-center justify-center shadow-xl">
+                    <Users className="text-academy-gold" size={40} />
                   </div>
-                  <div className="absolute -top-3 -right-3 w-10 h-10 bg-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/30">
-                    <Star size={20} className="text-academy-blue" />
+                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
+                    <Star size={16} className="text-academy-blue" />
                   </div>
-                  <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-academy-gold-light rounded-full flex items-center justify-center shadow-lg">
-                    <Sparkles size={16} className="text-academy-blue" />
+                  <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-academy-gold-light rounded-full flex items-center justify-center shadow-lg">
+                    <Crown size={12} className="text-academy-blue" />
                   </div>
                 </div>
               </div>
-              <div className="absolute -top-6 -left-6 w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-md"></div>
-              <div className="absolute -bottom-4 -right-8 w-5 h-5 bg-academy-blue rounded-full animate-pulse delay-700 shadow-sm"></div>
-              <div className="absolute top-1/2 -left-10 w-4 h-4 bg-academy-gold-light rounded-full animate-pulse delay-1200"></div>
+              <div className="absolute -top-4 -left-4 w-5 h-5 bg-academy-gold rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-3 -right-5 w-4 h-4 bg-academy-blue rounded-full animate-pulse delay-500"></div>
+              <div className="absolute top-1/2 -left-8 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1000"></div>
             </div>
 
             <div className="mb-12">
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-academy-blue mb-10 tracking-tight leading-tight">أساليب التعليم</h2>
-              <div className="flex items-center justify-center gap-8 mb-12">
-                <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-                <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-academy-blue to-transparent shadow-sm"></div>
-                <div className="relative">
-                  <Sparkles className="text-academy-gold animate-pulse" size={28} />
-                  <div className="absolute inset-0 animate-ping">
-                    <Sparkles className="text-academy-gold opacity-20" size={28} />
-                  </div>
-                </div>
-                <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-academy-blue to-transparent shadow-sm"></div>
-                <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+                <span className="bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue bg-clip-text text-transparent">
+                  أساليب التعليم
+                </span>
+              </h2>
+              <div className="flex items-center justify-center gap-6 mb-8">
+                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
-              <p className="text-2xl md:text-3xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-semibold mb-8">
-                نوفر طرق تعليم متنوعة ومبتكرة لتناسب جميع احتياجات الطلاب وأساليب التعلم المختلفة
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-medium mb-6">
+                نوفر طرق تعليم متنوعة ومتطورة لتناسب جميع احتياجات الطلاب
               </p>
-              <p className="text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
-                نقدم تجربة تعليمية شاملة ومتكاملة تجمع بين التعليم التقليدي والحديث مع أحدث التقنيات التعليمية
+              <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
+                نقدم تجربة تعليمية شاملة ومتكاملة تجمع بين التعليم التقليدي والحديث مع أحدث التقنيات
+
               </p>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-16 lg:gap-20">
-            {/* Ultra Premium In-Person Learning */}
-            <Card className="group bg-white/95 backdrop-blur-2xl border-0 shadow-[0_24px_48px_rgba(0,0,0,0.15)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.25)] rounded-[2rem] overflow-hidden transition-all duration-700 hover:-translate-y-8 hover:scale-[1.03] relative border border-slate-200/60">
-              {/* Ultra Premium Status Indicator */}
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-academy-blue via-academy-gold via-academy-blue to-academy-gold"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
+            {/* Premium In-Person Learning */}
+            <Card className="group bg-white/95 backdrop-blur-xl border-0 shadow-2xl hover:shadow-3xl rounded-3xl overflow-hidden transition-all duration-700 hover:-translate-y-8 hover:scale-[1.03] relative border border-slate-200/50">
+              {/* Premium Status Indicator */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-academy-blue via-academy-gold to-academy-blue"></div>
               
-              {/* Ultra Premium Card Background Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-white/40 to-blue-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              
-              {/* Floating Decorative Elements */}
-              <div className="absolute top-4 left-4 w-3 h-3 bg-academy-gold/40 rounded-full animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute bottom-4 right-4 w-2 h-2 bg-academy-blue/30 rounded-full animate-pulse delay-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Premium Card Background Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-white/60 to-blue-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-              <div className="relative h-80 overflow-hidden">
-                <Image
+              <div className="relative h-72 overflow-hidden">
+  <Image
                   src="/classroom-learning.png"
                   alt="التعليم الحضوري"
                   width={600}
@@ -433,104 +430,100 @@ export default function EducationSystemPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 
-                {/* Ultra Premium Badge */}
+                {/* Premium Badge */}
                 <div className="absolute top-6 right-6">
-                  <div className="bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold-dark text-academy-blue px-6 py-3 rounded-3xl text-base font-bold shadow-2xl backdrop-blur-lg border border-white/30 hover:scale-105 transition-transform duration-300">
-                    <span className="flex items-center gap-2">
-                      <Users size={16} />
-                      حضوري
-                    </span>
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-6 py-3 rounded-3xl text-sm font-bold shadow-2xl backdrop-blur-sm border border-white/20">
+                    حضوري
                   </div>
                 </div>
 
-                {/* Ultra Premium Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-end p-8 transform translate-y-8 group-hover:translate-y-0">
+                {/* Enhanced Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                   <div className="text-white text-center w-full">
-                    <p className="text-2xl font-bold mb-3 drop-shadow-lg">تعلم تفاعلي متطور</p>
-                    <p className="text-lg opacity-90 leading-relaxed drop-shadow-md">في بيئة تعليمية حديثة مجهزة بأحدث التقنيات</p>
+                    <p className="text-2xl font-bold mb-3">تعلم تفاعلي</p>
+                    <p className="text-lg opacity-90">في بيئة تعليمية متطورة</p>
+
                   </div>
                 </div>
               </div>
 
               <CardContent className="p-10 relative z-10">
-                {/* Ultra Premium Header */}
+                {/* Premium Header */}
                 <div className="text-center mb-10">
-                  <div className="w-20 h-20 bg-gradient-to-br from-academy-blue/15 to-academy-gold/15 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-blue/20 backdrop-blur-sm">
-                    <Users className="text-academy-blue group-hover:text-academy-gold transition-colors duration-500" size={40} />
+                  <div className="w-20 h-20 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                    <Users className="text-academy-blue group-hover:text-academy-gold transition-colors duration-300" size={40} />
                   </div>
-                  <h3 className="text-3xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors duration-500 mb-6">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors duration-300 mb-6">
                     التعليم الحضوري
                   </h3>
-                  <p className="text-academy-dark-gray leading-relaxed font-semibold text-lg">
-                    محاضرات وجلسات تفاعلية في بيئة تعليمية متطورة مع أحدث التقنيات والأدوات التعليمية
+                  <p className="text-base sm:text-lg text-academy-dark-gray leading-relaxed font-medium">
+                    محاضرات وجلسات تفاعلية في بيئة تعليمية متطورة مع أحدث التقنيات
                   </p>
                 </div>
 
-                {/* Ultra Premium Features */}
-                <div className="space-y-6">
-                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-lg p-6 rounded-3xl border border-slate-200/60 group-hover:shadow-lg hover:scale-[1.02] transition-all duration-500 hover:border-academy-gold/30">
+                {/* Premium Features */}
+                <div className="space-y-5">
+                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-5">
-                      <div className="w-12 h-12 bg-gradient-to-br from-academy-gold/30 to-academy-gold/20 rounded-2xl flex items-center justify-center shadow-lg">
-                        <CheckCircle className="text-academy-gold" size={24} />
+                      <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-semibold text-lg">قاعات مجهزة بأحدث التقنيات</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">قاعات مجهزة بأحدث التقنيات</span>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-lg p-6 rounded-3xl border border-slate-200/60 group-hover:shadow-lg hover:scale-[1.02] transition-all duration-500 hover:border-academy-gold/30">
+                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-5">
-                      <div className="w-12 h-12 bg-gradient-to-br from-academy-gold/30 to-academy-gold/20 rounded-2xl flex items-center justify-center shadow-lg">
-                        <CheckCircle className="text-academy-gold" size={24} />
+                      <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-semibold text-lg">ورش عمل تطبيقية متخصصة</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">ورش عمل تطبيقية</span>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-lg p-6 rounded-3xl border border-slate-200/60 group-hover:shadow-lg hover:scale-[1.02] transition-all duration-500 hover:border-academy-gold/30">
+                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-5">
-                      <div className="w-12 h-12 bg-gradient-to-br from-academy-gold/30 to-academy-gold/20 rounded-2xl flex items-center justify-center shadow-lg">
-                        <CheckCircle className="text-academy-gold" size={24} />
+                      <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-semibold text-lg">نقاشات جماعية تفاعلية</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">نقاشات جماعية</span>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-lg p-6 rounded-3xl border border-slate-200/60 group-hover:shadow-lg hover:scale-[1.02] transition-all duration-500 hover:border-academy-gold/30">
+                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-5">
-                      <div className="w-12 h-12 bg-gradient-to-br from-academy-gold/30 to-academy-gold/20 rounded-2xl flex items-center justify-center shadow-lg">
-                        <CheckCircle className="text-academy-gold" size={24} />
+                      <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-semibold text-lg">مشاريع عملية متقدمة</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشاريع تعاونية</span>
+
                     </div>
                   </div>
                 </div>
 
-                {/* Ultra Premium Action Button */}
-                <div className="mt-10">
+                {/* Premium Action Button */}
+                <div className="mt-8">
                   <Link href="/programs">
-                    <Button className="w-full bg-gradient-to-r from-academy-blue via-academy-blue-light to-academy-blue-dark hover:from-academy-blue-dark hover:via-academy-blue hover:to-slate-900 text-white font-bold py-5 text-lg rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border-0 group">
-                      <span className="mr-3">تعرف على المزيد</span>
-                      <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" size={20} />
+                    <Button className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-dark hover:from-academy-blue-dark hover:to-slate-900 text-white font-bold py-4 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0 text-lg">
+                      تعرف على المزيد
+
                     </Button>
                   </Link>
                 </div>
               </CardContent>
 
               {/* Premium Floating Elements */}
-              <div className="absolute top-4 left-4 w-2 h-2 bg-academy-gold rounded-full opacity-0 group-hover:opacity-60 animate-pulse transition-opacity duration-300"></div>
-              <div className="absolute bottom-6 right-6 w-3 h-3 bg-academy-blue rounded-full opacity-0 group-hover:opacity-40 animate-pulse delay-300 transition-opacity duration-300"></div>
+              <div className="absolute top-6 left-6 w-3 h-3 bg-academy-gold rounded-full opacity-0 group-hover:opacity-60 animate-pulse transition-opacity duration-300"></div>
+              <div className="absolute bottom-8 right-8 w-4 h-4 bg-academy-blue rounded-full opacity-0 group-hover:opacity-40 animate-pulse delay-300 transition-opacity duration-300"></div>
             </Card>
 
-            {/* Ultra Premium Online Learning */}
-            <Card className="group bg-white/95 backdrop-blur-2xl border-0 shadow-[0_24px_48px_rgba(0,0,0,0.15)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.25)] rounded-[2rem] overflow-hidden transition-all duration-700 hover:-translate-y-8 hover:scale-[1.03] relative border border-slate-200/60">
-              {/* Ultra Premium Status Indicator */}
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-academy-gold via-academy-blue via-academy-gold to-academy-blue"></div>
+            {/* Premium Online Learning */}
+            <Card className="group bg-white/95 backdrop-blur-xl border-0 shadow-2xl hover:shadow-3xl rounded-3xl overflow-hidden transition-all duration-700 hover:-translate-y-8 hover:scale-[1.03] relative border border-slate-200/50">
+              {/* Premium Status Indicator */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-academy-blue via-academy-gold to-academy-blue"></div>
               
-              {/* Ultra Premium Card Background Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 via-white/40 to-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              
-              {/* Floating Decorative Elements */}
-              <div className="absolute top-4 right-4 w-3 h-3 bg-academy-blue/40 rounded-full animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute bottom-4 left-4 w-2 h-2 bg-academy-gold/30 rounded-full animate-pulse delay-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Premium Card Background Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-white/60 to-blue-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-              <div className="relative h-64 overflow-hidden">
+
+              <div className="relative h-72 overflow-hidden">
                 <Image
                   src="/online-learning.png"
                   alt="التعليم الإلكتروني"
@@ -541,75 +534,75 @@ export default function EducationSystemPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 {/* Premium Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                <div className="absolute top-6 right-6">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-6 py-3 rounded-3xl text-sm font-bold shadow-2xl backdrop-blur-sm border border-white/20">
                     إلكتروني
                   </div>
                 </div>
 
                 {/* Enhanced Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                   <div className="text-white text-center w-full">
-                    <p className="text-xl font-bold mb-2">تعلم مرن</p>
-                    <p className="text-base opacity-90">من أي مكان وفي أي وقت</p>
+                    <p className="text-2xl font-bold mb-3">تعلم مرن</p>
+                    <p className="text-lg opacity-90">من أي مكان وفي أي وقت</p>
                   </div>
                 </div>
               </div>
 
-              <CardContent className="p-8 relative z-10">
+              <CardContent className="p-10 relative z-10">
                 {/* Premium Header */}
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
-                    <Monitor className="text-academy-blue group-hover:text-academy-gold transition-colors duration-300" size={32} />
+                <div className="text-center mb-10">
+                  <div className="w-20 h-20 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                    <Monitor className="text-academy-blue group-hover:text-academy-gold transition-colors duration-300" size={40} />
                   </div>
-                  <h3 className="text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors duration-300 mb-4">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors duration-300 mb-6">
                     التعليم الإلكتروني
                   </h3>
-                  <p className="text-academy-dark-gray leading-relaxed font-medium">
+                  <p className="text-base sm:text-lg text-academy-dark-gray leading-relaxed font-medium">
                     منصة تعليمية متقدمة تتيح التعلم من أي مكان وفي أي وقت مع أدوات تفاعلية
                   </p>
                 </div>
 
                 {/* Premium Features */}
-                <div className="space-y-4">
-                  <div className="bg-gradient-to-r from-slate-50/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
-                        <CheckCircle className="text-academy-gold" size={16} />
+                <div className="space-y-5">
+                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center gap-5">
+                      <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium">محاضرات مباشرة</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">محاضرات مباشرة</span>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
-                        <CheckCircle className="text-academy-gold" size={16} />
+                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center gap-5">
+                      <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium">منتديات نقاش تفاعلية</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">منتديات نقاش تفاعلية</span>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
-                        <CheckCircle className="text-academy-gold" size={16} />
+                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center gap-5">
+                      <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium">اختبارات إلكترونية</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">اختبارات إلكترونية</span>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
-                        <CheckCircle className="text-academy-gold" size={16} />
+                  <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center gap-5">
+                      <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
+                        <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium">متابعة الأداء الفوري</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">متابعة الأداء الفوري</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Premium Action Button */}
-                <div className="mt-6">
+                <div className="mt-8">
                   <Link href="/programs">
-                    <Button className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-dark hover:from-academy-blue-dark hover:to-slate-900 text-white font-bold py-3 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-0">
+                    <Button className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-dark hover:from-academy-blue-dark hover:to-slate-900 text-white font-bold py-4 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0 text-lg">
                       تعرف على المزيد
                     </Button>
                   </Link>
@@ -617,8 +610,8 @@ export default function EducationSystemPage() {
               </CardContent>
 
               {/* Premium Floating Elements */}
-              <div className="absolute top-4 left-4 w-2 h-2 bg-academy-gold rounded-full opacity-0 group-hover:opacity-60 animate-pulse transition-opacity duration-300"></div>
-              <div className="absolute bottom-6 right-6 w-3 h-3 bg-academy-blue rounded-full opacity-0 group-hover:opacity-40 animate-pulse delay-300 transition-opacity duration-300"></div>
+              <div className="absolute top-6 left-6 w-3 h-3 bg-academy-gold rounded-full opacity-0 group-hover:opacity-60 animate-pulse transition-opacity duration-300"></div>
+              <div className="absolute bottom-8 right-8 w-4 h-4 bg-academy-blue rounded-full opacity-0 group-hover:opacity-40 animate-pulse delay-300 transition-opacity duration-300"></div>
             </Card>
           </div>
         </div>
@@ -637,115 +630,195 @@ export default function EducationSystemPage() {
           {/* Premium Section Header */}
           <div className="text-center mb-20">
             <div className="relative inline-block mb-8">
-              <div className="p-4 bg-white/80 backdrop-blur-xl rounded-3xl border border-slate-200/50 shadow-2xl">
-                <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-2xl flex items-center justify-center shadow-xl">
-                  <TrendingUp className="text-academy-gold" size={32} />
+              <div className="p-6 bg-white/90 backdrop-blur-xl rounded-3xl border border-slate-200/50 shadow-2xl">
+                <div className="relative">
+                  <div className="w-20 h-20 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-3xl flex items-center justify-center shadow-xl">
+                    <TrendingUp className="text-academy-gold" size={40} />
+                  </div>
+                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
+                    <Star size={16} className="text-academy-blue" />
+                  </div>
+                  <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-academy-gold-light rounded-full flex items-center justify-center shadow-lg">
+                    <Crown size={12} className="text-academy-blue" />
+                  </div>
                 </div>
               </div>
+              <div className="absolute -top-4 -left-4 w-5 h-5 bg-academy-gold rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-3 -right-5 w-4 h-4 bg-academy-blue rounded-full animate-pulse delay-500"></div>
+              <div className="absolute top-1/2 -left-8 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1000"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-academy-blue mb-6 tracking-tight">أساليب التقييم</h2>
-            <p className="text-xl text-academy-dark-gray max-w-3xl mx-auto font-medium">
-              نظام تقييم شامل ومتوازن يضمن قياس الأداء بدقة واحترافية
-            </p>
+
+            <div className="mb-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+                <span className="bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue bg-clip-text text-transparent">
+                  أساليب التقييم
+                </span>
+              </h2>
+              <div className="flex items-center justify-center gap-6 mb-8">
+                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+              </div>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-medium mb-6">
+                نظام تقييم شامل ومتوازن يضمن قياس الأداء بدقة واحترافية
+              </p>
+              <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
+                نتبع منهجية تقييم متعددة الأبعاد لضمان تقييم شامل ومحايد لقدرات الطلاب
+              </p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* التعليم المستمر */}
-            <Card className="text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold overflow-hidden group">
-              <div className="relative h-40 overflow-hidden">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {/* التعليم المستمر */}
+            <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold overflow-hidden group bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/continuous-assessment.png"
                   alt="التقييم المستمر"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    مستمر
+                  </div>
+                </div>
               </div>
-              <CardHeader>
-                <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
-                  <TrendingUp className="w-10 h-10 text-academy-blue" />
+              <CardHeader className="pb-6">
+                <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <TrendingUp className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl text-academy-blue">التعليم المستمر</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">التعليم المستمر</CardTitle>
+                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
+                  تقييم مستمر طوال فترة الدراسة
+                </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-academy-dark-gray">واجبات مدرسية</span>
-                  <Badge className="bg-academy-gold text-white">15%</Badge>
+              <CardContent className="space-y-5 px-8 pb-8">
+                <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex justify-between items-center">
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">واجبات مدرسية</span>
+                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">15%</Badge>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-academy-dark-gray">مشاركة في النقاشات</span>
-                  <Badge className="bg-academy-gold text-white">20%</Badge>
+                <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex justify-between items-center">
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشاركة في النقاشات</span>
+                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">20%</Badge>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-academy-dark-gray">مشاريع عملية</span>
-                  <Badge className="bg-academy-gold text-white">25%</Badge>
+                <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex justify-between items-center">
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشاريع عملية</span>
+                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">25%</Badge>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* الاختبارات */}
-            <Card className="text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold overflow-hidden group">
-              <div className="relative h-40 overflow-hidden">
+            <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold overflow-hidden group bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/examinations.png"
                   alt="الاختبارات"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
-              </div>
-              <CardHeader>
-                <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
-                  <BookOpen className="w-10 h-10 text-academy-blue" />
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    نهائي
+                  </div>
                 </div>
-                <CardTitle className="text-xl text-academy-blue">الاختبارات</CardTitle>
+              </div>
+              <CardHeader className="pb-6">
+                <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <BookOpen className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">الاختبارات</CardTitle>
+                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
+                  تقييم شامل في نهاية البرنامج
+                </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-center">
+              <CardContent className="space-y-5 px-8 pb-8">
+                <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                   <div className="text-center">
-                    <div className="text-academy-dark-gray mb-2">اختبار نهاية البرنامج</div>
-                    <Badge className="bg-academy-blue text-white">اختبار شامل</Badge>
+                    <div className="text-academy-dark-gray mb-4 text-base sm:text-lg font-medium">اختبار نهاية البرنامج</div>
+                    <Badge className="bg-gradient-to-r from-academy-blue to-academy-blue-dark text-white px-6 py-2 rounded-xl font-bold text-lg">اختبار شامل</Badge>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* مشروع التخرج */}
-            <Card className="text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold overflow-hidden group">
-              <div className="relative h-40 overflow-hidden">
+            <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold overflow-hidden group bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/graduation-project.png"
                   alt="مشروع التخرج"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    مشروع
+                  </div>
+                </div>
               </div>
-              <CardHeader>
-                <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
-                  <Award className="w-10 h-10 text-academy-blue" />
+              <CardHeader className="pb-6">
+                <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <Award className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl text-academy-blue">مشروع التخرج</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">مشروع التخرج</CardTitle>
+                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
+                  مشروع تطبيقي شامل للتخرج
+                </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-academy-gold" />
-                  <span className="text-sm text-academy-dark-gray">بحث علمي متقدم</span>
+              <CardContent className="space-y-4 px-8 pb-8">
+                <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center gap-4">
+                    <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-academy-gold" />
+                    </div>
+                                          <span className="text-academy-dark-gray font-medium text-base sm:text-lg">بحث علمي متقدم</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-academy-gold" />
-                  <span className="text-sm text-academy-dark-gray">مشروع تطبيقي</span>
+                <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center gap-4">
+                    <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-academy-gold" />
+                    </div>
+                                          <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشروع تطبيقي</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-academy-gold" />
-                  <span className="text-sm text-academy-dark-gray">عرض ونقاش</span>
+                <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center gap-4">
+                    <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-academy-gold" />
+                    </div>
+                                          <span className="text-academy-dark-gray font-medium text-base sm:text-lg">عرض ونقاش</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-academy-gold" />
-                  <span className="text-sm text-academy-dark-gray">تقييم لجنة متخصصة</span>
+                <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center gap-4">
+                    <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-academy-gold" />
+                    </div>
+                                          <span className="text-academy-dark-gray font-medium text-base sm:text-lg">تقييم لجنة متخصصة</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -754,76 +827,142 @@ export default function EducationSystemPage() {
       </section>
 
       {/* مميزات المنصة التعليمية */}
-      <section className="py-20 px-4 bg-academy-gray/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-academy-blue mb-4">مميزات المنصة التعليمية</h2>
-            <p className="text-lg text-academy-dark-gray max-w-2xl mx-auto">تقنيات متقدمة لتجربة تعليمية متميزة</p>
+      <section className="py-24 lg:py-32 relative overflow-hidden">
+        {/* Premium Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-academy-gold/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-academy-blue/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 relative z-10">
+          {/* Premium Section Header */}
+          <div className="text-center mb-20">
+            <div className="relative inline-block mb-8">
+              <div className="p-6 bg-white/90 backdrop-blur-xl rounded-3xl border border-slate-200/50 shadow-2xl">
+                <div className="relative">
+                  <div className="w-20 h-20 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-3xl flex items-center justify-center shadow-xl">
+                    <Sparkles className="text-academy-gold" size={40} />
+                  </div>
+                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
+                    <Star size={16} className="text-academy-blue" />
+                  </div>
+                  <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-academy-gold-light rounded-full flex items-center justify-center shadow-lg">
+                    <Crown size={12} className="text-academy-blue" />
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -top-4 -left-4 w-5 h-5 bg-academy-gold rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-3 -right-5 w-4 h-4 bg-academy-blue rounded-full animate-pulse delay-500"></div>
+              <div className="absolute top-1/2 -left-8 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1000"></div>
+            </div>
+
+            <div className="mb-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+                <span className="bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue bg-clip-text text-transparent">
+                  مميزات المنصة التعليمية
+                </span>
+              </h2>
+              <div className="flex items-center justify-center gap-6 mb-8">
+                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+              </div>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-medium mb-6">
+                تقنيات متقدمة لتجربة تعليمية متميزة ومتطورة
+              </p>
+              <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
+                نقدم منصة تعليمية شاملة تجمع بين أحدث التقنيات وسهولة الاستخدام
+              </p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* محاضرات فيديو */}
-            <Card className="text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold group overflow-hidden">
-              <div className="relative h-40 overflow-hidden">
+            <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/video-lectures.png"
                   alt="محاضرات فيديو"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
-              </div>
-              <CardHeader>
-                <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-academy-gold/10 transition-colors">
-                  <Play className="w-10 h-10 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    فيديو
+                  </div>
                 </div>
-                <CardTitle className="text-xl text-academy-blue">محاضرات فيديو</CardTitle>
-                <CardDescription className="text-academy-dark-gray">
+              </div>
+              <CardHeader className="pb-6">
+                <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <Play className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">محاضرات فيديو</CardTitle>
+                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
                   محاضرات عالية الجودة متاحة في أي وقت
                 </CardDescription>
               </CardHeader>
             </Card>
 
             {/* منتديات نقاش */}
-            <Card className="text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold group overflow-hidden">
-              <div className="relative h-40 overflow-hidden">
+            <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/discussion-forums.png"
                   alt="منتديات نقاش"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
-              </div>
-              <CardHeader>
-                <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-academy-gold/10 transition-colors">
-                  <MessageSquare className="w-10 h-10 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    نقاش
+                  </div>
                 </div>
-                <CardTitle className="text-xl text-academy-blue">منتديات نقاش</CardTitle>
-                <CardDescription className="text-academy-dark-gray">تفاعل مباشر مع الأساتذة والطلاب</CardDescription>
+              </div>
+              <CardHeader className="pb-6">
+                <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <MessageSquare className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">منتديات نقاش</CardTitle>
+                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">تفاعل مباشر مع الأساتذة والطلاب</CardDescription>
               </CardHeader>
             </Card>
 
             {/* تتبع التقدم */}
-            <Card className="text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold group overflow-hidden">
-              <div className="relative h-40 overflow-hidden">
+            <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/progress-tracking.png"
                   alt="تتبع التقدم"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
-              </div>
-              <CardHeader>
-                <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-academy-gold/10 transition-colors">
-                  <TrendingUp className="w-10 h-10 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    تتبع
+                  </div>
                 </div>
-                <CardTitle className="text-xl text-academy-blue">تتبع التقدم</CardTitle>
-                <CardDescription className="text-academy-dark-gray">متابعة مستمرة لأدائك الأكاديمي</CardDescription>
+              </div>
+              <CardHeader className="pb-6">
+                <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <TrendingUp className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">تتبع التقدم</CardTitle>
+                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">متابعة مستمرة لأدائك الأكاديمي</CardDescription>
               </CardHeader>
             </Card>
           </div>
@@ -831,71 +970,137 @@ export default function EducationSystemPage() {
       </section>
 
       {/* الدعم الأكاديمي */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-academy-blue mb-4">الدعم الأكاديمي</h2>
-            <p className="text-lg text-academy-dark-gray max-w-2xl mx-auto">دعم شامل لضمان نجاحك الأكاديمي</p>
+      <section className="py-24 lg:py-32 relative overflow-hidden">
+        {/* Premium Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-blue-50"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-blue/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/10 to-transparent rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 relative z-10">
+          {/* Premium Section Header */}
+          <div className="text-center mb-20">
+            <div className="relative inline-block mb-8">
+              <div className="p-6 bg-white/90 backdrop-blur-xl rounded-3xl border border-slate-200/50 shadow-2xl">
+                <div className="relative">
+                  <div className="w-20 h-20 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-3xl flex items-center justify-center shadow-xl">
+                    <Headphones className="text-academy-gold" size={40} />
+                  </div>
+                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
+                    <Star size={16} className="text-academy-blue" />
+                  </div>
+                  <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-academy-gold-light rounded-full flex items-center justify-center shadow-lg">
+                    <Crown size={12} className="text-academy-blue" />
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -top-4 -left-4 w-5 h-5 bg-academy-gold rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-3 -right-5 w-4 h-4 bg-academy-blue rounded-full animate-pulse delay-500"></div>
+              <div className="absolute top-1/2 -left-8 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1000"></div>
+            </div>
+
+            <div className="mb-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+                <span className="bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue bg-clip-text text-transparent">
+                  الدعم الأكاديمي
+                </span>
+              </h2>
+              <div className="flex items-center justify-center gap-6 mb-8">
+                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
+                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
+              </div>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-medium mb-6">
+                دعم شامل ومتكامل لضمان نجاحك الأكاديمي
+              </p>
+              <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
+                نقدم لك جميع أنواع الدعم التي تحتاجها لتحقيق أهدافك التعليمية
+              </p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center space-y-4 hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold group overflow-hidden">
-              <div className="relative h-40 overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <Card className="text-center space-y-4 hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/academic-advisor.png"
                   alt="مرشد أكاديمي"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
-              </div>
-              <CardHeader>
-                <div className="mx-auto p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
-                  <UserCheck className="w-10 h-10 text-academy-blue" />
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    إرشاد
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-academy-blue">مرشد أكاديمي</h3>
-                <p className="text-academy-dark-gray">توجيه شخصي طوال فترة الدراسة</p>
+              </div>
+              <CardHeader className="pb-6">
+                <div className="mx-auto p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <UserCheck className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">مرشد أكاديمي</h3>
+                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">توجيه شخصي طوال فترة الدراسة</p>
               </CardHeader>
             </Card>
 
-            <Card className="text-center space-y-4 hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold group overflow-hidden">
-              <div className="relative h-40 overflow-hidden">
+            <Card className="text-center space-y-4 hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/technical-support.png"
                   alt="دعم تقني"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
-              </div>
-              <CardHeader>
-                <div className="mx-auto p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
-                  <Headphones className="w-10 h-10 text-academy-blue" />
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    تقني
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-academy-blue">دعم تقني</h3>
-                <p className="text-academy-dark-gray">مساعدة فنية على مدار 24 ساعة</p>
+              </div>
+              <CardHeader className="pb-6">
+                <div className="mx-auto p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <Headphones className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">دعم تقني</h3>
+                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">مساعدة فنية على مدار 24 ساعة</p>
               </CardHeader>
             </Card>
 
-            <Card className="text-center space-y-4 hover:shadow-xl transition-all duration-300 border-2 hover:border-academy-gold group overflow-hidden">
-              <div className="relative h-40 overflow-hidden">
+            <Card className="text-center space-y-4 hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src="/study-groups.png"
                   alt="مجموعات دراسية"
                   width={300}
                   height={160}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-academy-blue/20 group-hover:bg-academy-blue/10 transition-colors"></div>
-              </div>
-              <CardHeader>
-                <div className="mx-auto p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
-                  <Users2 className="w-10 h-10 text-academy-blue" />
+                <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                    مجموعات
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-academy-blue">مجموعات دراسية</h3>
-                <p className="text-academy-dark-gray">تعلم تعاوني مع زملائك</p>
+              </div>
+              <CardHeader className="pb-6">
+                <div className="mx-auto p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
+                  <Users2 className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">مجموعات دراسية</h3>
+                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">تعلم تعاوني مع زملائك</p>
               </CardHeader>
             </Card>
           </div>
