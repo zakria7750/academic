@@ -285,7 +285,11 @@ export default function RegistrationForm() {
           </DialogHeader>
           <div className="flex justify-center mt-8">
             <Button
-              onClick={() => setShowDialog(false)}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setShowDialog(false)
+              }}
               className={`px-12 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 ${
                 dialogType === "success"
                   ? "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
