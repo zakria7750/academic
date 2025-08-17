@@ -265,7 +265,11 @@ export function GraduateApplicationForm() {
       {/* Premium Success/Error Dialog */}
       <Dialog
         open={message?.open || false}
-        onOpenChange={(open) => setMessage((prev) => (prev ? { ...prev, open } : null))}
+        onOpenChange={(open) => {
+          if (!open) {
+            setMessage(null)
+          }
+        }}
       >
         <DialogContent className="sm:max-w-lg bg-white/95 backdrop-blur-xl border-0 rounded-3xl shadow-2xl">
           <DialogHeader>

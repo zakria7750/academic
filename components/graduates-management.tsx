@@ -54,6 +54,18 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
     })
   }, [initialGraduates, initialApplications])
 
+  // إعادة تحميل البيانات عند تحديث الطلبات
+  useEffect(() => {
+    if (message?.type === "success") {
+      // إعادة تحميل الصفحة بعد 2 ثانية من نجاح العملية
+      const timer = setTimeout(() => {
+        window.location.reload()
+      }, 2000)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [message])
+
   const pendingApplications = applications?.filter((app) => app.status === "pending") || []
   const processedApplications = applications?.filter((app) => app.status !== "pending") || []
 

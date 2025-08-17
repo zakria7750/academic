@@ -145,6 +145,12 @@ export async function submitGraduateApplication(formData: FormData) {
   }
 
   console.log("[v0] Application submission completed successfully")
+  
+  // إعادة التحقق من صفحات متعددة لضمان ظهور البيانات فوراً
+  revalidatePath("/graduates")
+  revalidatePath("/dashboard/graduates")
+  revalidatePath("/dashboard")
+  
   return { success: true, data: insertResult }
 }
 

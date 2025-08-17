@@ -2,6 +2,9 @@ import { getGraduates, getGraduateApplications } from "@/app/actions/graduates-a
 import { GraduatesManagement } from "@/components/graduates-management"
 import { GraduationCap, Users, Award, TrendingUp } from "lucide-react"
 
+// إضافة ISR لضمان تحديث البيانات بانتظام
+export const revalidate = 60; // إعادة التحقق كل دقيقة للوحة التحكم
+
 export default async function GraduatesManagementPage() {
   const [graduates, applications] = await Promise.all([getGraduates(), getGraduateApplications()])
 
