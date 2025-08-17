@@ -5,6 +5,7 @@ import "./globals.css"
 import Sidebar from "@/components/sidebar"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { Toaster } from "sonner"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -30,6 +31,12 @@ export default function RootLayout({
             <Footer />
           </div>
         </div>
+        <Toaster 
+          position="bottom-right" 
+          dir="rtl"
+          richColors
+          closeButton
+        />
       </body>
     </html>
   )
