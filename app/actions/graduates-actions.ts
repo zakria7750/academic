@@ -4,7 +4,8 @@ import { createClient } from "@/lib/supabase"
 import { Resend } from "resend"
 import { revalidatePath } from "next/cache"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const isEmailServiceAvailable = !!process.env.RESEND_API_KEY
+const resend = isEmailServiceAvailable ? new Resend(process.env.RESEND_API_KEY) : null
 
 export interface Graduate {
   id: number
@@ -49,6 +50,8 @@ export async function getGraduates(): Promise<Graduate[]> {
 
 // تقديم طلب انضمام لشبكة الخريجين
 export async function submitGraduateApplication(formData: FormData) {
+  console.log("[v0] Starting graduate application submission")
+
   const supabase = createClient()
 
   const applicationData = {
@@ -62,65 +65,87 @@ export async function submitGraduateApplication(formData: FormData) {
     status: "pending" as const,
   }
 
-  const { data, error } = await supabase.from("graduate_applications").insert([applicationData]).select().single()
+  console.log("[v0] Application data prepared:", { name: applicationData.name, email: applicationData.email })
 
-  if (error) {
-    console.error("Error submitting application:", error)
+  let insertResult
+  try {
+    const { data, error } = await supabase.from("graduate_applications").insert([applicationData]).select().single()
+
+    if (error) {
+      console.error("[v0] Database error:", error)
+      return { success: false, error: "حدث خطأ أثناء تقديم الطلب" }
+    }
+
+    insertResult = data
+    console.log("[v0] Application saved successfully:", insertResult?.id)
+  } catch (dbError) {
+    console.error("[v0] Database exception:", dbError)
     return { success: false, error: "حدث خطأ أثناء تقديم الطلب" }
   }
 
-  // إرسال إيميل تأكيد للمتقدم
-  try {
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: [applicationData.email],
-      subject: "تأكيد تقديم طلب الانضمام لشبكة الخريجين",
-      html: `
-        <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1e40af; text-align: center;">أكاديمية المعرفة الدولية</h2>
-          <h3 style="color: #374151;">عزيزي/عزيزتي ${applicationData.name}</h3>
-          <p>تم استلام طلبكم للانضمام إلى شبكة خريجي أكاديمية المعرفة الدولية بنجاح.</p>
-          <p>سيتم مراجعة طلبكم من قبل فريقنا المختص، وغالباً ما سيتم الرد عليكم خلال مدة من 4 إلى 7 أيام.</p>
-          <p>شكراً لكم على اهتمامكم بالانضمام إلى شبكة خريجينا المتميزين.</p>
-          <hr style="margin: 20px 0;">
-          <p style="color: #6b7280; font-size: 14px;">
-            أكاديمية المعرفة الدولية<br>
-            البريد الإلكتروني: info@academy.com
-          </p>
-        </div>
-      `,
-    })
-  } catch (emailError) {
-    console.error("Error sending confirmation email:", emailError)
+  if (isEmailServiceAvailable && resend) {
+    // إرسال إيميل تأكيد للمتقدم
+    try {
+      console.log("[v0] Sending confirmation email to:", applicationData.email)
+      await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: [applicationData.email],
+        subject: "تأكيد تقديم طلب الانضمام لشبكة الخريجين",
+        html: `
+          <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #1e40af; text-align: center;">أكاديمية المعرفة الدولية</h2>
+            <h3 style="color: #374151;">عزيزي/عزيزتي ${applicationData.name}</h3>
+            <p>تم استلام طلبكم للانضمام إلى شبكة خريجي أكاديمية المعرفة الدولية بنجاح.</p>
+            <p>سيتم مراجعة طلبكم من قبل فريقنا المختص، وغالباً ما سيتم الرد عليكم خلال مدة من 4 إلى 7 أيام.</p>
+            <p>شكراً لكم على اهتمامكم بالانضمام إلى شبكة خريجينا المتميزين.</p>
+            <hr style="margin: 20px 0;">
+            <p style="color: #6b7280; font-size: 14px;">
+              أكاديمية المعرفة الدولية<br>
+              البريد الإلكتروني: info@academy.com
+            </p>
+          </div>
+        `,
+      })
+      console.log("[v0] Confirmation email sent successfully")
+    } catch (emailError) {
+      console.error("[v0] Error sending confirmation email:", emailError)
+      // Don't fail the entire operation if email fails
+    }
+
+    // إرسال إيميل للمشرف
+    try {
+      console.log("[v0] Sending admin notification email")
+      await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: ["ali739303232@gmail.com"],
+        subject: "طلب انضمام جديد لشبكة الخريجين",
+        html: `
+          <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #1e40af; text-align: center;">طلب انضمام جديد</h2>
+            <p>تم تقديم طلب انضمام جديد لشبكة الخريجين:</p>
+            <ul>
+              <li><strong>الاسم:</strong> ${applicationData.name}</li>
+              <li><strong>البريد الإلكتروني:</strong> ${applicationData.email}</li>
+              <li><strong>التخصص:</strong> ${applicationData.specialization}</li>
+              <li><strong>المنصب الحالي:</strong> ${applicationData.current_position}</li>
+              <li><strong>البلد:</strong> ${applicationData.country}</li>
+              <li><strong>سنة التخرج:</strong> ${applicationData.graduation_year}</li>
+            </ul>
+            <p>يرجى مراجعة الطلب من لوحة التحكم.</p>
+          </div>
+        `,
+      })
+      console.log("[v0] Admin notification email sent successfully")
+    } catch (emailError) {
+      console.error("[v0] Error sending admin notification:", emailError)
+      // Don't fail the entire operation if email fails
+    }
+  } else {
+    console.log("[v0] Email service not available, skipping email notifications")
   }
 
-  // إرسال إيميل للمشرف
-  try {
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: ["ali739303232@gmail.com"],
-      subject: "طلب انضمام جديد لشبكة الخريجين",
-      html: `
-        <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1e40af; text-align: center;">طلب انضمام جديد</h2>
-          <p>تم تقديم طلب انضمام جديد لشبكة الخريجين:</p>
-          <ul>
-            <li><strong>الاسم:</strong> ${applicationData.name}</li>
-            <li><strong>البريد الإلكتروني:</strong> ${applicationData.email}</li>
-            <li><strong>التخصص:</strong> ${applicationData.specialization}</li>
-            <li><strong>المنصب الحالي:</strong> ${applicationData.current_position}</li>
-            <li><strong>البلد:</strong> ${applicationData.country}</li>
-            <li><strong>سنة التخرج:</strong> ${applicationData.graduation_year}</li>
-          </ul>
-          <p>يرجى مراجعة الطلب من لوحة التحكم.</p>
-        </div>
-      `,
-    })
-  } catch (emailError) {
-    console.error("Error sending admin notification:", emailError)
-  }
-
-  return { success: true, data }
+  console.log("[v0] Application submission completed successfully")
+  return { success: true, data: insertResult }
 }
 
 // جلب طلبات التقديم
@@ -255,39 +280,41 @@ export async function processGraduateApplication(id: number, action: "approve" |
     }
   }
 
-  // إرسال إيميل للمتقدم
-  try {
-    const isApproved = action === "approve"
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: [application.email],
-      subject: isApproved ? "تم قبول طلبكم للانضمام لشبكة الخريجين" : "تحديث حول طلب الانضمام لشبكة الخريجين",
-      html: `
-        <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1e40af; text-align: center;">أكاديمية المعرفة الدولية</h2>
-          <h3 style="color: ${isApproved ? "#059669" : "#dc2626"};">
-            ${isApproved ? "مبروك! تم قبول طلبكم" : "تحديث حول طلبكم"}
-          </h3>
-          <p>عزيزي/عزيزتي ${application.name}</p>
-          <p>
-            ${
-              isApproved
-                ? "نحن سعداء لإعلامكم بأنه تم قبول طلبكم للانضمام إلى شبكة خريجي أكاديمية المعرفة الدولية."
-                : "نشكركم على اهتمامكم بالانضمام إلى شبكة خريجي أكاديمية المعرفة الدولية."
-            }
-          </p>
-          ${adminMessage ? `<p><strong>رسالة من الإدارة:</strong> ${adminMessage}</p>` : ""}
-          <p>شكراً لكم على تواصلكم معنا.</p>
-          <hr style="margin: 20px 0;">
-          <p style="color: #6b7280; font-size: 14px;">
-            أكاديمية المعرفة الدولية<br>
-            البريد الإلكتروني: info@academy.com
-          </p>
-        </div>
-      `,
-    })
-  } catch (emailError) {
-    console.error("Error sending response email:", emailError)
+  if (isEmailServiceAvailable && resend) {
+    try {
+      const isApproved = action === "approve"
+      await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: [application.email],
+        subject: isApproved ? "تم قبول طلبكم للانضمام لشبكة الخريجين" : "تحديث حول طلب الانضمام لشبكة الخريجين",
+        html: `
+          <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #1e40af; text-align: center;">أكاديمية المعرفة الدولية</h2>
+            <h3 style="color: ${isApproved ? "#059669" : "#dc2626"};">
+              ${isApproved ? "مبروك! تم قبول طلبكم" : "تحديث حول طلبكم"}
+            </h3>
+            <p>عزيزي/عزيزتي ${application.name}</p>
+            <p>
+              ${
+                isApproved
+                  ? "نحن سعداء لإعلامكم بأنه تم قبول طلبكم للانضمام إلى شبكة خريجي أكاديمية المعرفة الدولية."
+                  : "نشكركم على اهتمامكم بالانضمام إلى شبكة خريجي أكاديمية المعرفة الدولية."
+              }
+            </p>
+            ${adminMessage ? `<p><strong>رسالة من الإدارة:</strong> ${adminMessage}</p>` : ""}
+            <p>شكراً لكم على تواصلكم معنا.</p>
+            <hr style="margin: 20px 0;">
+            <p style="color: #6b7280; font-size: 14px;">
+              أكاديمية المعرفة الدولية<br>
+              البريد الإلكتروني: info@academy.com
+            </p>
+          </div>
+        `,
+      })
+    } catch (emailError) {
+      console.error("Error sending response email:", emailError)
+      // Don't fail the operation if email fails
+    }
   }
 
   revalidatePath("/graduates")
