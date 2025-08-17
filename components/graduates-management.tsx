@@ -271,12 +271,19 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
                   إضافة خريج جديد
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
-                <DialogHeader className="text-center pb-4">
-                  <DialogTitle className="text-2xl font-bold text-academy-blue">إضافة خريج جديد</DialogTitle>
-                  <p className="text-academy-dark-gray mt-2">إضافة خريج متميز إلى شبكة الخريجين</p>
+              <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-white border-0 rounded-3xl shadow-2xl">
+                <DialogHeader className="text-center pb-6 border-b border-gray-100">
+                  <div className="flex items-center justify-center mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-academy-blue/10 to-academy-blue/20 rounded-2xl flex items-center justify-center shadow-lg">
+                      <Plus className="w-8 h-8 text-academy-blue" />
+                    </div>
+                  </div>
+                  <DialogTitle className="text-3xl font-bold text-academy-blue mb-2">إضافة خريج جديد</DialogTitle>
+                  <p className="text-academy-dark-gray text-lg">إضافة خريج متميز إلى شبكة الخريجين</p>
                 </DialogHeader>
-                <GraduateForm onSubmit={handleAddGraduate} />
+                <div className="p-6 bg-white">
+                  <GraduateForm onSubmit={handleAddGraduate} />
+                </div>
               </DialogContent>
             </Dialog>
           </div>
@@ -384,12 +391,19 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
       </Tabs>
 
       <Dialog open={!!editingGraduate} onOpenChange={() => setEditingGraduate(null)}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
-          <DialogHeader className="text-center pb-4">
-            <DialogTitle className="text-2xl font-bold text-academy-blue">تعديل بيانات الخريج</DialogTitle>
-            <p className="text-academy-dark-gray mt-2">تحديث معلومات الخريج وقصة نجاحه</p>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-white border-0 rounded-3xl shadow-2xl">
+          <DialogHeader className="text-center pb-6 border-b border-gray-100">
+            <div className="flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-academy-gold/10 to-academy-gold/20 rounded-2xl flex items-center justify-center shadow-lg">
+                <Edit className="w-8 h-8 text-academy-gold" />
+              </div>
+            </div>
+            <DialogTitle className="text-3xl font-bold text-academy-blue mb-2">تعديل بيانات الخريج</DialogTitle>
+            <p className="text-academy-dark-gray text-lg">تحديث معلومات الخريج وقصة نجاحه</p>
           </DialogHeader>
-          {editingGraduate && <GraduateForm onSubmit={handleUpdateGraduate} initialData={editingGraduate} />}
+          <div className="p-6 bg-white">
+            {editingGraduate && <GraduateForm onSubmit={handleUpdateGraduate} initialData={editingGraduate} />}
+          </div>
         </DialogContent>
       </Dialog>
     </div>
@@ -404,113 +418,160 @@ function GraduateForm({
   initialData?: Graduate
 }) {
   return (
-    <form action={onSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-3">
-          <Label htmlFor="name" className="text-base font-semibold text-academy-blue flex items-center">
-            <Users className="w-4 h-4 ml-2" />
-            الاسم الكامل
-          </Label>
-          <Input
-            id="name"
-            name="name"
-            required
-            defaultValue={initialData?.name}
-            className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
-          />
+    <div className="bg-white">
+      <form action={onSubmit} className="space-y-8">
+        {/* قسم المعلومات الشخصية */}
+        <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 bg-gradient-to-br from-academy-blue/10 to-academy-blue/20 rounded-xl flex items-center justify-center">
+              <Users className="w-5 h-5 text-academy-blue" />
+            </div>
+            <h3 className="text-xl font-bold text-academy-blue">المعلومات الشخصية</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <Label htmlFor="name" className="text-base font-semibold text-gray-700 flex items-center gap-2">
+                <Users className="w-4 h-4 text-academy-blue" />
+                الاسم الكامل *
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                required
+                defaultValue={initialData?.name}
+                className="h-12 bg-white border-2 border-gray-200 rounded-xl focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 transition-all duration-200"
+                placeholder="أدخل الاسم الكامل"
+              />
+            </div>
+            <div className="space-y-3">
+              <Label htmlFor="specialization" className="text-base font-semibold text-gray-700 flex items-center gap-2">
+                <Award className="w-4 h-4 text-academy-blue" />
+                التخصص *
+              </Label>
+              <Input
+                id="specialization"
+                name="specialization"
+                required
+                defaultValue={initialData?.specialization}
+                className="h-12 bg-white border-2 border-gray-200 rounded-xl focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 transition-all duration-200"
+                placeholder="مثال: إدارة الأعمال"
+              />
+            </div>
+          </div>
         </div>
-        <div className="space-y-3">
-          <Label htmlFor="specialization" className="text-base font-semibold text-academy-blue flex items-center">
-            <Award className="w-4 h-4 ml-2" />
-            التخصص
-          </Label>
-          <Input
-            id="specialization"
-            name="specialization"
-            required
-            defaultValue={initialData?.specialization}
-            className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
-          />
+
+        {/* قسم المعلومات المهنية */}
+        <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 bg-gradient-to-br from-academy-gold/10 to-academy-gold/20 rounded-xl flex items-center justify-center">
+              <Briefcase className="w-5 h-5 text-academy-gold" />
+            </div>
+            <h3 className="text-xl font-bold text-academy-blue">المعلومات المهنية</h3>
+          </div>
+
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <Label htmlFor="current_position" className="text-base font-semibold text-gray-700 flex items-center gap-2">
+                <Briefcase className="w-4 h-4 text-academy-gold" />
+                المنصب الحالي *
+              </Label>
+              <Input
+                id="current_position"
+                name="current_position"
+                required
+                defaultValue={initialData?.current_position}
+                className="h-12 bg-white border-2 border-gray-200 rounded-xl focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 transition-all duration-200"
+                placeholder="مثال: مدير عام"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <Label htmlFor="country" className="text-base font-semibold text-gray-700 flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-academy-blue" />
+                  البلد *
+                </Label>
+                <Input
+                  id="country"
+                  name="country"
+                  required
+                  defaultValue={initialData?.country}
+                  className="h-12 bg-white border-2 border-gray-200 rounded-xl focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 transition-all duration-200"
+                  placeholder="مثال: السعودية"
+                />
+              </div>
+              <div className="space-y-3">
+                <Label htmlFor="graduation_year" className="text-base font-semibold text-gray-700 flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-academy-blue" />
+                  سنة التخرج *
+                </Label>
+                <Input
+                  id="graduation_year"
+                  name="graduation_year"
+                  type="number"
+                  min="2000"
+                  max={new Date().getFullYear()}
+                  required
+                  defaultValue={initialData?.graduation_year}
+                  className="h-12 bg-white border-2 border-gray-200 rounded-xl focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 transition-all duration-200"
+                  placeholder="2023"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="space-y-3">
-        <Label htmlFor="current_position" className="text-base font-semibold text-academy-blue flex items-center">
-          <Briefcase className="w-4 h-4 ml-2" />
-          المنصب الحالي
-        </Label>
-        <Input
-          id="current_position"
-          name="current_position"
-          required
-          defaultValue={initialData?.current_position}
-          className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
-        />
-      </div>
+        {/* قسم قصة النجاح */}
+        <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 bg-gradient-to-br from-emerald-100/80 to-green-100/80 rounded-xl flex items-center justify-center">
+              <CheckCircle className="w-5 h-5 text-emerald-600" />
+            </div>
+            <h3 className="text-xl font-bold text-academy-blue">قصة النجاح</h3>
+          </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-3">
-          <Label htmlFor="country" className="text-base font-semibold text-academy-blue flex items-center">
-            <MapPin className="w-4 h-4 ml-2" />
-            البلد
-          </Label>
-          <Input
-            id="country"
-            name="country"
-            required
-            defaultValue={initialData?.country}
-            className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
-          />
+          <div className="space-y-3">
+            <Label htmlFor="success_story" className="text-base font-semibold text-gray-700 flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-emerald-600" />
+              شارك قصة نجاحك *
+            </Label>
+            <Textarea
+              id="success_story"
+              name="success_story"
+              rows={6}
+              required
+              defaultValue={initialData?.success_story}
+              className="bg-white border-2 border-gray-200 rounded-xl focus:border-academy-blue focus:ring-2 focus:ring-academy-blue/20 min-h-[140px] resize-none transition-all duration-200"
+              placeholder="اكتب قصة نجاح ملهمة تعكس إنجازات الخريج وكيف ساهمت الأكاديمية في تطوير مسيرته المهنية..."
+            />
+            <p className="text-sm text-gray-500 mt-2">
+              اكتب قصة ملهمة تتضمن التحديات والإنجازات والتأثير الإيجابي للتعليم في الأكاديمية
+            </p>
+          </div>
         </div>
-        <div className="space-y-3">
-          <Label htmlFor="graduation_year" className="text-base font-semibold text-academy-blue flex items-center">
-            <Calendar className="w-4 h-4 ml-2" />
-            سنة التخرج
-          </Label>
-          <Input
-            id="graduation_year"
-            name="graduation_year"
-            type="number"
-            required
-            defaultValue={initialData?.graduation_year}
-            className="rounded-xl border-academy-blue/20 focus:border-academy-blue"
-          />
+
+        {/* زر الإرسال */}
+        <div className="pt-4">
+          <Button
+            type="submit"
+            className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-600 hover:from-academy-blue-600 hover:to-academy-blue-700 text-white font-bold py-4 px-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] border-0"
+          >
+            {initialData ? (
+              <>
+                <Edit className="w-5 h-5 ml-2" />
+                تحديث بيانات الخريج
+              </>
+            ) : (
+              <>
+                <Plus className="w-5 h-5 ml-2" />
+                إضافة خريج جديد
+              </>
+            )}
+          </Button>
         </div>
-      </div>
-
-      <div className="space-y-3">
-        <Label htmlFor="success_story" className="text-base font-semibold text-academy-blue flex items-center">
-          <CheckCircle className="w-4 h-4 ml-2" />
-          قصة النجاح
-        </Label>
-        <Textarea
-          id="success_story"
-          name="success_story"
-          rows={5}
-          required
-          defaultValue={initialData?.success_story}
-          className="rounded-xl border-academy-blue/20 focus:border-academy-blue min-h-[120px]"
-          placeholder="اكتب قصة نجاح ملهمة تعكس إنجازات الخريج..."
-        />
-      </div>
-
-      <Button
-        type="submit"
-        className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-600 hover:from-academy-blue-600 hover:to-academy-blue-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-      >
-        {initialData ? (
-          <>
-            <Edit className="w-5 h-5 ml-2" />
-            تحديث بيانات الخريج
-          </>
-        ) : (
-          <>
-            <Plus className="w-5 h-5 ml-2" />
-            إضافة خريج جديد
-          </>
-        )}
-      </Button>
-    </form>
+      </form>
+    </div>
   )
 }
 
