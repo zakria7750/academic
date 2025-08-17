@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Users, BookOpen, Award, GraduationCap, UserCheck, UserPlus, Newspaper, FileText, Shield } from "lucide-react"
+import { Users, BookOpen, Award, GraduationCap, UserCheck, UserPlus, Newspaper, FileText, Shield, Play } from "lucide-react"
 
 export default function DashboardPage() {
   const adminSections = [
@@ -23,8 +23,15 @@ export default function DashboardPage() {
       title: "إدارة البرامج التعليمية",
       icon: BookOpen,
       href: "/dashboard/programs",
-      description: "إضافة وتعديل البرامج والدورات التعليمية",
+      description: "إضافة وتعديل البرامج التعليمية",
       color: "from-academy-blue-600 to-academy-blue-700",
+    },
+    {
+      title: "إدارة الدورات التدريبية",
+      icon: Play,
+      href: "/dashboard/training-courses",
+      description: "إضافة وتعديل الدورات التدريبية المتخصصة",
+      color: "from-academy-gold-600 to-academy-gold-700",
     },
     {
       title: "إدارة القبول والتسجيل",
