@@ -14,36 +14,58 @@ export function GraduateApplicationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string; open: boolean } | null>(null)
 
+  // Add debugging for message state changes
+  const setMessageWithLogging = (newMessage: { type: "success" | "error"; text: string; open: boolean } | null) => {
+    console.log("[DEBUG] Setting message:", newMessage)
+    setMessage(newMessage)
+  }
+
   async function handleSubmit(formData: FormData) {
+    console.log("[DEBUG] Form submission started")
     setIsSubmitting(true)
-    setMessage(null)
+    setMessageWithLogging(null)
 
     try {
+      console.log("[DEBUG] Calling submitGraduateApplication")
       const result = await submitGraduateApplication(formData)
+      console.log("[DEBUG] Server response:", result)
 
       if (result.success) {
-        setMessage({
+        console.log("[DEBUG] Success - setting success message")
+        setMessageWithLogging({
           type: "success",
           text: "تم تقديم طلبكم بنجاح! سيتم التواصل معكم خلال 4-7 أيام.",
           open: true,
         })
         // Reset form
         const form = document.getElementById("graduate-form") as HTMLFormElement
-        form?.reset()
+        if (form) {
+          console.log("[DEBUG] Resetting form")
+          // Reset form fields manually to avoid potential validation issues
+          const inputs = form.querySelectorAll('input, textarea, select')
+          inputs.forEach((input) => {
+            if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+              input.value = ''
+            }
+          })
+        }
       } else {
-        setMessage({
+        console.log("[DEBUG] Error - setting error message:", result.error)
+        setMessageWithLogging({
           type: "error",
           text: result.error || "حدث خطأ أثناء تقديم الطلب",
           open: true,
         })
       }
     } catch (error) {
-      setMessage({
+      console.error("[DEBUG] Exception caught:", error)
+      setMessageWithLogging({
         type: "error",
         text: "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
         open: true,
       })
     } finally {
+      console.log("[DEBUG] Form submission completed")
       setIsSubmitting(false)
     }
   }
@@ -265,7 +287,11 @@ export function GraduateApplicationForm() {
       {/* Premium Success/Error Dialog */}
       <Dialog
         open={message?.open || false}
-        onOpenChange={(open) => setMessage((prev) => (prev ? { ...prev, open } : null))}
+        onOpenChange={(open) => {
+          if (!open) {
+            setMessageWithLogging(null)
+          }
+        }}
       >
         <DialogContent className="sm:max-w-lg bg-white/95 backdrop-blur-xl border-0 rounded-3xl shadow-2xl">
           <DialogHeader>
@@ -296,7 +322,11 @@ export function GraduateApplicationForm() {
           </DialogHeader>
           <div className="flex justify-center mt-8">
             <Button
-              onClick={() => setMessage(null)}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setMessageWithLogging(null)
+              }}
               className={`px-8 py-3 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${
                 message?.type === "success" 
                   ? "bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700" 
