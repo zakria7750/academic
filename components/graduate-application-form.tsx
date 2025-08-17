@@ -238,12 +238,21 @@ export function GraduateApplicationForm() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-dark hover:from-academy-blue-dark hover:to-slate-900 text-white font-bold py-4 text-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border-0"
+                className={`w-full font-bold py-4 text-xl rounded-2xl shadow-xl transition-all duration-300 border-0 ${
+                  isSubmitting 
+                    ? "bg-gradient-to-r from-gray-400 to-gray-500 cursor-not-allowed" 
+                    : "bg-gradient-to-r from-academy-blue to-academy-blue-dark hover:from-academy-blue-dark hover:to-slate-900 hover:shadow-2xl hover:scale-105"
+                } text-white disabled:opacity-70`}
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center gap-3">
                     <Loader2 className="w-6 h-6 animate-spin" />
-                    <span>جاري التقديم...</span>
+                    <span>جاري معالجة الطلب...</span>
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-white rounded-full animate-bounce delay-100"></div>
+                      <div className="w-2 h-2 bg-white rounded-full animate-bounce delay-200"></div>
+                    </div>
                   </div>
                 ) : (
                   <div className="flex items-center justify-center gap-3">
@@ -255,7 +264,10 @@ export function GraduateApplicationForm() {
               </Button>
               
               <p className="text-center text-academy-dark-gray text-sm mt-4">
-                سيتم مراجعة طلبكم بعناية والتواصل معكم خلال 4-7 أيام عمل
+                {isSubmitting 
+                  ? "يرجى الانتظار... لا تغلق هذه الصفحة" 
+                  : "سيتم مراجعة طلبكم بعناية والتواصل معكم خلال 4-7 أيام عمل"
+                }
               </p>
             </div>
           </form>
