@@ -13,6 +13,7 @@ import { CheckCircle, AlertCircle, Send, Loader2, User, Mail, Award, MapPin, Cal
 export function GraduateApplicationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string; open: boolean } | null>(null)
+  const [isClosing, setIsClosing] = useState(false)
 
   async function handleSubmit(formData: FormData) {
     setIsSubmitting(true)
@@ -46,6 +47,19 @@ export function GraduateApplicationForm() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  // دالة لإغلاق الرسالة بشكل آمن
+  const handleCloseMessage = () => {
+    if (isClosing) return // منع الإغلاق المتعدد
+    
+    setIsClosing(true)
+    setMessage(null)
+    
+    // إعادة تعيين حالة الإغلاق بعد فترة قصيرة
+    setTimeout(() => {
+      setIsClosing(false)
+    }, 100)
   }
 
   return (
@@ -278,8 +292,9 @@ export function GraduateApplicationForm() {
       <Dialog
         open={message?.open || false}
         onOpenChange={(open) => {
-          if (!open) {
-            setMessage(null)
+          // فقط إغلاق الرسالة عند إغلاق النافذة، بدون أي تغييرات أخرى
+          if (!open && !isClosing) {
+            handleCloseMessage()
           }
         }}
       >
@@ -312,7 +327,7 @@ export function GraduateApplicationForm() {
           </DialogHeader>
           <div className="flex justify-center mt-8">
             <Button
-              onClick={() => setMessage(null)}
+              onClick={handleCloseMessage}
               className={`px-8 py-3 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${
                 message?.type === "success" 
                   ? "bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700" 
