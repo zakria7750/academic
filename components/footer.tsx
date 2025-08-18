@@ -313,59 +313,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Designer Credit Section */}
-        <div className="mt-8 pt-6 border-t border-academy-gold/20">
-          <div className="flex flex-col items-center justify-center space-y-4">
-            {/* Designer Badge */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold rounded-2xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-              <div className="relative bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue-600 text-white px-8 py-4 rounded-2xl border-2 border-academy-gold/30 shadow-2xl group-hover:shadow-academy-gold/25 transition-all duration-300 group-hover:scale-105">
-                <div className="flex items-center space-x-4 space-x-reverse">
-                  {/* Designer Icon */}
-                  <div className="relative">
-                    <div className="w-12 h-12 bg-gradient-to-br from-academy-gold to-academy-gold-light rounded-full flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-300">
-                      <Code className="text-academy-blue" size={24} />
-                    </div>
-                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-academy-gold rounded-full flex items-center justify-center animate-pulse">
-                      <Sparkles className="text-academy-blue" size={12} />
-                    </div>
-                  </div>
-                  
-                  {/* Designer Info */}
-                  <div className="text-center">
-                    <div className="flex items-center space-x-2 space-x-reverse mb-1">
-                      <Palette className="text-academy-gold animate-pulse" size={16} />
-                      <span className="text-sm text-academy-gold font-medium">تم التصميم والتطوير بواسطة</span>
-                      <Heart className="text-red-400 animate-pulse" size={14} />
-                    </div>
-                    <div className="text-lg font-bold text-academy-gold">
-                      ENG/ZAKRIA AHMED
-                    </div>
-                    <div className="flex items-center justify-center space-x-2 space-x-reverse mt-1">
-                      <Zap className="text-academy-gold" size={12} />
-                      <span className="text-xs text-gray-300">Full Stack Developer</span>
-                      <Zap className="text-academy-gold" size={12} />
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Decorative Elements */}
-                <div className="absolute top-2 left-2 w-2 h-2 bg-academy-gold rounded-full animate-ping"></div>
-                <div className="absolute bottom-2 right-2 w-1 h-1 bg-academy-gold-light rounded-full animate-pulse delay-1000"></div>
-              </div>
-            </div>
-            
-            {/* Crafted with Love Message */}
-            <div className="text-center">
-              <p className="text-xs text-gray-400 flex items-center justify-center space-x-2 space-x-reverse">
-                <span>مُصمم بعناية وحب</span>
-                <Heart className="text-red-400 animate-pulse" size={12} />
-                <span>لأكاديمية المعرفة الدولية</span>
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </footer>
   )
