@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { BookOpen, Clock, DollarSign, GraduationCap, Award, Users, Star, Globe, Target, Brain } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import type { Program } from "@/lib/supabase"
+import type { Program, Course } from "@/lib/supabase"
 
 export const revalidate = 300; // ISR لمدة 5 دقائق
 
@@ -19,12 +19,111 @@ async function getPrograms(): Promise<Program[]> {
   return data || []
 }
 
+async function getCourses(): Promise<Course[]> {
+  const { data, error } = await supabase.from("courses").select("*").order("created_at", { ascending: true })
+
+  if (error) {
+    console.error("Error fetching courses:", error)
+    return []
+  }
+
+  return data || []
+}
+
 export default async function ProgramsPage() {
   const programs = await getPrograms()
+  const courses = await getCourses()
 
   const mastersPrograms = programs.filter((program) => program.type === "masters")
   const doctoratePrograms = programs.filter((program) => program.type === "doctorate")
   const diplomaPrograms = programs.filter((program) => program.type === "diploma")
+
+  const CourseCard = ({ course, index }: { course: Course; index: number }) => (
+    <Card 
+      className="group bg-white/90 backdrop-blur-sm hover:shadow-3xl border-0 shadow-2xl transition-all duration-700 hover:-translate-y-6 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative"
+      style={{
+        animationDelay: `${index * 100}ms`
+      }}
+    >
+      {/* Enhanced Course Image */}
+      <div className="relative h-56 overflow-hidden">
+        <Image
+          src={course.image_url || "/placeholder.svg?height=300&width=300&text=دورة+تدريبية"}
+          alt={course.name}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        {/* Enhanced Course Type Badge */}
+        <div className="absolute top-4 right-4 bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-full text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+          دورة تدريبية
+        </div>
+
+        {/* Enhanced Hover Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+          <div className="text-white text-center w-full">
+            <p className="text-lg font-semibold mb-2">اكتشف المزيد</p>
+            <p className="text-sm opacity-90">انقر للتسجيل في الدورة</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Enhanced Course Info */}
+      <div className="p-8">
+        <h3 className="text-xl font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors duration-500 leading-tight line-clamp-2">
+          {course.name}
+        </h3>
+
+        {/* Enhanced Course Details */}
+        <div className="space-y-4 mb-8">
+          {course.duration && (
+            <div className="flex items-center justify-between p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
+              <div className="flex items-center space-x-3 space-x-reverse">
+                <Clock size={18} className="text-academy-gold" />
+                <span className="text-academy-dark-gray text-sm font-medium">المدة</span>
+              </div>
+              <span className="text-academy-blue font-semibold text-sm">{course.duration}</span>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
+            <div className="flex items-center space-x-3 space-x-reverse">
+              <BookOpen size={18} className="text-academy-gold" />
+              <span className="text-academy-dark-gray text-sm font-medium">عدد الساعات</span>
+            </div>
+            <span className="text-academy-blue font-semibold text-sm">{course.hours} ساعة</span>
+          </div>
+
+          {course.education_system && (
+            <div className="flex items-center justify-between p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
+              <div className="flex items-center space-x-3 space-x-reverse">
+                <Users size={18} className="text-academy-gold" />
+                <span className="text-academy-dark-gray text-sm font-medium">نظام التعليم</span>
+              </div>
+              <span className="text-academy-blue font-semibold text-sm">{course.education_system}</span>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between p-4 bg-gradient-to-r from-academy-gold/10 to-academy-gold/20 rounded-2xl border border-academy-gold/20">
+            <div className="flex items-center space-x-3 space-x-reverse">
+              <DollarSign size={20} className="text-academy-gold" />
+              <span className="text-academy-dark-gray text-sm font-medium">الرسوم الدراسية</span>
+            </div>
+            <span className="text-academy-gold font-bold text-xl">{course.fees.toLocaleString()} ر.س</span>
+          </div>
+        </div>
+
+        {/* Enhanced Registration Button */}
+        <Link href="/admission">
+          <Button className="w-full bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue hover:from-academy-gold-dark hover:to-academy-gold font-bold py-4 rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 border-0">
+            التسجيل الآن
+            <div className="w-2 h-2 bg-academy-blue rounded-full ml-2 animate-pulse"></div>
+          </Button>
+        </Link>
+      </div>
+    </Card>
+  )
 
   const ProgramCard = ({ program, index }: { program: Program; index: number }) => (
     <Card 
@@ -200,7 +299,7 @@ export default async function ProgramsPage() {
               </p>
               
               {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">{mastersPrograms.length}</div>
                   <div className="text-white/80">برنامج ماجستير</div>
@@ -213,6 +312,10 @@ export default async function ProgramsPage() {
                   <div className="text-3xl font-bold text-academy-gold mb-2">{diplomaPrograms.length}</div>
                   <div className="text-white/80">دبلوم مهني</div>
                 </div>
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
+                  <div className="text-3xl font-bold text-academy-gold mb-2">{courses.length}</div>
+                  <div className="text-white/80">دورة تدريبية</div>
+                </div>
               </div>
             </div>
           </div>
@@ -223,10 +326,10 @@ export default async function ProgramsPage() {
       <section className="py-20 bg-gradient-to-br from-academy-gray to-academy-gray-light relative">
         <div className="absolute inset-0 bg-[url('/subtle-pattern.svg')] opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <Card className="group bg-white/80 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:-translate-y-4 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardContent className="p-8 relative z-10">
+              <CardContent className="p-4 md:p-8 relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
                   <GraduationCap className="text-academy-gold text-2xl" />
                 </div>
@@ -238,7 +341,7 @@ export default async function ProgramsPage() {
 
             <Card className="group bg-white/80 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:-translate-y-4 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardContent className="p-8 relative z-10">
+              <CardContent className="p-4 md:p-8 relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
                   <Award className="text-academy-gold text-2xl" />
                 </div>
@@ -250,12 +353,24 @@ export default async function ProgramsPage() {
 
             <Card className="group bg-white/80 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:-translate-y-4 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardContent className="p-8 relative z-10">
+              <CardContent className="p-4 md:p-8 relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
                   <BookOpen className="text-academy-gold text-2xl" />
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">{diplomaPrograms.length}</h3>
                 <p className="text-academy-dark-gray font-semibold text-center text-lg">دبلومات مهنية</p>
+                <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
+              </CardContent>
+            </Card>
+
+            <Card className="group bg-white/80 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:-translate-y-4 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <CardContent className="p-4 md:p-8 relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
+                  <Brain className="text-academy-blue text-2xl" />
+                </div>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">{courses.length}</h3>
+                <p className="text-academy-dark-gray font-semibold text-center text-lg">دورات تدريبية</p>
                 <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
               </CardContent>
             </Card>
@@ -285,7 +400,7 @@ export default async function ProgramsPage() {
           </div>
 
           {mastersPrograms.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
               {mastersPrograms.map((program, index) => (
                 <ProgramCard key={program.id} program={program} index={index} />
               ))}
@@ -324,7 +439,7 @@ export default async function ProgramsPage() {
           </div>
 
           {doctoratePrograms.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
               {doctoratePrograms.map((program, index) => (
                 <ProgramCard key={program.id} program={program} index={index} />
               ))}
@@ -363,7 +478,7 @@ export default async function ProgramsPage() {
           </div>
 
           {diplomaPrograms.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
               {diplomaPrograms.map((program, index) => (
                 <ProgramCard key={program.id} program={program} index={index} />
               ))}
@@ -375,6 +490,45 @@ export default async function ProgramsPage() {
               </div>
               <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد دبلومات</h3>
               <p className="text-academy-dark-gray text-lg">لم يتم إضافة الدبلومات المهنية بعد.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Enhanced Training Courses Section */}
+      <section className="py-24 bg-gradient-to-br from-academy-gray to-academy-gray-light relative">
+        <div className="absolute inset-0 bg-[url('/subtle-pattern.svg')] opacity-5"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-block mb-6">
+              <div className="w-20 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto rounded-full"></div>
+            </div>
+            <div className="flex items-center justify-center space-x-4 space-x-reverse mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center shadow-xl">
+                <Brain className="text-academy-blue text-2xl" />
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue">الدورات التدريبية</h2>
+            </div>
+            <p className="text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed">
+              دورات تدريبية متخصصة تركز على تطوير المهارات العملية والمعرفة التطبيقية في مختلف المجالات
+              <br />
+              <span className="text-lg text-academy-darker-gray">نقدم تدريباً عملياً مكثفاً لتطوير قدراتك المهنية</span>
+            </p>
+          </div>
+
+          {courses.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
+              {courses.map((course, index) => (
+                <CourseCard key={course.id} course={course} index={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20">
+              <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/30 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
+                <Brain className="text-academy-gold text-6xl" />
+              </div>
+              <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد دورات تدريبية</h3>
+              <p className="text-academy-dark-gray text-lg">لم يتم إضافة الدورات التدريبية بعد.</p>
             </div>
           )}
         </div>

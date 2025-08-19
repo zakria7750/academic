@@ -23,8 +23,15 @@ export default function DashboardPage() {
       title: "إدارة البرامج التعليمية",
       icon: BookOpen,
       href: "/dashboard/programs",
-      description: "إضافة وتعديل البرامج والدورات التعليمية",
+      description: "إضافة وتعديل البرامج التعليمية",
       color: "from-academy-blue-600 to-academy-blue-700",
+    },
+    {
+      title: "إدارة الدورات التدريبية",
+      icon: BookOpen,
+      href: "/dashboard/courses",
+      description: "إضافة وتعديل الدورات التدريبية",
+      color: "from-academy-gold-500 to-academy-gold-600",
     },
     {
       title: "إدارة القبول والتسجيل",

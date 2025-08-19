@@ -183,3 +183,15 @@ export type InternationalAccreditation = {
   created_at: string
   updated_at: string
 }
+
+export type Course = {
+  id: string
+  name: string
+  duration: string | null
+  hours: number
+  education_system: string | null
+  fees: number
+  image_url: string | null
+  created_at: string
+  updated_at: string
+}
