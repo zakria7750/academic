@@ -71,7 +71,9 @@ export default function ProgramsManagement() {
 
   const fetchTrainingCourses = async () => {
     try {
+      console.log("Fetching training courses...")
       const courses = await getAllTrainingCourses()
+      console.log("Training courses fetched:", courses)
       setTrainingCourses(courses)
     } catch (error) {
       console.error("Error fetching training courses:", error)
@@ -197,8 +199,11 @@ export default function ProgramsManagement() {
   }
 
   const handleDeleteConfirm = async () => {
+    console.log("handleDeleteConfirm called", { programToDelete, courseToDelete })
+    
     if (programToDelete) {
       try {
+        console.log("Deleting program:", programToDelete.id)
         const { error } = await supabase.from("programs").delete().eq("id", programToDelete.id)
 
         if (error) throw error
@@ -213,6 +218,7 @@ export default function ProgramsManagement() {
       }
     } else if (courseToDelete) {
       try {
+        console.log("Deleting training course:", courseToDelete.id)
         const result = await deleteTrainingCourse(courseToDelete.id)
         if (!result.success) throw new Error(result.message)
         showMessage("success", "تم حذف الدورة التدريبية بنجاح")
@@ -223,19 +229,41 @@ export default function ProgramsManagement() {
         console.error("Error deleting training course:", error)
         showMessage("error", error instanceof Error ? error.message : "حدث خطأ في حذف الدورة التدريبية")
       }
+    } else {
+      console.log("No item to delete")
+      showMessage("error", "لا يوجد عنصر للحذف")
     }
+    
+    // Log final state
+    console.log("Final state after deletion:", { showDeleteModal, programToDelete, courseToDelete })
   }
 
   const handleDeleteClick = (program: Program) => {
+    console.log("handleDeleteClick called with program:", program)
     setProgramToDelete(program)
     setCourseToDelete(null)
     setShowDeleteModal(true)
+    console.log("Modal state after setting:", { showDeleteModal: true, programToDelete: program, courseToDelete: null })
   }
 
   const handleDeleteCourseClick = (course: TrainingCourse) => {
+    console.log("handleDeleteCourseClick called with course:", course)
     setCourseToDelete(course)
     setProgramToDelete(null)
     setShowDeleteModal(true)
+    console.log("Modal state after setting:", { showDeleteModal: true, courseToDelete: course, programToDelete: null })
+    
+    // Force a re-render to ensure the modal shows
+    setTimeout(() => {
+      console.log("Current state after timeout:", { showDeleteModal, courseToDelete, programToDelete })
+    }, 100)
+    
+    // Also log the current state immediately
+    console.log("Immediate state check:", { 
+      showDeleteModal: true, 
+      courseToDelete: course, 
+      programToDelete: null 
+    })
   }
 
   const handleEdit = (program: Program) => {
@@ -391,9 +419,15 @@ export default function ProgramsManagement() {
         </div>
       )}
 
-      {/* Enhanced Delete Confirmation Modal */}
-      {showDeleteModal && programToDelete && (
+            {/* Enhanced Delete Confirmation Modal */}
+      {showDeleteModal && (programToDelete || courseToDelete) && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 slide-up" style={{backdropFilter: 'blur(12px)', background: 'rgba(0, 31, 63, 0.8)'}}>
+          {/* Debug info */}
+          <div className="absolute top-4 left-4 text-white text-xs bg-black/50 p-2 rounded">
+            Debug: showDeleteModal={showDeleteModal.toString()}, 
+            programToDelete={programToDelete ? 'exists' : 'null'}, 
+            courseToDelete={courseToDelete ? 'exists' : 'null'}
+          </div>
           <Card className="w-full max-w-md bg-white border-0 shadow-2xl rounded-2xl overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-red-50 to-red-100 border-b border-red-200">
               <div className="flex items-center gap-3">
@@ -418,11 +452,13 @@ export default function ProgramsManagement() {
                   {programToDelete 
                     ? (programToDelete.type === "masters" ? "ماجستير مهني" : 
                        programToDelete.type === "doctorate" ? "دكتوراه مهنية" : "دبلوم مهني")
-                    : "دورة تدريبية"
+                    : courseToDelete 
+                    ? "دورة تدريبية"
+                    : ""
                   }
                 </p>
                 <p className="text-academy-dark-gray mb-4">
-                  هل أنت متأكد من حذف {programToDelete ? "هذا البرنامج" : "هذه الدورة التدريبية"}؟
+                  هل أنت متأكد من حذف {programToDelete ? "هذا البرنامج" : courseToDelete ? "هذه الدورة التدريبية" : ""}؟
                 </p>
                 <p className="text-red-600 text-sm bg-red-50 p-3 rounded-lg border border-red-200">
                   تحذير: لا يمكن التراجع عن هذا الإجراء
