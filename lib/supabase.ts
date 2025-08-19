@@ -87,6 +87,18 @@ export type Program = {
   updated_at: string
 }
 
+export type TrainingCourse = {
+  id: string
+  name: string
+  duration: string
+  hours: number
+  education_system: string
+  fees: number
+  image_url: string | null
+  created_at: string
+  updated_at: string
+}
+
 export type Trainer = {
   id: string
   name: string
