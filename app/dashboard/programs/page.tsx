@@ -3,26 +3,31 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { supabase, type Program } from "@/lib/supabase"
+import { supabase, type Program, type TrainingCourse } from "@/lib/supabase"
 import { revalidateProgramsPage } from "@/app/actions/programs-actions"
+import { createTrainingCourse, updateTrainingCourse, deleteTrainingCourse, getAllTrainingCourses } from "@/app/actions/training-courses-actions"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle, BookOpen } from "lucide-react"
+import { Plus, Edit, Trash2, Upload, X, Check, AlertCircle, BookOpen, Zap } from "lucide-react"
 import Image from "next/image"
 
 export default function ProgramsManagement() {
   const [programs, setPrograms] = useState<Program[]>([])
+  const [trainingCourses, setTrainingCourses] = useState<TrainingCourse[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [programToDelete, setProgramToDelete] = useState<Program | null>(null)
+  const [courseToDelete, setCourseToDelete] = useState<TrainingCourse | null>(null)
   const [editingProgram, setEditingProgram] = useState<Program | null>(null)
+  const [editingCourse, setEditingCourse] = useState<TrainingCourse | null>(null)
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [activeTab, setActiveTab] = useState<"masters" | "doctorate" | "diploma">("masters")
+  const [activeTab, setActiveTab] = useState<"masters" | "doctorate" | "diploma" | "training">("masters")
+  const [isTrainingCourse, setIsTrainingCourse] = useState(false)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -35,8 +40,19 @@ export default function ProgramsManagement() {
     image: null as File | null,
   })
 
+  // Training course form state
+  const [courseFormData, setCourseFormData] = useState({
+    name: "",
+    duration: "",
+    hours: "",
+    education_system: "",
+    fees: "",
+    image: null as File | null,
+  })
+
   useEffect(() => {
     fetchPrograms()
+    fetchTrainingCourses()
   }, [])
 
   const fetchPrograms = async () => {
@@ -50,6 +66,16 @@ export default function ProgramsManagement() {
       showMessage("error", "حدث خطأ في تحميل البيانات")
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const fetchTrainingCourses = async () => {
+    try {
+      const courses = await getAllTrainingCourses()
+      setTrainingCourses(courses)
+    } catch (error) {
+      console.error("Error fetching training courses:", error)
+      showMessage("error", "حدث خطأ في تحميل الدورات التدريبية")
     }
   }
 
@@ -82,80 +108,140 @@ export default function ProgramsManagement() {
     setIsSubmitting(true)
 
     try {
-      let imageUrl = editingProgram?.image_url || null
+      if (isTrainingCourse) {
+        // Handle training course submission
+        let imageUrl = editingCourse?.image_url || null
 
-      // Upload new image if provided
-      if (formData.image) {
-        const uploadedUrl = await uploadImage(formData.image)
-        if (uploadedUrl) {
-          imageUrl = uploadedUrl
-        } else {
-          throw new Error("فشل في رفع الصورة")
+        if (courseFormData.image) {
+          const uploadedUrl = await uploadImage(courseFormData.image)
+          if (uploadedUrl) {
+            imageUrl = uploadedUrl
+          } else {
+            throw new Error("فشل في رفع الصورة")
+          }
         }
-      }
 
-      const programData = {
-        name: formData.name,
-        type: formData.type,
-        duration: formData.type === "diploma" ? null : formData.duration,
-        hours: Number.parseInt(formData.hours),
-        education_system: formData.type === "diploma" ? null : formData.education_system,
-        fees: Number.parseFloat(formData.fees),
-        image_url: imageUrl,
-      }
+        const courseData = {
+          name: courseFormData.name,
+          duration: courseFormData.duration,
+          hours: Number.parseInt(courseFormData.hours),
+          education_system: courseFormData.education_system,
+          fees: Number.parseFloat(courseFormData.fees),
+          image_url: imageUrl,
+        }
 
-      if (editingProgram) {
-        // Update existing program
-        const { error } = await supabase.from("programs").update(programData).eq("id", editingProgram.id)
+        if (editingCourse) {
+          // Update existing course
+          const result = await updateTrainingCourse(editingCourse.id, courseData)
+          if (!result.success) throw new Error(result.message)
+          showMessage("success", "تم تحديث الدورة التدريبية بنجاح")
+        } else {
+          // Add new course
+          const result = await createTrainingCourse(courseData)
+          if (!result.success) throw new Error(result.message)
+          showMessage("success", "تم إضافة الدورة التدريبية بنجاح")
+        }
 
-        if (error) throw error
-        showMessage("success", "تم تحديث البرنامج بنجاح")
-        await revalidateProgramsPage()
+        resetCourseForm()
+        fetchTrainingCourses()
       } else {
-        // Add new program
-        const { error } = await supabase.from("programs").insert([programData])
+        // Handle program submission
+        let imageUrl = editingProgram?.image_url || null
 
-        if (error) throw error
-        showMessage("success", "تم إضافة البرنامج بنجاح")
-        await revalidateProgramsPage()
+        // Upload new image if provided
+        if (formData.image) {
+          const uploadedUrl = await uploadImage(formData.image)
+          if (uploadedUrl) {
+            imageUrl = uploadedUrl
+          } else {
+            throw new Error("فشل في رفع الصورة")
+          }
+        }
+
+        const programData = {
+          name: formData.name,
+          type: formData.type,
+          duration: formData.type === "diploma" ? null : formData.duration,
+          hours: Number.parseInt(formData.hours),
+          education_system: formData.type === "diploma" ? null : formData.education_system,
+          fees: Number.parseFloat(formData.fees),
+          image_url: imageUrl,
+        }
+
+        if (editingProgram) {
+          // Update existing program
+          const { error } = await supabase.from("programs").update(programData).eq("id", editingProgram.id)
+
+          if (error) throw error
+          showMessage("success", "تم تحديث البرنامج بنجاح")
+          await revalidateProgramsPage()
+        } else {
+          // Add new program
+          const { error } = await supabase.from("programs").insert([programData])
+
+          if (error) throw error
+          showMessage("success", "تم إضافة البرنامج بنجاح")
+          await revalidateProgramsPage()
+        }
+
+        // Reset form and refresh data
+        resetForm()
+        fetchPrograms()
       }
-
-      // Reset form and refresh data
-      resetForm()
-      fetchPrograms()
     } catch (error) {
-      console.error("Error saving program:", error)
-      showMessage("error", "حدث خطأ في حفظ البيانات")
+      console.error("Error saving:", error)
+      showMessage("error", error instanceof Error ? error.message : "حدث خطأ في حفظ البيانات")
     } finally {
       setIsSubmitting(false)
     }
   }
 
   const handleDeleteConfirm = async () => {
-    if (!programToDelete) return
+    if (programToDelete) {
+      try {
+        const { error } = await supabase.from("programs").delete().eq("id", programToDelete.id)
 
-    try {
-      const { error } = await supabase.from("programs").delete().eq("id", programToDelete.id)
-
-      if (error) throw error
-      await revalidateProgramsPage()
-      showMessage("success", "تم حذف البرنامج بنجاح")
-      fetchPrograms()
-      setShowDeleteModal(false)
-      setProgramToDelete(null)
-    } catch (error) {
-      console.error("Error deleting program:", error)
-      showMessage("error", "حدث خطأ في حذف البرنامج")
+        if (error) throw error
+        await revalidateProgramsPage()
+        showMessage("success", "تم حذف البرنامج بنجاح")
+        fetchPrograms()
+        setShowDeleteModal(false)
+        setProgramToDelete(null)
+      } catch (error) {
+        console.error("Error deleting program:", error)
+        showMessage("error", "حدث خطأ في حذف البرنامج")
+      }
+    } else if (courseToDelete) {
+      try {
+        const result = await deleteTrainingCourse(courseToDelete.id)
+        if (!result.success) throw new Error(result.message)
+        showMessage("success", "تم حذف الدورة التدريبية بنجاح")
+        fetchTrainingCourses()
+        setShowDeleteModal(false)
+        setCourseToDelete(null)
+      } catch (error) {
+        console.error("Error deleting training course:", error)
+        showMessage("error", error instanceof Error ? error.message : "حدث خطأ في حذف الدورة التدريبية")
+      }
     }
   }
 
   const handleDeleteClick = (program: Program) => {
     setProgramToDelete(program)
+    setCourseToDelete(null)
+    setShowDeleteModal(true)
+  }
+
+  const handleDeleteCourseClick = (course: TrainingCourse) => {
+    setCourseToDelete(course)
+    setProgramToDelete(null)
     setShowDeleteModal(true)
   }
 
   const handleEdit = (program: Program) => {
     setEditingProgram(program)
+    setEditingCourse(null)
+    setIsTrainingCourse(false)
     setFormData({
       name: program.name,
       type: program.type,
@@ -163,6 +249,21 @@ export default function ProgramsManagement() {
       hours: program.hours.toString(),
       education_system: program.education_system || "",
       fees: program.fees.toString(),
+      image: null,
+    })
+    setShowForm(true)
+  }
+
+  const handleEditCourse = (course: TrainingCourse) => {
+    setEditingCourse(course)
+    setEditingProgram(null)
+    setIsTrainingCourse(true)
+    setCourseFormData({
+      name: course.name,
+      duration: course.duration,
+      hours: course.hours.toString(),
+      education_system: course.education_system,
+      fees: course.fees.toString(),
       image: null,
     })
     setShowForm(true)
@@ -182,10 +283,31 @@ export default function ProgramsManagement() {
     setShowForm(false)
   }
 
+  const resetCourseForm = () => {
+    setCourseFormData({
+      name: "",
+      duration: "",
+      hours: "",
+      education_system: "",
+      fees: "",
+      image: null,
+    })
+    setEditingCourse(null)
+    setIsTrainingCourse(false)
+    setShowForm(false)
+  }
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
       setFormData({ ...formData, image: file })
+    }
+  }
+
+  const handleCourseImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setCourseFormData({ ...courseFormData, image: file })
     }
   }
 
@@ -219,13 +341,28 @@ export default function ProgramsManagement() {
                 </div>
               </div>
             </div>
-            <Button
-              onClick={() => setShowForm(true)}
-              className="btn-primary text-academy-blue font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              <Plus size={20} className="ml-2" />
-              إضافة برنامج جديد
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                onClick={() => {
+                  setIsTrainingCourse(false)
+                  setShowForm(true)
+                }}
+                className="btn-primary text-academy-blue font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                <Plus size={20} className="ml-2" />
+                إضافة برنامج جديد
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsTrainingCourse(true)
+                  setShowForm(true)
+                }}
+                className="btn-secondary text-academy-blue font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-academy-gold"
+              >
+                <Zap size={20} className="ml-2" />
+                إضافة دورة تدريبية
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -270,18 +407,23 @@ export default function ProgramsManagement() {
               <div className="text-center mb-6">
                 <div className="w-20 h-20 mx-auto mb-4 relative rounded-xl overflow-hidden border-4 border-red-200 shadow-md">
                   <Image
-                    src={programToDelete.image_url || "/placeholder.svg?height=80&width=80&text=برنامج"}
-                    alt={programToDelete.name}
+                    src={(programToDelete?.image_url || courseToDelete?.image_url) || "/placeholder.svg?height=80&width=80&text=برنامج"}
+                    alt={programToDelete?.name || courseToDelete?.name || ""}
                     fill
                     className="object-cover"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-academy-blue mb-2">{programToDelete.name}</h3>
+                <h3 className="text-lg font-bold text-academy-blue mb-2">{programToDelete?.name || courseToDelete?.name}</h3>
                 <p className="text-academy-dark-gray mb-2 font-semibold">
-                  {programToDelete.type === "masters" ? "ماجستير مهني" : 
-                   programToDelete.type === "doctorate" ? "دكتوراه مهنية" : "دبلوم مهني"}
+                  {programToDelete 
+                    ? (programToDelete.type === "masters" ? "ماجستير مهني" : 
+                       programToDelete.type === "doctorate" ? "دكتوراه مهنية" : "دبلوم مهني")
+                    : "دورة تدريبية"
+                  }
                 </p>
-                <p className="text-academy-dark-gray mb-4">هل أنت متأكد من حذف هذا البرنامج؟</p>
+                <p className="text-academy-dark-gray mb-4">
+                  هل أنت متأكد من حذف {programToDelete ? "هذا البرنامج" : "هذه الدورة التدريبية"}؟
+                </p>
                 <p className="text-red-600 text-sm bg-red-50 p-3 rounded-lg border border-red-200">
                   تحذير: لا يمكن التراجع عن هذا الإجراء
                 </p>
@@ -295,7 +437,11 @@ export default function ProgramsManagement() {
                   تأكيد الحذف
                 </Button>
                 <Button
-                  onClick={() => {setShowDeleteModal(false); setProgramToDelete(null)}}
+                  onClick={() => {
+                    setShowDeleteModal(false); 
+                    setProgramToDelete(null);
+                    setCourseToDelete(null);
+                  }}
                   className="flex-1 bg-academy-gray hover:bg-academy-gray-medium text-academy-blue font-bold py-3 rounded-xl transition-all duration-300"
                 >
                   <X size={18} className="ml-2" />
@@ -318,13 +464,16 @@ export default function ProgramsManagement() {
                     <BookOpen className="text-academy-blue" size={20} />
                   </div>
                   <CardTitle className="text-academy-blue text-xl font-bold">
-                    {editingProgram ? "تعديل البرنامج" : "إضافة برنامج جديد"}
+                    {isTrainingCourse 
+                      ? (editingCourse ? "تعديل الدورة التدريبية" : "إضافة دورة تدريبية جديدة")
+                      : (editingProgram ? "تعديل البرنامج" : "إضافة برنامج جديد")
+                    }
                   </CardTitle>
                 </div>
                 <Button
                   variant="ghost"
                   size="icon"
-                  onClick={resetForm}
+                  onClick={isTrainingCourse ? resetCourseForm : resetForm}
                   className="text-academy-dark-gray hover:text-academy-blue hover:bg-academy-blue/5 rounded-lg"
                 >
                   <X size={20} />
@@ -333,35 +482,39 @@ export default function ProgramsManagement() {
             </CardHeader>
             <CardContent className="p-8 bg-white">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Program Type */}
-                <div>
-                  <Label htmlFor="type" className="text-academy-blue font-bold text-lg mb-3 block">
-                    نوع البرنامج *
-                  </Label>
-                  <Select
-                    value={formData.type}
-                    onValueChange={(value: "masters" | "doctorate" | "diploma") =>
-                      setFormData({ ...formData, type: value })
-                    }
-                  >
-                    <SelectTrigger className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white">
-                      <SelectValue placeholder="اختر نوع البرنامج" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      <SelectItem value="masters">ماجستير مهني</SelectItem>
-                      <SelectItem value="doctorate">دكتوراه مهنية</SelectItem>
-                      <SelectItem value="diploma">دبلوم مهني</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                {!isTrainingCourse ? (
+                  <>
+                    {/* Program Type */}
+                    <div>
+                      <Label htmlFor="type" className="text-academy-blue font-bold text-lg mb-3 block">
+                        نوع البرنامج *
+                      </Label>
+                      <Select
+                        value={formData.type}
+                        onValueChange={(value: "masters" | "doctorate" | "diploma") =>
+                          setFormData({ ...formData, type: value })
+                        }
+                      >
+                        <SelectTrigger className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white">
+                          <SelectValue placeholder="اختر نوع البرنامج" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white">
+                          <SelectItem value="masters">ماجستير مهني</SelectItem>
+                          <SelectItem value="doctorate">دكتوراه مهنية</SelectItem>
+                          <SelectItem value="diploma">دبلوم مهني</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </>
+                ) : null}
 
                 {/* Enhanced Image Upload */}
                 <div>
                   <Label htmlFor="image" className="text-academy-blue font-bold text-lg mb-3 block">
-                    صورة البرنامج
+                    {isTrainingCourse ? "صورة الدورة التدريبية" : "صورة البرنامج"}
                   </Label>
                   <div className="mt-2">
-                    <input type="file" id="image" accept="image/*" onChange={handleImageChange} className="hidden" />
+                    <input type="file" id="image" accept="image/*" onChange={isTrainingCourse ? handleCourseImageChange : handleImageChange} className="hidden" />
                     <label
                       htmlFor="image"
                       className="flex flex-col items-center justify-center w-full h-40 rounded-xl cursor-pointer bg-white border-2 border-dashed border-academy-gold/40 hover:border-academy-gold hover:bg-academy-gold/5 transition-all duration-300"
@@ -371,7 +524,10 @@ export default function ProgramsManagement() {
                           <Upload className="text-academy-gold" size={24} />
                         </div>
                         <span className="text-academy-blue font-semibold text-lg mb-2">
-                          {formData.image ? formData.image.name : "اختر صورة البرنامج"}
+                          {isTrainingCourse 
+                            ? (courseFormData.image ? courseFormData.image.name : "اختر صورة الدورة التدريبية")
+                            : (formData.image ? formData.image.name : "اختر صورة البرنامج")
+                          }
                         </span>
                         <span className="text-academy-dark-gray text-sm">PNG, JPG أو JPEG (الحد الأقصى 5MB)</span>
                       </div>
@@ -379,39 +535,43 @@ export default function ProgramsManagement() {
                   </div>
                 </div>
 
-                {/* Program Name */}
+                {/* Program/Course Name */}
                 <div>
                   <Label htmlFor="name" className="text-academy-blue font-bold text-lg mb-3 block">
-                    اسم البرنامج *
+                    {isTrainingCourse ? "اسم الدورة التدريبية *" : "اسم البرنامج *"}
                   </Label>
                   <Input
                     id="name"
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    value={isTrainingCourse ? courseFormData.name : formData.name}
+                    onChange={(e) => isTrainingCourse 
+                      ? setCourseFormData({ ...courseFormData, name: e.target.value })
+                      : setFormData({ ...formData, name: e.target.value })
+                    }
                     required
                     className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white"
-                    placeholder="أدخل اسم البرنامج"
+                    placeholder={isTrainingCourse ? "أدخل اسم الدورة التدريبية" : "أدخل اسم البرنامج"}
                   />
                 </div>
 
-                {/* Duration (not for diploma) */}
-                {formData.type !== "diploma" && (
-                  <div>
-                    <Label htmlFor="duration" className="text-academy-blue font-bold text-lg mb-3 block">
-                      مدة البرنامج *
-                    </Label>
-                    <Input
-                      id="duration"
-                      type="text"
-                      value={formData.duration}
-                      onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                      required={formData.type !== "diploma"}
-                      className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white"
-                      placeholder="مثال: سنتان"
-                    />
-                  </div>
-                )}
+                {/* Duration */}
+                <div>
+                  <Label htmlFor="duration" className="text-academy-blue font-bold text-lg mb-3 block">
+                    {isTrainingCourse ? "مدة الدورة *" : "مدة البرنامج *"}
+                  </Label>
+                  <Input
+                    id="duration"
+                    type="text"
+                    value={isTrainingCourse ? courseFormData.duration : formData.duration}
+                    onChange={(e) => isTrainingCourse 
+                      ? setCourseFormData({ ...courseFormData, duration: e.target.value })
+                      : setFormData({ ...formData, duration: e.target.value })
+                    }
+                    required={isTrainingCourse || formData.type !== "diploma"}
+                    className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white"
+                    placeholder={isTrainingCourse ? "مثال: شهر واحد" : "مثال: سنتان"}
+                  />
+                </div>
 
                 {/* Hours */}
                 <div>
@@ -421,35 +581,39 @@ export default function ProgramsManagement() {
                   <Input
                     id="hours"
                     type="number"
-                    value={formData.hours}
-                    onChange={(e) => setFormData({ ...formData, hours: e.target.value })}
+                    value={isTrainingCourse ? courseFormData.hours : formData.hours}
+                    onChange={(e) => isTrainingCourse 
+                      ? setCourseFormData({ ...courseFormData, hours: e.target.value })
+                      : setFormData({ ...formData, hours: e.target.value })
+                    }
                     required
                     className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white"
                     placeholder="أدخل عدد الساعات"
                   />
                 </div>
 
-                {/* Education System (not for diploma) */}
-                {formData.type !== "diploma" && (
-                  <div>
-                    <Label htmlFor="education_system" className="text-academy-blue font-bold text-lg mb-3 block">
-                      نظام التعليم *
-                    </Label>
-                    <Select
-                      value={formData.education_system}
-                      onValueChange={(value) => setFormData({ ...formData, education_system: value })}
-                    >
-                      <SelectTrigger className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white">
-                        <SelectValue placeholder="اختر نظام التعليم" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-white">
-                        <SelectItem value="تعليم حضوري">تعليم حضوري</SelectItem>
-                        <SelectItem value="تعليم إلكتروني">تعليم إلكتروني</SelectItem>
-                        <SelectItem value="تعليم مدمج">تعليم مدمج</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
+                {/* Education System */}
+                <div>
+                  <Label htmlFor="education_system" className="text-academy-blue font-bold text-lg mb-3 block">
+                    نظام التعليم *
+                  </Label>
+                  <Select
+                    value={isTrainingCourse ? courseFormData.education_system : formData.education_system}
+                    onValueChange={(value) => isTrainingCourse 
+                      ? setCourseFormData({ ...courseFormData, education_system: value })
+                      : setFormData({ ...formData, education_system: value })
+                    }
+                  >
+                    <SelectTrigger className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white">
+                      <SelectValue placeholder="اختر نظام التعليم" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white">
+                      <SelectItem value="تعليم حضوري">تعليم حضوري</SelectItem>
+                      <SelectItem value="تعليم إلكتروني">تعليم إلكتروني</SelectItem>
+                      <SelectItem value="تعليم مدمج">تعليم مدمج</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
                 {/* Fees */}
                 <div>
@@ -460,8 +624,11 @@ export default function ProgramsManagement() {
                     id="fees"
                     type="number"
                     step="0.01"
-                    value={formData.fees}
-                    onChange={(e) => setFormData({ ...formData, fees: e.target.value })}
+                    value={isTrainingCourse ? courseFormData.fees : formData.fees}
+                    onChange={(e) => isTrainingCourse 
+                      ? setCourseFormData({ ...courseFormData, fees: e.target.value })
+                      : setFormData({ ...formData, fees: e.target.value })
+                    }
                     required
                     className="mt-2 h-12 text-lg rounded-xl border-2 border-academy-gold/30 focus:border-academy-gold bg-white"
                     placeholder="أدخل الرسوم الدراسية"
@@ -482,14 +649,17 @@ export default function ProgramsManagement() {
                       </>
                     ) : (
                       <>
-                        {editingProgram ? "تحديث البرنامج" : "إضافة البرنامج"}
+                        {isTrainingCourse 
+                          ? (editingCourse ? "تحديث الدورة التدريبية" : "إضافة الدورة التدريبية")
+                          : (editingProgram ? "تحديث البرنامج" : "إضافة البرنامج")
+                        }
                         <Check size={20} className="mr-2" />
                       </>
                     )}
                   </Button>
                   <Button
                     type="button"
-                    onClick={resetForm}
+                    onClick={isTrainingCourse ? resetCourseForm : resetForm}
                     className="btn-secondary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl flex-1 hover:scale-105 transition-all duration-300"
                   >
                     <X size={20} className="mr-2" />
@@ -538,98 +708,205 @@ export default function ProgramsManagement() {
             <BookOpen size={18} className="ml-2" />
             الدبلومات ({programs.filter((p) => p.type === "diploma").length})
           </Button>
+          <Button
+            onClick={() => setActiveTab("training")}
+            className={`${
+              activeTab === "training"
+                ? "bg-academy-blue text-white shadow-lg"
+                : "bg-white text-academy-blue border-2 border-academy-blue hover:bg-academy-blue hover:text-white"
+            } font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105`}
+          >
+            <Zap size={18} className="ml-2" />
+            الدورات التدريبية ({trainingCourses.length})
+          </Button>
         </div>
 
         {/* Enhanced Programs List */}
-        {filteredPrograms.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPrograms.map((program) => (
-              <Card key={program.id} className="group border-0 shadow-lg hover:shadow-2xl bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 relative">
-                <CardContent className="p-0">
-                  {/* Enhanced Program Image */}
-                  <div className="relative h-56 overflow-hidden rounded-t-2xl">
-                    <Image
-                      src={program.image_url || "/placeholder.svg?height=300&width=300&text=برنامج+تعليمي"}
-                      alt={program.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent"></div>
-                    
-                    {/* Action Buttons - Always visible on mobile, hover on desktop */}
-                    <div className="absolute top-3 left-3 flex gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-2 group-hover:translate-y-0">
-                      <Button
-                        size="icon"
-                        onClick={() => handleEdit(program)}
-                        className="w-10 h-10 bg-academy-gold/95 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl hover:scale-110 transition-all duration-300"
-                      >
-                        <Edit size={16} />
-                      </Button>
-                      <Button
-                        size="icon"
-                        onClick={() => handleDeleteClick(program)}
-                        className="w-10 h-10 bg-red-500/95 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl hover:scale-110 transition-all duration-300"
-                      >
-                        <Trash2 size={16} />
-                      </Button>
+        {activeTab === "training" ? (
+          // Training Courses List
+          trainingCourses.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {trainingCourses.map((course) => (
+                <Card key={course.id} className="group border-0 shadow-lg hover:shadow-2xl bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 relative">
+                  <CardContent className="p-0">
+                    {/* Enhanced Course Image */}
+                    <div className="relative h-56 overflow-hidden rounded-t-2xl">
+                      <Image
+                        src={course.image_url || "/placeholder.svg?height=300&width=300&text=دورة+تدريبية"}
+                        alt={course.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent"></div>
+                      
+                      {/* Action Buttons - Always visible on mobile, hover on desktop */}
+                      <div className="absolute top-3 left-3 flex gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-2 group-hover:translate-y-0">
+                        <Button
+                          size="icon"
+                          onClick={() => handleEditCourse(course)}
+                          className="w-10 h-10 bg-academy-gold/95 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl hover:scale-110 transition-all duration-300"
+                        >
+                          <Edit size={16} />
+                        </Button>
+                        <Button
+                          size="icon"
+                          onClick={() => handleDeleteCourseClick(course)}
+                          className="w-10 h-10 bg-red-500/95 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl hover:scale-110 transition-all duration-300"
+                        >
+                          <Trash2 size={16} />
+                        </Button>
+                      </div>
+                      
+                      {/* Course Type Badge */}
+                      <div className="absolute top-3 right-3 bg-gradient-to-r from-academy-gold to-academy-gold-light text-academy-blue px-3 py-1 rounded-full text-sm font-bold shadow-md">
+                        دورة تدريبية
+                      </div>
                     </div>
-                    
-                    {/* Program Type Badge */}
-                    <div className="absolute top-3 right-3 bg-gradient-to-r from-academy-gold to-academy-gold-light text-academy-blue px-3 py-1 rounded-full text-sm font-bold shadow-md">
-                      {program.type === "masters" ? "ماجستير" : program.type === "doctorate" ? "دكتوراه" : "دبلوم"}
-                    </div>
-                  </div>
 
-                  {/* Enhanced Program Info */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors duration-300 line-clamp-2 text-center">
-                      {program.name}
-                    </h3>
-                    <div className="space-y-3 text-sm">
-                      {program.duration && (
+                    {/* Enhanced Course Info */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors duration-300 line-clamp-2 text-center">
+                        {course.name}
+                      </h3>
+                      <div className="space-y-3 text-sm">
                         <div className="flex justify-between items-center p-2 bg-academy-gray-light rounded-lg">
                           <span className="text-academy-dark-gray font-medium">المدة:</span>
-                          <span className="text-academy-blue font-bold">{program.duration}</span>
+                          <span className="text-academy-blue font-bold">{course.duration}</span>
                         </div>
-                      )}
-                      <div className="flex justify-between items-center p-2 bg-academy-gray-light rounded-lg">
-                        <span className="text-academy-dark-gray font-medium">الساعات:</span>
-                        <span className="text-academy-blue font-bold">{program.hours} ساعة</span>
-                      </div>
-                      {program.education_system && (
+                        <div className="flex justify-between items-center p-2 bg-academy-gray-light rounded-lg">
+                          <span className="text-academy-dark-gray font-medium">الساعات:</span>
+                          <span className="text-academy-blue font-bold">{course.hours} ساعة</span>
+                        </div>
                         <div className="flex justify-between items-center p-2 bg-academy-gray-light rounded-lg">
                           <span className="text-academy-dark-gray font-medium">النظام:</span>
-                          <span className="text-academy-blue font-bold">{program.education_system}</span>
+                          <span className="text-academy-blue font-bold">{course.education_system}</span>
                         </div>
-                      )}
-                      <div className="flex justify-between items-center p-3 bg-gradient-to-r from-academy-gold/10 to-academy-gold/5 rounded-lg border border-academy-gold/30 mt-4">
-                        <span className="text-academy-blue font-bold">الرسوم:</span>
-                        <span className="text-academy-gold font-bold text-lg">{program.fees.toLocaleString()} ر.س</span>
+                        <div className="flex justify-between items-center p-3 bg-gradient-to-r from-academy-gold/10 to-academy-gold/5 rounded-lg border border-academy-gold/30 mt-4">
+                          <span className="text-academy-blue font-bold">الرسوم:</span>
+                          <span className="text-academy-gold font-bold text-lg">{course.fees.toLocaleString()} ر.س</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20 fade-in">
-            <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/10 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
-              <BookOpen className="text-academy-gold" size={48} />
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-            <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد برامج</h3>
-            <p className="text-academy-dark-gray text-lg mb-8 max-w-md mx-auto">
-              لم يتم إضافة برامج{" "}
-              {activeTab === "masters" ? "الماجستير" : activeTab === "doctorate" ? "الدكتوراه" : "الدبلومات"} بعد.
-            </p>
-            <Button
-              onClick={() => setShowForm(true)}
-              className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
-            >
-              <Plus size={24} className="ml-2" />
-              إضافة أول برنامج
-            </Button>
-          </div>
+          ) : (
+            <div className="text-center py-20 fade-in">
+              <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/10 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+                <Zap className="text-academy-gold" size={48} />
+              </div>
+              <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد دورات تدريبية</h3>
+              <p className="text-academy-dark-gray text-lg mb-8 max-w-md mx-auto">
+                لم يتم إضافة دورات تدريبية بعد.
+              </p>
+              <Button
+                onClick={() => {
+                  setIsTrainingCourse(true)
+                  setShowForm(true)
+                }}
+                className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
+              >
+                <Zap size={24} className="ml-2" />
+                إضافة أول دورة تدريبية
+              </Button>
+            </div>
+          )
+        ) : (
+          // Programs List
+          filteredPrograms.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPrograms.map((program) => (
+                <Card key={program.id} className="group border-0 shadow-lg hover:shadow-2xl bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 relative">
+                  <CardContent className="p-0">
+                    {/* Enhanced Program Image */}
+                    <div className="relative h-56 overflow-hidden rounded-t-2xl">
+                      <Image
+                        src={program.image_url || "/placeholder.svg?height=300&width=300&text=برنامج+تعليمي"}
+                        alt={program.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent"></div>
+                      
+                      {/* Action Buttons - Always visible on mobile, hover on desktop */}
+                      <div className="absolute top-3 left-3 flex gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-2 group-hover:translate-y-0">
+                        <Button
+                          size="icon"
+                          onClick={() => handleEdit(program)}
+                          className="w-10 h-10 bg-academy-gold/95 text-academy-blue hover:bg-academy-gold shadow-lg backdrop-blur-sm rounded-xl hover:scale-110 transition-all duration-300"
+                        >
+                          <Edit size={16} />
+                        </Button>
+                        <Button
+                          size="icon"
+                          onClick={() => handleDeleteClick(program)}
+                          className="w-10 h-10 bg-red-500/95 text-white hover:bg-red-600 shadow-lg backdrop-blur-sm rounded-xl hover:scale-110 transition-all duration-300"
+                        >
+                          <Trash2 size={16} />
+                        </Button>
+                      </div>
+                      
+                      {/* Program Type Badge */}
+                      <div className="absolute top-3 right-3 bg-gradient-to-r from-academy-gold to-academy-gold-light text-academy-blue px-3 py-1 rounded-full text-sm font-bold shadow-md">
+                        {program.type === "masters" ? "ماجستير" : program.type === "doctorate" ? "دكتوراه" : "دبلوم"}
+                      </div>
+                    </div>
+
+                    {/* Enhanced Program Info */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors duration-300 line-clamp-2 text-center">
+                        {program.name}
+                      </h3>
+                      <div className="space-y-3 text-sm">
+                        {program.duration && (
+                          <div className="flex justify-between items-center p-2 bg-academy-gray-light rounded-lg">
+                            <span className="text-academy-dark-gray font-medium">المدة:</span>
+                            <span className="text-academy-blue font-bold">{program.duration}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between items-center p-2 bg-academy-gray-light rounded-lg">
+                          <span className="text-academy-dark-gray font-medium">الساعات:</span>
+                          <span className="text-academy-blue font-bold">{program.hours} ساعة</span>
+                        </div>
+                        {program.education_system && (
+                          <div className="flex justify-between items-center p-2 bg-academy-gray-light rounded-lg">
+                            <span className="text-academy-dark-gray font-medium">النظام:</span>
+                            <span className="text-academy-blue font-bold">{program.education_system}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between items-center p-3 bg-gradient-to-r from-academy-gold/10 to-academy-gold/5 rounded-lg border border-academy-gold/30 mt-4">
+                          <span className="text-academy-blue font-bold">الرسوم:</span>
+                          <span className="text-academy-gold font-bold text-lg">{program.fees.toLocaleString()} ر.س</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 fade-in">
+              <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/10 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+                <BookOpen className="text-academy-gold" size={48} />
+              </div>
+              <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد برامج</h3>
+              <p className="text-academy-dark-gray text-lg mb-8 max-w-md mx-auto">
+                لم يتم إضافة برامج{" "}
+                {activeTab === "masters" ? "الماجستير" : activeTab === "doctorate" ? "الدكتوراه" : "الدبلومات"} بعد.
+              </p>
+              <Button
+                onClick={() => {
+                  setIsTrainingCourse(false)
+                  setShowForm(true)
+                }}
+                className="btn-primary text-academy-blue font-bold text-lg px-8 py-4 rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
+              >
+                <Plus size={24} className="ml-2" />
+                إضافة أول برنامج
+              </Button>
+            </div>
+          )
         )}
       </div>
     </div>
