@@ -34,7 +34,7 @@ const menuItems = [
   { name: "التحقق من الشهادات", href: "/verification", icon: CheckCircle },
   { name: "الاعتمادات والشراكات", href: "/accreditations", icon: Handshake },
   { name: "الأسئلة الشائعة", href: "/faq", icon: HelpCircle },
-  { name: "مجلة وعي", href: "https://journal-academy-y9yi.vercel.app/", icon: Newspaper },
+  { name: "مجلة وعي", href: "https://journal-academy-y9yi.vercel.app/",target:"_blank", icon: Newspaper },
   { name: "المدونة والأخبار", href: "/blog", icon: MessageSquare },
 ]
 
