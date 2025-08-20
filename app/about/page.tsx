@@ -257,7 +257,7 @@ export default function AboutPage() {
               <div className="relative group">
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                   <Image
-                    src="/mission-image.png"
+                    src="/academic-advisor.png"
                     alt="رسالة أكاديمية المعرفة الدولية"
                     width={600}
                     height={400}
