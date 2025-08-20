@@ -126,10 +126,10 @@ export default function EducationSystemPage() {
             </div>
 
             {/* Ultra Premium Features Preview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-24 max-w-6xl mx-auto">
+            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-24 max-w-6xl mx-auto">
               <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/25 text-center group hover:scale-105 hover:bg-gradient-to-br hover:from-white/25 hover:to-white/15 transition-all duration-500 shadow-2xl">
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-gold/20">
-                  <Brain size={32} className="text-academy-blue" />
+                  Brain size={32} className="text-academy-blue" />
                 </div>
                 <h3 className="text-academy-gold font-bold text-xl mb-3">تعليم ذكي</h3>
                 <p className="text-academy-gold-200 text-lg leading-relaxed">منهجية متطورة</p>
@@ -150,7 +150,7 @@ export default function EducationSystemPage() {
                 <h3 className="text-academy-gold font-bold text-xl mb-3">تقنيات متقدمة</h3>
                 <p className="text-academy-gold-200 text-lg leading-relaxed">أدوات ذكية</p>
               </div>
-            </div>
+            </div>*/}
 
             {/* Ultra Premium Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-5xl mx-auto">
@@ -271,7 +271,7 @@ export default function EducationSystemPage() {
               </div>
 
               {/* Premium Features Badges */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-gradient-to-r from-academy-blue/10 to-academy-gold/10 backdrop-blur-sm p-6 rounded-2xl border border-academy-blue/20 text-center group hover:scale-105 transition-transform duration-300">
                   <div className="w-10 h-10 bg-academy-gold rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <Brain size={20} className="text-academy-blue" />
@@ -295,10 +295,10 @@ export default function EducationSystemPage() {
                   <h3 className="text-academy-blue font-bold text-sm mb-1">تقنيات متقدمة</h3>
                   <p className="text-academy-darker-gray text-xs">أدوات ذكية</p>
                 </div>
-              </div>
+              </div>*/}
 
               {/* Premium Stats */}
-              <div className="grid grid-cols-2 gap-6">
+              {/*  <div className="grid grid-cols-2 gap-6">
                 <div className="bg-white/90 backdrop-blur-xl p-6 rounded-3xl border border-slate-200/50 shadow-2xl text-center group hover:-translate-y-2 transition-transform duration-300">
                   <div className="text-3xl font-bold text-academy-blue mb-2">100%</div>
                   <div className="text-academy-darker-gray font-medium">نجاح الطلاب</div>
@@ -309,7 +309,7 @@ export default function EducationSystemPage() {
                   <div className="text-academy-darker-gray font-medium">دعم متاح</div>
                 </div>
               </div>
-            </div>
+            </div>*/}
 
             {/* Enhanced Image Section */}
             <div className="relative">
