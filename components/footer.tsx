@@ -239,8 +239,8 @@ export default function Footer() {
                       <Icon size={18} />
                     </a>
                   )
-                })}
-              </div>*/}
+                })}*/}
+              </div>
             </div>
           </div>
         </div>
