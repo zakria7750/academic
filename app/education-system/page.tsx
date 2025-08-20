@@ -96,7 +96,7 @@ export default function EducationSystemPage(){
 
             {/* Premium Title Section */}
             <div className="mb-6 sm:mb-8 lg:mb-12">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 tracking-tight leading-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
 
                   نظام التعليم
@@ -116,11 +116,11 @@ export default function EducationSystemPage(){
                 <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
                 <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-gold-light font-medium max-w-5xl mx-auto leading-relaxed mb-6">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6">
 
                 نظام تعليمي متطور يجمع بين الأصالة والحداثة
               </p>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light px-4">
                 نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
               </p>
             </div>
@@ -155,25 +155,25 @@ export default function EducationSystemPage(){
             Ultra Premium Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-8 mt-12 sm:mt-16 lg:mt-20 max-w-5xl mx-auto">
               <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">100%</div>
-                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">نجاح الطلاب</div>
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-academy-blue mb-2 group-hover:scale-110 transition-transform duration-300">100%</div>
+                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm md:text-base">نجاح الطلاب</div>
               </div>
 
               <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">24/7</div>
-                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">دعم متاح</div>
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-academy-blue mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm md:text-base">دعم متاح</div>
               </div>
 
               <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">∞</div>
-                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">إمكانيات لا محدودة</div>
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-academy-blue mb-2 group-hover:scale-110 transition-transform duration-300">∞</div>
+                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm md:text-base">إمكانيات لا محدودة</div>
               </div>
 
               <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-academy-blue mb-2 group-hover:scale-110 transition-transform duration-300">
                   <Shield size={32} className="mx-auto" />
                 </div>
-                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">تعليم مضمون</div>
+                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm md:text-base">تعليم مضمون</div>
               </div>
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function EducationSystemPage(){
                 </div>
 
                 <div className="mb-6 sm:mb-8 lg:mb-12">
-                  <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-academy-blue mb-6 sm:mb-8 tracking-tight leading-tight">
                     نظرة عامة
                   </h2>
                   <div className="flex items-center gap-6 mb-6 sm:mb-8 lg:mb-10">
@@ -224,10 +224,10 @@ export default function EducationSystemPage(){
                     <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                     <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
                   </div>
-                  <p className="text-2xl md:text-3xl text-academy-dark-gray max-w-4xl leading-relaxed font-semibold mb-6">
+                  <p className="text-base sm:text-lg md:text-xl text-academy-dark-gray max-w-3xl leading-relaxed font-semibold mb-4 sm:mb-6 px-4">
                     نقدم نظاماً تعليمياً شاملاً ومتكاملاً يجمع بين أفضل الممارسات التعليمية التقليدية والحديثة
                   </p>
-                  <p className="text-xl text-academy-darker-gray max-w-3xl leading-relaxed">
+                  <p className="text-sm sm:text-base md:text-lg text-academy-darker-gray max-w-2xl leading-relaxed px-4">
                     مع التركيز على التطبيق العملي والتفكير النقدي لإعداد خريجين مؤهلين لسوق العمل المعاصر
                   </p>
                 </div>
@@ -391,7 +391,7 @@ export default function EducationSystemPage(){
             </div>
 
             <div className="mb-6 sm:mb-8 lg:mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-academy-blue mb-6 sm:mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue bg-clip-text text-transparent">
                   أساليب التعليم
                 </span>
@@ -403,10 +403,10 @@ export default function EducationSystemPage(){
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-medium mb-6">
+              <p className="text-sm sm:text-base md:text-lg text-academy-dark-gray max-w-4xl mx-auto leading-relaxed font-medium mb-4 sm:mb-6 px-4">
                 نوفر طرق تعليم متنوعة ومتطورة لتناسب جميع احتياجات الطلاب
               </p>
-              <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-academy-darker-gray max-w-3xl mx-auto leading-relaxed px-4">
                 نقدم تجربة تعليمية شاملة ومتكاملة تجمع بين التعليم التقليدي والحديث مع أحدث التقنيات
 
               </p>
@@ -651,7 +651,7 @@ export default function EducationSystemPage(){
             </div>
 
             <div className="mb-6 sm:mb-8 lg:mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-academy-blue mb-6 sm:mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue bg-clip-text text-transparent">
                   أساليب التقييم
                 </span>
@@ -663,10 +663,10 @@ export default function EducationSystemPage(){
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-medium mb-6">
+              <p className="text-sm sm:text-base md:text-lg text-academy-dark-gray max-w-4xl mx-auto leading-relaxed font-medium mb-4 sm:mb-6 px-4">
                 نظام تقييم شامل ومتوازن يضمن قياس الأداء بدقة واحترافية
               </p>
-              <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-academy-darker-gray max-w-3xl mx-auto leading-relaxed px-4">
                 نتبع منهجية تقييم متعددة الأبعاد لضمان تقييم شامل ومحايد لقدرات الطلاب
               </p>
             </div>
@@ -860,7 +860,7 @@ export default function EducationSystemPage(){
             </div>
 
             <div className="mb-6 sm:mb-8 lg:mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-academy-blue mb-6 sm:mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue bg-clip-text text-transparent">
                   مميزات المنصة التعليمية
                 </span>
@@ -872,10 +872,10 @@ export default function EducationSystemPage(){
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-medium mb-6">
+              <p className="text-sm sm:text-base md:text-lg text-academy-dark-gray max-w-4xl mx-auto leading-relaxed font-medium mb-4 sm:mb-6 px-4">
                 تقنيات متقدمة لتجربة تعليمية متميزة ومتطورة
               </p>
-              <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-academy-darker-gray max-w-3xl mx-auto leading-relaxed px-4">
                 نقدم منصة تعليمية شاملة تجمع بين أحدث التقنيات وسهولة الاستخدام
               </p>
             </div>
@@ -1003,7 +1003,7 @@ export default function EducationSystemPage(){
             </div>
 
             <div className="mb-6 sm:mb-8 lg:mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-academy-blue mb-6 sm:mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-academy-blue via-academy-blue-dark to-academy-blue bg-clip-text text-transparent">
                   الدعم الأكاديمي
                 </span>
@@ -1015,10 +1015,10 @@ export default function EducationSystemPage(){
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-medium mb-6">
+              <p className="text-sm sm:text-base md:text-lg text-academy-dark-gray max-w-4xl mx-auto leading-relaxed font-medium mb-4 sm:mb-6 px-4">
                 دعم شامل ومتكامل لضمان نجاحك الأكاديمي
               </p>
-              <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-academy-darker-gray max-w-3xl mx-auto leading-relaxed px-4">
                 نقدم لك جميع أنواع الدعم التي تحتاجها لتحقيق أهدافك التعليمية
               </p>
             </div>
