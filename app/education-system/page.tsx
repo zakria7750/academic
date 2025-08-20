@@ -126,7 +126,7 @@ export default function EducationSystemPage() {
             </div>
 
             {/* Ultra Premium Features Preview */}
-            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-24 max-w-6xl mx-auto">
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-24 max-w-6xl mx-auto">
               <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/25 text-center group hover:scale-105 hover:bg-gradient-to-br hover:from-white/25 hover:to-white/15 transition-all duration-500 shadow-2xl">
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-gold/20">
                   Brain size={32} className="text-academy-blue" />
@@ -150,7 +150,7 @@ export default function EducationSystemPage() {
                 <h3 className="text-academy-gold font-bold text-xl mb-3">تقنيات متقدمة</h3>
                 <p className="text-academy-gold-200 text-lg leading-relaxed">أدوات ذكية</p>
               </div>
-            </div>*/}
+            </div>
 
             {/* Ultra Premium Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-5xl mx-auto">
@@ -234,7 +234,7 @@ export default function EducationSystemPage() {
               </div>
 
               {/* Enhanced Mini Features Grid */}
-              <div className="grid grid-cols-2 gap-6 lg:gap-8 mb-12">
+              {/* <div className="grid grid-cols-2 gap-6 lg:gap-8 mb-12">
                 <div className="bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 backdrop-blur-sm p-8 rounded-3xl border border-academy-blue/15 text-center group hover:scale-105 hover:shadow-xl transition-all duration-500">
                   <div className="w-12 h-12 bg-academy-gold/90 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                     <Brain size={24} className="text-academy-blue" />
@@ -258,7 +258,7 @@ export default function EducationSystemPage() {
                   <h3 className="text-academy-blue font-bold text-lg mb-2">تقنيات متقدمة</h3>
                   <p className="text-academy-darker-gray text-sm leading-relaxed">أدوات ذكية</p>
                 </div>
-              </div>
+              </div>*/}
 
               {/* Enhanced Description */}
               <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-200/50">
