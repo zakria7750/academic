@@ -3,11 +3,11 @@ import { SiFacebook, SiInstagram, SiLinkedin, SiYoutube, SiX, SiWhatsapp, SiTele
 export const SocialMediaButtons = () => {
   return (
     <div className="flex items-center">
-        <a href="https://wa.me/967735802274"  target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/967730530992"  target="_blank" rel="noopener noreferrer">
           <SiWhatsapp className="h-5 w-5 text-green-600 ml-4" />
           <span className="sr-only">واتساب</span>
         </a>
-
+      {/*
         <a href="https://www.facebook.com/share/15RRS3Ez1q/" target="_blank" rel="noopener noreferrer">
           <SiFacebook className="h-5 w-5 text-blue-600 ml-4 mr-2" />
           <span className="sr-only">فيسبوك</span>
@@ -32,13 +32,13 @@ export const SocialMediaButtons = () => {
           <SiYoutube className="h-5 w-5 text-red-600 ml-4" />
           <span className="sr-only">يوتيوب</span>
         </a>
-      
-        <a href="https://x.com/OxfordproC?t=E85IW17zgJglUdwQ_n6jKw&s=09" target="_blank" rel="noopener noreferrer">
+      */}
+        <a href="https://x.com/Almarifa2018?t=dT3zTEOZU_na7fY9fnoveg&s=09" target="_blank" rel="noopener noreferrer">
           <SiX className="h-5 w-5 text-black ml-4" />
           <span className="sr-only">تويتر</span>
         </a>  
 
-        <a href="https://t.me/oxfordcolle" target="_blank" rel="noopener noreferrer">
+        <a href="https://t.me/IuTnbgluQA2OWRk" target="_blank" rel="noopener noreferrer">
           <SiTelegram className="h-5 w-5 text-blue-500 ml-4" />
           <span className="sr-only">تيليجرام</span>
         </a>  
