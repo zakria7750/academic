@@ -1,6 +1,6 @@
 import { SiFacebook, SiInstagram, SiLinkedin, SiYoutube, SiX, SiWhatsapp, SiTelegram, SiThreads } from 'react-icons/si'
 
-export const SocialMediaButtons = () => {
+export default function SocialMediaButtons() {
   return (
     <div className="flex items-center">
         <a href="https://wa.me/967730530992"  target="_blank" rel="noopener noreferrer">
