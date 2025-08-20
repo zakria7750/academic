@@ -4,6 +4,7 @@ import type React from "react"
 
 import Link from "next/link"
 import { useState } from "react"
+import SocialMediaButtons from "./SocialMediaButtons"
 import {
   Phone,
   Mail,
@@ -220,7 +221,8 @@ export default function Footer() {
             <div>
               <h5 className="text-academy-gold font-semibold mb-3">تابعنا على</h5>
               <div className="flex space-x-3 space-x-reverse">
-                {[
+                <SocialMediaButtons/>
+                {/* {[
                   { icon: Facebook, href: "#", color: "hover:bg-blue-600" },
                   { icon: Twitter, href: "#", color: "hover:bg-sky-500" },
                   { icon: Instagram, href: "#", color: "hover:bg-pink-600" },
@@ -238,7 +240,7 @@ export default function Footer() {
                     </a>
                   )
                 })}
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
