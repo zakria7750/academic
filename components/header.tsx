@@ -92,7 +92,7 @@ function MobileSidebarContent({ onClose }: { onClose: () => void }) {
     { name: "التحقق من الشهادات", href: "/verification", icon: CheckCircle },
     { name: "الاعتمادات والشراكات", href: "/accreditations", icon: Handshake },
     { name: "الأسئلة الشائعة", href: "/faq", icon: HelpCircle },
-    { name: "مجلة وعي", href: "/magazine", icon: Newspaper },
+    { name: "مجلة وعي", href: "https://journal-academy-y9yi-8bgv984fg-za775012309-7619s-projects.vercel.app", icon: Newspaper },
     { name: "المدونة والأخبار", href: "/blog", icon: MessageSquare },
   ]
 
