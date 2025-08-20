@@ -14,7 +14,15 @@ export default function Header() {
             {/* Logo and Academy Name */}
             <div className="flex items-center space-x-4 space-x-reverse">
               <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-amber-300/50 transform hover:scale-105 transition-all duration-300">
-                <GraduationCap className="text-slate-900 w-6 h-6" />
+                {/*<GraduationCap className="text-slate-900 w-6 h-6" />*/}
+                 <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center">
+                  <img 
+                    src="/logo.png" 
+                    alt="Academy Logo" 
+                    className="w-10 h-10 object-contain" 
+                    />
+                 </div>
+
               </div>
               <div className="hidden sm:block">
                 <h1 className="text-xl font-bold bg-gradient-to-r from-amber-300 to-yellow-200 bg-clip-text text-transparent">
