@@ -100,7 +100,7 @@ export default async function AccreditationsPage() {
 
             {/* Ultra Premium Title Section */}
             <div className="mb-16">
-              <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold mb-10 tracking-tight leading-tight font-arabic">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 sm:mb-8 lg:mb-10 tracking-tight leading-tight font-arabic">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light via-white to-academy-gold-light bg-clip-text text-transparent drop-shadow-2xl">
                   الاعتمادات الدولية
                 </span>
@@ -120,10 +120,10 @@ export default async function AccreditationsPage() {
                 <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
               
-              <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-semibold max-w-6xl mx-auto leading-relaxed mb-8 drop-shadow-lg font-arabic tracking-wide">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-semibold max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 drop-shadow-lg font-arabic tracking-wide px-4">
                 اعتمادات دولية معترف بها عالمياً تضمن جودة التعليم والشهادات
               </p>
-              <p className="text-xl md:text-2xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light font-arabic">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-3xl mx-auto leading-relaxed font-light font-arabic px-4">
                 شراكات استراتيجية مع أرقى المؤسسات التعليمية والهيئات المعتمدة حول العالم
               </p>
             </div>
@@ -192,7 +192,7 @@ export default async function AccreditationsPage() {
             </div>
 
             <div className="mb-12">
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-academy-blue mb-10 tracking-tight leading-tight font-arabic">الاعتمادات والشراكات الدولية</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-academy-blue mb-6 sm:mb-8 lg:mb-10 tracking-tight leading-tight font-arabic">الاعتمادات والشراكات الدولية</h2>
               <div className="flex items-center justify-center gap-8 mb-12">
                 <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
                 <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-academy-blue to-transparent shadow-sm"></div>
@@ -205,10 +205,10 @@ export default async function AccreditationsPage() {
                 <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-academy-blue to-transparent shadow-sm"></div>
                 <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
-              <p className="text-2xl md:text-3xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-semibold mb-8 font-arabic tracking-wide">
+              <p className="text-base sm:text-lg md:text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed font-semibold mb-6 sm:mb-8 font-arabic tracking-wide px-4">
                 نفخر بحصولنا على اعتمادات دولية مرموقة من أعرق المؤسسات التعليمية العالمية
               </p>
-              <p className="text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed font-arabic">
+              <p className="text-sm sm:text-base md:text-lg text-academy-darker-gray max-w-3xl mx-auto leading-relaxed font-arabic px-4">
                 شراكات استراتيجية تؤكد جودة برامجنا التعليمية والتدريبية وتضمن الاعتراف الدولي بشهاداتنا
               </p>
             </div>
@@ -325,7 +325,7 @@ export default async function AccreditationsPage() {
             </div>
 
             <div className="mb-12">
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-academy-blue mb-10 tracking-tight leading-tight font-arabic">مميزات الاعتمادات الدولية</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-academy-blue mb-6 sm:mb-8 lg:mb-10 tracking-tight leading-tight font-arabic">مميزات الاعتمادات الدولية</h2>
               <div className="flex items-center justify-center gap-8 mb-12">
                 <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
                 <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-academy-blue to-transparent shadow-sm"></div>
@@ -338,10 +338,10 @@ export default async function AccreditationsPage() {
                 <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-academy-blue to-transparent shadow-sm"></div>
                 <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
-              <p className="text-2xl md:text-3xl text-academy-dark-gray max-w-5xl mx-auto leading-relaxed font-semibold mb-8 font-arabic tracking-wide">
+              <p className="text-base sm:text-lg md:text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed font-semibold mb-6 sm:mb-8 font-arabic tracking-wide px-4">
                 اكتشف المزايا الفريدة التي تحصل عليها من خلال اعتماداتنا الدولية المرموقة
               </p>
-              <p className="text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed font-arabic">
+              <p className="text-sm sm:text-base md:text-lg text-academy-darker-gray max-w-3xl mx-auto leading-relaxed font-arabic px-4">
                 مميزات حصرية تضمن لك مستقبلاً مهنياً متميزاً واعترافاً عالمياً بمؤهلاتك
               </p>
             </div>
