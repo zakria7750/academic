@@ -78,6 +78,37 @@ body {
   border-color: rgba(255, 215, 0, 0.2);
 }
 
+/* Dashboard card button states within cards */
+.dashboard-card .btn-primary {
+  background: linear-gradient(135deg, #FFD700 0%, #e6c200 100%);
+  color: #001f3f;
+  font-weight: 600;
+}
+
+.dashboard-card .btn-primary:hover {
+  background: linear-gradient(135deg, #ffe234 0%, #FFD700 100%);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  transform: translateY(-1px) scale(1.02);
+}
+
+.dashboard-card .btn-primary:active {
+  background: linear-gradient(135deg, #e6c200 0%, #ccac00 100%);
+  transform: translateY(0) scale(1);
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+}
+
+.dashboard-card .btn-primary:focus-visible {
+  outline: 2px solid rgba(0, 31, 63, 0.4);
+  outline-offset: 3px;
+}
+
+/* Ensure active + hover combination is clearly visible */
+.dashboard-card .btn-primary:active:hover {
+  background: linear-gradient(135deg, #d4af00 0%, #b89900 100%);
+  transform: translateY(-0.5px) scale(1.01);
+  box-shadow: 0 3px 10px rgba(255, 215, 0, 0.6);
+}
+
 /* Enhanced Form Styles */
 .form-modal {
   backdrop-filter: blur(8px);
@@ -108,14 +139,57 @@ body {
   background: #ffffff;
 }
 
-/* Enhanced Button Styles */
+/* Enhanced Button Styles for Dashboard */
 .btn-primary {
   background: linear-gradient(135deg, #FFD700 0%, #e6c200 100%);
-  border: none;
+  border: 2px solid transparent;
   box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  color: #001f3f;
+}
+
+/* Dashboard button hover state */
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ffe234 0%, #FFD700 100%);
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+  border-color: rgba(255, 215, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Dashboard button active/pressed state */
+.btn-primary:active {
+  background: linear-gradient(135deg, #e6c200 0%, #ccac00 100%);
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+  transform: translateY(0);
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+/* Dashboard button focus-visible state */
+.btn-primary:focus-visible {
+  outline: 3px solid rgba(0, 31, 63, 0.3);
+  outline-offset: 2px;
+  border-color: #001f3f;
+}
+
+/* Dashboard button disabled state */
+.btn-primary:disabled {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+  color: #9ca3af;
+  box-shadow: none;
+  transform: none;
+  border-color: #e5e5e5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Dashboard button active + hover combination - prevents visual disappearing */
+.btn-primary:active:hover {
+  background: linear-gradient(135deg, #d4af00 0%, #b8990 100%);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.6);
+  border-color: rgba(255, 215, 0, 0.6);
+  transform: translateY(-0.5px);
 }
 
 .btn-primary::before {
@@ -141,13 +215,46 @@ body {
 .btn-secondary {
   border: 2px solid #001f3f;
   background: transparent;
+  color: #001f3f;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-secondary:hover {
   background: #001f3f;
+  color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 31, 63, 0.3);
+}
+
+.btn-secondary:active {
+  background: #001833;
+  border-color: #001833;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 31, 63, 0.4);
+}
+
+.btn-secondary:focus-visible {
+  outline: 3px solid rgba(255, 215, 0, 0.3);
+  outline-offset: 2px;
+}
+
+.btn-secondary:disabled {
+  border-color: #e5e5e5;
+  color: #9ca3af;
+  background: transparent;
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-secondary:active:hover {
+  background: #0a2f5a;
+  border-color: #0a2f5a;
+  color: #ffffff;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(0, 31, 63, 0.4);
 }
 
 /* Enhanced File Upload */
