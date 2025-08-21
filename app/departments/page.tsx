@@ -1,14 +1,24 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { BookOpen, Users, Award, Target, Brain, GraduationCap, Globe, Star } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  BookOpen,
+  Users,
+  Award,
+  Target,
+  Brain,
+  GraduationCap,
+  Globe,
+  Star,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const departments = [
   {
     id: "educational-psychological",
     title: "الأقسام التربوية والنفسية",
-    description: "أقسام متخصصة في التربية وعلم النفس والإرشاد مع برامج حديثة ومبتكرة تواكب أحدث التطورات العالمية",
+    description:
+      "أقسام متخصصة في التربية وعلم النفس والإرشاد مع برامج حديثة ومبتكرة تواكب أحدث التطورات العالمية",
     programsCount: 6,
     image: "/educational-psychology-dept.png",
     icon: Brain,
@@ -18,7 +28,8 @@ const departments = [
   {
     id: "skills-development",
     title: "الأقسام المهارية والتطويرية",
-    description: "أقسام تركز على تطوير المهارات الشخصية والمهنية بأساليب عملية ومعاصرة",
+    description:
+      "أقسام تركز على تطوير المهارات الشخصية والمهنية بأساليب عملية ومعاصرة",
     programsCount: 3,
     image: "/skills-development-dept.png",
     icon: Target,
@@ -28,7 +39,8 @@ const departments = [
   {
     id: "academic-linguistic",
     title: "الأقسام الأكاديمية واللغوية",
-    description: "أقسام اللغات والدراسات الإسلامية والبحوث بمنهجية أكاديمية رصينة ومتطورة",
+    description:
+      "أقسام اللغات والدراسات الإسلامية والبحوث بمنهجية أكاديمية رصينة ومتطورة",
     programsCount: 3,
     image: "/academic-linguistic-dept.png",
     icon: BookOpen,
@@ -38,7 +50,8 @@ const departments = [
   {
     id: "administrative-community",
     title: "الأقسام الإدارية والمجتمعية",
-    description: "أقسام إدارة الأعمال والتنمية المستدامة والذكاء الاصطناعي بخبرات عالمية",
+    description:
+      "أقسام إدارة الأعمال والتنمية المستدامة والذكاء الاصطناعي بخبرات عالمية",
     programsCount: 5,
     image: "/administrative-community-dept.png",
     icon: Users,
@@ -48,14 +61,15 @@ const departments = [
   {
     id: "health-agriculture",
     title: "الأقسام الصحية والزراعية",
-    description: "أقسام التغذية العلاجية والطب البديل والزراعة بأحدث المعايير الدولية",
+    description:
+      "أقسام التغذية العلاجية والطب البديل والزراعة بأحدث المعايير الدولية",
     programsCount: 3,
     image: "/health-agriculture-dept.png",
     icon: Award,
     color: "bg-gradient-to-br from-red-500 to-red-600",
     gradient: "from-red-500/20 to-red-600/20",
   },
-]
+];
 
 export default function DepartmentsPage() {
   return (
@@ -66,7 +80,7 @@ export default function DepartmentsPage() {
         <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-gradient-to-br from-academy-gold/10 via-academy-gold/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-academy-blue/8 via-academy-blue/4 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-br from-academy-gold/6 to-academy-blue/6 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
+
         {/* Floating Geometric Elements */}
         <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-academy-gold/40 rotate-45 animate-pulse delay-300"></div>
         <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-academy-blue/40 rounded-full animate-pulse delay-700"></div>
@@ -79,14 +93,14 @@ export default function DepartmentsPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)]"></div>
-        
+
         {/* Ultra Premium Decorative Elements */}
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/25 to-transparent rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/15 rounded-full blur-xl animate-pulse delay-500"></div>
           <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/25 rounded-full blur-xl animate-pulse delay-1500"></div>
-          
+
           {/* Premium Geometric Patterns */}
           <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/30 rotate-45 animate-pulse delay-2000"></div>
           <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/20 rounded-full animate-pulse delay-2500"></div>
@@ -99,7 +113,10 @@ export default function DepartmentsPage() {
               <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
                 <div className="relative">
                   <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <BookOpen className="text-academy-blue drop-shadow-lg" size={60} />
+                    <BookOpen
+                      className="text-academy-blue drop-shadow-lg"
+                      size={60}
+                    />
                   </div>
                   <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
                     <Users size={24} className="text-academy-blue" />
@@ -112,7 +129,7 @@ export default function DepartmentsPage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Enhanced Floating Elements */}
               <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
@@ -132,7 +149,7 @@ export default function DepartmentsPage() {
                 </span>
               </h1>
             </div>
-            
+
             {/* Premium Description */}
             <div className="mb-16">
               <p className="text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
@@ -141,21 +158,28 @@ export default function DepartmentsPage() {
                 </span>
               </p>
               <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
-                نقدم لك أفضل الفرص التعليمية لتحقيق أحلامك المهنية مع أحدث المعايير الدولية
+                نقدم لك أفضل الفرص التعليمية لتحقيق أحلامك المهنية مع أحدث
+                المعايير الدولية
               </p>
-            
+
               {/* Premium Stats Preview */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">5</div>
+                  <div className="text-3xl font-bold text-academy-gold mb-2">
+                    5
+                  </div>
                   <div className="text-white/80">أقسام رئيسية</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">20+</div>
+                  <div className="text-3xl font-bold text-academy-gold mb-2">
+                    20+
+                  </div>
                   <div className="text-white/80">برنامج تعليمي</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">100%</div>
+                  <div className="text-3xl font-bold text-academy-gold mb-2">
+                    100%
+                  </div>
                   <div className="text-white/80">معتمدة دولياً</div>
                 </div>
               </div>
@@ -175,8 +199,12 @@ export default function DepartmentsPage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
                   <BookOpen className="text-academy-gold text-2xl" />
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">5</h3>
-                <p className="text-academy-dark-gray font-semibold text-center text-lg">أقسام رئيسية</p>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">
+                  5
+                </h3>
+                <p className="text-academy-dark-gray font-semibold text-center text-lg">
+                  أقسام رئيسية
+                </p>
                 <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
               </CardContent>
             </Card>
@@ -187,8 +215,12 @@ export default function DepartmentsPage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
                   <Target className="text-academy-gold text-2xl" />
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">20</h3>
-                <p className="text-academy-dark-gray font-semibold text-center text-lg">برنامج تعليمي</p>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">
+                  20
+                </h3>
+                <p className="text-academy-dark-gray font-semibold text-center text-lg">
+                  برنامج تعليمي
+                </p>
                 <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
               </CardContent>
             </Card>
@@ -199,10 +231,13 @@ export default function DepartmentsPage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
                   <Award className="text-academy-gold text-2xl" />
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">100%</h3>
-                <p className="text-academy-dark-gray font-semibold text-center text-lg">معتمدة دولياً</p>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">
+                  100%
+                </h3>
+                <p className="text-academy-dark-gray font-semibold text-center text-lg">
+                  معتمدة دولياً
+                </p>
                 <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
-
               </CardContent>
             </Card>
           </div>
@@ -217,23 +252,28 @@ export default function DepartmentsPage() {
             <div className="inline-block mb-6">
               <div className="w-20 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto rounded-full"></div>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue mb-6">الأقسام الأكاديمية</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue mb-6">
+              الأقسام الأكاديمية
+            </h2>
             <p className="text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed">
-              تضم أكاديميتنا مجموعة متنوعة من الأقسام الأكاديمية المتخصصة التي تغطي مختلف المجالات العلمية والمهنية
+              تضم أكاديميتنا مجموعة متنوعة من الأقسام الأكاديمية المتخصصة التي
+              تغطي مختلف المجالات العلمية والمهنية
               <br />
-              <span className="text-lg text-academy-darker-gray">نقدم تعليماً عالي الجودة مع أحدث المناهج والتقنيات</span>
+              <span className="text-lg text-academy-darker-gray">
+                نقدم تعليماً عالي الجودة مع أحدث المناهج والتقنيات
+              </span>
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {departments.map((department, index) => {
-              const Icon = department.icon
+              const Icon = department.icon;
               return (
                 <Card
                   key={department.id}
                   className="group bg-white/90 backdrop-blur-sm hover:shadow-3xl border-0 shadow-2xl transition-all duration-700 hover:-translate-y-6 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative"
                   style={{
-                    animationDelay: `${index * 100}ms`
+                    animationDelay: `${index * 100}ms`,
                   }}
                 >
                   {/* Enhanced Department Image */}
@@ -253,18 +293,22 @@ export default function DepartmentsPage() {
 
                     {/* Enhanced Department Icon */}
                     <div className="absolute bottom-4 right-4">
-                      <div className={`w-14 h-14 ${department.color} rounded-2xl flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-500`}>
+                      <div
+                        className={`w-14 h-14 ${department.color} rounded-2xl flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-500`}
+                      >
                         <Icon className="text-white text-xl" />
-
                       </div>
                     </div>
 
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                       <div className="text-white text-center w-full">
-                        <p className="text-lg font-semibold mb-2">اكتشف المزيد</p>
-                        <p className="text-sm opacity-90">انقر لعرض التفاصيل الكاملة</p>
-
+                        <p className="text-lg font-semibold mb-2">
+                          اكتشف المزيد
+                        </p>
+                        <p className="text-sm opacity-90">
+                          انقر لعرض التفاصيل الكاملة
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -275,7 +319,9 @@ export default function DepartmentsPage() {
                       {department.title}
                     </h3>
 
-                    <p className="text-academy-dark-gray text-base leading-relaxed mb-6 line-clamp-3">{department.description}</p>
+                    <p className="text-academy-dark-gray text-base leading-relaxed mb-6 line-clamp-3">
+                      {department.description}
+                    </p>
 
                     {/* Enhanced Programs Count Display */}
                     <div className="flex items-center justify-between mb-8 p-4 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
@@ -286,7 +332,7 @@ export default function DepartmentsPage() {
                         </span>
                       </div>
                       <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
-       </div>
+                    </div>
 
                     {/* Enhanced View Details Button */}
                     <Link href={`/departments/${department.id}`}>
@@ -297,7 +343,7 @@ export default function DepartmentsPage() {
                     </Link>
                   </div>
                 </Card>
-              )
+              );
             })}
           </div>
         </div>
@@ -310,11 +356,11 @@ export default function DepartmentsPage() {
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-academy-gold/15 via-transparent to-academy-gold/10"></div>
         </div>
-        
+
         {/* Floating Elements */}
         <div className="absolute top-20 right-10 w-24 h-24 bg-academy-gold/20 rounded-full blur-xl animate-pulse"></div>
         <div className="absolute bottom-20 left-20 w-32 h-32 bg-academy-blue-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-        
+
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-5xl mx-auto text-white">
             <div className="inline-block mb-8">
@@ -324,21 +370,22 @@ export default function DepartmentsPage() {
               ابدأ رحلتك التعليمية معنا
             </h2>
             <p className="text-xl lg:text-2xl mb-12 text-academy-gold-100 leading-relaxed max-w-4xl mx-auto">
-              اختر القسم الذي يناسب اهتماماتك وأهدافك المهنية وانطلق نحو مستقبل مشرق
+              اختر القسم الذي يناسب اهتماماتك وأهدافك المهنية وانطلق نحو مستقبل
+              مشرق
               <br />
-              <span className="text-lg text-academy-gold-200">نحن هنا لمساعدتك في تحقيق أحلامك التعليمية</span>
-
+              <span className="text-lg text-academy-gold-200">
+                نحن هنا لمساعدتك في تحقيق أحلامك التعليمية
+              </span>
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link href="/admission">
                 <Button className="group bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue hover:from-academy-gold-dark hover:to-academy-gold font-bold px-10 py-4 text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 border-0">
                   <span className="mr-2">سجل الآن</span>
                   <div className="w-3 h-3 bg-academy-blue rounded-full group-hover:animate-pulse"></div>
-
                 </Button>
               </Link>
-              
+
               <Link href="/programs">
                 <Button
                   variant="outline"
@@ -346,16 +393,17 @@ export default function DepartmentsPage() {
                 >
                   <span className="mr-2">استكشف البرامج</span>
                   <div className="w-3 h-3 bg-white rounded-full group-hover:animate-pulse"></div>
-
                 </Button>
               </Link>
             </div>
-            
+
             {/* Additional Info */}
             <div className="mt-16 flex flex-wrap justify-center gap-8">
               <div className="flex items-center space-x-3 space-x-reverse bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                 <Star className="text-academy-gold text-lg" />
-                <span className="text-white font-medium">تعليم عالي الجودة</span>
+                <span className="text-white font-medium">
+                  تعليم عالي الجودة
+                </span>
               </div>
               <div className="flex items-center space-x-3 space-x-reverse bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                 <Globe className="text-academy-gold text-lg" />
@@ -364,12 +412,11 @@ export default function DepartmentsPage() {
               <div className="flex items-center space-x-3 space-x-reverse bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                 <Users className="text-academy-gold text-lg" />
                 <span className="text-white font-medium">أساتذة متخصصون</span>
-
               </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }

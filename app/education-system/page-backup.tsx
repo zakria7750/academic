@@ -1,6 +1,12 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   BookOpen,
   Users,
@@ -19,9 +25,9 @@ import {
   Target,
   Brain,
   GraduationCap,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function EducationSystemPage() {
   return (
@@ -33,12 +39,12 @@ export default function EducationSystemPage() {
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-academy-gold/15 via-transparent to-academy-gold/10"></div>
         </div>
-        
+
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-academy-gold/20 rounded-full blur-xl animate-pulse"></div>
         <div className="absolute top-40 right-20 w-32 h-32 bg-academy-blue-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
         <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-academy-gold/30 rounded-full blur-lg animate-pulse delay-2000"></div>
-        
+
         <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center text-white">
             {/* Enhanced Header */}
@@ -55,14 +61,16 @@ export default function EducationSystemPage() {
                 نظام التعليم
               </h1>
             </div>
-            
+
             {/* Enhanced Description */}
             <p className="text-xl lg:text-2xl text-academy-gold-100 font-medium max-w-4xl mx-auto leading-relaxed mb-8">
               نظام تعليمي متطور يجمع بين الأصالة والحداثة
               <br />
-              <span className="text-lg text-academy-gold-200">نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق</span>
+              <span className="text-lg text-academy-gold-200">
+                نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق
+              </span>
             </p>
-            
+
             {/* Enhanced Stats Preview */}
             <div className="flex flex-wrap justify-center gap-8 mt-12">
               <div className="flex items-center space-x-3 space-x-reverse bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
@@ -91,18 +99,30 @@ export default function EducationSystemPage() {
               <div className="inline-block mb-6">
                 <div className="w-20 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto rounded-full"></div>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue">نظام التعليم</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue">
+                نظام التعليم
+              </h2>
               <p className="text-xl text-academy-dark-gray leading-relaxed">
-                نظام تعليمي متطور يجمع بين الأصالة والحداثة، مصمم لتلبية احتياجات العصر ومتطلبات سوق العمل.
+                نظام تعليمي متطور يجمع بين الأصالة والحداثة، مصمم لتلبية
+                احتياجات العصر ومتطلبات سوق العمل.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Badge variant="secondary" className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/30 text-academy-blue border-academy-gold/50 px-4 py-2 text-sm font-semibold">
+                <Badge
+                  variant="secondary"
+                  className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/30 text-academy-blue border-academy-gold/50 px-4 py-2 text-sm font-semibold"
+                >
                   تعليم متطور
                 </Badge>
-                <Badge variant="secondary" className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/30 text-academy-blue border-academy-gold/50 px-4 py-2 text-sm font-semibold">
+                <Badge
+                  variant="secondary"
+                  className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/30 text-academy-blue border-academy-gold/50 px-4 py-2 text-sm font-semibold"
+                >
                   مناهج حديثة
                 </Badge>
-                <Badge variant="secondary" className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/30 text-academy-blue border-academy-gold/50 px-4 py-2 text-sm font-semibold">
+                <Badge
+                  variant="secondary"
+                  className="bg-gradient-to-r from-academy-gold/20 to-academy-gold/30 text-academy-blue border-academy-gold/50 px-4 py-2 text-sm font-semibold"
+                >
                   تقنيات متقدمة
                 </Badge>
               </div>
@@ -131,11 +151,15 @@ export default function EducationSystemPage() {
             <div className="inline-block mb-6">
               <div className="w-20 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto rounded-full"></div>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue mb-6">أساليب التعليم</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue mb-6">
+              أساليب التعليم
+            </h2>
             <p className="text-xl text-academy-dark-gray max-w-3xl mx-auto leading-relaxed">
               نوفر طرق تعليم متنوعة لتناسب جميع احتياجات الطلاب
               <br />
-              <span className="text-lg text-academy-darker-gray">نقدم تجربة تعليمية شاملة ومتكاملة</span>
+              <span className="text-lg text-academy-darker-gray">
+                نقدم تجربة تعليمية شاملة ومتكاملة
+              </span>
             </p>
           </div>
 
@@ -151,7 +175,7 @@ export default function EducationSystemPage() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-academy-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Enhanced Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                   <div className="text-white text-center w-full">
@@ -164,28 +188,39 @@ export default function EducationSystemPage() {
                 <div className="mx-auto mb-6 p-6 bg-gradient-to-br from-academy-blue/10 to-academy-blue/20 rounded-2xl w-24 h-24 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-500">
                   <Users className="w-12 h-12 text-academy-blue" />
                 </div>
-                <CardTitle className="text-3xl text-academy-blue mb-4">التعليم الحضوري</CardTitle>
+                <CardTitle className="text-3xl text-academy-blue mb-4">
+                  التعليم الحضوري
+                </CardTitle>
                 <CardDescription className="text-academy-dark-gray text-lg leading-relaxed">
-                  محاضرات وجلسات تفاعلية في بيئة تعليمية متطورة مع أحدث التقنيات التعليمية
+                  محاضرات وجلسات تفاعلية في بيئة تعليمية متطورة مع أحدث التقنيات
+                  التعليمية
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-8 pt-0">
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
                     <CheckCircle className="w-6 h-6 text-academy-gold flex-shrink-0" />
-                    <span className="text-academy-dark-gray font-medium">قاعات مجهزة بأحدث التقنيات</span>
+                    <span className="text-academy-dark-gray font-medium">
+                      قاعات مجهزة بأحدث التقنيات
+                    </span>
                   </div>
                   <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
                     <CheckCircle className="w-6 h-6 text-academy-gold flex-shrink-0" />
-                    <span className="text-academy-dark-gray font-medium">ورش عمل تطبيقية</span>
+                    <span className="text-academy-dark-gray font-medium">
+                      ورش عمل تطبيقية
+                    </span>
                   </div>
                   <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
                     <CheckCircle className="w-6 h-6 text-academy-gold flex-shrink-0" />
-                    <span className="text-academy-dark-gray font-medium">نقاشات جماعية</span>
+                    <span className="text-academy-dark-gray font-medium">
+                      نقاشات جماعية
+                    </span>
                   </div>
                   <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
                     <CheckCircle className="w-6 h-6 text-academy-gold flex-shrink-0" />
-                    <span className="text-academy-dark-gray font-medium">مشاريع تعاونية</span>
+                    <span className="text-academy-dark-gray font-medium">
+                      مشاريع تعاونية
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -202,7 +237,7 @@ export default function EducationSystemPage() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-academy-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Enhanced Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                   <div className="text-white text-center w-full">
@@ -215,28 +250,39 @@ export default function EducationSystemPage() {
                 <div className="mx-auto mb-6 p-6 bg-gradient-to-br from-academy-blue/10 to-academy-blue/20 rounded-2xl w-24 h-24 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-500">
                   <Monitor className="w-12 h-12 text-academy-blue" />
                 </div>
-                <CardTitle className="text-3xl text-academy-blue mb-4">التعليم الإلكتروني</CardTitle>
+                <CardTitle className="text-3xl text-academy-blue mb-4">
+                  التعليم الإلكتروني
+                </CardTitle>
                 <CardDescription className="text-academy-dark-gray text-lg leading-relaxed">
-                  منصة تعليمية متقدمة تتيح التعلم من أي مكان وفي أي وقت مع أدوات تفاعلية متطورة
+                  منصة تعليمية متقدمة تتيح التعلم من أي مكان وفي أي وقت مع أدوات
+                  تفاعلية متطورة
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-8 pt-0">
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
                     <CheckCircle className="w-6 h-6 text-academy-gold flex-shrink-0" />
-                    <span className="text-academy-dark-gray font-medium">محاضرات مباشرة</span>
+                    <span className="text-academy-dark-gray font-medium">
+                      محاضرات مباشرة
+                    </span>
                   </div>
                   <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
                     <CheckCircle className="w-6 h-6 text-academy-gold flex-shrink-0" />
-                    <span className="text-academy-dark-gray font-medium">منتديات نقاش تفاعلية</span>
+                    <span className="text-academy-dark-gray font-medium">
+                      منتديات نقاش تفاعلية
+                    </span>
                   </div>
                   <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
                     <CheckCircle className="w-6 h-6 text-academy-gold flex-shrink-0" />
-                    <span className="text-academy-dark-gray font-medium">اختبارات إلكترونية</span>
+                    <span className="text-academy-dark-gray font-medium">
+                      اختبارات إلكترونية
+                    </span>
                   </div>
                   <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
                     <CheckCircle className="w-6 h-6 text-academy-gold flex-shrink-0" />
-                    <span className="text-academy-dark-gray font-medium">متابعة الأداء الفوري</span>
+                    <span className="text-academy-dark-gray font-medium">
+                      متابعة الأداء الفوري
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -249,7 +295,9 @@ export default function EducationSystemPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-academy-blue mb-4">أساليب التقييم</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-academy-blue mb-4">
+              أساليب التقييم
+            </h2>
             <p className="text-lg text-academy-dark-gray max-w-2xl mx-auto">
               نظام تقييم شامل ومتوازن يضمن قياس الأداء بدقة
             </p>
@@ -272,7 +320,9 @@ export default function EducationSystemPage() {
                 <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
                   <TrendingUp className="w-10 h-10 text-academy-blue" />
                 </div>
-                <CardTitle className="text-xl text-academy-blue">التعليم المستمر</CardTitle>
+                <CardTitle className="text-xl text-academy-blue">
+                  التعليم المستمر
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -280,7 +330,9 @@ export default function EducationSystemPage() {
                   <Badge className="bg-academy-gold text-white">15%</Badge>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-academy-dark-gray">مشاركة في النقاشات</span>
+                  <span className="text-academy-dark-gray">
+                    مشاركة في النقاشات
+                  </span>
                   <Badge className="bg-academy-gold text-white">20%</Badge>
                 </div>
                 <div className="flex justify-between items-center">
@@ -306,13 +358,19 @@ export default function EducationSystemPage() {
                 <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
                   <BookOpen className="w-10 h-10 text-academy-blue" />
                 </div>
-                <CardTitle className="text-xl text-academy-blue">الاختبارات</CardTitle>
+                <CardTitle className="text-xl text-academy-blue">
+                  الاختبارات
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-center">
                   <div className="text-center">
-                    <div className="text-academy-dark-gray mb-2">اختبار نهاية البرنامج</div>
-                    <Badge className="bg-academy-blue text-white">اختبار شامل</Badge>
+                    <div className="text-academy-dark-gray mb-2">
+                      اختبار نهاية البرنامج
+                    </div>
+                    <Badge className="bg-academy-blue text-white">
+                      اختبار شامل
+                    </Badge>
                   </div>
                 </div>
               </CardContent>
@@ -334,24 +392,34 @@ export default function EducationSystemPage() {
                 <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
                   <Award className="w-10 h-10 text-academy-blue" />
                 </div>
-                <CardTitle className="text-xl text-academy-blue">مشروع التخرج</CardTitle>
+                <CardTitle className="text-xl text-academy-blue">
+                  مشروع التخرج
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-academy-gold" />
-                  <span className="text-sm text-academy-dark-gray">بحث علمي متقدم</span>
+                  <span className="text-sm text-academy-dark-gray">
+                    بحث علمي متقدم
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-academy-gold" />
-                  <span className="text-sm text-academy-dark-gray">مشروع تطبيقي</span>
+                  <span className="text-sm text-academy-dark-gray">
+                    مشروع تطبيقي
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-academy-gold" />
-                  <span className="text-sm text-academy-dark-gray">عرض ونقاش</span>
+                  <span className="text-sm text-academy-dark-gray">
+                    عرض ونقاش
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-academy-gold" />
-                  <span className="text-sm text-academy-dark-gray">تقييم لجنة متخصصة</span>
+                  <span className="text-sm text-academy-dark-gray">
+                    تقييم لجنة متخصصة
+                  </span>
                 </div>
               </CardContent>
             </Card>
@@ -363,8 +431,12 @@ export default function EducationSystemPage() {
       <section className="py-20 px-4 bg-academy-gray/30">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-academy-blue mb-4">مميزات المنصة التعليمية</h2>
-            <p className="text-lg text-academy-dark-gray max-w-2xl mx-auto">تقنيات متقدمة لتجربة تعليمية متميزة</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-academy-blue mb-4">
+              مميزات المنصة التعليمية
+            </h2>
+            <p className="text-lg text-academy-dark-gray max-w-2xl mx-auto">
+              تقنيات متقدمة لتجربة تعليمية متميزة
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -384,7 +456,9 @@ export default function EducationSystemPage() {
                 <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-academy-gold/10 transition-colors">
                   <Play className="w-10 h-10 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl text-academy-blue">محاضرات فيديو</CardTitle>
+                <CardTitle className="text-xl text-academy-blue">
+                  محاضرات فيديو
+                </CardTitle>
                 <CardDescription className="text-academy-dark-gray">
                   محاضرات عالية الجودة متاحة في أي وقت
                 </CardDescription>
@@ -407,8 +481,12 @@ export default function EducationSystemPage() {
                 <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-academy-gold/10 transition-colors">
                   <MessageSquare className="w-10 h-10 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl text-academy-blue">منتديات نقاش</CardTitle>
-                <CardDescription className="text-academy-dark-gray">تفاعل مباشر مع الأساتذة والطلاب</CardDescription>
+                <CardTitle className="text-xl text-academy-blue">
+                  منتديات نقاش
+                </CardTitle>
+                <CardDescription className="text-academy-dark-gray">
+                  تفاعل مباشر مع الأساتذة والطلاب
+                </CardDescription>
               </CardHeader>
             </Card>
 
@@ -428,8 +506,12 @@ export default function EducationSystemPage() {
                 <div className="mx-auto mb-4 p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-academy-gold/10 transition-colors">
                   <TrendingUp className="w-10 h-10 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl text-academy-blue">تتبع التقدم</CardTitle>
-                <CardDescription className="text-academy-dark-gray">متابعة مستمرة لأدائك الأكاديمي</CardDescription>
+                <CardTitle className="text-xl text-academy-blue">
+                  تتبع التقدم
+                </CardTitle>
+                <CardDescription className="text-academy-dark-gray">
+                  متابعة مستمرة لأدائك الأكاديمي
+                </CardDescription>
               </CardHeader>
             </Card>
           </div>
@@ -440,8 +522,12 @@ export default function EducationSystemPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-academy-blue mb-4">الدعم الأكاديمي</h2>
-            <p className="text-lg text-academy-dark-gray max-w-2xl mx-auto">دعم شامل لضمان نجاحك الأكاديمي</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-academy-blue mb-4">
+              الدعم الأكاديمي
+            </h2>
+            <p className="text-lg text-academy-dark-gray max-w-2xl mx-auto">
+              دعم شامل لضمان نجاحك الأكاديمي
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -460,8 +546,12 @@ export default function EducationSystemPage() {
                 <div className="mx-auto p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
                   <UserCheck className="w-10 h-10 text-academy-blue" />
                 </div>
-                <h3 className="text-xl font-semibold text-academy-blue">مرشد أكاديمي</h3>
-                <p className="text-academy-dark-gray">توجيه شخصي طوال فترة الدراسة</p>
+                <h3 className="text-xl font-semibold text-academy-blue">
+                  مرشد أكاديمي
+                </h3>
+                <p className="text-academy-dark-gray">
+                  توجيه شخصي طوال فترة الدراسة
+                </p>
               </CardHeader>
             </Card>
 
@@ -480,8 +570,12 @@ export default function EducationSystemPage() {
                 <div className="mx-auto p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
                   <Headphones className="w-10 h-10 text-academy-blue" />
                 </div>
-                <h3 className="text-xl font-semibold text-academy-blue">دعم تقني</h3>
-                <p className="text-academy-dark-gray">مساعدة فنية على مدار 24 ساعة</p>
+                <h3 className="text-xl font-semibold text-academy-blue">
+                  دعم تقني
+                </h3>
+                <p className="text-academy-dark-gray">
+                  مساعدة فنية على مدار 24 ساعة
+                </p>
               </CardHeader>
             </Card>
 
@@ -500,7 +594,9 @@ export default function EducationSystemPage() {
                 <div className="mx-auto p-4 bg-academy-blue/10 rounded-full w-20 h-20 flex items-center justify-center">
                   <Users2 className="w-10 h-10 text-academy-blue" />
                 </div>
-                <h3 className="text-xl font-semibold text-academy-blue">مجموعات دراسية</h3>
+                <h3 className="text-xl font-semibold text-academy-blue">
+                  مجموعات دراسية
+                </h3>
                 <p className="text-academy-dark-gray">تعلم تعاوني مع زملائك</p>
               </CardHeader>
             </Card>
@@ -511,7 +607,9 @@ export default function EducationSystemPage() {
       {/* ابدأ رحلتك التعليمية اليوم */}
       <section className="py-20 px-4 bg-gradient-to-r from-academy-blue to-academy-blue/90">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">ابدأ رحلتك التعليمية اليوم</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            ابدأ رحلتك التعليمية اليوم
+          </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             اكتشف نظام تعليمي متطور يؤهلك لمستقبل مهني متميز
           </p>
@@ -543,5 +641,5 @@ export default function EducationSystemPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

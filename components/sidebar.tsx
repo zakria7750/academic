@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Home,
   Info,
@@ -18,7 +18,7 @@ import {
   MessageSquare,
   ChevronRight,
   HelpCircle,
-} from "lucide-react"
+} from "lucide-react";
 
 const menuItems = [
   { name: "الرئيسية", href: "/", icon: Home },
@@ -34,13 +34,18 @@ const menuItems = [
   { name: "التحقق من الشهادات", href: "/verification", icon: CheckCircle },
   { name: "الاعتمادات والشراكات", href: "/accreditations", icon: Handshake },
   { name: "الأسئلة الشائعة", href: "/faq", icon: HelpCircle },
-  { name: "مجلة وعي", href: "https://journal-academy-y9yi.vercel.app/",target:"_blank", icon: Newspaper },
+  {
+    name: "مجلة وعي",
+    href: "https://journal-academy-y9yi.vercel.app/",
+    target: "_blank",
+    icon: Newspaper,
+  },
   { name: "المدونة والأخبار", href: "/blog", icon: MessageSquare },
-]
+];
 
 export default function Sidebar() {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const pathname = usePathname()
+  const [isExpanded, setIsExpanded] = useState(false);
+  const pathname = usePathname();
 
   return (
     <aside
@@ -58,7 +63,11 @@ export default function Sidebar() {
           <div className="w-8 h-8 bg-academy-gold rounded-full flex items-center justify-center flex-shrink-0">
             <span className="text-academy-blue font-bold text-sm">م</span>
           </div>
-          {isExpanded && <span className="font-bold text-sm whitespace-nowrap">أكاديمية المعرفة</span>}
+          {isExpanded && (
+            <span className="font-bold text-sm whitespace-nowrap">
+              أكاديمية المعرفة
+            </span>
+          )}
         </div>
       </div>
 
@@ -66,8 +75,8 @@ export default function Sidebar() {
       <nav className="flex-1 py-4">
         <ul className="space-y-1 px-2">
           {menuItems.map((item) => {
-            const Icon = item.icon
-            const isActive = pathname === item.href
+            const Icon = item.icon;
+            const isActive = pathname === item.href;
 
             return (
               <li key={item.name}>
@@ -82,7 +91,9 @@ export default function Sidebar() {
                   <Icon size={20} className="flex-shrink-0" />
                   {isExpanded && (
                     <>
-                      <span className="font-medium whitespace-nowrap">{item.name}</span>
+                      <span className="font-medium whitespace-nowrap">
+                        {item.name}
+                      </span>
                       <ChevronRight
                         size={16}
                         className="mr-auto opacity-0 group-hover:opacity-100 transition-opacity"
@@ -91,10 +102,10 @@ export default function Sidebar() {
                   )}
                 </Link>
               </li>
-            )
+            );
           })}
         </ul>
       </nav>
     </aside>
-  )
+  );
 }
