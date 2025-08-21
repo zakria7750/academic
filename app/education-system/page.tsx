@@ -48,7 +48,7 @@ export default function EducationSystemPage(){
       </div>
 
       {/* Ultra Premium Hero Section */}
-      <section className="relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40">
+      <section className="relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
         {/* Multi-layered Premium Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
@@ -72,8 +72,8 @@ export default function EducationSystemPage(){
             <div className="relative inline-block mb-8 sm:mb-6 sm:mb-8 lg:mb-12 lg:mb-8 sm:mb-6 sm:mb-8 lg:mb-12 lg:mb-16">
               <div className="p-4 sm:p-6 lg:p-8 bg-white/15 backdrop-blur-2xl rounded-[1.5rem] sm:rounded-[2rem] border border-white/25 shadow-[0_16px_32px_rgba(0,0,0,0.25)] sm:shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
                 <div className="relative">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <BookOpen className="text-academy-blue drop-shadow-lg" size={60} />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-xl sm:rounded-2xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
+                    <BookOpen className="text-academy-blue drop-shadow-lg" size={40} />
                   </div>
                   <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
                     <Crown size={24} className="text-academy-blue" />
@@ -96,9 +96,8 @@ export default function EducationSystemPage(){
 
             {/* Premium Title Section */}
             <div className="mb-6 sm:mb-8 lg:mb-12">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 tracking-tight leading-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-
                   نظام التعليم
                 </span>
               </h1>
@@ -116,11 +115,10 @@ export default function EducationSystemPage(){
                 <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
                 <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-gold-light font-medium max-w-5xl mx-auto leading-relaxed mb-6">
-
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6">
                 نظام تعليمي متطور يجمع بين الأصالة والحداثة
               </p>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light">
                 نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
               </p>
             </div>

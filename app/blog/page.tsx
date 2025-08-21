@@ -40,7 +40,7 @@ export default async function BlogPage() {
       </div>
 
       {/* Ultra Premium Hero Section */}
-      <section className="relative overflow-hidden py-32 lg:py-40">
+      <section className="relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
         {/* Multi-layered Premium Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/85 to-academy-blue/65"></div>
@@ -89,7 +89,7 @@ export default async function BlogPage() {
 
             {/* Ultra Premium Title Section */}
             <div className="mb-16">
-              <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold mb-10 tracking-tight leading-tight font-arabic">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 lg:mb-10 tracking-tight leading-tight font-arabic">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light via-white to-academy-gold-light bg-clip-text text-transparent drop-shadow-2xl">
                   المدونة والأخبار
                 </span>
@@ -109,10 +109,10 @@ export default async function BlogPage() {
                 <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
               
-              <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-semibold max-w-6xl mx-auto leading-relaxed mb-8 drop-shadow-lg font-arabic tracking-wide">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-semibold max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6 lg:mb-8 drop-shadow-lg font-arabic tracking-wide">
                 تابع آخر الأخبار والتحديثات من أكاديمية المعرفة الدولية
               </p>
-              <p className="text-xl md:text-2xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light font-arabic">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light font-arabic">
                 اكتشف عالم المعرفة من خلال مقالاتنا وأخبارنا المتنوعة والمثرية
               </p>
             </div>
