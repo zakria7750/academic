@@ -243,15 +243,7 @@ export default async function ProgramsPage() {
         </div>
 
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
-          <div className="absolute inset-0 z-0">
-          <Image
-            src="/graduates-hero-background.png"
-            alt="خريجو أكاديمية المعرفة الدولية"
-            fill
-            className="object-cover opacity-25"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/60 via-academy-blue/40 to-academy-blue-dark/80"></div>
-        </div>
+          
           <div className="text-center text-white">
             {/* Ultra Premium Icon Section 
             <div className="relative inline-block mb-16">
@@ -324,6 +316,15 @@ export default async function ProgramsPage() {
               </div>
             </div>
           </div>
+        </div>
+        {/* Enhanced Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/modern-university-campus-students.png"
+            alt="أكاديمية المعرفة الدولية"
+            fill
+            className="object-cover"
+          />
         </div>
       </section>
 
