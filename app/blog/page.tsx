@@ -59,7 +59,7 @@ export default async function BlogPage() {
           <div className="absolute top-1/4 right-1/6 w-3 h-3 border border-academy-gold/25 rotate-45 animate-pulse delay-3000"></div>
         </div>
 
-        
+        <div>
           <div className="text-center text-white">
             {/* Ultra Premium Icon Section 
             <div className="relative inline-block mb-16">
