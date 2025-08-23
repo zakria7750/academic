@@ -58,21 +58,9 @@ export default async function AccreditationsPage() {
           <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/20 rounded-full animate-pulse delay-2500"></div>
           <div className="absolute top-1/4 right-1/6 w-3 h-3 border border-academy-gold/25 rotate-45 animate-pulse delay-3000"></div>
         </div>
-
-        {/* Enhanced Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/accreditations-hero-background.png"
-            alt="الاعتمادات الدولية - أكاديمية المعرفة الدولية"
-            fill
-            className="object-cover opacity-15"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent"></div>
-        </div>
-
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Ultra Premium Icon Section */}
+            {/* Ultra Premium Icon Section
             <div className="relative inline-block mb-16">
               <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
                 <div className="relative">
@@ -94,12 +82,12 @@ export default async function AccreditationsPage() {
                 </div>
               </div>
 
-              {/* Enhanced Floating Elements */}
+               Enhanced Floating Elements
               <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
               <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
               <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>
+            </div>*/} 
 
             {/* Ultra Premium Title Section */}
             <div className="mb-16">
@@ -177,6 +165,15 @@ export default async function AccreditationsPage() {
               </div>
             </div>
           </div>
+        </div>
+        {/* Enhanced Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/modern-university-campus-students.png"
+            alt="أكاديمية المعرفة الدولية"
+            fill
+            className="object-cover"
+          />
         </div>
       </section>
 
