@@ -28,10 +28,10 @@ export default async function GraduatesPage() {
         {/* Premium Background Image with Enhanced Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/graduates-hero-background.png"
+            src="/academic-advisor.png"
             alt="خريجو أكاديمية المعرفة الدولية"
             fill
-            className="object-cover opacity-25"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/60 via-academy-blue/40 to-academy-blue-dark/80"></div>
         </div>
