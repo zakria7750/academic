@@ -172,7 +172,7 @@ export default function AdmissionPage() {
 
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Ultra Premium Academy Logo and Badge */}
+            {/* Ultra Premium Academy Logo and Badge
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-16">
               <div className="relative">
                 <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
@@ -192,7 +192,7 @@ export default function AdmissionPage() {
                   </div>
                 </div>
                 
-                {/* Enhanced Floating Elements */}
+                 Enhanced Floating Elements 
                 <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
                 <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
                 <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
@@ -212,7 +212,7 @@ export default function AdmissionPage() {
                   <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse delay-500"></div>
                 </div>
               </div>
-            </div>
+            </div>*/} 
 
             {/* Ultra Premium Title Section */}
             <div className="mb-16">
