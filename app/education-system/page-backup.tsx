@@ -47,16 +47,16 @@ export default function EducationSystemPage() {
 
         <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center text-white">
-            {/* Enhanced Header */}
+            {/* Enhanced Header*/} 
             <div className="flex flex-col items-center justify-center space-y-6 mb-12">
-              <div className="relative">
+              {/*<div className="relative">
                 <div className="w-24 h-24 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform duration-500">
                   <BookOpen className="text-academy-blue text-4xl" />
                 </div>
                 <div className="absolute -top-2 -right-2 w-8 h-8 bg-academy-gold rounded-full flex items-center justify-center">
                   <Star className="text-academy-blue text-sm" />
                 </div>
-              </div>
+              </div>*/} 
               <h1 className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-white via-academy-gold-100 to-white bg-clip-text text-transparent">
                 نظام التعليم
               </h1>
