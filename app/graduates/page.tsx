@@ -25,16 +25,7 @@ export default async function GraduatesPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/70 to-academy-blue/50"></div>
         
-        {/* Premium Background Image with Enhanced Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/academic-advisor.png"
-            alt="خريجو أكاديمية المعرفة الدولية"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/60 via-academy-blue/40 to-academy-blue-dark/80"></div>
-        </div>
+        
         
         {/* Premium Decorative Elements */}
         <div className="absolute inset-0 opacity-30">
@@ -139,6 +130,15 @@ export default async function GraduatesPage() {
               </div>
             </div>
           </div>
+        </div>
+        {/* Enhanced Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/modern-university-campus-students.png"
+            alt="أكاديمية المعرفة الدولية"
+            fill
+            className="object-cover"
+          />
         </div>
       </section>
 
