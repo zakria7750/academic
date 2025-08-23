@@ -45,7 +45,7 @@ export default async function GraduatesPage() {
 
         <div className="relative z-10 container mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Premium Icon Section */}
+            {/* Premium Icon Section
             <div className="relative inline-block mb-12">
               <div className="p-6 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl">
                 <div className="relative">
@@ -59,7 +59,7 @@ export default async function GraduatesPage() {
               </div>
               <div className="absolute -top-4 -left-4 w-6 h-6 bg-academy-gold rounded-full animate-pulse"></div>
               <div className="absolute -bottom-2 -right-6 w-4 h-4 bg-academy-gold-light rounded-full animate-pulse delay-700"></div>
-            </div>
+            </div>*/} 
 
             {/* Premium Title Section */}
             <div className="mb-12">
