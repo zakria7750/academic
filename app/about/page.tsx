@@ -77,8 +77,8 @@ export default function AboutPage() {
 
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Ultra Premium Icon Section */}
-            {/*<div className="relative inline-block mb-16">
+            {/* Ultra Premium Icon Section 
+            <div className="relative inline-block mb-16">
               <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
                 <div className="relative">
                   <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
