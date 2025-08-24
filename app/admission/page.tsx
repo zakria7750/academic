@@ -293,15 +293,7 @@ export default function AdmissionPage() {
             </div>
           </div>
         </div>
-        {/* Enhanced Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/Admission-background.png"
-            alt="نظام التعليم "
-            fill
-            className="object-cover"
-          />
-        </div>
+        
       </section>
 
       {/* Ultra Premium Application Steps Section */}
