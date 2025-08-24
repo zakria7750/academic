@@ -130,8 +130,8 @@ export default async function BlogPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/modern-university-campus-students.png"
-            alt="أكاديمية المعرفة الدولية"
+            src="/news-background.png"
+            alt="المدونه والاخبار"
             fill
             className="object-cover"
           />
