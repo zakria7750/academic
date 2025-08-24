@@ -179,8 +179,8 @@ export default function EducationSystemPage(){
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/modern-university-campus-students.png"
-            alt="أكاديمية المعرفة الدولية"
+            src="/Education-system.jpg"
+            alt="نظام التعليم"
             fill
             className="object-cover"
           />
