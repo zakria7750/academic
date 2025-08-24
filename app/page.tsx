@@ -173,10 +173,10 @@ export default function HomePage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/home-background.jpg"
+            src="/home-bage.jpg"
             alt="أكاديمية المعرفة الدولية"
             fill
-            className="object-cover opacity-15"
+            className="object-cover"
           />
         </div>
       </section>
