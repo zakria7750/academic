@@ -62,7 +62,7 @@ export default async function AccreditationsPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/accreditations-hero-background.png"
+            src="/certified_approval_agreement_confirmation.jpg"
             alt="الاعتمادات الدولية - أكاديمية المعرفة الدولية"
             fill
             className="object-cover opacity-15"
