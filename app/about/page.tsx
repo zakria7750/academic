@@ -122,8 +122,8 @@ export default function AboutPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/modern-university-campus-students.png"
-            alt="أكاديمية المعرفة الدولية"
+            src="/about-background.jpg"
+            alt="من نحن"
             fill
             className="object-cover"
           />
