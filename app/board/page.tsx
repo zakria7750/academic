@@ -127,8 +127,8 @@ export default async function BoardPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/modern-university-campus-students.png"
-            alt="أكاديمية المعرفة الدولية"
+            src="/board-background.jpg"
+            alt="مجلس الاداره"
             fill
             className="object-cover"
           />
