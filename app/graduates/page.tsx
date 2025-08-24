@@ -56,7 +56,7 @@ export default async function GraduatesPage() {
             <div className="mb-12">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  خريجو الأكاديمية
+                  خريجين الأكاديمية
                 </span>
               </h1>
               <div className="flex items-center justify-center gap-4 mb-8">
@@ -134,8 +134,8 @@ export default async function GraduatesPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/modern-university-campus-students.png"
-            alt="أكاديمية المعرفة الدولية"
+            src="/graduate-background.jpg"
+            alt="الخريجين"
             fill
             className="object-cover"
           />
