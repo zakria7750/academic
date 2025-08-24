@@ -296,7 +296,7 @@ export default function AdmissionPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/modern-university-campus-students.png"
+            src="/video-lectures.png"
             alt="أكاديمية المعرفة الدولية"
             fill
             className="object-cover"
