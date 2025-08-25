@@ -121,13 +121,17 @@ export default function AboutPage() {
         </div>
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/about-background.jpg"
-            alt="من نحن"
-            fill
-            className="object-cover"
-          />
-        </div>
+  <Image
+    src="/about-background-1440.webp"
+    alt="من نحن"
+    fill
+    sizes="(max-width: 600px) 480px,
+           (max-width: 1024px) 960px,
+           1440px"
+    className="object-cover"
+    priority
+  />
+</div>
       </section>
 
              {/* Enhanced Vision Section */}
