@@ -320,7 +320,7 @@ export default async function ProgramsPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/modern-university-campus-students.png"
+            src="/modern-university-campus-students-1440.webp"
             alt="أكاديمية المعرفة الدولية"
             fill
             className="object-cover"
