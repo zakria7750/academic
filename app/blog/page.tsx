@@ -88,7 +88,7 @@ export default async function BlogPage() {
               <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
               <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
               <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>*/} 
+            </div>*/}
 
             {/* Ultra Premium Title Section */}
             <div className="mb-16">
@@ -130,16 +130,16 @@ export default async function BlogPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-    src="/news-background-1440.webp"
-    alt="المدونه والاخبار"
-    fill
-    sizes="(max-width: 600px) 480px,
+            src="/news-background-1440.webp"
+            alt="المدونه والاخبار"
+            fill
+            sizes="(max-width: 600px) 480px,
            (max-width: 1024px) 960px,
            1440px"
-    className="object-contian"
-    priority
-  />
-          </div>
+            className="object-contian"
+            priority
+          />
+        </div>
       </section>
 
       {/* Ultra Premium Stats Section */}

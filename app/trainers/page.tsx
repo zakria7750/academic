@@ -1,34 +1,45 @@
-"use client"
+"use client";
 
-import { supabase } from "@/lib/supabase"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Award, Users, CheckCircle, FileText, DollarSign, Star, GraduationCap } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import type { Trainer } from "@/lib/supabase"
-import AccreditationApplicationForm from "@/components/accreditation-application-form"
-import { useEffect, useState } from "react"
+import { supabase } from "@/lib/supabase";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Award,
+  Users,
+  CheckCircle,
+  FileText,
+  DollarSign,
+  Star,
+  GraduationCap,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import type { Trainer } from "@/lib/supabase";
+import AccreditationApplicationForm from "@/components/accreditation-application-form";
+import { useEffect, useState } from "react";
 
 export default function TrainersPage() {
-  const [trainers, setTrainers] = useState<Trainer[]>([])
-  const [loading, setLoading] = useState(true)
+  const [trainers, setTrainers] = useState<Trainer[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getTrainers() {
-      const { data, error } = await supabase.from("trainers").select("*").order("created_at", { ascending: true })
+      const { data, error } = await supabase
+        .from("trainers")
+        .select("*")
+        .order("created_at", { ascending: true });
 
       if (error) {
-        console.error("Error fetching trainers:", error)
-        setTrainers([])
+        console.error("Error fetching trainers:", error);
+        setTrainers([]);
       } else {
-        setTrainers(data || [])
+        setTrainers(data || []);
       }
-      setLoading(false)
+      setLoading(false);
     }
 
-    getTrainers()
-  }, [])
+    getTrainers();
+  }, []);
 
   const requirements = [
     {
@@ -66,17 +77,19 @@ export default function TrainersPage() {
       icon: DollarSign,
       color: "bg-gradient-to-br from-red-500 to-red-600",
     },
-  ]
+  ];
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-academy-gold border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-academy-blue font-semibold">جاري تحميل البيانات...</p>
+          <p className="text-academy-blue font-semibold">
+            جاري تحميل البيانات...
+          </p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -87,7 +100,7 @@ export default function TrainersPage() {
         <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-gradient-to-br from-academy-gold/10 via-academy-gold/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-academy-blue/8 via-academy-blue/4 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-br from-academy-gold/6 to-academy-blue/6 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
+
         {/* Floating Geometric Elements */}
         <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-academy-gold/40 rotate-45 animate-pulse delay-300"></div>
         <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-academy-blue/40 rounded-full animate-pulse delay-700"></div>
@@ -108,9 +121,9 @@ export default function TrainersPage() {
                    1440px"
             className="object-cover w-full h-full"
             priority
-            style={{ 
-              objectPosition: 'center center',
-              objectFit: 'cover'
+            style={{
+              objectPosition: "center center",
+              objectFit: "cover",
             }}
           />
           {/* Multi-layered Premium Overlays */}
@@ -118,14 +131,14 @@ export default function TrainersPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-transparent to-academy-blue/60"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.12),transparent_70%)]"></div>
         </div>
-        
+
         {/* Ultra Premium Floating Elements */}
         <div className="absolute inset-0 opacity-50 z-10">
           <div className="absolute top-[15%] right-[10%] w-[200px] sm:w-[300px] lg:w-[400px] h-[200px] sm:h-[300px] lg:h-[400px] bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-[20%] left-[15%] w-[150px] sm:w-[250px] lg:w-[350px] h-[150px] sm:h-[250px] lg:h-[350px] bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-[40%] left-[20%] w-[100px] sm:w-[150px] lg:w-[200px] h-[100px] sm:h-[150px] lg:h-[200px] bg-academy-gold/10 rounded-full blur-2xl animate-pulse delay-500"></div>
           <div className="absolute top-[25%] right-[25%] w-[80px] sm:w-[120px] lg:w-[160px] h-[80px] sm:h-[120px] lg:h-[160px] bg-academy-gold/20 rounded-full blur-2xl animate-pulse delay-1500"></div>
-          
+
           {/* Premium Geometric Patterns */}
           <div className="absolute top-[30%] left-[30%] w-4 h-4 sm:w-6 sm:h-6 border-2 border-academy-gold/40 rotate-45 animate-pulse delay-2000"></div>
           <div className="absolute bottom-[35%] right-[30%] w-3 h-3 sm:w-4 sm:h-4 bg-academy-gold/30 rounded-full animate-pulse delay-2500"></div>
@@ -139,21 +152,39 @@ export default function TrainersPage() {
               <div className="p-6 sm:p-8 lg:p-10 bg-white/10 backdrop-blur-2xl rounded-[2.5rem] border border-white/20 shadow-[0_32px_64px_rgba(0,0,0,0.3)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.4)] transition-all duration-700 hover:bg-white/15">
                 <div className="relative">
                   <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/30 hover:scale-110 transition-transform duration-500 backdrop-blur-sm">
-                    <Award className="text-academy-blue drop-shadow-lg" size={window.innerWidth < 640 ? 40 : window.innerWidth < 1024 ? 48 : 64} />
+                    <Award
+                      className="text-academy-blue drop-shadow-lg"
+                      size={
+                        window.innerWidth < 640
+                          ? 40
+                          : window.innerWidth < 1024
+                            ? 48
+                            : 64
+                      }
+                    />
                   </div>
                   {/* Enhanced Floating Decorative Elements */}
                   <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/30 backdrop-blur-sm">
-                    <Users size={window.innerWidth < 640 ? 18 : 24} className="text-academy-blue" />
+                    <Users
+                      size={window.innerWidth < 640 ? 18 : 24}
+                      className="text-academy-blue"
+                    />
                   </div>
                   <div className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
-                    <Star size={window.innerWidth < 640 ? 16 : 20} className="text-academy-blue" />
+                    <Star
+                      size={window.innerWidth < 640 ? 16 : 20}
+                      className="text-academy-blue"
+                    />
                   </div>
                   <div className="absolute top-1 -left-4 sm:top-2 sm:-left-6 w-6 h-6 sm:w-8 sm:h-8 bg-academy-gold/90 rounded-full flex items-center justify-center shadow-md backdrop-blur-sm">
-                    <CheckCircle size={window.innerWidth < 640 ? 12 : 16} className="text-academy-blue" />
+                    <CheckCircle
+                      size={window.innerWidth < 640 ? 12 : 16}
+                      className="text-academy-blue"
+                    />
                   </div>
                 </div>
               </div>
-              
+
               {/* Enhanced Floating Elements with Glass Effect */}
               <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-6 h-6 sm:w-8 sm:h-8 bg-academy-gold/80 backdrop-blur-sm rounded-full animate-pulse shadow-lg border border-white/20"></div>
               <div className="absolute -bottom-3 -right-6 sm:-bottom-4 sm:-right-8 w-4 h-4 sm:w-6 sm:h-6 bg-academy-gold-light/70 backdrop-blur-sm rounded-full animate-pulse delay-700 shadow-md border border-white/20"></div>
@@ -173,7 +204,7 @@ export default function TrainersPage() {
                 </span>
               </h1>
             </div>
-            
+
             {/* Premium Description with Enhanced Styling */}
             <div className="mb-12 lg:mb-16">
               <p className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl mb-6 lg:mb-8 font-semibold leading-relaxed">
@@ -182,30 +213,43 @@ export default function TrainersPage() {
                 </span>
               </p>
               <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8 lg:mb-12 drop-shadow-md">
-                مدربون معتمدون من أكاديمية المعرفة الدولية يقدمون تدريباً عالي الجودة ومتخصصاً في بيئة تعليمية متطورة
+                مدربون معتمدون من أكاديمية المعرفة الدولية يقدمون تدريباً عالي
+                الجودة ومتخصصاً في بيئة تعليمية متطورة
               </p>
-              
+
               {/* Ultra Premium Glass Morphism Stats Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
                 <div className="group bg-white/10 backdrop-blur-2xl border border-white/25 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative z-10">
-                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">{trainers.length}</div>
-                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">مدرب معتمد</div>
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">
+                      {trainers.length}
+                    </div>
+                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">
+                      مدرب معتمد
+                    </div>
                   </div>
                 </div>
                 <div className="group bg-white/10 backdrop-blur-2xl border border-white/25 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative z-10">
-                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">100%</div>
-                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">اعتماد مؤكد</div>
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">
+                      100%
+                    </div>
+                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">
+                      اعتماد مؤكد
+                    </div>
                   </div>
                 </div>
                 <div className="group bg-white/10 backdrop-blur-2xl border border-white/25 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500 relative overflow-hidden sm:col-span-2 lg:col-span-1">
                   <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative z-10">
-                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">متميزة</div>
-                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">خبرة معتمدة</div>
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">
+                      متميزة
+                    </div>
+                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">
+                      خبرة معتمدة
+                    </div>
                   </div>
                 </div>
               </div>
@@ -215,9 +259,10 @@ export default function TrainersPage() {
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center items-center">
               <Button
                 onClick={() => {
-                  const trainersSection = document.querySelector('#trainers-list');
+                  const trainersSection =
+                    document.querySelector("#trainers-list");
                   if (trainersSection) {
-                    trainersSection.scrollIntoView({ behavior: 'smooth' });
+                    trainersSection.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
                 className="group bg-gradient-to-r from-academy-gold to-academy-gold-600 hover:from-academy-gold-600 hover:to-academy-gold-700 text-academy-blue font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-base sm:text-lg lg:text-xl rounded-full shadow-[0_20px_40px_rgba(255,215,0,0.3)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.4)] transform hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-academy-gold/30 relative overflow-hidden"
@@ -230,7 +275,8 @@ export default function TrainersPage() {
               </Button>
               <Button
                 onClick={() => {
-                  const accreditationForm = document.getElementById("accreditation-form");
+                  const accreditationForm =
+                    document.getElementById("accreditation-form");
                   if (accreditationForm) {
                     accreditationForm.scrollIntoView({ behavior: "smooth" });
                   }
@@ -267,7 +313,9 @@ export default function TrainersPage() {
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
                   {trainers.length}+
                 </h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">مدرب معتمد</p>
+                <p className="text-academy-dark-gray font-semibold text-lg">
+                  مدرب معتمد
+                </p>
                 <div className="absolute top-4 right-4 w-6 h-6 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </CardContent>
             </Card>
@@ -280,7 +328,9 @@ export default function TrainersPage() {
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
                   15+
                 </h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">تخصص مختلف</p>
+                <p className="text-academy-dark-gray font-semibold text-lg">
+                  تخصص مختلف
+                </p>
                 <div className="absolute top-4 right-4 w-6 h-6 bg-academy-blue/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </CardContent>
             </Card>
@@ -293,7 +343,9 @@ export default function TrainersPage() {
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
                   98%
                 </h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">معدل الرضا</p>
+                <p className="text-academy-dark-gray font-semibold text-lg">
+                  معدل الرضا
+                </p>
                 <div className="absolute top-4 right-4 w-6 h-6 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </CardContent>
             </Card>
@@ -308,9 +360,12 @@ export default function TrainersPage() {
             <div className="inline-block p-3 bg-academy-gold/10 rounded-full mb-6">
               <Award className="text-academy-gold" size={32} />
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-academy-blue mb-6">قائمة المدربين</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-academy-blue mb-6">
+              قائمة المدربين
+            </h2>
             <p className="text-xl lg:text-2xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed">
-              نخبة من أفضل المدربين المعتمدين والمتخصصين في مختلف المجالات العلمية والمهنية
+              نخبة من أفضل المدربين المعتمدين والمتخصصين في مختلف المجالات
+              العلمية والمهنية
             </p>
           </div>
 
@@ -326,7 +381,10 @@ export default function TrainersPage() {
                     <div className="relative p-6 pb-4">
                       <div className="relative w-full aspect-square overflow-hidden rounded-full mx-auto mb-6 ring-4 ring-academy-gold/30 group-hover:ring-academy-gold/60 transition-all duration-500 shadow-xl">
                         <Image
-                          src={trainer.image_url || "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"}
+                          src={
+                            trainer.image_url ||
+                            "/placeholder.svg?height=300&width=300&text=مدرب+معتمد"
+                          }
                           alt={trainer.name}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -351,7 +409,9 @@ export default function TrainersPage() {
 
                       {/* Enhanced Specialization Badge */}
                       <div className="bg-gradient-to-r from-academy-gray/50 to-academy-gray/30 px-4 py-2 rounded-full mb-4 border-2 border-academy-gold/20 group-hover:border-academy-gold/60 transition-colors duration-300 shadow-sm">
-                        <span className="text-academy-blue font-bold text-sm">{trainer.specialization}</span>
+                        <span className="text-academy-blue font-bold text-sm">
+                          {trainer.specialization}
+                        </span>
                       </div>
 
                       {/* Enhanced Rating Stars */}
@@ -390,8 +450,12 @@ export default function TrainersPage() {
               <div className="w-24 h-24 lg:w-32 lg:h-32 bg-academy-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-academy-gold/30">
                 <Award className="text-academy-gold" size={48} />
               </div>
-              <h3 className="text-2xl lg:text-3xl font-bold text-academy-blue mb-4">لا توجد بيانات</h3>
-              <p className="text-academy-dark-gray text-lg">لم يتم إضافة المدربين المعتمدين بعد.</p>
+              <h3 className="text-2xl lg:text-3xl font-bold text-academy-blue mb-4">
+                لا توجد بيانات
+              </h3>
+              <p className="text-academy-dark-gray text-lg">
+                لم يتم إضافة المدربين المعتمدين بعد.
+              </p>
             </div>
           )}
         </div>
@@ -409,11 +473,14 @@ export default function TrainersPage() {
             </h2>
             <div className="max-w-5xl mx-auto">
               <p className="text-xl lg:text-2xl text-academy-dark-gray mb-6">
-                <strong className="text-academy-blue">هل ترغب أن تكون ضمن قائمة مدربي أكاديمية المعرفة الدولية؟</strong>
+                <strong className="text-academy-blue">
+                  هل ترغب أن تكون ضمن قائمة مدربي أكاديمية المعرفة الدولية؟
+                </strong>
               </p>
               <p className="text-lg lg:text-xl text-academy-dark-gray leading-relaxed">
-                تتيح أكاديمية المعرفة الدولية الفرصة للمدربين المتميزين للانضمام إلى قائمة مدربيها المعتمدين، والاستفادة
-                من منصتها للتسويق للمدربين وبيان خبراتهم.
+                تتيح أكاديمية المعرفة الدولية الفرصة للمدربين المتميزين للانضمام
+                إلى قائمة مدربيها المعتمدين، والاستفادة من منصتها للتسويق
+                للمدربين وبيان خبراتهم.
               </p>
             </div>
           </div>
@@ -421,7 +488,7 @@ export default function TrainersPage() {
           {/* Enhanced Requirements Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-12">
             {requirements.map((requirement, index) => {
-              const Icon = requirement.icon
+              const Icon = requirement.icon;
               return (
                 <Card
                   key={index}
@@ -449,7 +516,7 @@ export default function TrainersPage() {
                     </div>
                   </CardContent>
                 </Card>
-              )
+              );
             })}
           </div>
 
@@ -479,7 +546,8 @@ export default function TrainersPage() {
                     <CheckCircle className="text-academy-blue" size={16} />
                   </div>
                   <p className="text-academy-dark-gray text-lg leading-relaxed">
-                    إدراج صورة المدرب وسيرته الذاتية ضمن قائمة مدربي الأكاديمية في الموقع الرسمي
+                    إدراج صورة المدرب وسيرته الذاتية ضمن قائمة مدربي الأكاديمية
+                    في الموقع الرسمي
                   </p>
                 </div>
               </div>
@@ -516,16 +584,19 @@ export default function TrainersPage() {
                 <Award className="text-academy-blue" size={32} />
               </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">انضم إلى فريق المدربين المعتمدين</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              انضم إلى فريق المدربين المعتمدين
+            </h2>
             <p className="text-xl lg:text-2xl mb-8 text-academy-gold leading-relaxed max-w-3xl mx-auto">
-              كن جزءاً من نخبة المدربين المعتمدين في أكاديمية المعرفة الدولية وشارك خبراتك مع آلاف المتدربين
+              كن جزءاً من نخبة المدربين المعتمدين في أكاديمية المعرفة الدولية
+              وشارك خبراتك مع آلاف المتدربين
             </p>
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center">
               <Button
                 onClick={() => {
-                  const form = document.getElementById("accreditation-form")
+                  const form = document.getElementById("accreditation-form");
                   if (form) {
-                    form.scrollIntoView({ behavior: "smooth" })
+                    form.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
                 className="bg-gradient-to-r from-academy-gold to-academy-gold-600 hover:from-academy-gold-600 hover:to-academy-gold-700 text-academy-blue font-bold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
@@ -551,5 +622,5 @@ export default function TrainersPage() {
       {/* Accreditation Application Form Section */}
       <AccreditationApplicationForm />
     </div>
-  )
+  );
 }

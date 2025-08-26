@@ -1,23 +1,23 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import Sidebar from "@/components/sidebar"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Sidebar from "@/components/sidebar";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "أكاديمية المعرفة الدولية",
   description: "أكاديمية رائدة... نبني العقول ونطور المستقبل",
-    generator: 'v0.dev'
-}
+  generator: "v0.dev",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="ar" dir="rtl">
@@ -32,5 +32,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  )
+  );
 }

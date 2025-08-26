@@ -1,24 +1,38 @@
-import { supabase } from "@/lib/supabase"
-import { Card, CardContent } from "@/components/ui/card"
-import Image from "next/image"
-import type { BoardMember } from "@/lib/supabase"
-import { Users, Crown, Star, Sparkles, Shield, Award, BookOpen, TrendingUp, Eye, Target } from "lucide-react"
+import { supabase } from "@/lib/supabase";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import type { BoardMember } from "@/lib/supabase";
+import {
+  Users,
+  Crown,
+  Star,
+  Sparkles,
+  Shield,
+  Award,
+  BookOpen,
+  TrendingUp,
+  Eye,
+  Target,
+} from "lucide-react";
 
 export const revalidate = 300; // ISR لمدة 5 دقائق
 
 async function getBoardMembers(): Promise<BoardMember[]> {
-  const { data, error } = await supabase.from("board_members").select("*").order("created_at", { ascending: true })
+  const { data, error } = await supabase
+    .from("board_members")
+    .select("*")
+    .order("created_at", { ascending: true });
 
   if (error) {
-    console.error("Error fetching board members:", error)
-    return []
+    console.error("Error fetching board members:", error);
+    return [];
   }
 
-  return data || []
+  return data || [];
 }
 
 export default async function BoardPage() {
-  const boardMembers = await getBoardMembers()
+  const boardMembers = await getBoardMembers();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
@@ -28,7 +42,7 @@ export default async function BoardPage() {
         <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-gradient-to-br from-academy-gold/10 via-academy-gold/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-academy-blue/8 via-academy-blue/4 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-br from-academy-gold/6 to-academy-blue/6 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
+
         {/* Floating Geometric Elements */}
         <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-academy-gold/40 rotate-45 animate-pulse delay-300"></div>
         <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-academy-blue/40 rounded-full animate-pulse delay-700"></div>
@@ -49,7 +63,7 @@ export default async function BoardPage() {
                    1440px"
             className="object-cover w-full h-full"
             priority
-            style={{ objectPosition: 'center center' }}
+            style={{ objectPosition: "center center" }}
           />
         </div>
 
@@ -57,7 +71,7 @@ export default async function BoardPage() {
         <div className="absolute inset-0 z-10 bg-gradient-to-br from-academy-blue/85 via-academy-blue-dark/80 to-slate-900/90"></div>
         <div className="absolute inset-0 z-20 bg-gradient-to-t from-academy-blue/90 via-academy-blue/60 to-academy-blue/40"></div>
         <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_30%_50%,rgba(255,215,0,0.15),transparent_70%)] bg-[radial-gradient(circle_at_70%_80%,rgba(255,215,0,0.08),transparent_50%)]"></div>
-        
+
         {/* Premium Decorative Glass Elements */}
         <div className="absolute inset-0 z-30 opacity-60">
           <div className="absolute top-10 sm:top-16 lg:top-20 right-4 sm:right-8 lg:right-20 w-32 sm:w-48 lg:w-80 h-32 sm:h-48 lg:h-80 bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-2xl animate-pulse backdrop-blur-xl"></div>
@@ -76,7 +90,10 @@ export default async function BoardPage() {
               <div className="glass-card-premium p-6 sm:p-8 lg:p-10 bg-white/10 backdrop-blur-2xl rounded-[2rem] lg:rounded-[3rem] border border-white/20 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700 hover:scale-105">
                 <div className="relative">
                   <div className="w-20 sm:w-24 lg:w-32 xl:w-40 h-20 sm:h-24 lg:h-32 xl:h-40 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-2xl lg:rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <Crown className="text-academy-blue drop-shadow-lg" size={32} />
+                    <Crown
+                      className="text-academy-blue drop-shadow-lg"
+                      size={32}
+                    />
                   </div>
                   <div className="absolute -top-2 sm:-top-3 lg:-top-4 -right-2 sm:-right-3 lg:-right-4 w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
                     <Users size={16} className="text-academy-blue" />
@@ -89,7 +106,7 @@ export default async function BoardPage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Enhanced Floating Elements */}
               <div className="absolute -top-4 sm:-top-6 -left-4 sm:-left-6 w-6 sm:w-8 h-6 sm:h-8 bg-academy-gold rounded-full animate-pulse shadow-lg backdrop-blur-sm"></div>
               <div className="absolute -bottom-3 sm:-bottom-4 -right-6 sm:-right-8 w-4 sm:w-6 h-4 sm:h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md backdrop-blur-sm"></div>
@@ -109,7 +126,7 @@ export default async function BoardPage() {
                 </span>
               </h1>
             </div>
-            
+
             {/* Premium Description */}
             <div className="mb-12 sm:mb-16 lg:mb-20">
               <div className="glass-card-premium p-6 sm:p-8 lg:p-10 bg-white/8 backdrop-blur-2xl rounded-3xl border border-white/15 max-w-5xl mx-auto mb-8 sm:mb-10 lg:mb-12 shadow-[0_24px_48px_rgba(0,0,0,0.2)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.3)] transition-all duration-500">
@@ -119,23 +136,36 @@ export default async function BoardPage() {
                   </span>
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-white/90 leading-relaxed">
-                  أعضاء مجلس إدارة أكاديمية المعرفة الدولية يقودون الرؤية الاستراتيجية نحو التميز والابتكار في التعليم والبحث العلمي
+                  أعضاء مجلس إدارة أكاديمية المعرفة الدولية يقودون الرؤية
+                  الاستراتيجية نحو التميز والابتكار في التعليم والبحث العلمي
                 </p>
               </div>
-              
+
               {/* Premium Stats Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
                 <div className="glass-card-stats bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.35)] hover:scale-105 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2">
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">{boardMembers.length}</div>
-                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">عضو مجلس إدارة</div>
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">
+                    {boardMembers.length}
+                  </div>
+                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">
+                    عضو مجلس إدارة
+                  </div>
                 </div>
                 <div className="glass-card-stats bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.35)] hover:scale-105 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2">
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">قيادة</div>
-                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">متميزة وخبيرة</div>
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">
+                    قيادة
+                  </div>
+                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">
+                    متميزة وخبيرة
+                  </div>
                 </div>
                 <div className="glass-card-stats bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.35)] hover:scale-105 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2 sm:col-span-2 lg:col-span-1">
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">رؤية</div>
-                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">واضحة ومتقدمة</div>
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">
+                    رؤية
+                  </div>
+                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">
+                    واضحة ومتقدمة
+                  </div>
                 </div>
               </div>
             </div>
@@ -144,25 +174,31 @@ export default async function BoardPage() {
             <div className="glass-card-trust flex flex-col sm:flex-row items-center justify-center bg-white/8 backdrop-blur-xl border border-white/15 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto space-y-3 sm:space-y-0 sm:space-x-6 lg:space-x-8 sm:space-x-reverse shadow-[0_16px_32px_rgba(0,0,0,0.2)] hover:shadow-[0_24px_48px_rgba(0,0,0,0.3)] transition-all duration-500">
               <div className="flex items-center space-x-2 space-x-reverse text-academy-gold-light">
                 <Eye className="text-academy-gold" size={16} />
-                <span className="text-xs sm:text-sm lg:text-base font-medium">رؤية استراتيجية</span>
+                <span className="text-xs sm:text-sm lg:text-base font-medium">
+                  رؤية استراتيجية
+                </span>
               </div>
               <div className="homepage-trust-separator hidden sm:block w-1 h-1 bg-academy-gold/60 rounded-full"></div>
               <div className="flex items-center space-x-2 space-x-reverse text-academy-gold-light">
                 <Target className="text-academy-gold" size={16} />
-                <span className="text-xs sm:text-sm lg:text-base font-medium">أهداف واضحة</span>
+                <span className="text-xs sm:text-sm lg:text-base font-medium">
+                  أهداف واضحة
+                </span>
               </div>
               <div className="homepage-trust-separator hidden sm:block w-1 h-1 bg-academy-gold/60 rounded-full"></div>
               <div className="flex items-center space-x-2 space-x-reverse text-academy-gold-light">
                 <TrendingUp className="text-academy-gold" size={16} />
-                <span className="text-xs sm:text-sm lg:text-base font-medium">نمو مستدام</span>
+                <span className="text-xs sm:text-sm lg:text-base font-medium">
+                  نمو مستدام
+                </span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-             {/* Enhanced Board Members Section */}
-       <section className="board-section-spacing py-24 relative">
+      {/* Enhanced Board Members Section */}
+      <section className="board-section-spacing py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-academy-gray-light to-white"></div>
         <div className="relative z-10 container mx-auto px-4">
           {/* Enhanced Section Header */}
@@ -175,41 +211,48 @@ export default async function BoardPage() {
                 </span>
               </div>
             </div>
-            
+
             <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue mb-6 leading-tight">
-              أعضاء 
-              <span className="bg-gradient-to-r from-academy-gold to-academy-gold-light bg-clip-text text-transparent"> مجلس الإدارة</span>
+              أعضاء
+              <span className="bg-gradient-to-r from-academy-gold to-academy-gold-light bg-clip-text text-transparent">
+                {" "}
+                مجلس الإدارة
+              </span>
             </h2>
-            
+
             <div className="w-32 h-1 bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold mx-auto mb-8 rounded-full"></div>
-            
+
             <p className="text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed">
-              نخبة من القيادات الأكاديمية والمهنية المتميزة التي تقود الأكاديمية نحو التميز والريادة في التعليم والبحث العلمي
+              نخبة من القيادات الأكاديمية والمهنية المتميزة التي تقود الأكاديمية
+              نحو التميز والريادة في التعليم والبحث العلمي
             </p>
           </div>
 
           {boardMembers.length > 0 ? (
-                         <div className="board-members-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-8xl mx-auto">
+            <div className="board-members-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-8xl mx-auto">
               {boardMembers.map((member, index) => (
                 <Card
                   key={member.id}
-                                     className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card member-card-premium"
+                  className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card member-card-premium"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                  
+
                   <CardContent className="relative p-0">
                     {/* Enhanced Image Section */}
                     <div className="relative p-8 pb-0">
-                                             <div className="member-avatar relative w-full aspect-square overflow-hidden rounded-full mx-auto mb-6 ring-4 ring-academy-gold/20 group-hover:ring-academy-gold/60 transition-all duration-700 shadow-xl">
+                      <div className="member-avatar relative w-full aspect-square overflow-hidden rounded-full mx-auto mb-6 ring-4 ring-academy-gold/20 group-hover:ring-academy-gold/60 transition-all duration-700 shadow-xl">
                         <Image
-                          src={member.image_url || "/placeholder.svg?height=300&width=300&text=عضو+المجلس"}
+                          src={
+                            member.image_url ||
+                            "/placeholder.svg?height=300&width=300&text=عضو+المجلس"
+                          }
                           alt={member.name}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
-                        
+
                         {/* Premium Badge */}
                         <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-light rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                           <Crown className="text-academy-blue" size={14} />
@@ -222,12 +265,12 @@ export default async function BoardPage() {
                       <h3 className="text-xl font-bold text-academy-blue mb-3 group-hover:text-academy-blue-light transition-colors duration-300 leading-tight">
                         {member.name}
                       </h3>
-                      
-                                             <div className="position-badge member-badge-premium bg-gradient-to-r from-academy-gold to-academy-gold-light text-academy-blue px-4 py-2 rounded-full text-sm font-bold mb-4 inline-block shadow-lg group-hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+
+                      <div className="position-badge member-badge-premium bg-gradient-to-r from-academy-gold to-academy-gold-light text-academy-blue px-4 py-2 rounded-full text-sm font-bold mb-4 inline-block shadow-lg group-hover:shadow-xl transition-all duration-300 relative overflow-hidden">
                         <span className="relative z-10">{member.position}</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-academy-gold-light to-academy-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
-                      
+
                       <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3 group-hover:text-academy-darker-gray transition-colors duration-300 mb-4">
                         {member.experience}
                       </p>
@@ -238,7 +281,9 @@ export default async function BoardPage() {
                           <div className="w-6 h-6 bg-gradient-to-br from-academy-blue to-academy-blue-light rounded-full flex items-center justify-center">
                             <Star size={12} className="text-academy-gold" />
                           </div>
-                          <span className="text-academy-blue font-semibold text-xs">عضو متميز</span>
+                          <span className="text-academy-blue font-semibold text-xs">
+                            عضو متميز
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -255,10 +300,10 @@ export default async function BoardPage() {
               ))}
             </div>
           ) : (
-                         /* Enhanced Empty State */
-             <div className="empty-state-enhanced text-center py-20">
-                             <div className="empty-state-icon relative mb-8">
-                 <div className="w-32 h-32 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-full flex items-center justify-center mx-auto shadow-xl ring-8 ring-academy-gold/10">
+            /* Enhanced Empty State */
+            <div className="empty-state-enhanced text-center py-20">
+              <div className="empty-state-icon relative mb-8">
+                <div className="w-32 h-32 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-full flex items-center justify-center mx-auto shadow-xl ring-8 ring-academy-gold/10">
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-gold to-academy-gold-light rounded-full flex items-center justify-center">
                     <Users className="text-academy-blue" size={32} />
                   </div>
@@ -267,12 +312,14 @@ export default async function BoardPage() {
                   <Sparkles className="text-academy-blue" size={16} />
                 </div>
               </div>
-              
-              <h3 className="text-3xl font-bold text-academy-blue mb-4">قريباً</h3>
+
+              <h3 className="text-3xl font-bold text-academy-blue mb-4">
+                قريباً
+              </h3>
               <p className="text-academy-dark-gray text-lg leading-relaxed max-w-md mx-auto">
                 سيتم إضافة أعضاء مجلس الإدارة قريباً. ترقبوا التحديثات.
               </p>
-              
+
               <div className="mt-8 flex items-center justify-center space-x-6 space-x-reverse text-academy-gold/60">
                 <div className="flex items-center space-x-2 space-x-reverse">
                   <Crown size={16} />
@@ -298,56 +345,71 @@ export default async function BoardPage() {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-blue-600"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/90"></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 60%), 
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 60%), 
                            radial-gradient(circle at 70% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 60%),
-                           linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%)`
-        }}></div>
-        
+                           linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%)`,
+          }}
+        ></div>
+
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-5xl mx-auto text-white">
             <div className="mb-8">
               <div className="inline-flex items-center justify-center p-1 bg-white/10 backdrop-blur-sm rounded-full mb-6">
                 <div className="px-6 py-2 bg-academy-gold rounded-full shadow-sm">
-                  <span className="text-academy-blue font-bold text-sm">قيادة متميزة</span>
+                  <span className="text-academy-blue font-bold text-sm">
+                    قيادة متميزة
+                  </span>
                 </div>
               </div>
             </div>
-            
+
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-              قيادة متميزة 
-              <span className="bg-gradient-to-r from-academy-gold to-academy-gold-light bg-clip-text text-transparent"> لمستقبل أفضل</span>
+              قيادة متميزة
+              <span className="bg-gradient-to-r from-academy-gold to-academy-gold-light bg-clip-text text-transparent">
+                {" "}
+                لمستقبل أفضل
+              </span>
             </h2>
-            
+
             <p className="text-xl mb-10 text-academy-gold-light leading-relaxed max-w-3xl mx-auto">
-              يقود مجلس إدارتنا الأكاديمية بخبرة ورؤية واضحة نحو تحقيق التميز في التعليم والبحث العلمي وبناء جيل مؤهل للمستقبل
+              يقود مجلس إدارتنا الأكاديمية بخبرة ورؤية واضحة نحو تحقيق التميز في
+              التعليم والبحث العلمي وبناء جيل مؤهل للمستقبل
             </p>
-            
-                         <div className="board-cta-buttons flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+
+            <div className="board-cta-buttons flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
               <a
                 href="/about"
-                                 className="board-cta-button group bg-gradient-to-r from-academy-gold to-academy-gold-light hover:from-academy-gold-light hover:to-academy-gold text-academy-blue font-bold px-12 py-4 text-lg rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden min-w-[200px] inline-block"
+                className="board-cta-button group bg-gradient-to-r from-academy-gold to-academy-gold-light hover:from-academy-gold-light hover:to-academy-gold text-academy-blue font-bold px-12 py-4 text-lg rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden min-w-[200px] inline-block"
               >
                 <span className="relative z-10 flex items-center justify-center space-x-2 space-x-reverse">
                   <span>تعرف على رؤيتنا</span>
-                  <Eye size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                  <Eye
+                    size={20}
+                    className="group-hover:scale-110 transition-transform duration-300"
+                  />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-academy-gold-light to-academy-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
-              
+
               <a
                 href="/programs"
-                                 className="board-cta-button group border-2 border-white/80 text-white hover:bg-white hover:text-academy-blue font-bold px-12 py-4 text-lg rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 bg-white/10 backdrop-blur-sm min-w-[200px] inline-block"
+                className="board-cta-button group border-2 border-white/80 text-white hover:bg-white hover:text-academy-blue font-bold px-12 py-4 text-lg rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 bg-white/10 backdrop-blur-sm min-w-[200px] inline-block"
               >
                 <span className="flex items-center justify-center space-x-2 space-x-reverse">
                   <span>استكشف برامجنا</span>
-                  <BookOpen size={20} className="group-hover:rotate-12 transition-transform duration-300" />
+                  <BookOpen
+                    size={20}
+                    className="group-hover:rotate-12 transition-transform duration-300"
+                  />
                 </span>
               </a>
             </div>
 
-                         {/* Leadership Values */}
-             <div className="leadership-values flex items-center justify-center space-x-8 space-x-reverse text-academy-gold-light/80">
+            {/* Leadership Values */}
+            <div className="leadership-values flex items-center justify-center space-x-8 space-x-reverse text-academy-gold-light/80">
               <div className="flex items-center space-x-2 space-x-reverse">
                 <Eye className="text-academy-gold" size={16} />
                 <span className="text-sm">رؤية استراتيجية</span>
@@ -367,5 +429,5 @@ export default async function BoardPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

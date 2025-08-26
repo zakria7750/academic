@@ -73,7 +73,7 @@ export default async function FacultyPage() {
           {/* Large Floating Orbs */}
           <div className="absolute top-20 right-10 lg:right-20 w-64 lg:w-96 h-64 lg:h-96 bg-gradient-to-br from-academy-gold/30 via-academy-gold/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 left-10 lg:left-20 w-48 lg:w-80 h-48 lg:h-80 bg-gradient-to-br from-academy-gold/25 via-academy-gold/15 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
-          
+
           {/* Medium Floating Elements */}
           <div className="absolute top-1/3 left-1/4 w-32 lg:w-48 h-32 lg:h-48 bg-academy-gold/20 rounded-full blur-2xl animate-pulse delay-500"></div>
           <div className="absolute bottom-1/3 right-1/4 w-24 lg:w-40 h-24 lg:h-40 bg-academy-gold/25 rounded-full blur-xl animate-pulse delay-1500"></div>
@@ -81,7 +81,7 @@ export default async function FacultyPage() {
           {/* Geometric Patterns */}
           <div className="absolute top-32 left-1/3 w-4 lg:w-6 h-4 lg:h-6 border-2 border-academy-gold/40 rotate-45 animate-pulse delay-2000"></div>
           <div className="absolute bottom-32 right-1/3 w-3 lg:w-4 h-3 lg:h-4 bg-academy-gold/30 rounded-full animate-pulse delay-2500"></div>
-          
+
           {/* Additional Diamond Shapes */}
           <div className="absolute top-1/4 right-1/3 w-6 h-6 bg-academy-gold/20 rotate-45 animate-pulse delay-3000"></div>
           <div className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-academy-gold/15 rotate-45 animate-pulse delay-3500"></div>
@@ -99,16 +99,25 @@ export default async function FacultyPage() {
                       size={window?.innerWidth > 1024 ? 60 : 48}
                     />
                   </div>
-                  
+
                   {/* Floating Academic Icons */}
                   <div className="absolute -top-3 -right-3 lg:-top-4 lg:-right-4 w-8 h-8 lg:w-12 lg:h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20 animate-pulse">
-                    <Brain size={window?.innerWidth > 1024 ? 24 : 18} className="text-academy-blue" />
+                    <Brain
+                      size={window?.innerWidth > 1024 ? 24 : 18}
+                      className="text-academy-blue"
+                    />
                   </div>
                   <div className="absolute -bottom-2 -left-2 lg:-bottom-3 lg:-left-3 w-7 h-7 lg:w-10 lg:h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg animate-pulse delay-700">
-                    <Star size={window?.innerWidth > 1024 ? 20 : 16} className="text-academy-blue" />
+                    <Star
+                      size={window?.innerWidth > 1024 ? 20 : 16}
+                      className="text-academy-blue"
+                    />
                   </div>
                   <div className="absolute top-1 -left-4 lg:top-2 lg:-left-6 w-6 h-6 lg:w-8 lg:h-8 bg-academy-gold/90 rounded-full flex items-center justify-center shadow-md animate-pulse delay-1400">
-                    <Award size={window?.innerWidth > 1024 ? 16 : 12} className="text-academy-blue" />
+                    <Award
+                      size={window?.innerWidth > 1024 ? 16 : 12}
+                      className="text-academy-blue"
+                    />
                   </div>
                 </div>
               </div>
@@ -151,21 +160,27 @@ export default async function FacultyPage() {
                   <div className="text-2xl lg:text-3xl font-bold text-academy-gold mb-2 group-hover:scale-110 transition-transform duration-300">
                     {facultyMembers.length}+
                   </div>
-                  <div className="text-sm lg:text-base text-white/90 font-medium">عضو هيئة تدريس</div>
+                  <div className="text-sm lg:text-base text-white/90 font-medium">
+                    عضو هيئة تدريس
+                  </div>
                 </div>
-                
+
                 <div className="glass-card-stats bg-white/15 backdrop-blur-xl border border-white/25 rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-center shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] hover:scale-105 hover:bg-white/20 transition-all duration-500 group">
                   <div className="text-2xl lg:text-3xl font-bold text-academy-gold mb-2 group-hover:scale-110 transition-transform duration-300">
                     100%
                   </div>
-                  <div className="text-sm lg:text-base text-white/90 font-medium">خبراء متخصصون</div>
+                  <div className="text-sm lg:text-base text-white/90 font-medium">
+                    خبراء متخصصون
+                  </div>
                 </div>
-                
+
                 <div className="glass-card-stats bg-white/15 backdrop-blur-xl border border-white/25 rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-center shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] hover:scale-105 hover:bg-white/20 transition-all duration-500 group sm:col-span-2 lg:col-span-1">
                   <div className="text-2xl lg:text-3xl font-bold text-academy-gold mb-2 group-hover:scale-110 transition-transform duration-300">
                     25+
                   </div>
-                  <div className="text-sm lg:text-base text-white/90 font-medium">سنة خبرة متوسطة</div>
+                  <div className="text-sm lg:text-base text-white/90 font-medium">
+                    سنة خبرة متوسطة
+                  </div>
                 </div>
               </div>
             </div>

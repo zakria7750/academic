@@ -1,13 +1,22 @@
-import { getGraduates } from "@/app/actions/graduates-actions"
-import { GraduateCard } from "@/components/graduate-card"
-import { GraduateApplicationForm } from "@/components/graduate-application-form"
-import { GraduationCap, Users, Trophy, Globe, Star, Crown, Sparkles, Award } from "lucide-react"
-import Image from "next/image"
+import { getGraduates } from "@/app/actions/graduates-actions";
+import { GraduateCard } from "@/components/graduate-card";
+import { GraduateApplicationForm } from "@/components/graduate-application-form";
+import {
+  GraduationCap,
+  Users,
+  Trophy,
+  Globe,
+  Star,
+  Crown,
+  Sparkles,
+  Award,
+} from "lucide-react";
+import Image from "next/image";
 
 export const revalidate = 300; // ISR لمدة 5 دقائق
 
 export default async function GraduatesPage() {
-  const graduates = await getGraduates()
+  const graduates = await getGraduates();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
@@ -35,7 +44,7 @@ export default async function GraduatesPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/85 via-academy-blue-dark/80 to-slate-900/90"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-transparent to-academy-blue/70"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-academy-blue-dark/40 via-transparent to-academy-blue/60"></div>
-          
+
           {/* Advanced Glass Morphism Background Pattern */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 left-0 w-full h-full">
@@ -58,21 +67,27 @@ export default async function GraduatesPage() {
                   {/* Main Glass Container */}
                   <div className="relative p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/30 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.3)] transition-all duration-700 hover:bg-white/20">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-academy-gold/10 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
+
                     {/* Icon Container with Enhanced Glass Effect */}
                     <div className="relative">
                       <div className="w-24 h-24 bg-gradient-to-br from-academy-gold/30 via-academy-gold/20 to-academy-gold/10 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border border-academy-gold/30 group-hover:scale-110 transition-all duration-500">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                        <GraduationCap className="text-white drop-shadow-lg relative z-10" size={48} />
+                        <GraduationCap
+                          className="text-white drop-shadow-lg relative z-10"
+                          size={48}
+                        />
                       </div>
-                      
+
                       {/* Premium Badge */}
                       <div className="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark backdrop-blur-xl rounded-full flex items-center justify-center shadow-xl border-2 border-white/30 group-hover:scale-125 transition-all duration-500">
-                        <Crown size={18} className="text-academy-blue drop-shadow-sm" />
+                        <Crown
+                          size={18}
+                          className="text-academy-blue drop-shadow-sm"
+                        />
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Floating Decorative Elements */}
                   <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full animate-pulse shadow-lg backdrop-blur-sm"></div>
                   <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-white/80 rounded-full animate-pulse delay-700 shadow-md backdrop-blur-sm"></div>
@@ -87,24 +102,31 @@ export default async function GraduatesPage() {
                     نخبة الخريجين المتميزين
                   </span>
                 </h1>
-                
+
                 {/* Enhanced Decorative Separator */}
                 <div className="flex items-center justify-center gap-6 mb-12">
                   <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
                   <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
                   <div className="relative">
-                    <Sparkles className="text-academy-gold animate-pulse" size={32} />
+                    <Sparkles
+                      className="text-academy-gold animate-pulse"
+                      size={32}
+                    />
                     <div className="absolute inset-0 animate-ping">
-                      <Sparkles className="text-academy-gold opacity-30" size={32} />
+                      <Sparkles
+                        className="text-academy-gold opacity-30"
+                        size={32}
+                      />
                     </div>
                   </div>
                   <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
                   <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
                 </div>
-                
+
                 <div className="max-w-5xl mx-auto px-4">
                   <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-medium leading-relaxed">
-                    رحلة نجاح استثنائية لخريجينا الذين يقودون التميز والإبداع في مختلف المجالات حول العالم
+                    رحلة نجاح استثنائية لخريجينا الذين يقودون التميز والإبداع في
+                    مختلف المجالات حول العالم
                   </p>
                 </div>
               </div>
@@ -117,14 +139,21 @@ export default async function GraduatesPage() {
                     {/* Glass Background Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/15 via-green-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
-                    
+
                     <div className="relative z-10">
                       <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-emerald-400/25 via-green-400/20 to-emerald-300/15 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-emerald-300/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                        <Users className="text-emerald-200 drop-shadow-lg relative z-10" size={32} />
+                        <Users
+                          className="text-emerald-200 drop-shadow-lg relative z-10"
+                          size={32}
+                        />
                       </div>
-                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">{graduates.length}+</div>
-                      <div className="text-emerald-200 font-semibold text-base lg:text-lg drop-shadow-sm">سيرة ذاتية</div>
+                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">
+                        {graduates.length}+
+                      </div>
+                      <div className="text-emerald-200 font-semibold text-base lg:text-lg drop-shadow-sm">
+                        سيرة ذاتية
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -134,14 +163,21 @@ export default async function GraduatesPage() {
                   <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 border border-white/30 hover:border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.35)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-400/15 via-indigo-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
-                    
+
                     <div className="relative z-10">
                       <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-400/25 via-indigo-400/20 to-blue-300/15 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-blue-300/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                        <Globe className="text-blue-200 drop-shadow-lg relative z-10" size={32} />
+                        <Globe
+                          className="text-blue-200 drop-shadow-lg relative z-10"
+                          size={32}
+                        />
                       </div>
-                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">15+</div>
-                      <div className="text-blue-200 font-semibold text-base lg:text-lg drop-shadow-sm">دولة</div>
+                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">
+                        15+
+                      </div>
+                      <div className="text-blue-200 font-semibold text-base lg:text-lg drop-shadow-sm">
+                        دولة
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -151,14 +187,21 @@ export default async function GraduatesPage() {
                   <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 border border-white/30 hover:border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.35)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/15 via-yellow-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
-                    
+
                     <div className="relative z-10">
                       <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-academy-gold/25 via-yellow-400/20 to-academy-gold/15 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-academy-gold/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                        <Trophy className="text-academy-gold-light drop-shadow-lg relative z-10" size={32} />
+                        <Trophy
+                          className="text-academy-gold-light drop-shadow-lg relative z-10"
+                          size={32}
+                        />
                       </div>
-                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">95%</div>
-                      <div className="text-academy-gold-light font-semibold text-base lg:text-lg drop-shadow-sm">معدل التوظيف</div>
+                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">
+                        95%
+                      </div>
+                      <div className="text-academy-gold-light font-semibold text-base lg:text-lg drop-shadow-sm">
+                        معدل التوظيف
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -168,14 +211,21 @@ export default async function GraduatesPage() {
                   <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 border border-white/30 hover:border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.35)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-400/15 via-pink-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
-                    
+
                     <div className="relative z-10">
                       <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-400/25 via-pink-400/20 to-purple-300/15 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-purple-300/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                        <Award className="text-purple-200 drop-shadow-lg relative z-10" size={32} />
+                        <Award
+                          className="text-purple-200 drop-shadow-lg relative z-10"
+                          size={32}
+                        />
                       </div>
-                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">10+</div>
-                      <div className="text-purple-200 font-semibold text-base lg:text-lg drop-shadow-sm">تخصص</div>
+                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">
+                        10+
+                      </div>
+                      <div className="text-purple-200 font-semibold text-base lg:text-lg drop-shadow-sm">
+                        تخصص
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -229,12 +279,16 @@ export default async function GraduatesPage() {
               <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
                 <div className="w-16 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={20} />
+                <Sparkles
+                  className="text-academy-gold animate-pulse"
+                  size={20}
+                />
                 <div className="w-16 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
               <p className="text-xl md:text-2xl text-academy-dark-gray max-w-3xl mx-auto leading-relaxed font-medium">
-                اكتشف كيف غيرت أكاديمية المعرفة الدولية حياة خريجينا المهنية ومساراتهم نحو النجاح
+                اكتشف كيف غيرت أكاديمية المعرفة الدولية حياة خريجينا المهنية
+                ومساراتهم نحو النجاح
               </p>
             </div>
           </div>
@@ -253,10 +307,13 @@ export default async function GraduatesPage() {
                 <div className="w-8 h-8 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-lg flex items-center justify-center shadow-lg">
                   <Users className="text-white" size={16} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-xl">انضم إلى مجتمع النجاح</h3>
+                <h3 className="text-academy-blue font-bold text-xl">
+                  انضم إلى مجتمع النجاح
+                </h3>
               </div>
               <p className="text-academy-dark-gray leading-relaxed">
-                كن جزءاً من شبكة خريجينا المتميزين واشترك في قصص النجاح التي تلهم الأجيال القادمة
+                كن جزءاً من شبكة خريجينا المتميزين واشترك في قصص النجاح التي
+                تلهم الأجيال القادمة
               </p>
             </div>
           </div>
@@ -298,12 +355,16 @@ export default async function GraduatesPage() {
               <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
                 <div className="w-16 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={20} />
+                <Sparkles
+                  className="text-academy-gold animate-pulse"
+                  size={20}
+                />
                 <div className="w-16 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
               <p className="text-xl md:text-2xl text-academy-dark-gray max-w-3xl mx-auto leading-relaxed font-medium">
-                شارك قصة نجاحك مع المجتمع وكن مصدر إلهام للطلاب الحاليين والمستقبليين
+                شارك قصة نجاحك مع المجتمع وكن مصدر إلهام للطلاب الحاليين
+                والمستقبليين
               </p>
             </div>
 
@@ -313,24 +374,36 @@ export default async function GraduatesPage() {
                 <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Star className="text-emerald-600" size={24} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-lg mb-2">شارك إنجازاتك</h3>
-                <p className="text-academy-dark-gray text-sm">اعرض مسيرتك المهنية وإنجازاتك المتميزة</p>
+                <h3 className="text-academy-blue font-bold text-lg mb-2">
+                  شارك إنجازاتك
+                </h3>
+                <p className="text-academy-dark-gray text-sm">
+                  اعرض مسيرتك المهنية وإنجازاتك المتميزة
+                </p>
               </div>
 
               <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-slate-200/50 hover:shadow-xl transition-all duration-300">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Users className="text-blue-600" size={24} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-lg mb-2">تواصل مع الخريجين</h3>
-                <p className="text-academy-dark-gray text-sm">انضم إلى شبكة مهنية قوية من الخريجين</p>
+                <h3 className="text-academy-blue font-bold text-lg mb-2">
+                  تواصل مع الخريجين
+                </h3>
+                <p className="text-academy-dark-gray text-sm">
+                  انضم إلى شبكة مهنية قوية من الخريجين
+                </p>
               </div>
 
               <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-slate-200/50 hover:shadow-xl transition-all duration-300">
                 <div className="w-12 h-12 bg-gradient-to-br from-academy-gold/20 to-yellow-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Award className="text-academy-gold" size={24} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-lg mb-2">ألهم الآخرين</h3>
-                <p className="text-academy-dark-gray text-sm">كن مصدر إلهام للجيل القادم من الطلاب</p>
+                <h3 className="text-academy-blue font-bold text-lg mb-2">
+                  ألهم الآخرين
+                </h3>
+                <p className="text-academy-dark-gray text-sm">
+                  كن مصدر إلهام للجيل القادم من الطلاب
+                </p>
               </div>
             </div>
           </div>
@@ -350,10 +423,12 @@ export default async function GraduatesPage() {
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 p-4">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
-            <span className="text-academy-blue font-medium text-sm">شبكة الخريجين النشطة</span>
+            <span className="text-academy-blue font-medium text-sm">
+              شبكة الخريجين النشطة
+            </span>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

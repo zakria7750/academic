@@ -1,8 +1,19 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Users, BookOpen, Globe, Award, Star, Sparkles, TrendingUp, Crown, Shield, Zap } from "lucide-react"
-import Image from "next/image"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Users,
+  BookOpen,
+  Globe,
+  Award,
+  Star,
+  Sparkles,
+  TrendingUp,
+  Crown,
+  Shield,
+  Zap,
+} from "lucide-react";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -34,7 +45,7 @@ export default function HomePage() {
                    1440px"
             className="object-cover w-full h-full"
             priority
-            style={{ objectPosition: 'center center' }}
+            style={{ objectPosition: "center center" }}
           />
         </div>
 
@@ -68,15 +79,21 @@ export default function HomePage() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 lg:gap-6 text-academy-gold-light/90 mb-6 sm:mb-8">
                   <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300">
                     <Star className="text-academy-gold" size={18} />
-                    <span className="text-xs sm:text-sm font-medium">مؤسسة رائدة</span>
+                    <span className="text-xs sm:text-sm font-medium">
+                      مؤسسة رائدة
+                    </span>
                   </div>
                   <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300">
                     <Shield className="text-academy-gold" size={18} />
-                    <span className="text-xs sm:text-sm font-medium">معتمدة دولياً</span>
+                    <span className="text-xs sm:text-sm font-medium">
+                      معتمدة دولياً
+                    </span>
                   </div>
                   <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300">
                     <Zap className="text-academy-gold" size={18} />
-                    <span className="text-xs sm:text-sm font-medium">تعليم متطور</span>
+                    <span className="text-xs sm:text-sm font-medium">
+                      تعليم متطور
+                    </span>
                   </div>
                 </div>
               </div>
@@ -89,23 +106,36 @@ export default function HomePage() {
                   </span>
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
-                  نقدم تعليماً عالي الجودة يجمع بين الأصالة والمعاصرة مع أحدث المعايير الدولية
+                  نقدم تعليماً عالي الجودة يجمع بين الأصالة والمعاصرة مع أحدث
+                  المعايير الدولية
                 </p>
               </div>
 
               {/* Premium Stats Preview with Glass Effect */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto mb-8 sm:mb-12">
                 <div className="glass-card-stats backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-4 sm:p-6 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500">
-                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">1000+</div>
-                  <div className="text-white/90 text-xs sm:text-sm font-medium">خريج متميز</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">
+                    1000+
+                  </div>
+                  <div className="text-white/90 text-xs sm:text-sm font-medium">
+                    خريج متميز
+                  </div>
                 </div>
                 <div className="glass-card-stats backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-4 sm:p-6 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500">
-                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">130+</div>
-                  <div className="text-white/90 text-xs sm:text-sm font-medium">برنامج تعليمي</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">
+                    130+
+                  </div>
+                  <div className="text-white/90 text-xs sm:text-sm font-medium">
+                    برنامج تعليمي
+                  </div>
                 </div>
                 <div className="glass-card-stats backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-4 sm:p-6 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500 sm:col-span-3 lg:col-span-1">
-                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">21</div>
-                  <div className="text-white/90 text-xs sm:text-sm font-medium">أقسام أكاديمية</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">
+                    21
+                  </div>
+                  <div className="text-white/90 text-xs sm:text-sm font-medium">
+                    أقسام أكاديمية
+                  </div>
                 </div>
               </div>
             </div>
@@ -116,9 +146,15 @@ export default function HomePage() {
                 <Link href="/admission">
                   <Button className="group glass-button-premium backdrop-blur-xl bg-gradient-to-r from-academy-gold/90 via-academy-gold to-academy-gold/90 text-academy-blue font-bold px-8 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 text-base sm:text-lg lg:text-xl rounded-full shadow-[0_20px_40px_rgba(255,215,0,0.4)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.6)] transform hover:scale-110 transition-all duration-500 relative overflow-hidden min-w-[200px] sm:min-w-[250px] border border-academy-gold/30">
                     <span className="relative z-10 flex items-center space-x-2 sm:space-x-3 space-x-reverse">
-                      <Sparkles size={20} className="group-hover:rotate-180 transition-transform duration-700" />
+                      <Sparkles
+                        size={20}
+                        className="group-hover:rotate-180 transition-transform duration-700"
+                      />
                       <span>التسجيل الآن</span>
-                      <Crown size={20} className="group-hover:scale-125 transition-transform duration-500" />
+                      <Crown
+                        size={20}
+                        className="group-hover:scale-125 transition-transform duration-500"
+                      />
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </Button>
@@ -129,9 +165,15 @@ export default function HomePage() {
                     className="group glass-button-secondary backdrop-blur-xl border-2 border-academy-gold/60 text-white hover:bg-academy-gold/20 hover:text-white font-bold px-8 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 text-base sm:text-lg lg:text-xl rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(255,215,0,0.3)] transform hover:scale-110 transition-all duration-500 bg-white/10 min-w-[200px] sm:min-w-[250px]"
                   >
                     <span className="flex items-center space-x-2 sm:space-x-3 space-x-reverse">
-                      <BookOpen size={20} className="group-hover:scale-125 transition-transform duration-500" />
+                      <BookOpen
+                        size={20}
+                        className="group-hover:scale-125 transition-transform duration-500"
+                      />
                       <span>البرامج التعليمية</span>
-                      <TrendingUp size={20} className="group-hover:translate-x-1 transition-transform duration-500" />
+                      <TrendingUp
+                        size={20}
+                        className="group-hover:translate-x-1 transition-transform duration-500"
+                      />
                     </span>
                   </Button>
                 </Link>
@@ -159,8 +201,8 @@ export default function HomePage() {
         </div>
       </section>
 
-             {/* Enhanced Statistics Cards */}
-       <section className="homepage-section-padding py-24 relative">
+      {/* Enhanced Statistics Cards */}
+      <section className="homepage-section-padding py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-academy-gray via-white to-academy-gray"></div>
         <div className="relative z-10 container mx-auto px-4">
           {/* Section Header */}
@@ -175,11 +217,14 @@ export default function HomePage() {
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-academy-blue mb-4">
               نفخر بما
-              <span className="bg-gradient-to-r from-academy-gold to-academy-gold-light bg-clip-text text-transparent"> حققناه معاً</span>
+              <span className="bg-gradient-to-r from-academy-gold to-academy-gold-light bg-clip-text text-transparent">
+                {" "}
+                حققناه معاً
+              </span>
             </h2>
           </div>
 
-                     <div className="homepage-stats-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="homepage-stats-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <CardContent className="relative p-8 text-center">
@@ -189,8 +234,12 @@ export default function HomePage() {
                   </div>
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-blue-light transition-colors duration-300">+15,000</h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">عدد الطلاب</p>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-blue-light transition-colors duration-300">
+                  +15,000
+                </h3>
+                <p className="text-academy-dark-gray font-semibold text-lg">
+                  عدد الطلاب
+                </p>
                 <div className="mt-4 h-1 w-12 bg-gradient-to-r from-academy-blue to-academy-blue-light rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
             </Card>
@@ -204,8 +253,12 @@ export default function HomePage() {
                   </div>
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-purple-600 transition-colors duration-300">21</h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">عدد الأقسام</p>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-purple-600 transition-colors duration-300">
+                  21
+                </h3>
+                <p className="text-academy-dark-gray font-semibold text-lg">
+                  عدد الأقسام
+                </p>
                 <div className="mt-4 h-1 w-12 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
             </Card>
@@ -219,8 +272,12 @@ export default function HomePage() {
                   </div>
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-green-600 transition-colors duration-300">+130</h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">عدد البرامج</p>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-green-600 transition-colors duration-300">
+                  +130
+                </h3>
+                <p className="text-academy-dark-gray font-semibold text-lg">
+                  عدد البرامج
+                </p>
                 <div className="mt-4 h-1 w-12 bg-gradient-to-r from-green-600 to-green-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
             </Card>
@@ -234,8 +291,12 @@ export default function HomePage() {
                   </div>
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-orange-600 transition-colors duration-300">+50</h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">عدد الدول المشاركة</p>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-orange-600 transition-colors duration-300">
+                  +50
+                </h3>
+                <p className="text-academy-dark-gray font-semibold text-lg">
+                  عدد الدول المشاركة
+                </p>
                 <div className="mt-4 h-1 w-12 bg-gradient-to-r from-orange-600 to-orange-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
             </Card>
@@ -243,8 +304,8 @@ export default function HomePage() {
         </div>
       </section>
 
-             {/* Enhanced Why Choose Us Section */}
-       <section className="homepage-section-padding py-24 relative overflow-hidden">
+      {/* Enhanced Why Choose Us Section */}
+      <section className="homepage-section-padding py-24 relative overflow-hidden">
         {/* Enhanced Background */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -255,11 +316,14 @@ export default function HomePage() {
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 via-white/95 to-academy-gold/5 z-10"></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%), 
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%), 
                            radial-gradient(circle at 80% 20%, rgba(0, 31, 63, 0.05) 0%, transparent 50%),
-                           linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.5) 50%, transparent 60%)`
-        }}></div>
+                           linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.5) 50%, transparent 60%)`,
+          }}
+        ></div>
 
         <div className="relative z-20 container mx-auto px-4">
           {/* Enhanced Section Header */}
@@ -274,84 +338,99 @@ export default function HomePage() {
             </div>
 
             <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue mb-6 leading-tight">
-              لماذا 
-              <span className="bg-gradient-to-r from-academy-gold to-academy-gold-light bg-clip-text text-transparent"> أكاديمية المعرفة الدولية</span>
+              لماذا
+              <span className="bg-gradient-to-r from-academy-gold to-academy-gold-light bg-clip-text text-transparent">
+                {" "}
+                أكاديمية المعرفة الدولية
+              </span>
               ؟
             </h2>
 
             <div className="w-32 h-1 bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold mx-auto mb-8 rounded-full"></div>
 
             <p className="text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed">
-              نحن نقدم تعليماً متميزاً يجمع بين الأصالة والمعاصرة، مع التركيز على بناء شخصية الطالب وتطوير مهاراته العملية بأحدث المعايير الدولية
+              نحن نقدم تعليماً متميزاً يجمع بين الأصالة والمعاصرة، مع التركيز
+              على بناء شخصية الطالب وتطوير مهاراته العملية بأحدث المعايير
+              الدولية
             </p>
           </div>
 
-                     {/* Enhanced Cards Grid */}
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-8xl mx-auto">
+          {/* Enhanced Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-8xl mx-auto">
             {[
               {
                 title: "رؤية عالمية ورسالة واضحة",
-                description: "نسعى لتمكين المتعلمين والباحثين من الوصول إلى المعرفة الحديثة بأسلوب علمي متطور ومنهجية أكاديمية رصينة.",
+                description:
+                  "نسعى لتمكين المتعلمين والباحثين من الوصول إلى المعرفة الحديثة بأسلوب علمي متطور ومنهجية أكاديمية رصينة.",
                 image: "/global-vision-1440.webp",
                 color: "from-blue-600 to-blue-800",
-                bgColor: "from-blue-50 to-blue-100"
+                bgColor: "from-blue-50 to-blue-100",
               },
               {
                 title: "مصداقية أكاديمية",
-                description: "نعتمد معايير عالية في إعداد البرامج التدريبية والبحثية، مع التزام كامل بأخلاقيات المهنة وأحدث المعايير الدولية.",
+                description:
+                  "نعتمد معايير عالية في إعداد البرامج التدريبية والبحثية، مع التزام كامل بأخلاقيات المهنة وأحدث المعايير الدولية.",
                 image: "/academic-credibility-1440.webp",
                 color: "from-green-600 to-green-800",
-                bgColor: "from-green-50 to-green-100"
+                bgColor: "from-green-50 to-green-100",
               },
               {
                 title: "شهادات معترف بها دولياً",
-                description: "نوفر شهادات يمكن التحقق من صحتها مباشرة عبر موقع الأكاديمية، مما يعزز مصداقيتها دولياً ويضمن قبولها عالمياً.",
+                description:
+                  "نوفر شهادات يمكن التحقق من صحتها مباشرة عبر موقع الأكاديمية، مما يعزز مصداقيتها دولياً ويضمن قبولها عالمياً.",
                 image: "/international-certificates-1440.webp",
                 color: "from-purple-600 to-purple-800",
-                bgColor: "from-purple-50 to-purple-100"
+                bgColor: "from-purple-50 to-purple-100",
               },
               {
                 title: "تنوع البرامج",
-                description: "نقدم برامج متخصصة في مجالات الإدارة، العلوم الإنسانية، الدراسات الإسلامية، والبحث العلمي بأحدث المناهج.",
+                description:
+                  "نقدم برامج متخصصة في مجالات الإدارة، العلوم الإنسانية، الدراسات الإسلامية، والبحث العلمي بأحدث المناهج.",
                 image: "/program-diversity-1440.webp",
                 color: "from-orange-600 to-orange-800",
-                bgColor: "from-orange-50 to-orange-100"
+                bgColor: "from-orange-50 to-orange-100",
               },
               {
                 title: "كوادر مؤهلة",
-                description: "نخبة من الخبراء والأكاديميين ذوي الخبرة العملية والعلمية الواسعة في مختلف التخصصات.",
+                description:
+                  "نخبة من الخبراء والأكاديميين ذوي الخبرة العملية والعلمية الواسعة في مختلف التخصصات.",
                 image: "/qualified-staff-1440.webp",
                 color: "from-red-600 to-red-800",
-                bgColor: "from-red-50 to-red-100"
+                bgColor: "from-red-50 to-red-100",
               },
               {
                 title: "بيئة تعليمية محفزة",
-                description: "نعتمد نظام تعليم مبتكر يراعي الفروق الفردية ويحفز على الإبداع والمشاركة الفعالة والتفكير النقدي.",
+                description:
+                  "نعتمد نظام تعليم مبتكر يراعي الفروق الفردية ويحفز على الإبداع والمشاركة الفعالة والتفكير النقدي.",
                 image: "/motivating-environment-1440.webp",
                 color: "from-teal-600 to-teal-800",
-                bgColor: "from-teal-50 to-teal-100"
+                bgColor: "from-teal-50 to-teal-100",
               },
               {
                 title: "اعتمادات وشراكات",
-                description: "علاقات تعاون استراتيجي مع مؤسسات تعليمية وبحثية محلية ودولية مرموقة لضمان أعلى معايير الجودة.",
+                description:
+                  "علاقات تعاون استراتيجي مع مؤسسات تعليمية وبحثية محلية ودولية مرموقة لضمان أعلى معايير الجودة.",
                 image: "/accreditations-partnerships-1440.webp",
                 color: "from-indigo-600 to-indigo-800",
-                bgColor: "from-indigo-50 to-indigo-100"
+                bgColor: "from-indigo-50 to-indigo-100",
               },
               {
                 title: "دعم المتعلم بعد التخرج",
-                description: "من خلال فرص النشر العلمي، والمشاركة في المؤتمرات، والتطوير المهني المستمر ودعم التقدم الوظيفي.",
+                description:
+                  "من خلال فرص النشر العلمي، والمشاركة في المؤتمرات، والتطوير المهني المستمر ودعم التقدم الوظيفي.",
                 image: "/post-graduation-support-1440.webp",
                 color: "from-pink-600 to-pink-800",
-                bgColor: "from-pink-50 to-pink-100"
-              }
+                bgColor: "from-pink-50 to-pink-100",
+              },
             ].map((feature, index) => (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}></div>
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
+                ></div>
 
                 <CardContent className="relative p-0">
                   {/* Enhanced Image Section */}
@@ -363,7 +442,9 @@ export default function HomePage() {
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
-                    <div className={`absolute inset-0 bg-gradient-to-t ${feature.color} opacity-0 group-hover:opacity-40 transition-opacity duration-700`}></div>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-t ${feature.color} opacity-0 group-hover:opacity-40 transition-opacity duration-700`}
+                    ></div>
 
                     {/* Quality Badge */}
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">
@@ -375,7 +456,9 @@ export default function HomePage() {
 
                     {/* Premium Icon */}
                     <div className="absolute bottom-4 right-4 group-hover:bottom-6 transition-all duration-500">
-                      <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center shadow-xl ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-500 group-hover:scale-110`}>
+                      <div
+                        className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center shadow-xl ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-500 group-hover:scale-110`}
+                      >
                         <Sparkles className="text-white" size={20} />
                       </div>
                     </div>
@@ -393,12 +476,19 @@ export default function HomePage() {
                     {/* Premium Indicator */}
                     <div className="mt-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="flex items-center space-x-2 space-x-reverse">
-                        <div className={`w-6 h-6 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center`}>
+                        <div
+                          className={`w-6 h-6 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center`}
+                        >
                           <Zap size={12} className="text-white" />
                         </div>
-                        <span className="text-academy-blue font-semibold text-xs">ميزة متقدمة</span>
+                        <span className="text-academy-blue font-semibold text-xs">
+                          ميزة متقدمة
+                        </span>
                       </div>
-                      <Sparkles className="text-academy-gold animate-pulse" size={16} />
+                      <Sparkles
+                        className="text-academy-gold animate-pulse"
+                        size={16}
+                      />
                     </div>
                   </div>
                 </CardContent>
@@ -410,11 +500,14 @@ export default function HomePage() {
           <div className="text-center mt-16">
             <div className="inline-flex items-center justify-center p-1 bg-gradient-to-r from-academy-gold/20 to-academy-gold/10 rounded-full mb-6">
               <div className="px-6 py-2 bg-white rounded-full shadow-sm">
-                <span className="text-academy-blue font-semibold text-sm">ابدأ رحلتك معنا</span>
+                <span className="text-academy-blue font-semibold text-sm">
+                  ابدأ رحلتك معنا
+                </span>
               </div>
             </div>
             <p className="text-academy-dark-gray mb-8 max-w-2xl mx-auto">
-              انضم إلى آلاف الطلاب الذين اختاروا التميز وحققوا أهدافهم مع أكاديمية المعرفة الدولية
+              انضم إلى آلاف الطلاب الذين اختاروا التميز وحققوا أهدافهم مع
+              أكاديمية المعرفة الدولية
             </p>
             <Link href="/admission">
               <Button className="bg-gradient-to-r from-academy-gold to-academy-gold-light hover:from-academy-gold-light hover:to-academy-gold text-academy-blue font-bold px-10 py-4 text-lg rounded-full shadow-xl transform hover:scale-105 transition-all duration-300">
@@ -428,5 +521,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

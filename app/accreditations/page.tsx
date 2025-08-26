@@ -62,15 +62,15 @@ export default async function AccreditationsPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-    src="/certified_approval_agreement_confirmation-1440.webp"
-    alt="الاعتمادات الدولية - أكاديمية المعرفة الدولية"
-    fill
-    sizes="(max-width: 600px) 480px,
+            src="/certified_approval_agreement_confirmation-1440.webp"
+            alt="الاعتمادات الدولية - أكاديمية المعرفة الدولية"
+            fill
+            sizes="(max-width: 600px) 480px,
            (max-width: 1024px) 960px,
            1440px"
-    className="object-contian"
-    priority
-  />
+            className="object-contian"
+            priority
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent"></div>
         </div>
 

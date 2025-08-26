@@ -1,6 +1,12 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   BookOpen,
   Users,
@@ -27,11 +33,11 @@ import {
   Infinity,
   Shield,
   Gem,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
-export default function EducationSystemPage(){
+export default function EducationSystemPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
       {/* Ultra Premium Background Pattern */}
@@ -40,7 +46,7 @@ export default function EducationSystemPage(){
         <div className="absolute top-10 left-10 sm:top-20 sm:left-20 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-academy-gold/10 via-academy-gold/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-10 right-10 sm:bottom-20 sm:right-20 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-gradient-to-br from-academy-blue/8 via-academy-blue/4 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[900px] lg:h-[900px] bg-gradient-to-br from-academy-gold/6 to-academy-blue/6 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
+
         {/* Floating Geometric Elements */}
         <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-academy-gold/40 rotate-45 animate-pulse delay-300"></div>
         <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-academy-blue/40 rounded-full animate-pulse delay-700"></div>
@@ -61,9 +67,9 @@ export default function EducationSystemPage(){
                    (max-width: 768px) 768px,
                    (max-width: 1024px) 1024px,
                    1440px"
-            style={{ 
-              objectPosition: 'center center',
-              objectFit: 'cover'
+            style={{
+              objectPosition: "center center",
+              objectFit: "cover",
             }}
           />
           {/* Enhanced Multi-layered Glass Morphism Overlay */}
@@ -72,7 +78,7 @@ export default function EducationSystemPage(){
           <div className="absolute inset-0 bg-gradient-to-r from-academy-blue-dark/40 via-transparent to-academy-blue/60"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.15),transparent_60%)]"></div>
         </div>
-        
+
         {/* Ultra Premium Decorative Elements */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-0 w-full h-full">
@@ -80,7 +86,7 @@ export default function EducationSystemPage(){
             <div className="absolute bottom-[10%] left-[10%] w-96 h-96 bg-gradient-to-br from-white/8 via-academy-blue/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
             <div className="absolute top-[50%] left-[25%] w-64 h-64 bg-academy-gold/12 rounded-full blur-2xl animate-pulse delay-500"></div>
             <div className="absolute top-[30%] right-[30%] w-48 h-48 bg-academy-gold/18 rounded-full blur-2xl animate-pulse delay-1500"></div>
-            
+
             {/* Premium Floating Geometric Elements */}
             <div className="absolute top-[25%] left-[20%] w-8 h-8 border-2 border-academy-gold/40 rotate-45 animate-pulse delay-2000"></div>
             <div className="absolute bottom-[30%] right-[20%] w-6 h-6 bg-academy-gold/30 rounded-full animate-pulse delay-2500"></div>
@@ -96,7 +102,10 @@ export default function EducationSystemPage(){
                 <div className="p-6 sm:p-8 lg:p-10 bg-white/10 backdrop-blur-3xl rounded-[2rem] sm:rounded-[2.5rem] border border-white/25 shadow-[0_24px_48px_rgba(0,0,0,0.3)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.4)] transition-all duration-700 hover:bg-white/15 hover:border-white/35">
                   <div className="relative">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/30 group-hover:scale-110 transition-transform duration-500">
-                      <BookOpen className="text-academy-blue drop-shadow-2xl" size={48} />
+                      <BookOpen
+                        className="text-academy-blue drop-shadow-2xl"
+                        size={48}
+                      />
                     </div>
                     {/* Premium Floating Badges */}
                     <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-2xl border-2 border-white/30 backdrop-blur-sm">
@@ -110,7 +119,7 @@ export default function EducationSystemPage(){
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Enhanced Floating Elements */}
                 <div className="absolute -top-8 -left-8 w-10 h-10 bg-academy-gold/80 rounded-full animate-pulse shadow-xl backdrop-blur-sm"></div>
                 <div className="absolute -bottom-6 -right-10 w-8 h-8 bg-academy-gold-light/70 rounded-full animate-pulse delay-700 shadow-lg"></div>
@@ -126,15 +135,21 @@ export default function EducationSystemPage(){
                   نظام التعليم المتطور
                 </span>
               </h1>
-              
+
               {/* Ultra Premium Decorative Separator */}
               <div className="flex items-center justify-center gap-6 sm:gap-8 mb-8 sm:mb-10 lg:mb-12">
                 <div className="w-8 h-8 bg-academy-gold/90 rounded-full animate-pulse shadow-2xl backdrop-blur-sm border border-white/20"></div>
                 <div className="w-24 sm:w-32 lg:w-40 h-[3px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-lg"></div>
                 <div className="relative p-2">
-                  <Sparkles className="text-academy-gold animate-pulse drop-shadow-lg" size={28} />
+                  <Sparkles
+                    className="text-academy-gold animate-pulse drop-shadow-lg"
+                    size={28}
+                  />
                   <div className="absolute inset-0 animate-ping">
-                    <Sparkles className="text-academy-gold opacity-40" size={28} />
+                    <Sparkles
+                      className="text-academy-gold opacity-40"
+                      size={28}
+                    />
                   </div>
                 </div>
                 <div className="w-24 sm:w-32 lg:w-40 h-[3px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-lg"></div>
@@ -146,7 +161,8 @@ export default function EducationSystemPage(){
                   نظام تعليمي متطور يجمع بين الأصالة والحداثة
                 </p>
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-gold-200/90 max-w-4xl mx-auto leading-relaxed font-light">
-                  نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
+                  نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث
+                  التقنيات التعليمية والمناهج المعاصرة
                 </p>
               </div>
             </div>
@@ -156,10 +172,17 @@ export default function EducationSystemPage(){
               <div className="group relative">
                 <div className="bg-white/15 backdrop-blur-3xl p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[2rem] border border-white/30 text-center hover:scale-105 hover:bg-white/20 hover:border-white/40 transition-all duration-700 shadow-[0_24px_48px_rgba(0,0,0,0.2)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.3)]">
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 border border-academy-gold/30">
-                    <Brain size={40} className="text-academy-blue drop-shadow-lg" />
+                    <Brain
+                      size={40}
+                      className="text-academy-blue drop-shadow-lg"
+                    />
                   </div>
-                  <h3 className="text-academy-gold font-bold text-xl sm:text-2xl mb-4 drop-shadow-md">تعليم ذكي</h3>
-                  <p className="text-academy-gold-200 text-lg sm:text-xl leading-relaxed">منهجية متطورة ومبتكرة</p>
+                  <h3 className="text-academy-gold font-bold text-xl sm:text-2xl mb-4 drop-shadow-md">
+                    تعليم ذكي
+                  </h3>
+                  <p className="text-academy-gold-200 text-lg sm:text-xl leading-relaxed">
+                    منهجية متطورة ومبتكرة
+                  </p>
                 </div>
                 {/* Floating Elements */}
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-academy-gold/60 rounded-full animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -168,10 +191,17 @@ export default function EducationSystemPage(){
               <div className="group relative">
                 <div className="bg-white/15 backdrop-blur-3xl p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[2rem] border border-white/30 text-center hover:scale-105 hover:bg-white/20 hover:border-white/40 transition-all duration-700 shadow-[0_24px_48px_rgba(0,0,0,0.2)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.3)]">
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 border border-academy-gold/30">
-                    <Globe size={40} className="text-academy-blue drop-shadow-lg" />
+                    <Globe
+                      size={40}
+                      className="text-academy-blue drop-shadow-lg"
+                    />
                   </div>
-                  <h3 className="text-academy-gold font-bold text-xl sm:text-2xl mb-4 drop-shadow-md">مناهج حديثة</h3>
-                  <p className="text-academy-gold-200 text-lg sm:text-xl leading-relaxed">محتوى معاصر وشامل</p>
+                  <h3 className="text-academy-gold font-bold text-xl sm:text-2xl mb-4 drop-shadow-md">
+                    مناهج حديثة
+                  </h3>
+                  <p className="text-academy-gold-200 text-lg sm:text-xl leading-relaxed">
+                    محتوى معاصر وشامل
+                  </p>
                 </div>
                 <div className="absolute -top-2 -left-2 w-5 h-5 bg-academy-gold/50 rounded-full animate-pulse delay-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
@@ -179,10 +209,17 @@ export default function EducationSystemPage(){
               <div className="group relative">
                 <div className="bg-white/15 backdrop-blur-3xl p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[2rem] border border-white/30 text-center hover:scale-105 hover:bg-white/20 hover:border-white/40 transition-all duration-700 shadow-[0_24px_48px_rgba(0,0,0,0.2)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.3)]">
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 border border-academy-gold/30">
-                    <Target size={40} className="text-academy-blue drop-shadow-lg" />
+                    <Target
+                      size={40}
+                      className="text-academy-blue drop-shadow-lg"
+                    />
                   </div>
-                  <h3 className="text-academy-gold font-bold text-xl sm:text-2xl mb-4 drop-shadow-md">تقنيات متقدمة</h3>
-                  <p className="text-academy-gold-200 text-lg sm:text-xl leading-relaxed">أدوات ذكية وفعالة</p>
+                  <h3 className="text-academy-gold font-bold text-xl sm:text-2xl mb-4 drop-shadow-md">
+                    تقنيات متقدمة
+                  </h3>
+                  <p className="text-academy-gold-200 text-lg sm:text-xl leading-relaxed">
+                    أدوات ذكية وفعالة
+                  </p>
                 </div>
                 <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-academy-gold/70 rounded-full animate-pulse delay-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
@@ -191,25 +228,39 @@ export default function EducationSystemPage(){
             {/* Ultra Premium Statistics with Enhanced Glass Morphism */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-16 sm:mt-20 lg:mt-24 max-w-6xl mx-auto">
               <div className="bg-white/95 backdrop-blur-3xl p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[1.5rem] border border-white/40 shadow-[0_24px_48px_rgba(0,0,0,0.2)] text-center group hover:-translate-y-6 hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700 hover:bg-white">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-academy-blue to-academy-blue-dark bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">100%</div>
-                <div className="text-academy-darker-gray font-semibold text-sm sm:text-base lg:text-lg">نجاح الطلاب</div>
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-academy-blue to-academy-blue-dark bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                  100%
+                </div>
+                <div className="text-academy-darker-gray font-semibold text-sm sm:text-base lg:text-lg">
+                  نجاح الطلاب
+                </div>
               </div>
 
               <div className="bg-white/95 backdrop-blur-3xl p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[1.5rem] border border-white/40 shadow-[0_24px_48px_rgba(0,0,0,0.2)] text-center group hover:-translate-y-6 hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700 hover:bg-white">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-academy-blue to-academy-blue-dark bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">24/7</div>
-                <div className="text-academy-darker-gray font-semibold text-sm sm:text-base lg:text-lg">دعم متاح</div>
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-academy-blue to-academy-blue-dark bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                  24/7
+                </div>
+                <div className="text-academy-darker-gray font-semibold text-sm sm:text-base lg:text-lg">
+                  دعم متاح
+                </div>
               </div>
 
               <div className="bg-white/95 backdrop-blur-3xl p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[1.5rem] border border-white/40 shadow-[0_24px_48px_rgba(0,0,0,0.2)] text-center group hover:-translate-y-6 hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700 hover:bg-white">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-academy-blue to-academy-blue-dark bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">∞</div>
-                <div className="text-academy-darker-gray font-semibold text-sm sm:text-base lg:text-lg">إمكانيات لا محدودة</div>
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-academy-blue to-academy-blue-dark bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                  ∞
+                </div>
+                <div className="text-academy-darker-gray font-semibold text-sm sm:text-base lg:text-lg">
+                  إمكانيات لا محدودة
+                </div>
               </div>
 
               <div className="bg-white/95 backdrop-blur-3xl p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[1.5rem] border border-white/40 shadow-[0_24px_48px_rgba(0,0,0,0.2)] text-center group hover:-translate-y-6 hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700 hover:bg-white">
                 <div className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-academy-blue to-academy-blue-dark bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Shield size={40} className="mx-auto text-academy-blue" />
                 </div>
-                <div className="text-academy-darker-gray font-semibold text-sm sm:text-base lg:text-lg">تعليم مضمون</div>
+                <div className="text-academy-darker-gray font-semibold text-sm sm:text-base lg:text-lg">
+                  تعليم مضمون
+                </div>
               </div>
             </div>
           </div>
@@ -223,7 +274,7 @@ export default function EducationSystemPage(){
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-20 right-20 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-academy-gold/12 to-transparent rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-[400px] h-[400px] bg-gradient-to-br from-academy-blue/8 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
-          
+
           {/* Geometric Pattern Overlay */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(0,31,63,0.03),transparent_50%)] bg-[radial-gradient(circle_at_75%_75%,rgba(255,215,0,0.05),transparent_50%)]"></div>
         </div>
@@ -256,15 +307,20 @@ export default function EducationSystemPage(){
                   <div className="flex items-center gap-6 mb-6 sm:mb-8 lg:mb-10">
                     <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
                     <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                    <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                    <Sparkles
+                      className="text-academy-gold animate-pulse"
+                      size={24}
+                    />
                     <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                     <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
                   </div>
                   <p className="text-2xl md:text-3xl text-academy-dark-gray max-w-4xl leading-relaxed font-semibold mb-6">
-                    نقدم نظاماً تعليمياً شاملاً ومتكاملاً يجمع بين أفضل الممارسات التعليمية التقليدية والحديثة
+                    نقدم نظاماً تعليمياً شاملاً ومتكاملاً يجمع بين أفضل
+                    الممارسات التعليمية التقليدية والحديثة
                   </p>
                   <p className="text-xl text-academy-darker-gray max-w-3xl leading-relaxed">
-                    مع التركيز على التطبيق العملي والتفكير النقدي لإعداد خريجين مؤهلين لسوق العمل المعاصر
+                    مع التركيز على التطبيق العملي والتفكير النقدي لإعداد خريجين
+                    مؤهلين لسوق العمل المعاصر
                   </p>
                 </div>
               </div>
@@ -275,34 +331,48 @@ export default function EducationSystemPage(){
                   <div className="w-12 h-12 bg-academy-gold/90 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                     <Brain size={24} className="text-academy-blue" />
                   </div>
-                  <h3 className="text-academy-blue font-bold text-lg mb-2">تعليم ذكي</h3>
-                  <p className="text-academy-darker-gray text-sm leading-relaxed">منهجية متطورة</p>
+                  <h3 className="text-academy-blue font-bold text-lg mb-2">
+                    تعليم ذكي
+                  </h3>
+                  <p className="text-academy-darker-gray text-sm leading-relaxed">
+                    منهجية متطورة
+                  </p>
                 </div>
 
                 <div className="bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-academy-blue/15 text-center group hover:scale-105 hover:shadow-xl transition-all duration-500">
                   <div className="w-12 h-12 bg-academy-gold/90 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                     <Globe size={24} className="text-academy-blue" />
                   </div>
-                  <h3 className="text-academy-blue font-bold text-lg mb-2">مناهج حديثة</h3>
-                  <p className="text-academy-darker-gray text-sm leading-relaxed">محتوى معاصر</p>
+                  <h3 className="text-academy-blue font-bold text-lg mb-2">
+                    مناهج حديثة
+                  </h3>
+                  <p className="text-academy-darker-gray text-sm leading-relaxed">
+                    محتوى معاصر
+                  </p>
                 </div>
 
                 <div className="bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-academy-blue/15 text-center group hover:scale-105 hover:shadow-xl transition-all duration-500">
                   <div className="w-12 h-12 bg-academy-gold/90 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                     <Target size={24} className="text-academy-blue" />
                   </div>
-                  <h3 className="text-academy-blue font-bold text-lg mb-2">تقنيات متقدمة</h3>
-                  <p className="text-academy-darker-gray text-sm leading-relaxed">أدوات ذكية</p>
+                  <h3 className="text-academy-blue font-bold text-lg mb-2">
+                    تقنيات متقدمة
+                  </h3>
+                  <p className="text-academy-darker-gray text-sm leading-relaxed">
+                    أدوات ذكية
+                  </p>
                 </div>
               </div>
 
               {/* Enhanced Description */}
               <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-200/50">
                 <p className="text-xl leading-relaxed text-academy-dark-gray font-medium mb-6">
-                  نظام تعليمي متطور يجمع بين الأصالة والحداثة، مصمم لتلبية احتياجات العصر ومتطلبات سوق العمل.
+                  نظام تعليمي متطور يجمع بين الأصالة والحداثة، مصمم لتلبية
+                  احتياجات العصر ومتطلبات سوق العمل.
                 </p>
                 <p className="text-lg leading-relaxed text-academy-darker-gray">
-                  نحن نؤمن بأن التعليم الجيد هو المفتاح للنجاح، لذلك نقدم نظاماً تعليمياً شاملاً يدمج بين التقنيات الحديثة والمعرفة العميقة.
+                  نحن نؤمن بأن التعليم الجيد هو المفتاح للنجاح، لذلك نقدم نظاماً
+                  تعليمياً شاملاً يدمج بين التقنيات الحديثة والمعرفة العميقة.
                 </p>
               </div>
 
@@ -360,16 +430,20 @@ export default function EducationSystemPage(){
                   className="object-cover w-full h-[500px] transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Premium Overlay Content */}
                 <div className="absolute inset-0 flex items-end p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="text-white">
-                    <h3 className="text-2xl font-bold mb-2">نظام تعليمي متكامل</h3>
-                    <p className="text-lg opacity-90">تجربة تعليمية فريدة ومتميزة</p>
+                    <h3 className="text-2xl font-bold mb-2">
+                      نظام تعليمي متكامل
+                    </h3>
+                    <p className="text-lg opacity-90">
+                      تجربة تعليمية فريدة ومتميزة
+                    </p>
                   </div>
                 </div>
               </div>
-              
+
               {/* Premium Floating Badge */}
               <div className="absolute -bottom-8 -right-8">
                 <div className="relative">
@@ -399,7 +473,7 @@ export default function EducationSystemPage(){
           <div className="absolute top-20 right-20 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-[400px] h-[400px] bg-gradient-to-br from-academy-blue/12 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-gradient-to-br from-academy-gold/8 to-academy-blue/8 rounded-full blur-3xl animate-pulse delay-2000"></div>
-          
+
           {/* Enhanced Geometric Patterns */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(0,31,63,0.04),transparent_50%)] bg-[radial-gradient(circle_at_80%_70%,rgba(255,215,0,0.06),transparent_50%)]"></div>
         </div>
@@ -435,7 +509,10 @@ export default function EducationSystemPage(){
               <div className="flex items-center justify-center gap-6 mb-8">
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <Sparkles
+                  className="text-academy-gold animate-pulse"
+                  size={24}
+                />
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
@@ -443,8 +520,8 @@ export default function EducationSystemPage(){
                 نوفر طرق تعليم متنوعة ومتطورة لتناسب جميع احتياجات الطلاب
               </p>
               <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
-                نقدم تجربة تعليمية شاملة ومتكاملة تجمع بين التعليم التقليدي والحديث مع أحدث التقنيات
-
+                نقدم تجربة تعليمية شاملة ومتكاملة تجمع بين التعليم التقليدي
+                والحديث مع أحدث التقنيات
               </p>
             </div>
           </div>
@@ -454,12 +531,12 @@ export default function EducationSystemPage(){
             <Card className="group bg-white/95 backdrop-blur-xl border-0 shadow-2xl hover:shadow-3xl rounded-3xl overflow-hidden transition-all duration-700 hover:-translate-y-8 hover:scale-[1.03] relative border border-slate-200/50">
               {/* Premium Status Indicator */}
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-academy-blue via-academy-gold to-academy-blue"></div>
-              
+
               {/* Premium Card Background Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-white/60 to-blue-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               <div className="relative h-72 overflow-hidden">
-  <Image
+                <Image
                   src="/classroom-learning-1440.webp"
                   alt="التعليم الحضوري"
                   width={600}
@@ -467,7 +544,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-115 transition-transform duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-6 right-6">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-6 py-3 rounded-3xl text-sm font-bold shadow-2xl backdrop-blur-sm border border-white/20">
@@ -480,7 +557,6 @@ export default function EducationSystemPage(){
                   <div className="text-white text-center w-full">
                     <p className="text-2xl font-bold mb-3">تعلم تفاعلي</p>
                     <p className="text-lg opacity-90">في بيئة تعليمية متطورة</p>
-
                   </div>
                 </div>
               </div>
@@ -489,13 +565,17 @@ export default function EducationSystemPage(){
                 {/* Premium Header */}
                 <div className="text-center mb-6 sm:mb-8 lg:mb-10">
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
-                    <Users className="text-academy-blue group-hover:text-academy-gold transition-colors duration-300" size={40} />
+                    <Users
+                      className="text-academy-blue group-hover:text-academy-gold transition-colors duration-300"
+                      size={40}
+                    />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors duration-300 mb-6">
                     التعليم الحضوري
                   </h3>
                   <p className="text-base sm:text-lg text-academy-dark-gray leading-relaxed font-medium">
-                    محاضرات وجلسات تفاعلية في بيئة تعليمية متطورة مع أحدث التقنيات
+                    محاضرات وجلسات تفاعلية في بيئة تعليمية متطورة مع أحدث
+                    التقنيات
                   </p>
                 </div>
 
@@ -506,7 +586,9 @@ export default function EducationSystemPage(){
                       <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">قاعات مجهزة بأحدث التقنيات</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                        قاعات مجهزة بأحدث التقنيات
+                      </span>
                     </div>
                   </div>
                   <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -514,7 +596,9 @@ export default function EducationSystemPage(){
                       <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">ورش عمل تطبيقية</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                        ورش عمل تطبيقية
+                      </span>
                     </div>
                   </div>
                   <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -522,7 +606,9 @@ export default function EducationSystemPage(){
                       <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">نقاشات جماعية</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                        نقاشات جماعية
+                      </span>
                     </div>
                   </div>
                   <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -530,8 +616,9 @@ export default function EducationSystemPage(){
                       <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشاريع تعاونية</span>
-
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                        مشاريع تعاونية
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -541,7 +628,6 @@ export default function EducationSystemPage(){
                   <Link href="/programs">
                     <Button className="w-full bg-gradient-to-r from-academy-blue to-academy-blue-dark hover:from-academy-blue-dark hover:to-slate-900 text-white font-bold py-4 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0 text-lg">
                       تعرف على المزيد
-
                     </Button>
                   </Link>
                 </div>
@@ -556,10 +642,9 @@ export default function EducationSystemPage(){
             <Card className="group bg-white/95 backdrop-blur-xl border-0 shadow-2xl hover:shadow-3xl rounded-3xl overflow-hidden transition-all duration-700 hover:-translate-y-8 hover:scale-[1.03] relative border border-slate-200/50">
               {/* Premium Status Indicator */}
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-academy-blue via-academy-gold to-academy-blue"></div>
-              
+
               {/* Premium Card Background Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-white/60 to-blue-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
 
               <div className="relative h-72 overflow-hidden">
                 <Image
@@ -570,7 +655,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-6 right-6">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-6 py-3 rounded-3xl text-sm font-bold shadow-2xl backdrop-blur-sm border border-white/20">
@@ -591,13 +676,17 @@ export default function EducationSystemPage(){
                 {/* Premium Header */}
                 <div className="text-center mb-6 sm:mb-8 lg:mb-10">
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
-                    <Monitor className="text-academy-blue group-hover:text-academy-gold transition-colors duration-300" size={40} />
+                    <Monitor
+                      className="text-academy-blue group-hover:text-academy-gold transition-colors duration-300"
+                      size={40}
+                    />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors duration-300 mb-6">
                     التعليم الإلكتروني
                   </h3>
                   <p className="text-base sm:text-lg text-academy-dark-gray leading-relaxed font-medium">
-                    منصة تعليمية متقدمة تتيح التعلم من أي مكان وفي أي وقت مع أدوات تفاعلية
+                    منصة تعليمية متقدمة تتيح التعلم من أي مكان وفي أي وقت مع
+                    أدوات تفاعلية
                   </p>
                 </div>
 
@@ -608,7 +697,9 @@ export default function EducationSystemPage(){
                       <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">محاضرات مباشرة</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                        محاضرات مباشرة
+                      </span>
                     </div>
                   </div>
                   <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -616,7 +707,9 @@ export default function EducationSystemPage(){
                       <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">منتديات نقاش تفاعلية</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                        منتديات نقاش تفاعلية
+                      </span>
                     </div>
                   </div>
                   <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -624,7 +717,9 @@ export default function EducationSystemPage(){
                       <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">اختبارات إلكترونية</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                        اختبارات إلكترونية
+                      </span>
                     </div>
                   </div>
                   <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -632,7 +727,9 @@ export default function EducationSystemPage(){
                       <div className="w-10 h-10 bg-academy-gold/20 rounded-xl flex items-center justify-center">
                         <CheckCircle className="text-academy-gold" size={20} />
                       </div>
-                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">متابعة الأداء الفوري</span>
+                      <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                        متابعة الأداء الفوري
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -695,7 +792,10 @@ export default function EducationSystemPage(){
               <div className="flex items-center justify-center gap-6 mb-8">
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <Sparkles
+                  className="text-academy-gold animate-pulse"
+                  size={24}
+                />
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
@@ -703,13 +803,14 @@ export default function EducationSystemPage(){
                 نظام تقييم شامل ومتوازن يضمن قياس الأداء بدقة واحترافية
               </p>
               <p className="text-base sm:text-lg md:text-xl text-academy-darker-gray max-w-4xl mx-auto leading-relaxed">
-                نتبع منهجية تقييم متعددة الأبعاد لضمان تقييم شامل ومحايد لقدرات الطلاب
+                نتبع منهجية تقييم متعددة الأبعاد لضمان تقييم شامل ومحايد لقدرات
+                الطلاب
               </p>
             </div>
           </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {/* التعليم المستمر */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {/* التعليم المستمر */}
             <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold overflow-hidden group bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
@@ -720,7 +821,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -732,7 +833,9 @@ export default function EducationSystemPage(){
                 <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <TrendingUp className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">التعليم المستمر</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">
+                  التعليم المستمر
+                </CardTitle>
                 <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
                   تقييم مستمر طوال فترة الدراسة
                 </CardDescription>
@@ -740,20 +843,32 @@ export default function EducationSystemPage(){
               <CardContent className="space-y-5 px-8 pb-8">
                 <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                   <div className="flex justify-between items-center">
-                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">واجبات مدرسية</span>
-                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">15%</Badge>
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                      واجبات مدرسية
+                    </span>
+                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">
+                      15%
+                    </Badge>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                   <div className="flex justify-between items-center">
-                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشاركة في النقاشات</span>
-                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">20%</Badge>
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                      مشاركة في النقاشات
+                    </span>
+                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">
+                      20%
+                    </Badge>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                   <div className="flex justify-between items-center">
-                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشاريع عملية</span>
-                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">25%</Badge>
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                      مشاريع عملية
+                    </span>
+                    <Badge className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-white px-3 py-1 rounded-xl font-bold">
+                      25%
+                    </Badge>
                   </div>
                 </div>
               </CardContent>
@@ -770,7 +885,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -782,7 +897,9 @@ export default function EducationSystemPage(){
                 <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <BookOpen className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">الاختبارات</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">
+                  الاختبارات
+                </CardTitle>
                 <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
                   تقييم شامل في نهاية البرنامج
                 </CardDescription>
@@ -790,8 +907,12 @@ export default function EducationSystemPage(){
               <CardContent className="space-y-5 px-8 pb-8">
                 <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
                   <div className="text-center">
-                    <div className="text-academy-dark-gray mb-4 text-base sm:text-lg font-medium">اختبار نهاية البرنامج</div>
-                    <Badge className="bg-gradient-to-r from-academy-blue to-academy-blue-dark text-white px-6 py-2 rounded-xl font-bold text-lg">اختبار شامل</Badge>
+                    <div className="text-academy-dark-gray mb-4 text-base sm:text-lg font-medium">
+                      اختبار نهاية البرنامج
+                    </div>
+                    <Badge className="bg-gradient-to-r from-academy-blue to-academy-blue-dark text-white px-6 py-2 rounded-xl font-bold text-lg">
+                      اختبار شامل
+                    </Badge>
                   </div>
                 </div>
               </CardContent>
@@ -808,7 +929,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -820,7 +941,9 @@ export default function EducationSystemPage(){
                 <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <Award className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">مشروع التخرج</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">
+                  مشروع التخرج
+                </CardTitle>
                 <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
                   مشروع تطبيقي شامل للتخرج
                 </CardDescription>
@@ -831,7 +954,9 @@ export default function EducationSystemPage(){
                     <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
                       <CheckCircle className="w-5 h-5 text-academy-gold" />
                     </div>
-                                          <span className="text-academy-dark-gray font-medium text-base sm:text-lg">بحث علمي متقدم</span>
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                      بحث علمي متقدم
+                    </span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -839,7 +964,9 @@ export default function EducationSystemPage(){
                     <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
                       <CheckCircle className="w-5 h-5 text-academy-gold" />
                     </div>
-                                          <span className="text-academy-dark-gray font-medium text-base sm:text-lg">مشروع تطبيقي</span>
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                      مشروع تطبيقي
+                    </span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -847,7 +974,9 @@ export default function EducationSystemPage(){
                     <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
                       <CheckCircle className="w-5 h-5 text-academy-gold" />
                     </div>
-                                          <span className="text-academy-dark-gray font-medium text-base sm:text-lg">عرض ونقاش</span>
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                      عرض ونقاش
+                    </span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-slate-50/90 to-blue-50/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 group-hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -855,7 +984,9 @@ export default function EducationSystemPage(){
                     <div className="w-8 h-8 bg-academy-gold/20 rounded-lg flex items-center justify-center">
                       <CheckCircle className="w-5 h-5 text-academy-gold" />
                     </div>
-                                          <span className="text-academy-dark-gray font-medium text-base sm:text-lg">تقييم لجنة متخصصة</span>
+                    <span className="text-academy-dark-gray font-medium text-base sm:text-lg">
+                      تقييم لجنة متخصصة
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -904,7 +1035,10 @@ export default function EducationSystemPage(){
               <div className="flex items-center justify-center gap-6 mb-8">
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <Sparkles
+                  className="text-academy-gold animate-pulse"
+                  size={24}
+                />
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
@@ -929,7 +1063,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -941,7 +1075,9 @@ export default function EducationSystemPage(){
                 <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <Play className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">محاضرات فيديو</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">
+                  محاضرات فيديو
+                </CardTitle>
                 <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
                   محاضرات عالية الجودة متاحة في أي وقت
                 </CardDescription>
@@ -959,7 +1095,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -971,8 +1107,12 @@ export default function EducationSystemPage(){
                 <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <MessageSquare className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">منتديات نقاش</CardTitle>
-                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">تفاعل مباشر مع الأساتذة والطلاب</CardDescription>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">
+                  منتديات نقاش
+                </CardTitle>
+                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
+                  تفاعل مباشر مع الأساتذة والطلاب
+                </CardDescription>
               </CardHeader>
             </Card>
 
@@ -987,7 +1127,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -999,8 +1139,12 @@ export default function EducationSystemPage(){
                 <div className="mx-auto mb-6 p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <TrendingUp className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">تتبع التقدم</CardTitle>
-                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">متابعة مستمرة لأدائك الأكاديمي</CardDescription>
+                <CardTitle className="text-xl sm:text-2xl text-academy-blue group-hover:text-academy-gold transition-colors font-bold">
+                  تتبع التقدم
+                </CardTitle>
+                <CardDescription className="text-academy-dark-gray text-base sm:text-lg font-medium">
+                  متابعة مستمرة لأدائك الأكاديمي
+                </CardDescription>
               </CardHeader>
             </Card>
           </div>
@@ -1047,7 +1191,10 @@ export default function EducationSystemPage(){
               <div className="flex items-center justify-center gap-6 mb-8">
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <Sparkles
+                  className="text-academy-gold animate-pulse"
+                  size={24}
+                />
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
@@ -1071,7 +1218,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -1083,8 +1230,12 @@ export default function EducationSystemPage(){
                 <div className="mx-auto p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <UserCheck className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">مرشد أكاديمي</h3>
-                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">توجيه شخصي طوال فترة الدراسة</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">
+                  مرشد أكاديمي
+                </h3>
+                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">
+                  توجيه شخصي طوال فترة الدراسة
+                </p>
               </CardHeader>
             </Card>
 
@@ -1098,7 +1249,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -1110,8 +1261,12 @@ export default function EducationSystemPage(){
                 <div className="mx-auto p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <Headphones className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">دعم تقني</h3>
-                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">مساعدة فنية على مدار 24 ساعة</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">
+                  دعم تقني
+                </h3>
+                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">
+                  مساعدة فنية على مدار 24 ساعة
+                </p>
               </CardHeader>
             </Card>
 
@@ -1125,7 +1280,7 @@ export default function EducationSystemPage(){
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/30 via-transparent to-transparent group-hover:from-academy-blue/20 transition-colors"></div>
-                
+
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-2xl text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
@@ -1137,8 +1292,12 @@ export default function EducationSystemPage(){
                 <div className="mx-auto p-5 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-3xl w-24 h-24 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-academy-blue/20">
                   <Users2 className="w-12 h-12 text-academy-blue group-hover:text-academy-gold transition-colors" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">مجموعات دراسية</h3>
-                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">تعلم تعاوني مع زملائك</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-academy-blue group-hover:text-academy-gold transition-colors">
+                  مجموعات دراسية
+                </h3>
+                <p className="text-academy-dark-gray text-base sm:text-lg font-medium">
+                  تعلم تعاوني مع زملائك
+                </p>
               </CardHeader>
             </Card>
           </div>
@@ -1150,7 +1309,7 @@ export default function EducationSystemPage(){
         {/* Enhanced Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/70 to-academy-blue/50"></div>
-        
+
         {/* Premium Decorative Elements */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse"></div>
@@ -1177,24 +1336,31 @@ export default function EducationSystemPage(){
               </span>
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 lg:mb-12">
-              اكتشف نظام تعليمي متطور يؤهلك لمستقبل مهني متميز مع أفضل البرامج التعليمية
+              اكتشف نظام تعليمي متطور يؤهلك لمستقبل مهني متميز مع أفضل البرامج
+              التعليمية
             </p>
 
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
               <Link href="/programs">
                 <Button className="group bg-gradient-to-r from-academy-gold to-academy-gold-dark hover:from-academy-gold-dark hover:to-academy-gold text-academy-blue font-bold px-12 py-5 text-xl rounded-3xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 border-0 min-w-[250px]">
                   <span className="mr-3">تصفح البرامج التعليمية</span>
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={20} />
+                  <ArrowRight
+                    className="group-hover:translate-x-1 transition-transform duration-300"
+                    size={20}
+                  />
                 </Button>
               </Link>
-              
+
               <Link href="/admission">
                 <Button
                   variant="outline"
                   className="group border-3 border-white text-white hover:bg-white hover:text-academy-blue font-bold px-12 py-5 text-xl rounded-3xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 bg-transparent backdrop-blur-sm hover:backdrop-blur-md min-w-[250px]"
                 >
                   <span className="mr-3">تقديم للالتحاق</span>
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={20} />
+                  <ArrowRight
+                    className="group-hover:translate-x-1 transition-transform duration-300"
+                    size={20}
+                  />
                 </Button>
               </Link>
             </div>
@@ -1207,10 +1373,12 @@ export default function EducationSystemPage(){
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 p-4">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
-            <span className="text-academy-blue font-medium text-sm">نظام التعليم نشط</span>
+            <span className="text-academy-blue font-medium text-sm">
+              نظام التعليم نشط
+            </span>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
