@@ -173,11 +173,15 @@ export default function HomePage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/home-bage.png"
-            alt="أكاديمية المعرفة الدولية"
-            fill
-            className="object-cover"
-          />
+    src="/home-bage-1440.webp"
+    alt="أكاديمية المعرفة الدولية"
+    fill
+    sizes="(max-width: 600px) 480px,
+           (max-width: 1024px) 960px,
+           1440px"
+    className="object-contian"
+    priority
+  />
         </div>
       </section>
 
@@ -270,7 +274,7 @@ export default function HomePage() {
         {/* Enhanced Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/academic-excellence-background.png"
+            src="/academic-excellence-background-1440.webp"
             alt="التميز الأكاديمي"
             fill
             className="object-cover opacity-8"
@@ -314,56 +318,56 @@ export default function HomePage() {
               {
                 title: "رؤية عالمية ورسالة واضحة",
                 description: "نسعى لتمكين المتعلمين والباحثين من الوصول إلى المعرفة الحديثة بأسلوب علمي متطور ومنهجية أكاديمية رصينة.",
-                image: "/global-vision.png",
+                image: "/global-vision-1440.webp",
                 color: "from-blue-600 to-blue-800",
                 bgColor: "from-blue-50 to-blue-100"
               },
               {
                 title: "مصداقية أكاديمية",
                 description: "نعتمد معايير عالية في إعداد البرامج التدريبية والبحثية، مع التزام كامل بأخلاقيات المهنة وأحدث المعايير الدولية.",
-                image: "/academic-credibility.png",
+                image: "/academic-credibility-1440.webp",
                 color: "from-green-600 to-green-800",
                 bgColor: "from-green-50 to-green-100"
               },
               {
                 title: "شهادات معترف بها دولياً",
                 description: "نوفر شهادات يمكن التحقق من صحتها مباشرة عبر موقع الأكاديمية، مما يعزز مصداقيتها دولياً ويضمن قبولها عالمياً.",
-                image: "/international-certificates.png",
+                image: "/international-certificates-1440.webp",
                 color: "from-purple-600 to-purple-800",
                 bgColor: "from-purple-50 to-purple-100"
               },
               {
                 title: "تنوع البرامج",
                 description: "نقدم برامج متخصصة في مجالات الإدارة، العلوم الإنسانية، الدراسات الإسلامية، والبحث العلمي بأحدث المناهج.",
-                image: "/program-diversity.png",
+                image: "/program-diversity-1440.webp",
                 color: "from-orange-600 to-orange-800",
                 bgColor: "from-orange-50 to-orange-100"
               },
               {
                 title: "كوادر مؤهلة",
                 description: "نخبة من الخبراء والأكاديميين ذوي الخبرة العملية والعلمية الواسعة في مختلف التخصصات.",
-                image: "/qualified-staff.png",
+                image: "/qualified-staff-1440.webp",
                 color: "from-red-600 to-red-800",
                 bgColor: "from-red-50 to-red-100"
               },
               {
                 title: "بيئة تعليمية محفزة",
                 description: "نعتمد نظام تعليم مبتكر يراعي الفروق الفردية ويحفز على الإبداع والمشاركة الفعالة والتفكير النقدي.",
-                image: "/motivating-environment.png",
+                image: "/motivating-environment-1440.webp",
                 color: "from-teal-600 to-teal-800",
                 bgColor: "from-teal-50 to-teal-100"
               },
               {
                 title: "اعتمادات وشراكات",
                 description: "علاقات تعاون استراتيجي مع مؤسسات تعليمية وبحثية محلية ودولية مرموقة لضمان أعلى معايير الجودة.",
-                image: "/accreditations-partnerships.png",
+                image: "/accreditations-partnerships-1440.webp",
                 color: "from-indigo-600 to-indigo-800",
                 bgColor: "from-indigo-50 to-indigo-100"
               },
               {
                 title: "دعم المتعلم بعد التخرج",
                 description: "من خلال فرص النشر العلمي، والمشاركة في المؤتمرات، والتطوير المهني المستمر ودعم التقدم الوظيفي.",
-                image: "/post-graduation-support.png",
+                image: "/post-graduation-support-1440.webp",
                 color: "from-pink-600 to-pink-800",
                 bgColor: "from-pink-50 to-pink-100"
               }
