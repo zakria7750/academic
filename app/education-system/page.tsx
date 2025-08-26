@@ -179,11 +179,15 @@ export default function EducationSystemPage(){
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/Education-system.jpg"
-            alt="نظام التعليم"
-            fill
-            className="object-cover"
-          />
+    src="/Education-system-1440.webp"
+    alt="نظام التعليم"
+    fill
+    sizes="(max-width: 600px) 480px,
+           (max-width: 1024px) 960px,
+           1440px"
+    className="object-contian"
+    priority
+  />
         </div>
       </section>
 
@@ -324,7 +328,7 @@ export default function EducationSystemPage(){
             <div className="relative">
               <div className="relative overflow-hidden rounded-3xl shadow-2xl group">
                 <Image
-                  src="/modern-education.png"
+                  src="/modern-education-1440.webp"
                   alt="نظام التعليم المتطور"
                   width={700}
                   height={500}
@@ -431,7 +435,7 @@ export default function EducationSystemPage(){
 
               <div className="relative h-72 overflow-hidden">
   <Image
-                  src="/classroom-learning.png"
+                  src="/classroom-learning-1440.webp"
                   alt="التعليم الحضوري"
                   width={600}
                   height={400}
@@ -534,7 +538,7 @@ export default function EducationSystemPage(){
 
               <div className="relative h-72 overflow-hidden">
                 <Image
-                  src="/online-learning.png"
+                  src="/online-learning-1440.webp"
                   alt="التعليم الإلكتروني"
                   width={500}
                   height={300}
@@ -684,7 +688,7 @@ export default function EducationSystemPage(){
             <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold overflow-hidden group bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/continuous-assessment.png"
+                  src="/continuous-assessment-1440.webp"
                   alt="التقييم المستمر"
                   width={300}
                   height={160}
@@ -734,7 +738,7 @@ export default function EducationSystemPage(){
             <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold overflow-hidden group bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/examinations.png"
+                  src="/examinations-1440.webp"
                   alt="الاختبارات"
                   width={300}
                   height={160}
@@ -772,7 +776,7 @@ export default function EducationSystemPage(){
             <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold overflow-hidden group bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/graduation-project.png"
+                  src="/graduation-project-1440.webp"
                   alt="مشروع التخرج"
                   width={300}
                   height={160}
@@ -893,7 +897,7 @@ export default function EducationSystemPage(){
             <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/video-lectures.png"
+                  src="/video-lectures-1440.webp"
                   alt="محاضرات فيديو"
                   width={300}
                   height={160}
@@ -923,7 +927,7 @@ export default function EducationSystemPage(){
             <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/discussion-forums.png"
+                  src="/discussion-forums-1440.webp"
                   alt="منتديات نقاش"
                   width={300}
                   height={160}
@@ -1035,7 +1039,7 @@ export default function EducationSystemPage(){
             <Card className="text-center space-y-4 hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/academic-advisor.png"
+                  src="/academic-advisor-1440.webp"
                   alt="مرشد أكاديمي"
                   width={300}
                   height={160}
@@ -1062,7 +1066,7 @@ export default function EducationSystemPage(){
             <Card className="text-center space-y-4 hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/technical-support.png"
+                  src="/technical-support-1440.webp"
                   alt="دعم تقني"
                   width={300}
                   height={160}
@@ -1089,7 +1093,7 @@ export default function EducationSystemPage(){
             <Card className="text-center space-y-4 hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/study-groups.png"
+                  src="/study-groups-1440.webp"
                   alt="مجموعات دراسية"
                   width={300}
                   height={160}
