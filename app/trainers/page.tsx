@@ -94,104 +94,165 @@ export default function TrainersPage() {
         <div className="absolute top-1/2 left-3/4 w-2 h-2 bg-academy-gold/50 rotate-45 animate-pulse delay-1100"></div>
       </div>
 
-      {/* Ultra Premium Hero Section */}
-      <section className="relative overflow-hidden py-32 lg:py-40">
-        {/* Multi-layered Premium Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)]"></div>
+      {/* Ultra Luxurious Hero Section with Glass Morphism */}
+      <section className="relative min-h-screen overflow-hidden flex items-center justify-center">
+        {/* Premium Background Image with Perfect Fit */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/trainers-hero-background-1440.webp"
+            alt="المدربين المعتمدين - أكاديمية المعرفة الدولية"
+            fill
+            sizes="(max-width: 480px) 480px,
+                   (max-width: 768px) 768px,
+                   (max-width: 1024px) 1024px,
+                   1440px"
+            className="object-cover w-full h-full"
+            priority
+            style={{ 
+              objectPosition: 'center center',
+              objectFit: 'cover'
+            }}
+          />
+          {/* Multi-layered Premium Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/85 via-academy-blue-dark/75 to-slate-900/85"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-transparent to-academy-blue/60"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.12),transparent_70%)]"></div>
+        </div>
         
-        {/* Ultra Premium Decorative Elements */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/25 to-transparent rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/15 rounded-full blur-xl animate-pulse delay-500"></div>
-          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/25 rounded-full blur-xl animate-pulse delay-1500"></div>
+        {/* Ultra Premium Floating Elements */}
+        <div className="absolute inset-0 opacity-50 z-10">
+          <div className="absolute top-[15%] right-[10%] w-[200px] sm:w-[300px] lg:w-[400px] h-[200px] sm:h-[300px] lg:h-[400px] bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-[20%] left-[15%] w-[150px] sm:w-[250px] lg:w-[350px] h-[150px] sm:h-[250px] lg:h-[350px] bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-[40%] left-[20%] w-[100px] sm:w-[150px] lg:w-[200px] h-[100px] sm:h-[150px] lg:h-[200px] bg-academy-gold/10 rounded-full blur-2xl animate-pulse delay-500"></div>
+          <div className="absolute top-[25%] right-[25%] w-[80px] sm:w-[120px] lg:w-[160px] h-[80px] sm:h-[120px] lg:h-[160px] bg-academy-gold/20 rounded-full blur-2xl animate-pulse delay-1500"></div>
           
           {/* Premium Geometric Patterns */}
-          <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/30 rotate-45 animate-pulse delay-2000"></div>
-          <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/20 rounded-full animate-pulse delay-2500"></div>
+          <div className="absolute top-[30%] left-[30%] w-4 h-4 sm:w-6 sm:h-6 border-2 border-academy-gold/40 rotate-45 animate-pulse delay-2000"></div>
+          <div className="absolute bottom-[35%] right-[30%] w-3 h-3 sm:w-4 sm:h-4 bg-academy-gold/30 rounded-full animate-pulse delay-2500"></div>
+          <div className="absolute top-[60%] right-[15%] w-2 h-2 sm:w-3 sm:h-3 bg-academy-gold/40 rotate-45 animate-pulse delay-3000"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
-          <div className="text-center text-white">
-            {/* Ultra Premium Icon Section 
-            <div className="relative inline-block mb-16">
-              <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
+        <div className="relative z-20 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="text-white">
+            {/* Ultra Premium Glass Morphism Icon Container */}
+            <div className="relative inline-block mb-12 lg:mb-16">
+              <div className="p-6 sm:p-8 lg:p-10 bg-white/10 backdrop-blur-2xl rounded-[2.5rem] border border-white/20 shadow-[0_32px_64px_rgba(0,0,0,0.3)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.4)] transition-all duration-700 hover:bg-white/15">
                 <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <Award className="text-academy-blue drop-shadow-lg" size={60} />
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/30 hover:scale-110 transition-transform duration-500 backdrop-blur-sm">
+                    <Award className="text-academy-blue drop-shadow-lg" size={window.innerWidth < 640 ? 40 : window.innerWidth < 1024 ? 48 : 64} />
                   </div>
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
-                    <Users size={24} className="text-academy-blue" />
+                  {/* Enhanced Floating Decorative Elements */}
+                  <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/30 backdrop-blur-sm">
+                    <Users size={window.innerWidth < 640 ? 18 : 24} className="text-academy-blue" />
                   </div>
-                  <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
-                    <Star size={20} className="text-academy-blue" />
+                  <div className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
+                    <Star size={window.innerWidth < 640 ? 16 : 20} className="text-academy-blue" />
                   </div>
-                  <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
-                    <CheckCircle size={16} className="text-academy-blue" />
+                  <div className="absolute top-1 -left-4 sm:top-2 sm:-left-6 w-6 h-6 sm:w-8 sm:h-8 bg-academy-gold/90 rounded-full flex items-center justify-center shadow-md backdrop-blur-sm">
+                    <CheckCircle size={window.innerWidth < 640 ? 12 : 16} className="text-academy-blue" />
                   </div>
                 </div>
               </div>
               
-               Enhanced Floating Elements 
-              <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
-              <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
-              <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>*/} 
+              {/* Enhanced Floating Elements with Glass Effect */}
+              <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-6 h-6 sm:w-8 sm:h-8 bg-academy-gold/80 backdrop-blur-sm rounded-full animate-pulse shadow-lg border border-white/20"></div>
+              <div className="absolute -bottom-3 -right-6 sm:-bottom-4 sm:-right-8 w-4 h-4 sm:w-6 sm:h-6 bg-academy-gold-light/70 backdrop-blur-sm rounded-full animate-pulse delay-700 shadow-md border border-white/20"></div>
+              <div className="absolute top-1/2 -left-8 sm:-left-12 w-3 h-3 sm:w-4 sm:h-4 bg-academy-gold/70 backdrop-blur-sm rounded-full animate-pulse delay-1200 border border-white/20"></div>
+              <div className="absolute -top-6 right-1/4 sm:-top-8 w-2 h-2 sm:w-3 sm:h-3 bg-academy-gold-light/60 backdrop-blur-sm rounded-full animate-pulse delay-1600 border border-white/20"></div>
+            </div>
 
-            {/* Premium Title Section */}
-            <div className="absolute inset-0 z-0">
-          <Image
-            src="/graduates-hero-background-1440.webp"
-            alt="خريجو أكاديمية المعرفة الدولية"
-            fill
-            className="object-contian"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/60 via-academy-blue/40 to-academy-blue-dark/80"></div>
-        </div>
-            <div className="mb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+            {/* Ultra Premium Title Section with Enhanced Typography */}
+            <div className="mb-12 lg:mb-16">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 lg:mb-8 tracking-tight leading-[1.1] sm:leading-tight">
+                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-2xl">
                   المدربين
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
+                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse drop-shadow-2xl">
                   المعتمدين
                 </span>
               </h1>
             </div>
             
-            {/* Premium Description */}
-            <div className="mb-16">
-              <p className="text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
-                <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent">
+            {/* Premium Description with Enhanced Styling */}
+            <div className="mb-12 lg:mb-16">
+              <p className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl mb-6 lg:mb-8 font-semibold leading-relaxed">
+                <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-lg">
                   نخبة من أفضل المدربين المعتمدين في مختلف التخصصات
                 </span>
               </p>
-              <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
-                مدربون معتمدون من أكاديمية المعرفة الدولية يقدمون تدريباً عالي الجودة ومتخصصاً
+              <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8 lg:mb-12 drop-shadow-md">
+                مدربون معتمدون من أكاديمية المعرفة الدولية يقدمون تدريباً عالي الجودة ومتخصصاً في بيئة تعليمية متطورة
               </p>
               
-              {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">{trainers.length}</div>
-                  <div className="text-white/80">مدرب معتمد</div>
+              {/* Ultra Premium Glass Morphism Stats Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
+                <div className="group bg-white/10 backdrop-blur-2xl border border-white/25 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">{trainers.length}</div>
+                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">مدرب معتمد</div>
+                  </div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">100%</div>
-                  <div className="text-white/80">اعتماد مؤكد</div>
+                <div className="group bg-white/10 backdrop-blur-2xl border border-white/25 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">100%</div>
+                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">اعتماد مؤكد</div>
+                  </div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">خبرة</div>
-                  <div className="text-white/80">متميزة ومعتمدة</div>
+                <div className="group bg-white/10 backdrop-blur-2xl border border-white/25 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500 relative overflow-hidden sm:col-span-2 lg:col-span-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 lg:mb-3 group-hover:scale-110 transition-transform duration-300">متميزة</div>
+                    <div className="text-white/80 font-medium text-sm sm:text-base lg:text-lg">خبرة معتمدة</div>
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Enhanced Call to Action with Glass Morphism */}
+            <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center items-center">
+              <Button
+                onClick={() => {
+                  const trainersSection = document.querySelector('#trainers-list');
+                  if (trainersSection) {
+                    trainersSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="group bg-gradient-to-r from-academy-gold to-academy-gold-600 hover:from-academy-gold-600 hover:to-academy-gold-700 text-academy-blue font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-base sm:text-lg lg:text-xl rounded-full shadow-[0_20px_40px_rgba(255,215,0,0.3)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.4)] transform hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-academy-gold/30 relative overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Users size={20} />
+                  تصفح المدربين
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Button>
+              <Button
+                onClick={() => {
+                  const accreditationForm = document.getElementById("accreditation-form");
+                  if (accreditationForm) {
+                    accreditationForm.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                variant="outline"
+                className="group border-2 border-white/30 bg-white/10 backdrop-blur-2xl text-white hover:bg-white hover:text-academy-blue font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-base sm:text-lg lg:text-xl rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Award size={20} />
+                  انضم كمدرب
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-academy-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Button>
+            </div>
           </div>
         </div>
+
+        {/* Enhanced Decorative Corner Elements */}
+        <div className="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-10 lg:left-10 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-t-4 border-l-4 border-academy-gold/40 rounded-tl-3xl backdrop-blur-sm"></div>
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-10 lg:right-10 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-b-4 border-r-4 border-academy-gold/40 rounded-br-3xl backdrop-blur-sm"></div>
+        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-10 lg:right-10 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 border-t-2 border-r-2 border-academy-gold/30 rounded-tr-2xl backdrop-blur-sm"></div>
+        <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 lg:bottom-10 lg:left-10 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 border-b-2 border-l-2 border-academy-gold/30 rounded-bl-2xl backdrop-blur-sm"></div>
       </section>
 
       {/* Enhanced Trainers Stats */}
@@ -241,7 +302,7 @@ export default function TrainersPage() {
       </section>
 
       {/* Enhanced Trainers List Section */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section id="trainers-list" className="py-20 lg:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 lg:mb-20">
             <div className="inline-block p-3 bg-academy-gold/10 rounded-full mb-6">
