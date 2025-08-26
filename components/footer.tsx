@@ -204,12 +204,12 @@ export default function Footer() {
               <h5 className="text-academy-gold font-semibold mb-3">تابعنا على</h5>
               <div className="flex space-x-3 space-x-reverse">
                 <SocialMediaButtons/>
-                 {[{ icon: Youtube, href: "https://youtube.com/@almarifh2018?si=-NzMdaI7YB4H6-il", color: "hover:bg-red-600" },
-      {/*{ icon: Facebook, href: "#", color: "hover:bg-blue-600" },
+                {/* {[{ icon: Youtube, href: "https://youtube.com/@almarifh2018?si=-NzMdaI7YB4H6-il", color: "hover:bg-red-600" },
+      { icon: Facebook, href: "#", color: "hover:bg-blue-600" },
                   { icon: Twitter, href: "#", color: "hover:bg-sky-500" },
                   { icon: Instagram, href: "#", color: "hover:bg-pink-600" },
                   { icon: Linkedin, href: "#", color: "hover:bg-blue-700" },
-                  */}
+                
                 ].map((social, index) => {
                   const Icon = social.icon
                   return (
