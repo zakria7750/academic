@@ -207,7 +207,7 @@ export default function AboutPage() {
               <div className="relative group">
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                   <Image
-                    src="/vision-image.png"
+                    src="/vision-image-1440.webp"
                     alt="رؤية أكاديمية المعرفة الدولية"
                     width={600}
                     height={400}
@@ -245,7 +245,7 @@ export default function AboutPage() {
               <div className="relative group">
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                   <Image
-                    src="/academic-advisor.png"
+                    src="/academic-advisor-1440.webp"
                     alt="رسالة أكاديمية المعرفة الدولية"
                     width={600}
                     height={400}
