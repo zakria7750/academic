@@ -179,30 +179,12 @@ export default function Footer() {
           {/* Contact Info */}
           <div className="space-y-6">
             <h4 className="text-lg font-bold text-academy-gold border-b border-academy-gold/30 pb-2">تواصل معنا</h4>
-
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3 space-x-reverse">
-                <div className="w-8 h-8 bg-academy-gold/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <MapPin size={16} className="text-academy-gold" />
-                </div>
-                <div>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    المملكة العربية السعودية
-                    <br />
-                    الرياض - حي الملك فهد
-                    <br />
-                    ص.ب: 12345
-                  </p>
-                </div>
-              </div>
-
               <div className="flex items-center space-x-3 space-x-reverse">
                 <div className="w-8 h-8 bg-academy-gold/20 rounded-full flex items-center justify-center">
                   <Phone size={16} className="text-academy-gold" />
                 </div>
                 <div>
-                  <p className="text-gray-300 text-sm">+966 11 123 4567</p>
-                  <p className="text-gray-300 text-sm">+966 50 123 4567</p>
+                  <p className="text-gray-300 text-sm">+967 730 530 992</p>
                 </div>
               </div>
 
@@ -222,12 +204,12 @@ export default function Footer() {
               <h5 className="text-academy-gold font-semibold mb-3">تابعنا على</h5>
               <div className="flex space-x-3 space-x-reverse">
                 <SocialMediaButtons/>
-                {/* {[
-                  { icon: Facebook, href: "#", color: "hover:bg-blue-600" },
+                 {[{ icon: Youtube, href: "#", color: "hover:bg-red-600" },
+      {/*{ icon: Facebook, href: "#", color: "hover:bg-blue-600" },
                   { icon: Twitter, href: "#", color: "hover:bg-sky-500" },
                   { icon: Instagram, href: "#", color: "hover:bg-pink-600" },
                   { icon: Linkedin, href: "#", color: "hover:bg-blue-700" },
-                  { icon: Youtube, href: "#", color: "hover:bg-red-600" },
+                  */}
                 ].map((social, index) => {
                   const Icon = social.icon
                   return (
@@ -281,19 +263,19 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-academy-gold/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-right">
-              <p className="text-gray-300 text-sm">© 2024 أكاديمية المعرفة الدولية. جميع الحقوق محفوظة.</p>
+              <p className="text-gray-300 text-sm">© 2018 أكاديمية المعرفة الدولية. جميع الحقوق محفوظة.</p>
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-end space-x-6 space-x-reverse text-sm">
-              <Link href="/privacy" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
+              <Link href="/#" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
                 سياسة الخصوصية
               </Link>
-              <Link href="/terms" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
+              <Link href="/#" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
                 الشروط والأحكام
               </Link>
-              <Link href="/sitemap" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
+              {/*<Link href="/#" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
                 خريطة الموقع
-              </Link>
+              </Link>*/}
             </div>
           </div>
         </div>
