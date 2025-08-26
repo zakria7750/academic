@@ -128,7 +128,7 @@ export default function AboutPage() {
     sizes="(max-width: 600px) 480px,
            (max-width: 1024px) 960px,
            1440px"
-    className="object-cover"
+    className="object-contian"
     priority
   />
 </div>
