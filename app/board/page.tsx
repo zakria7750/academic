@@ -36,107 +36,129 @@ export default async function BoardPage() {
       </div>
 
       {/* Ultra Premium Hero Section */}
-      <section className="relative overflow-hidden py-32 lg:py-40">
-        {/* Multi-layered Premium Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)]"></div>
-        
-        {/* Ultra Premium Decorative Elements */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/25 to-transparent rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/15 rounded-full blur-xl animate-pulse delay-500"></div>
-          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/25 rounded-full blur-xl animate-pulse delay-1500"></div>
-          
-          {/* Premium Geometric Patterns */}
-          <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/30 rotate-45 animate-pulse delay-2000"></div>
-          <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/20 rounded-full animate-pulse delay-2500"></div>
+      <section className="relative min-h-screen overflow-hidden flex items-center justify-center">
+        {/* Enhanced Background Image with Perfect Fit */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/board-background-1440.webp"
+            alt="مجلس الإدارة - أكاديمية المعرفة الدولية"
+            fill
+            sizes="(max-width: 480px) 480px,
+                   (max-width: 768px) 768px,
+                   (max-width: 1024px) 1024px,
+                   1440px"
+            className="object-cover w-full h-full"
+            priority
+            style={{ objectPosition: 'center center' }}
+          />
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
+        {/* Multi-layered Premium Background Overlays */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-br from-academy-blue/85 via-academy-blue-dark/80 to-slate-900/90"></div>
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-academy-blue/90 via-academy-blue/60 to-academy-blue/40"></div>
+        <div className="absolute inset-0 z-25 bg-[radial-gradient(circle_at_30%_50%,rgba(255,215,0,0.15),transparent_70%)] bg-[radial-gradient(circle_at_70%_80%,rgba(255,215,0,0.08),transparent_50%)]"></div>
+        
+        {/* Premium Decorative Glass Elements */}
+        <div className="absolute inset-0 z-30 opacity-60">
+          <div className="absolute top-10 sm:top-16 lg:top-20 right-4 sm:right-8 lg:right-20 w-32 sm:w-48 lg:w-80 h-32 sm:h-48 lg:h-80 bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-2xl animate-pulse backdrop-blur-xl"></div>
+          <div className="absolute bottom-10 sm:bottom-16 lg:bottom-20 left-4 sm:left-8 lg:left-20 w-24 sm:w-40 lg:w-64 h-24 sm:h-40 lg:h-64 bg-gradient-to-br from-academy-gold/12 to-transparent rounded-full blur-xl animate-pulse delay-1000 backdrop-blur-xl"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 sm:w-24 lg:w-40 h-16 sm:h-24 lg:h-40 bg-academy-gold/10 rounded-full blur-lg animate-pulse delay-500 backdrop-blur-lg"></div>
+
+          {/* Glass Geometric Patterns */}
+          <div className="absolute top-20 sm:top-32 left-1/3 w-3 sm:w-4 lg:w-6 h-3 sm:h-4 lg:h-6 border border-academy-gold/40 rotate-45 animate-pulse delay-2000 backdrop-blur-sm"></div>
+          <div className="absolute bottom-20 sm:bottom-32 right-1/3 w-2 sm:w-3 lg:w-4 h-2 sm:h-3 lg:h-4 bg-academy-gold/30 rounded-full animate-pulse delay-2500 backdrop-blur-sm"></div>
+        </div>
+
+        <div className="relative z-40 container mx-auto max-w-8xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
           <div className="text-center text-white">
-            {/* Ultra Premium Icon Section 
-            <div className="relative inline-block mb-16">
-              <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
+            {/* Premium Icon Section */}
+            <div className="relative inline-block mb-12 sm:mb-16 lg:mb-20">
+              <div className="glass-card-premium p-6 sm:p-8 lg:p-10 bg-white/10 backdrop-blur-2xl rounded-[2rem] lg:rounded-[3rem] border border-white/20 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700 hover:scale-105">
                 <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <Crown className="text-academy-blue drop-shadow-lg" size={60} />
+                  <div className="w-20 sm:w-24 lg:w-32 xl:w-40 h-20 sm:h-24 lg:h-32 xl:h-40 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-2xl lg:rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
+                    <Crown className="text-academy-blue drop-shadow-lg" size={32} />
                   </div>
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
-                    <Users size={24} className="text-academy-blue" />
+                  <div className="absolute -top-2 sm:-top-3 lg:-top-4 -right-2 sm:-right-3 lg:-right-4 w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
+                    <Users size={16} className="text-academy-blue" />
                   </div>
-                  <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
-                    <Star size={20} className="text-academy-blue" />
+                  <div className="absolute -bottom-2 sm:-bottom-3 -left-2 sm:-left-3 w-6 sm:w-8 lg:w-10 h-6 sm:h-8 lg:h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
+                    <Star size={12} className="text-academy-blue" />
                   </div>
-                  <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
-                    <Shield size={16} className="text-academy-blue" />
+                  <div className="absolute top-1 sm:top-2 -left-4 sm:-left-6 w-6 sm:w-8 h-6 sm:h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
+                    <Shield size={12} className="text-academy-blue" />
                   </div>
                 </div>
               </div>
               
-               Enhanced Floating Elements 
-              <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
-              <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
-              <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>*/} 
+              {/* Enhanced Floating Elements */}
+              <div className="absolute -top-4 sm:-top-6 -left-4 sm:-left-6 w-6 sm:w-8 h-6 sm:h-8 bg-academy-gold rounded-full animate-pulse shadow-lg backdrop-blur-sm"></div>
+              <div className="absolute -bottom-3 sm:-bottom-4 -right-6 sm:-right-8 w-4 sm:w-6 h-4 sm:h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md backdrop-blur-sm"></div>
+              <div className="absolute top-1/2 -left-8 sm:-left-12 w-3 sm:w-4 h-3 sm:h-4 bg-academy-gold rounded-full animate-pulse delay-1200 backdrop-blur-sm"></div>
+              <div className="absolute -top-6 sm:-top-8 right-1/4 w-2 sm:w-3 h-2 sm:h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600 backdrop-blur-sm"></div>
+            </div>
 
             {/* Premium Title Section */}
-            <div className="mb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+            <div className="mb-10 sm:mb-12 lg:mb-16">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
+                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-xl">
                   مجلس
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
+                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse drop-shadow-xl">
                   الإدارة
                 </span>
               </h1>
             </div>
             
             {/* Premium Description */}
-            <div className="mb-16">
-              <p className="text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
-                <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent">
-                  نخبة من القيادات المتميزة والخبراء الاستراتيجيين
-                </span>
-              </p>
-              <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
-                أعضاء مجلس إدارة أكاديمية المعرفة الدولية يقودون الرؤية الاستراتيجية نحو التميز والابتكار
-              </p>
+            <div className="mb-12 sm:mb-16 lg:mb-20">
+              <div className="glass-card-premium p-6 sm:p-8 lg:p-10 bg-white/8 backdrop-blur-2xl rounded-3xl border border-white/15 max-w-5xl mx-auto mb-8 sm:mb-10 lg:mb-12 shadow-[0_24px_48px_rgba(0,0,0,0.2)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.3)] transition-all duration-500">
+                <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl mb-4 sm:mb-6 font-semibold leading-relaxed">
+                  <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent">
+                    نخبة من القيادات المتميزة والخبراء الاستراتيجيين
+                  </span>
+                </p>
+                <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-white/90 leading-relaxed">
+                  أعضاء مجلس إدارة أكاديمية المعرفة الدولية يقودون الرؤية الاستراتيجية نحو التميز والابتكار في التعليم والبحث العلمي
+                </p>
+              </div>
               
-              {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">{boardMembers.length}</div>
-                  <div className="text-white/80">عضو مجلس إدارة</div>
+              {/* Premium Stats Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
+                <div className="glass-card-stats bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.35)] hover:scale-105 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">{boardMembers.length}</div>
+                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">عضو مجلس إدارة</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">قيادة</div>
-                  <div className="text-white/80">متميزة وخبيرة</div>
+                <div className="glass-card-stats bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.35)] hover:scale-105 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">قيادة</div>
+                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">متميزة وخبيرة</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">رؤية</div>
-                  <div className="text-white/80">واضحة ومتقدمة</div>
+                <div className="glass-card-stats bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.35)] hover:scale-105 hover:bg-white/15 transition-all duration-500 hover:-translate-y-2 sm:col-span-2 lg:col-span-1">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-gold mb-2 sm:mb-3 drop-shadow-lg">رؤية</div>
+                  <div className="text-white/90 text-xs sm:text-sm lg:text-base font-medium drop-shadow-sm">واضحة ومتقدمة</div>
                 </div>
+              </div>
+            </div>
+
+            {/* Premium Trust Indicators */}
+            <div className="glass-card-trust flex flex-col sm:flex-row items-center justify-center bg-white/8 backdrop-blur-xl border border-white/15 rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto space-y-3 sm:space-y-0 sm:space-x-6 lg:space-x-8 sm:space-x-reverse shadow-[0_16px_32px_rgba(0,0,0,0.2)] hover:shadow-[0_24px_48px_rgba(0,0,0,0.3)] transition-all duration-500">
+              <div className="flex items-center space-x-2 space-x-reverse text-academy-gold-light">
+                <Eye className="text-academy-gold" size={16} />
+                <span className="text-xs sm:text-sm lg:text-base font-medium">رؤية استراتيجية</span>
+              </div>
+              <div className="homepage-trust-separator hidden sm:block w-1 h-1 bg-academy-gold/60 rounded-full"></div>
+              <div className="flex items-center space-x-2 space-x-reverse text-academy-gold-light">
+                <Target className="text-academy-gold" size={16} />
+                <span className="text-xs sm:text-sm lg:text-base font-medium">أهداف واضحة</span>
+              </div>
+              <div className="homepage-trust-separator hidden sm:block w-1 h-1 bg-academy-gold/60 rounded-full"></div>
+              <div className="flex items-center space-x-2 space-x-reverse text-academy-gold-light">
+                <TrendingUp className="text-academy-gold" size={16} />
+                <span className="text-xs sm:text-sm lg:text-base font-medium">نمو مستدام</span>
               </div>
             </div>
           </div>
         </div>
-        {/* Enhanced Background Image */}
-        <div className="absolute inset-0 z-0">
-  <Image
-    src="/board-background-1440.webp"
-    alt="مجلس الادارة"
-    fill
-    sizes="(max-width: 600px) 480px,
-           (max-width: 1024px) 960px,
-           1440px"
-    className="object-cover"
-    priority
-  />
-</div>
       </section>
 
              {/* Enhanced Board Members Section */}
