@@ -94,8 +94,7 @@ export default function Footer() {
                 <span className="text-academy-blue font-bold text-xl">م</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-academy-gold">أكاديمية المعرفة</h3>
-                <p className="text-sm text-gray-300">الدولية</p>
+                <h3 className="text-xl font-bold text-academy-gold">أكاديمية المعرفة الدولية</h3>
               </div>
             </div>
 
