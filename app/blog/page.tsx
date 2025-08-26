@@ -139,6 +139,7 @@ export default async function BlogPage() {
     className="object-contian"
     priority
   />
+          </div>
       </section>
 
       {/* Ultra Premium Stats Section */}
