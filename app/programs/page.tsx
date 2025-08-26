@@ -223,108 +223,146 @@ export default async function ProgramsPage() {
         <div className="absolute top-1/2 left-3/4 w-2 h-2 bg-academy-gold/50 rotate-45 animate-pulse delay-1100"></div>
       </div>
 
-      {/* Ultra Premium Hero Section */}
-      <section className="relative overflow-hidden py-32 lg:py-40">
-        {/* Multi-layered Premium Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)]"></div>
-        
-        {/* Ultra Premium Decorative Elements */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/25 to-transparent rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/15 rounded-full blur-xl animate-pulse delay-500"></div>
-          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/25 rounded-full blur-xl animate-pulse delay-1500"></div>
+      {/* Ultra Luxurious Hero Section */}
+      <section className="relative min-h-screen overflow-hidden flex items-center justify-center py-20 lg:py-24">
+        {/* Premium Background Image with Perfect Fit */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/modern-university-campus-students-1440.webp"
+            alt="البرامج التعليمية - أكاديمية المعرفة الدولية"
+            fill
+            sizes="(max-width: 480px) 480px,
+                   (max-width: 768px) 768px,
+                   (max-width: 1024px) 1024px,
+                   1440px"
+            className="object-cover w-full h-full"
+            priority
+            style={{ 
+              objectPosition: 'center center',
+              objectFit: 'cover'
+            }}
+          />
+          {/* Enhanced Glass Morphism Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/90 via-academy-blue-dark/85 to-slate-900/95"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-transparent to-academy-blue/75"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-academy-blue-dark/50 via-transparent to-academy-blue/60"></div>
           
-          {/* Premium Geometric Patterns */}
-          <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/30 rotate-45 animate-pulse delay-2000"></div>
-          <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/20 rounded-full animate-pulse delay-2500"></div>
+          {/* Ultra Premium Glass Morphism Background Pattern */}
+          <div className="absolute inset-0 opacity-25">
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-[10%] left-[15%] w-72 h-72 bg-gradient-to-br from-academy-gold/20 via-academy-gold/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute top-[20%] right-[10%] w-96 h-96 bg-gradient-to-bl from-white/15 via-academy-blue/8 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+              <div className="absolute bottom-[15%] left-[20%] w-80 h-80 bg-gradient-to-tr from-academy-gold/15 via-transparent to-academy-blue/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+              <div className="absolute bottom-[25%] right-[15%] w-64 h-64 bg-gradient-to-tl from-white/12 via-academy-gold/8 to-transparent rounded-full blur-3xl animate-pulse delay-3000"></div>
+              
+              {/* Additional Glass Elements */}
+              <div className="absolute top-1/3 left-1/4 w-48 h-48 bg-academy-gold/10 rounded-full blur-2xl animate-pulse delay-1500"></div>
+              <div className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-white/8 rounded-full blur-2xl animate-pulse delay-2500"></div>
+            </div>
+          </div>
+
+          {/* Enhanced Glass Geometric Patterns */}
+          <div className="absolute top-20 sm:top-32 left-1/3 w-3 sm:w-4 lg:w-6 h-3 sm:h-4 lg:h-6 border border-academy-gold/40 rotate-45 animate-pulse delay-2000 backdrop-blur-sm"></div>
+          <div className="absolute bottom-20 sm:bottom-32 right-1/3 w-2 sm:w-3 lg:w-4 h-2 sm:h-3 lg:h-4 bg-academy-gold/30 rounded-full animate-pulse delay-2500 backdrop-blur-sm"></div>
+          <div className="absolute top-1/2 left-[10%] w-2 sm:w-3 h-2 sm:h-3 bg-white/25 rounded-full animate-pulse delay-3000"></div>
+          <div className="absolute top-[30%] right-[20%] w-4 sm:w-5 h-4 sm:h-5 border border-white/30 rotate-45 animate-pulse delay-3500 backdrop-blur-sm"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
+        <div className="relative z-10 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           
-          <div className="text-center text-white">
-            {/* Ultra Premium Icon Section 
-            <div className="relative inline-block mb-16">
-              <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
+          {/* Ultra Premium Glass Card Container */}
+          <div className="glass-card-premium bg-white/8 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] p-8 sm:p-12 lg:p-16 shadow-[0_40px_80px_rgba(0,0,0,0.4)] hover:shadow-[0_60px_120px_rgba(0,0,0,0.5)] transition-all duration-700">
+            
+            {/* Premium Icon Section */}
+            <div className="relative inline-block mb-12 lg:mb-16">
+              <div className="glass-card-premium bg-white/12 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.3)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.4)] transition-all duration-700 hover:scale-105">
                 <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <GraduationCap className="text-academy-blue drop-shadow-lg" size={60} />
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/30 hover:scale-110 transition-transform duration-500">
+                    <GraduationCap className="text-academy-blue drop-shadow-xl" size={48} />
                   </div>
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
-                    <Award size={24} className="text-academy-blue" />
+                  <div className="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/30 backdrop-blur-sm">
+                    <Award size={20} className="text-academy-blue" />
                   </div>
-                  <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
-                    <Star size={20} className="text-academy-blue" />
+                  <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
+                    <Star size={16} className="text-academy-blue" />
                   </div>
-                  <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
-                    <BookOpen size={16} className="text-academy-blue" />
+                  <div className="absolute top-1 -left-4 w-6 h-6 bg-academy-gold/90 rounded-full flex items-center justify-center shadow-md backdrop-blur-sm">
+                    <BookOpen size={12} className="text-academy-blue" />
                   </div>
                 </div>
               </div>
               
-              Enhanced Floating Elements 
-              <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
-              <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
-              <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>*/} 
+              {/* Premium Floating Elements */}
+              <div className="absolute -top-4 -left-4 w-6 h-6 bg-academy-gold/80 rounded-full animate-pulse shadow-lg backdrop-blur-sm"></div>
+              <div className="absolute -bottom-3 -right-6 w-5 h-5 bg-academy-gold-light/80 rounded-full animate-pulse delay-700 shadow-md backdrop-blur-sm"></div>
+              <div className="absolute top-1/2 -left-8 w-3 h-3 bg-academy-gold/80 rounded-full animate-pulse delay-1200 backdrop-blur-sm"></div>
+              <div className="absolute -top-6 right-1/4 w-2 h-2 bg-academy-gold-light/80 rounded-full animate-pulse delay-1600 backdrop-blur-sm"></div>
+            </div>
 
-            {/* Premium Title Section */}
-            <div className="mb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+            {/* Ultra Premium Title Section */}
+            <div className="mb-10 lg:mb-12">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 lg:mb-8 tracking-tight leading-tight">
+                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-2xl">
                   البرامج
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
+                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse drop-shadow-2xl">
                   التعليمية
                 </span>
               </h1>
             </div>
             
             {/* Premium Description */}
-            <div className="mb-16">
-              <p className="text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
-                <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent">
+            <div className="mb-12 lg:mb-16">
+              <p className="text-xl sm:text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
+                <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-xl">
                   اكتشف مجموعة واسعة من البرامج التعليمية المتميزة
                 </span>
               </p>
-              <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
-                نقدم لك أفضل الفرص التعليمية لتحقيق أحلامك المهنية مع أحدث المعايير الدولية
+              <p className="text-base sm:text-lg lg:text-xl text-white/95 max-w-4xl mx-auto leading-relaxed mb-8 drop-shadow-lg">
+                نقدم لك أفضل الفرص التعليمية لتحقيق أحلامك المهنية مع أحدث المعايير الدولية والاعتمادات الأكاديمية المعترف بها عالمياً
               </p>
               
-              {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">{mastersPrograms.length}</div>
-                  <div className="text-white/80">برنامج ماجستير</div>
+              {/* Ultra Premium Stats Cards with Glass Effect */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
+                <div className="glass-card-stats bg-white/10 backdrop-blur-lg border border-white/25 rounded-2xl p-4 lg:p-6 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] hover:scale-105 transition-all duration-500 hover:bg-white/15">
+                  <div className="text-2xl lg:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">{mastersPrograms.length}</div>
+                  <div className="text-sm lg:text-base text-white/90 font-medium">برنامج ماجستير</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">{doctoratePrograms.length}</div>
-                  <div className="text-white/80">برنامج دكتوراه</div>
+                <div className="glass-card-stats bg-white/10 backdrop-blur-lg border border-white/25 rounded-2xl p-4 lg:p-6 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] hover:scale-105 transition-all duration-500 hover:bg-white/15">
+                  <div className="text-2xl lg:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">{doctoratePrograms.length}</div>
+                  <div className="text-sm lg:text-base text-white/90 font-medium">برنامج دكتوراه</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">{diplomaPrograms.length}</div>
-                  <div className="text-white/80">دبلوم مهني</div>
+                <div className="glass-card-stats bg-white/10 backdrop-blur-lg border border-white/25 rounded-2xl p-4 lg:p-6 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] hover:scale-105 transition-all duration-500 hover:bg-white/15">
+                  <div className="text-2xl lg:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">{diplomaPrograms.length}</div>
+                  <div className="text-sm lg:text-base text-white/90 font-medium">دبلوم مهني</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">{trainingCourses.length}</div>
-                  <div className="text-white/80">دورة تدريبية</div>
+                <div className="glass-card-stats bg-white/10 backdrop-blur-lg border border-white/25 rounded-2xl p-4 lg:p-6 text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] hover:scale-105 transition-all duration-500 hover:bg-white/15">
+                  <div className="text-2xl lg:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">{trainingCourses.length}</div>
+                  <div className="text-sm lg:text-base text-white/90 font-medium">دورة تدريبية</div>
                 </div>
               </div>
             </div>
+
+            {/* Premium Call to Action */}
+            <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center items-center">
+              <Link href="/admission">
+                <Button className="group bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue hover:from-academy-gold-dark hover:to-academy-gold font-bold px-8 lg:px-10 py-3 lg:py-4 text-lg lg:text-xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-0 backdrop-blur-sm min-w-[200px]">
+                  <span className="mr-2">استكشف البرامج</span>
+                  <div className="w-3 h-3 bg-academy-blue rounded-full group-hover:animate-pulse"></div>
+                </Button>
+              </Link>
+              <Link href="/admission">
+                <Button
+                  variant="outline"
+                  className="group glass-card-stats border-2 border-white/30 text-white hover:bg-white/15 hover:text-white font-bold px-8 lg:px-10 py-3 lg:py-4 text-lg lg:text-xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 bg-transparent backdrop-blur-lg hover:backdrop-blur-xl min-w-[200px]"
+                >
+                  <span className="mr-2">سجل الآن</span>
+                  <div className="w-3 h-3 bg-white rounded-full group-hover:animate-pulse"></div>
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-        {/* Enhanced Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/modern-university-campus-students-1440.webp"
-            alt="أكاديمية المعرفة الدولية"
-            fill
-            className="object-cover"
-          />
         </div>
       </section>
 
