@@ -41,41 +41,11 @@ export default function HomePage() {
 
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Ultra Premium Icon Section 
-            <div className="relative inline-block mb-16">
-              <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
-                <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <span className="text-academy-blue font-bold text-5xl drop-shadow-lg">م</span>
-                  </div>
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
-                    <Crown size={24} className="text-academy-blue" />
-                  </div>
-                  <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
-                    <Star size={20} className="text-academy-blue" />
-                  </div>
-                  <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
-                    <Sparkles size={16} className="text-academy-blue" />
-                  </div>
-                </div>
-              </div>
-              
-              Enhanced Floating Elements 
-              <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
-              <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
-              <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>*/} 
-            
             {/* Premium Title Section */}
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  أكاديمية المعرفة
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
-                  الدولية
+                  أكاديمية المعرفة الدولية
                 </span>
               </h1>
               
@@ -100,7 +70,7 @@ export default function HomePage() {
             <div className="mb-16">
               <p className="text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
                 <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent">
-                  أكاديمية رائدة... نبني العقول ونطور المستقبل
+                  نحو أفق جديد من البحث والتعليم والتميز الأكاديمي
                 </span>
               </p>
               <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
@@ -114,11 +84,11 @@ export default function HomePage() {
                   <div className="text-white/80">خريج متميز</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">25+</div>
+                  <div className="text-3xl font-bold text-academy-gold mb-2">130+</div>
                   <div className="text-white/80">برنامج تعليمي</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">5</div>
+                  <div className="text-3xl font-bold text-academy-gold mb-2">21</div>
                   <div className="text-white/80">أقسام أكاديمية</div>
                 </div>
               </div>
@@ -159,7 +129,7 @@ export default function HomePage() {
               <div className="w-1 h-1 bg-academy-gold rounded-full"></div>
               <div className="flex items-center space-x-2 space-x-reverse">
                 <Award className="text-academy-gold" size={16} />
-                <span className="text-sm">+85 برنامج</span>
+                <span className="text-sm">+130 برنامج</span>
               </div>
               <div className="w-1 h-1 bg-academy-gold rounded-full"></div>
               <div className="flex items-center space-x-2 space-x-reverse">
@@ -245,7 +215,7 @@ export default function HomePage() {
                   </div>
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-green-600 transition-colors duration-300">+85</h3>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-green-600 transition-colors duration-300">+130</h3>
                 <p className="text-academy-dark-gray font-semibold text-lg">عدد البرامج</p>
                 <div className="mt-4 h-1 w-12 bg-gradient-to-r from-green-600 to-green-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
