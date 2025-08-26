@@ -179,6 +179,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div className="space-y-6">
             <h4 className="text-lg font-bold text-academy-gold border-b border-academy-gold/30 pb-2">تواصل معنا</h4>
+            <div className="space-y-4">
               <div className="flex items-center space-x-3 space-x-reverse">
                 <div className="w-8 h-8 bg-academy-gold/20 rounded-full flex items-center justify-center">
                   <Phone size={16} className="text-academy-gold" />
