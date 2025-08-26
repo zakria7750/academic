@@ -19,126 +19,179 @@ export default async function GraduatesPage() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-academy-gold/5 to-academy-blue/5 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Premium Hero Section */}
-      <section className="relative overflow-hidden py-24 lg:py-32">
-        {/* Enhanced Background with Multiple Layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/70 to-academy-blue/50"></div>
-        
-        
-        
-        {/* Premium Decorative Elements */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-48 h-48 bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-academy-gold/10 rounded-full blur-xl animate-pulse delay-500"></div>
+      {/* Ultra Luxurious Hero Section */}
+      <section className="relative overflow-hidden min-h-screen flex items-center py-20 lg:py-24">
+        {/* Enhanced Background Image with Perfect Display */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/home-background-1440.webp"
+            alt="الخريجين"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+          {/* Enhanced Image Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/85 via-academy-blue-dark/80 to-slate-900/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-transparent to-academy-blue/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-academy-blue-dark/40 via-transparent to-academy-blue/60"></div>
+          
+          {/* Advanced Glass Morphism Background Pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-[10%] left-[15%] w-72 h-72 bg-gradient-to-br from-academy-gold/15 via-academy-gold/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute top-[20%] right-[10%] w-96 h-96 bg-gradient-to-bl from-white/10 via-academy-blue/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+              <div className="absolute bottom-[15%] left-[20%] w-80 h-80 bg-gradient-to-tr from-academy-gold/12 to-transparent rounded-full blur-3xl animate-pulse delay-500"></div>
+              <div className="absolute bottom-[25%] right-[25%] w-64 h-64 bg-gradient-to-tl from-white/8 to-transparent rounded-full blur-3xl animate-pulse delay-1500"></div>
+              <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-academy-gold/8 via-transparent to-academy-blue/8 rounded-full blur-3xl"></div>
+            </div>
+          </div>
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center text-white">
-            {/* Premium Icon Section
-            <div className="relative inline-block mb-12">
-              <div className="p-6 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl">
-                <div className="relative">
-                  <div className="w-20 h-20 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center shadow-xl">
-                    <GraduationCap className="text-academy-blue" size={40} />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-lg">
-                    <Crown size={16} className="text-academy-blue" />
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -top-4 -left-4 w-6 h-6 bg-academy-gold rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-2 -right-6 w-4 h-4 bg-academy-gold-light rounded-full animate-pulse delay-700"></div>
-            </div>*/} 
-
-            {/* Premium Title Section */}
-            <div className="mb-12">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  هيئة التدريس والخريجين 
-                </span>
-              </h1>
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
-                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-gold to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={24} />
-                <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-gold to-transparent"></div>
-                <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
-              </div>
-              <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed">
-                نفخر بإنجازات خريجينا المتميزين الذين يقودون التغيير في مختلف المجالات حول العالم
-              </p>
-            </div>
-
-            {/* Premium Statistics Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-20">
-              {/* Graduates Count */}
-              <div className="group">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-400/20 to-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Users className="text-emerald-300" size={28} />
+        {/* Ultra Premium Content Container */}
+        <div className="relative z-10 w-full">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center text-white">
+              {/* Luxury Icon Section with Glass Morphism */}
+              <div className="relative inline-block mb-16">
+                <div className="group relative">
+                  {/* Main Glass Container */}
+                  <div className="relative p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/30 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.3)] transition-all duration-700 hover:bg-white/20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-academy-gold/10 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    {/* Icon Container with Enhanced Glass Effect */}
+                    <div className="relative">
+                      <div className="w-24 h-24 bg-gradient-to-br from-academy-gold/30 via-academy-gold/20 to-academy-gold/10 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border border-academy-gold/30 group-hover:scale-110 transition-all duration-500">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
+                        <GraduationCap className="text-white drop-shadow-lg relative z-10" size={48} />
+                      </div>
+                      
+                      {/* Premium Badge */}
+                      <div className="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark backdrop-blur-xl rounded-full flex items-center justify-center shadow-xl border-2 border-white/30 group-hover:scale-125 transition-all duration-500">
+                        <Crown size={18} className="text-academy-blue drop-shadow-sm" />
+                      </div>
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">{graduates.length}+</div>
-                    <div className="text-emerald-300 font-semibold text-lg">سيرة ذاتية</div>
                   </div>
+                  
+                  {/* Floating Decorative Elements */}
+                  <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full animate-pulse shadow-lg backdrop-blur-sm"></div>
+                  <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-white/80 rounded-full animate-pulse delay-700 shadow-md backdrop-blur-sm"></div>
+                  <div className="absolute top-4 -left-8 w-4 h-4 bg-academy-gold-light/70 rounded-full animate-pulse delay-300 shadow-sm backdrop-blur-sm"></div>
                 </div>
               </div>
 
-              {/* Countries */}
-              <div className="group">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Globe className="text-blue-300" size={28} />
+              {/* Ultra Premium Title Section */}
+              <div className="mb-20">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-10 tracking-tight leading-tight px-4">
+                  <span className="bg-gradient-to-r from-white via-academy-gold-light via-white to-academy-gold-light bg-clip-text text-transparent drop-shadow-2xl">
+                    نخبة الخريجين المتميزين
+                  </span>
+                </h1>
+                
+                {/* Enhanced Decorative Separator */}
+                <div className="flex items-center justify-center gap-6 mb-12">
+                  <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
+                  <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
+                  <div className="relative">
+                    <Sparkles className="text-academy-gold animate-pulse" size={32} />
+                    <div className="absolute inset-0 animate-ping">
+                      <Sparkles className="text-academy-gold opacity-30" size={32} />
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">15+</div>
-                    <div className="text-blue-300 font-semibold text-lg">دولة</div>
                   </div>
+                  <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
+                  <div className="w-4 h-4 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
+                </div>
+                
+                <div className="max-w-5xl mx-auto px-4">
+                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-medium leading-relaxed">
+                    رحلة نجاح استثنائية لخريجينا الذين يقودون التميز والإبداع في مختلف المجالات حول العالم
+                  </p>
                 </div>
               </div>
 
-              {/* Employment Rate */}
-              <div className="group">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/10 to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 bg-gradient-to-br from-academy-gold/20 to-yellow-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Trophy className="text-academy-gold-light" size={28} />
+              {/* Ultra Premium Statistics Grid with Advanced Glass Morphism */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-24 px-4">
+                {/* Graduates Count */}
+                <div className="group">
+                  <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 border border-white/30 hover:border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.35)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 overflow-hidden">
+                    {/* Glass Background Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/15 via-green-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
+                    
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-emerald-400/25 via-green-400/20 to-emerald-300/15 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-emerald-300/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
+                        <Users className="text-emerald-200 drop-shadow-lg relative z-10" size={32} />
+                      </div>
+                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">{graduates.length}+</div>
+                      <div className="text-emerald-200 font-semibold text-base lg:text-lg drop-shadow-sm">سيرة ذاتية</div>
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">95%</div>
-                    <div className="text-academy-gold-light font-semibold text-lg">معدل التوظيف</div>
                   </div>
                 </div>
-              </div>
 
-              {/* Specializations */}
-              <div className="group">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Award className="text-purple-300" size={28} />
+                {/* Countries */}
+                <div className="group">
+                  <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 border border-white/30 hover:border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.35)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/15 via-indigo-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
+                    
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-400/25 via-indigo-400/20 to-blue-300/15 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-blue-300/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
+                        <Globe className="text-blue-200 drop-shadow-lg relative z-10" size={32} />
+                      </div>
+                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">15+</div>
+                      <div className="text-blue-200 font-semibold text-base lg:text-lg drop-shadow-sm">دولة</div>
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">10+</div>
-                    <div className="text-purple-300 font-semibold text-lg">تخصص</div>
+                  </div>
+                </div>
+
+                {/* Employment Rate */}
+                <div className="group">
+                  <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 border border-white/30 hover:border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.35)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-academy-gold/15 via-yellow-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
+                    
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-academy-gold/25 via-yellow-400/20 to-academy-gold/15 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-academy-gold/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
+                        <Trophy className="text-academy-gold-light drop-shadow-lg relative z-10" size={32} />
+                      </div>
+                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">95%</div>
+                      <div className="text-academy-gold-light font-semibold text-base lg:text-lg drop-shadow-sm">معدل التوظيف</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Specializations */}
+                <div className="group">
+                  <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl p-6 lg:p-8 border border-white/30 hover:border-white/50 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:shadow-[0_35px_60px_-12px_rgba(0,0,0,0.35)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-400/15 via-pink-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
+                    
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-400/25 via-pink-400/20 to-purple-300/15 backdrop-blur-xl rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-purple-300/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
+                        <Award className="text-purple-200 drop-shadow-lg relative z-10" size={32} />
+                      </div>
+                      <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 drop-shadow-lg">10+</div>
+                      <div className="text-purple-200 font-semibold text-base lg:text-lg drop-shadow-sm">تخصص</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Enhanced Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/home-background-1440.webp"
-            alt="الخريجين"
-            fill
-            className="object-cover"
-          />
+
+        {/* Premium Floating Decorative Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-[10%] left-[5%] w-6 h-6 bg-academy-gold/60 rounded-full animate-pulse shadow-lg"></div>
+          <div className="absolute top-[30%] right-[8%] w-4 h-4 bg-white/50 rounded-full animate-pulse delay-1000 shadow-md"></div>
+          <div className="absolute bottom-[20%] left-[10%] w-5 h-5 bg-academy-gold-light/60 rounded-full animate-pulse delay-500 shadow-lg"></div>
+          <div className="absolute bottom-[40%] right-[5%] w-3 h-3 bg-white/70 rounded-full animate-pulse delay-1500 shadow-sm"></div>
+          <div className="absolute top-[60%] left-[3%] w-2 h-2 bg-academy-gold/80 rounded-full animate-pulse delay-700 shadow-sm"></div>
+          <div className="absolute top-[80%] right-[12%] w-3 h-3 bg-white/60 rounded-full animate-pulse delay-300 shadow-md"></div>
         </div>
       </section>
 
