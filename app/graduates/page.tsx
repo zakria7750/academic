@@ -134,7 +134,7 @@ export default async function GraduatesPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/home-background.jpg"
+            src="/home-background-1440.webp"
             alt="الخريجين"
             fill
             className="object-cover"
