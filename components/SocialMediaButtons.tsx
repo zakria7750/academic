@@ -27,12 +27,12 @@ export default function SocialMediaButtons() {
           <SiLinkedin className="h-5 w-5 text-blue-700 mr-4 ml-4" />
           <span className="sr-only">لينكد إن</span>
         </a>
-{/*
-        <a href="https://youtube.com/@oxfordcollege2025?si=7TfhdgVsjWnR4LwH" target="_blank" rel="noopener noreferrer">
+
+        <a href="https://youtube.com/@almarifh2018?si=-NzMdaI7YB4H6-il" target="_blank" rel="noopener noreferrer">
           <SiYoutube className="h-5 w-5 text-red-600 ml-4" />
           <span className="sr-only">يوتيوب</span>
         </a>
-      */}
+      
         <a href="https://x.com/Almarifa2018?t=dT3zTEOZU_na7fY9fnoveg&s=09" target="_blank" rel="noopener noreferrer">
           <SiX className="h-5 w-5 text-black ml-4" />
           <span className="sr-only">تويتر</span>
