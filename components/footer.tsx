@@ -156,7 +156,7 @@ export default function Footer() {
                 { name: "الأقسام الأكاديمية", href: "/departments", icon: Building2 },
                 { name: "هيئة التدريس", href: "/faculty", icon: GraduationCap },
                 { name: "المدربين المعتمدين", href: "/trainers", icon: UserCheck },
-                { name: "الخريجين", href: "/graduates", icon: Crown },
+                { name: "هيئة التدريس والخريجين", href: "/graduates", icon: Crown },
                 { name: "نظام التعليم", href: "/education-system", icon: Monitor },
                 { name: "المدونة والأخبار", href: "/blog", icon: Newspaper },
               ].map((link) => {
