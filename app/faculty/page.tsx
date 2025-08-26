@@ -153,7 +153,7 @@ export default async function FacultyPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/teacher-background.jpg"
+            src="/teacher-background-1440.webp"
             alt="هيئة التدريس"
             fill
             className="object-cover"
