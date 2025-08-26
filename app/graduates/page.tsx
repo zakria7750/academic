@@ -56,7 +56,7 @@ export default async function GraduatesPage() {
             <div className="mb-12">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  خريجين الأكاديمية
+                  هيئة التدريس والخريجين 
                 </span>
               </h1>
               <div className="flex items-center justify-center gap-4 mb-8">
@@ -82,7 +82,7 @@ export default async function GraduatesPage() {
                       <Users className="text-emerald-300" size={28} />
                     </div>
                     <div className="text-4xl lg:text-5xl font-bold text-white mb-3">{graduates.length}+</div>
-                    <div className="text-emerald-300 font-semibold text-lg">خريج متميز</div>
+                    <div className="text-emerald-300 font-semibold text-lg">سيرة ذاتية</div>
                   </div>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default async function GraduatesPage() {
 
             <div className="mb-8">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-academy-blue mb-6 tracking-tight">
-                قصص النجاح
+                سيرة ذاتية مختصرة
               </h2>
               <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
