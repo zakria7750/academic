@@ -127,8 +127,8 @@ export default async function BoardPage() {
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
   <Image
-    src="/about-background-1440.webp"
-    alt="من نحن"
+    src="/board-background-1440.webp"
+    alt="مجلس الادارة"
     fill
     sizes="(max-width: 600px) 480px,
            (max-width: 1024px) 960px,
