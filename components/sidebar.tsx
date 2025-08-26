@@ -26,7 +26,7 @@ const menuItems = [
   { name: "مجلس الإدارة", href: "/board", icon: Users },
   { name: "هيئة التدريس", href: "/faculty", icon: GraduationCap },
   { name: "المدربين المعتمدين", href: "/trainers", icon: Award },
-  { name: "الخريجون", href: "/graduates", icon: GraduationCap },
+  { name: "هيئة التدريس والخريجين", href: "/graduates", icon: GraduationCap },
   { name: "الأقسام الأكاديمية", href: "/departments", icon: BookOpen },
   { name: "البرامج التعليمية", href: "/programs", icon: BookOpen },
   { name: "نظام التعليم", href: "/education-system", icon: Target },
