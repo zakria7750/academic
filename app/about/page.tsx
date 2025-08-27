@@ -96,11 +96,7 @@ export default function AboutPage() {
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight drop-shadow-2xl">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent filter drop-shadow-lg">
-                  من
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse filter drop-shadow-lg">
-                  نحن
+                  من نحن
                 </span>
               </h1>
             </div>
@@ -117,7 +113,7 @@ export default function AboutPage() {
               </p>
               
               {/* Enhanced Stats Preview with Better Visibility */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:scale-105 transition-all duration-500 hover:bg-white/20">
                   <div className="text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">رؤية</div>
                   <div className="text-white/90 font-medium drop-shadow-md">واضحة ومحددة</div>
@@ -376,9 +372,6 @@ export default function AboutPage() {
                       <div className={`w-20 h-20 bg-gradient-to-br ${value.color} rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-500 group-hover:scale-110`}>
                         <Icon className="text-white" size={32} />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse flex items-center justify-center">
-                        <Sparkles className="text-academy-blue" size={12} />
-                      </div>
                     </div>
 
                     {/* Enhanced Content */}
@@ -460,19 +453,19 @@ export default function AboutPage() {
             </div>
 
             {/* Additional Trust Indicators */}
-            <div className="flex items-center justify-center space-x-8 space-x-reverse text-academy-gold-light/80">
+            <div className="flex items-center justify-center space-x-8 space-x-reverse text-academy-gold-light/50">
               <div className="flex items-center space-x-2 space-x-reverse">
-                <Eye className="text-academy-gold" size={16} />
+                <Eye className="text-academy-gold" size={20} />
                 <span className="text-sm">رؤية واضحة</span>
               </div>
               <div className="w-1 h-1 bg-academy-gold rounded-full"></div>
               <div className="flex items-center space-x-2 space-x-reverse">
-                <Target className="text-academy-gold" size={16} />
+                <Target className="text-academy-gold" size={20} />
                 <span className="text-sm">أهداف محددة</span>
               </div>
               <div className="w-1 h-1 bg-academy-gold rounded-full"></div>
               <div className="flex items-center space-x-2 space-x-reverse">
-                <Award className="text-academy-gold" size={16} />
+                <Award className="text-academy-gold" size={20} />
                 <span className="text-sm">قيم راسخة</span>
               </div>
             </div>
