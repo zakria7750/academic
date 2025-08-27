@@ -51,29 +51,30 @@ export default function Sidebar() {
     <aside
       className={`${
         isExpanded ? "overflow-y-scroll" : "overflow"
-      } hidden z-50 h-screen md:flex flex-col bg-academy-blue text-white transition-all duration-300 ease-in-out ${
-        isExpanded ? "w-64" : "w-16"
+      } hidden z-50 h-screen md:flex flex-col bg-white shadow-xl transition-all duration-300 ease-in-out ${
+        isExpanded ? "w-64 lg:w-80" : "w-16"
       } min-h-screen sticky top-0 fixed right-0`}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
       {/* Logo Section */}
-      <div className="p-4 border-b border-academy-gold/20">
+      <div className="bg-academy-blue text-white p-6">
         <div className="flex items-center space-x-3 space-x-reverse">
-          <div className="w-8 h-8 bg-academy-gold rounded-full flex items-center justify-center flex-shrink-0">
-            <span className="text-academy-blue font-bold text-sm">م</span>
+          <div className="bg-academy-gold text-academy-blue p-2 rounded-full flex-shrink-0">
+            <GraduationCap className="w-5 h-5" />
           </div>
           {isExpanded && (
-            <span className="font-bold text-sm whitespace-nowrap">
-              أكاديمية المعرفة
-            </span>
+            <div>
+              <h2 className="font-bold">أكاديمية المعرفة</h2>
+              <p className="text-sm opacity-90">القائمة الرئيسية</p>
+            </div>
           )}
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-4">
-        <ul className="space-y-1 px-2">
+      <nav className="flex-1 p-4 pb-6">
+        <ul className="space-y-1">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -82,23 +83,17 @@ export default function Sidebar() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className={`flex items-center space-x-3 space-x-reverse p-3 rounded-lg transition-all duration-200 group ${
+                  className={`nav-item flex items-center space-x-3 space-x-reverse p-3 rounded-lg transition-all ${
                     isActive
                       ? "bg-academy-gold text-academy-blue"
-                      : "text-white hover:bg-academy-gold/10 hover:text-academy-gold"
+                      : "text-gray-700 hover:text-white"
                   }`}
                 >
-                  <Icon size={20} className="flex-shrink-0" />
+                  <Icon size={20} className="flex-shrink-0 w-5" />
                   {isExpanded && (
-                    <>
-                      <span className="font-medium whitespace-nowrap">
-                        {item.name}
-                      </span>
-                      <ChevronRight
-                        size={16}
-                        className="mr-auto opacity-0 group-hover:opacity-100 transition-opacity"
-                      />
-                    </>
+                    <span className="font-medium whitespace-nowrap">
+                      {item.name}
+                    </span>
                   )}
                 </Link>
               </li>
