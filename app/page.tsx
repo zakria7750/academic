@@ -68,30 +68,30 @@ export default function HomePage() {
           <div className="text-center text-white">
             {/* Ultra Premium Title Section with Glass Effect */}
             <div className="mb-8 sm:mb-12 lg:mb-16">
-              <div className="glass-card-premium backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 lg:p-12 mb-8 shadow-[0_25px_50px_rgba(0,0,0,0.25)]">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
-                  <span className="bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-2xl">
+              <div className="glass-card-premium backdrop-blur-2xl bg-white/8 border border-white/15 rounded-3xl p-6 sm:p-8 lg:p-12 mb-8 shadow-[0_25px_50px_rgba(0,0,0,0.25)]">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
+                  <span className="text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] [text-shadow:2px_2px_4px_rgba(0,0,0,0.9)]" style={{textShadow: '2px 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(255,215,0,0.3)'}}>
                     أكاديمية المعرفة الدولية
                   </span>
                 </h1>
 
                 {/* Premium Trust Indicators with Glass Effect */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 lg:gap-6 text-academy-gold-light/90 mb-6 sm:mb-8">
-                  <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300">
-                    <Star className="text-academy-gold" size={18} />
-                    <span className="text-xs sm:text-sm font-medium">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 lg:gap-8 mb-6 sm:mb-8">
+                  <div className="flex items-center space-x-2 space-x-reverse bg-white/15 backdrop-blur-xl px-5 py-3 rounded-full border border-white/30 shadow-lg hover:bg-white/20 hover:scale-105 transition-all duration-300">
+                    <Star className="text-academy-gold drop-shadow-lg" size={20} />
+                    <span className="text-sm sm:text-base font-semibold text-white drop-shadow-lg">
                       مؤسسة رائدة
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300">
-                    <Shield className="text-academy-gold" size={18} />
-                    <span className="text-xs sm:text-sm font-medium">
+                  <div className="flex items-center space-x-2 space-x-reverse bg-white/15 backdrop-blur-xl px-5 py-3 rounded-full border border-white/30 shadow-lg hover:bg-white/20 hover:scale-105 transition-all duration-300">
+                    <Shield className="text-academy-gold drop-shadow-lg" size={20} />
+                    <span className="text-sm sm:text-base font-semibold text-white drop-shadow-lg">
                       معتمدة دولياً
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg hover:bg-white/15 transition-all duration-300">
-                    <Zap className="text-academy-gold" size={18} />
-                    <span className="text-xs sm:text-sm font-medium">
+                  <div className="flex items-center space-x-2 space-x-reverse bg-white/15 backdrop-blur-xl px-5 py-3 rounded-full border border-white/30 shadow-lg hover:bg-white/20 hover:scale-105 transition-all duration-300">
+                    <Zap className="text-academy-gold drop-shadow-lg" size={20} />
+                    <span className="text-sm sm:text-base font-semibold text-white drop-shadow-lg">
                       تعليم متطور
                     </span>
                   </div>
@@ -99,41 +99,41 @@ export default function HomePage() {
               </div>
 
               {/* Premium Description with Glass Effect */}
-              <div className="glass-card-premium backdrop-blur-xl bg-white/8 border border-white/15 rounded-2xl p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12 shadow-[0_20px_40px_rgba(0,0,0,0.2)]">
-                <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl mb-4 sm:mb-6 font-semibold leading-relaxed">
-                  <span className="bg-gradient-to-r from-academy-gold-light via-white to-academy-gold bg-clip-text text-transparent drop-shadow-lg">
+              <div className="glass-card-premium backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-10 mb-8 sm:mb-12 shadow-[0_20px_40px_rgba(0,0,0,0.2)]">
+                <p className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl mb-6 sm:mb-8 font-bold leading-relaxed">
+                  <span className="text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{textShadow: '1px 1px 4px rgba(0,0,0,0.9), 0 0 15px rgba(255,215,0,0.2)'}}>
                     نحو أفق جديد من البحث والتعليم والتميز الأكاديمي
                   </span>
                 </p>
-                <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-white max-w-4xl mx-auto leading-relaxed font-medium drop-shadow-lg">
                   نقدم تعليماً عالي الجودة يجمع بين الأصالة والمعاصرة مع أحدث
                   المعايير الدولية
                 </p>
               </div>
 
               {/* Premium Stats Preview with Glass Effect */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto mb-8 sm:mb-12">
-                <div className="glass-card-stats backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-4 sm:p-6 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500">
-                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto mb-8 sm:mb-12">
+                <div className="glass-card-stats backdrop-blur-xl bg-white/15 border border-white/25 rounded-2xl p-6 sm:p-8 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/20 transition-all duration-500">
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-academy-gold mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{textShadow: '2px 2px 6px rgba(0,0,0,0.9)'}}>
                     1000+
                   </div>
-                  <div className="text-white/90 text-xs sm:text-sm font-medium">
+                  <div className="text-white text-sm sm:text-base lg:text-lg font-semibold drop-shadow-lg">
                     خريج متميز
                   </div>
                 </div>
-                <div className="glass-card-stats backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-4 sm:p-6 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500">
-                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">
+                <div className="glass-card-stats backdrop-blur-xl bg-white/15 border border-white/25 rounded-2xl p-6 sm:p-8 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/20 transition-all duration-500">
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-academy-gold mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{textShadow: '2px 2px 6px rgba(0,0,0,0.9)'}}>
                     130+
                   </div>
-                  <div className="text-white/90 text-xs sm:text-sm font-medium">
+                  <div className="text-white text-sm sm:text-base lg:text-lg font-semibold drop-shadow-lg">
                     برنامج تعليمي
                   </div>
                 </div>
-                <div className="glass-card-stats backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-4 sm:p-6 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/15 transition-all duration-500 sm:col-span-3 lg:col-span-1">
-                  <div className="text-2xl sm:text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">
+                <div className="glass-card-stats backdrop-blur-xl bg-white/15 border border-white/25 rounded-2xl p-6 sm:p-8 text-center shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-white/20 transition-all duration-500">
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-academy-gold mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{textShadow: '2px 2px 6px rgba(0,0,0,0.9)'}}>
                     21
                   </div>
-                  <div className="text-white/90 text-xs sm:text-sm font-medium">
+                  <div className="text-white text-sm sm:text-base lg:text-lg font-semibold drop-shadow-lg">
                     أقسام أكاديمية
                   </div>
                 </div>
@@ -141,37 +141,37 @@ export default function HomePage() {
             </div>
 
             {/* Ultra Premium CTA Section with Glass Effect */}
-            <div className="glass-card-premium backdrop-blur-xl bg-white/8 border border-white/15 rounded-3xl p-6 sm:p-8 lg:p-10 mb-8 sm:mb-12 shadow-[0_25px_50px_rgba(0,0,0,0.25)]">
-              <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 justify-center items-center">
-                <Link href="/admission">
-                  <Button className="group glass-button-premium backdrop-blur-xl bg-gradient-to-r from-academy-gold/90 via-academy-gold to-academy-gold/90 text-academy-blue font-bold px-8 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 text-base sm:text-lg lg:text-xl rounded-full shadow-[0_20px_40px_rgba(255,215,0,0.4)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.6)] transform hover:scale-110 transition-all duration-500 relative overflow-hidden min-w-[200px] sm:min-w-[250px] border border-academy-gold/30">
-                    <span className="relative z-10 flex items-center space-x-2 sm:space-x-3 space-x-reverse">
+            <div className="glass-card-premium backdrop-blur-xl bg-white/12 border border-white/20 rounded-3xl p-8 sm:p-10 lg:p-12 mb-8 sm:mb-12 shadow-[0_25px_50px_rgba(0,0,0,0.25)]">
+              <div className="flex flex-col xl:flex-row gap-8 sm:gap-10 justify-center items-center max-w-4xl mx-auto">
+                <Link href="/admission" className="flex-1 w-full max-w-sm">
+                  <Button className="group glass-button-premium backdrop-blur-xl bg-gradient-to-r from-academy-gold/95 via-academy-gold to-academy-gold/95 text-academy-blue font-bold px-10 sm:px-14 lg:px-18 py-5 sm:py-6 lg:py-7 text-lg sm:text-xl lg:text-2xl rounded-full shadow-[0_20px_40px_rgba(255,215,0,0.4)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.6)] transform hover:scale-105 transition-all duration-500 relative overflow-hidden w-full border border-academy-gold/30">
+                    <span className="relative z-10 flex items-center justify-center space-x-2 sm:space-x-3 space-x-reverse">
                       <Sparkles
-                        size={20}
+                        size={22}
                         className="group-hover:rotate-180 transition-transform duration-700"
                       />
                       <span>التسجيل الآن</span>
                       <Crown
-                        size={20}
+                        size={22}
                         className="group-hover:scale-125 transition-transform duration-500"
                       />
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </Button>
                 </Link>
-                <Link href="/programs">
+                <Link href="/programs" className="flex-1 w-full max-w-sm">
                   <Button
                     variant="outline"
-                    className="group glass-button-secondary backdrop-blur-xl border-2 border-academy-gold/60 text-white hover:bg-academy-gold/20 hover:text-white font-bold px-8 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 text-base sm:text-lg lg:text-xl rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(255,215,0,0.3)] transform hover:scale-110 transition-all duration-500 bg-white/10 min-w-[200px] sm:min-w-[250px]"
+                    className="group glass-button-secondary backdrop-blur-xl border-2 border-white/40 text-white hover:bg-white/15 hover:text-white font-bold px-10 sm:px-14 lg:px-18 py-5 sm:py-6 lg:py-7 text-lg sm:text-xl lg:text-2xl rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_rgba(255,215,0,0.3)] transform hover:scale-105 transition-all duration-500 bg-white/8 w-full hover:border-academy-gold/50"
                   >
-                    <span className="flex items-center space-x-2 sm:space-x-3 space-x-reverse">
+                    <span className="flex items-center justify-center space-x-2 sm:space-x-3 space-x-reverse">
                       <BookOpen
-                        size={20}
+                        size={22}
                         className="group-hover:scale-125 transition-transform duration-500"
                       />
                       <span>البرامج التعليمية</span>
                       <TrendingUp
-                        size={20}
+                        size={22}
                         className="group-hover:translate-x-1 transition-transform duration-500"
                       />
                     </span>
@@ -181,20 +181,20 @@ export default function HomePage() {
             </div>
 
             {/* Trust Indicators with Glass Effect */}
-            <div className="glass-card-trust backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl px-6 py-4 inline-flex items-center justify-center gap-4 sm:gap-6 lg:gap-8 text-academy-gold-light/80 shadow-[0_10px_25px_rgba(0,0,0,0.15)]">
+            <div className="glass-card-trust backdrop-blur-xl bg-white/10 border border-white/15 rounded-2xl px-8 py-5 inline-flex items-center justify-center gap-6 sm:gap-8 lg:gap-12 shadow-[0_10px_25px_rgba(0,0,0,0.15)]">
               <div className="flex items-center space-x-2 space-x-reverse">
-                <Users className="text-academy-gold" size={14} />
-                <span className="text-xs sm:text-sm">+15,000 طالب</span>
+                <Users className="text-academy-gold drop-shadow-lg" size={16} />
+                <span className="text-sm sm:text-base font-semibold text-white drop-shadow-lg">+15,000 طالب</span>
               </div>
-              <div className="w-1 h-1 bg-academy-gold rounded-full opacity-60"></div>
+              <div className="w-2 h-2 bg-academy-gold rounded-full opacity-80 drop-shadow-sm"></div>
               <div className="flex items-center space-x-2 space-x-reverse">
-                <Award className="text-academy-gold" size={14} />
-                <span className="text-xs sm:text-sm">+130 برنامج</span>
+                <Award className="text-academy-gold drop-shadow-lg" size={16} />
+                <span className="text-sm sm:text-base font-semibold text-white drop-shadow-lg">+130 برنامج</span>
               </div>
-              <div className="w-1 h-1 bg-academy-gold rounded-full opacity-60"></div>
+              <div className="w-2 h-2 bg-academy-gold rounded-full opacity-80 drop-shadow-sm"></div>
               <div className="flex items-center space-x-2 space-x-reverse">
-                <Globe className="text-academy-gold" size={14} />
-                <span className="text-xs sm:text-sm">+50 دولة</span>
+                <Globe className="text-academy-gold drop-shadow-lg" size={16} />
+                <span className="text-sm sm:text-base font-semibold text-white drop-shadow-lg">+50 دولة</span>
               </div>
             </div>
           </div>
