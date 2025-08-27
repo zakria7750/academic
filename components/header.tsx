@@ -8,34 +8,32 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 shadow-2xl border-b border-indigo-400/20 sticky top-0 z-40 backdrop-blur-md">
+      <header className="bg-white shadow-xl border-b border-gray-200 sticky top-0 z-40 backdrop-blur-md">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Academy Name */}
             <div className="flex items-center space-x-4 space-x-reverse">
-              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-amber-300/50 transform hover:scale-105 transition-all duration-300">
-                {/*<GraduationCap className="text-slate-900 w-6 h-6" />*/}
-                 <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-academy-gold rounded-full flex items-center justify-center shadow-lg transform hover:scale-105 transition-all duration-300">
+                <div className="w-12 h-12 bg-academy-gold rounded-full flex items-center justify-center">
                   <img 
                     src="/logo.png" 
                     alt="Academy Logo" 
                     className="w-10 h-10 object-contain" 
                     />
-                 </div>
-
+                </div>
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-xl font-bold bg-gradient-to-r from-amber-300 to-yellow-200 bg-clip-text text-transparent">
+                <h1 className="text-lg sm:text-xl font-bold text-academy-blue">
                   أكاديمية المعرفة الدولية
                 </h1>
-                <p className="text-xs text-indigo-200/80 mt-0.5">نبني العقول ونطور المستقبل</p>
+                <p className="text-xs text-gray-600 mt-0.5">نبني العقول ونطور المستقبل</p>
               </div>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-xl bg-indigo-800/50 text-amber-300 hover:bg-indigo-700/70 hover:text-amber-200 transition-all duration-300 shadow-lg border border-indigo-600/30"
+              className="md:hidden p-2.5 rounded-lg bg-academy-blue text-academy-gold hover:bg-academy-blue-light hover:text-academy-gold-light transition-all duration-300 shadow-lg"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -45,27 +43,27 @@ export default function Header() {
 
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 md:hidden" onClick={() => setIsMobileMenuOpen(false)}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden" onClick={() => setIsMobileMenuOpen(false)}>
           <div
-            className="fixed right-0 top-0 h-full w-80 bg-gradient-to-b from-slate-900 to-slate-800 shadow-2xl transform transition-transform duration-300 ease-in-out border-l border-indigo-400/20"
+            className="fixed right-0 top-0 h-full w-80 max-w-[90vw] bg-white shadow-xl transform transition-transform duration-300 ease-in-out"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-6 border-b border-indigo-400/20 bg-gradient-to-r from-indigo-900/50 to-blue-900/50">
+            <div className="bg-academy-blue text-white p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3 space-x-reverse">
-                  <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-lg flex items-center justify-center shadow-lg">
-                    <GraduationCap className="text-slate-900 w-5 h-5" />
+                  <div className="bg-academy-gold text-academy-blue p-2 rounded-full">
+                    <GraduationCap className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="font-bold text-amber-300 text-sm">أكاديمية المعرفة</span>
-                    <p className="text-xs text-indigo-200/70">الدولية</p>
+                    <h2 className="font-bold">أكاديمية المعرفة</h2>
+                    <p className="text-sm opacity-90">القائمة الرئيسية</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 rounded-lg bg-indigo-800/50 text-amber-300 hover:bg-indigo-700/70 transition-colors duration-200"
+                  className="text-white hover:text-academy-gold transition-colors"
                 >
-                  <X size={18} />
+                  <X size={20} />
                 </button>
               </div>
             </div>
@@ -97,7 +95,7 @@ function MobileSidebarContent({ onClose }: { onClose: () => void }) {
   ]
 
   return (
-    <nav className="p-4 max-h-[calc(100vh-120px)] overflow-y-auto">
+    <nav className="p-4 pb-6 max-h-[calc(100vh-120px)] overflow-y-auto">
       <ul className="space-y-1">
         {menuItems.map((item) => {
           const IconComponent = item.icon
@@ -106,9 +104,9 @@ function MobileSidebarContent({ onClose }: { onClose: () => void }) {
               <a
                 href={item.href}
                 onClick={onClose}
-                className="flex items-center space-x-3 space-x-reverse p-3 rounded-xl text-indigo-200 hover:bg-gradient-to-r hover:from-indigo-800/50 hover:to-blue-800/50 hover:text-amber-300 transition-all duration-300 group border border-transparent hover:border-indigo-400/30"
+                className="nav-item flex items-center space-x-3 space-x-reverse p-3 rounded-lg text-gray-700 hover:text-white transition-all"
               >
-                <IconComponent className="w-5 h-5 text-amber-400 group-hover:text-amber-300 transition-colors duration-300" />
+                <IconComponent className="w-5 h-5" />
                 <span className="font-medium text-sm">{item.name}</span>
               </a>
             </li>
