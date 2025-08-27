@@ -130,7 +130,7 @@ export default function AboutPage() {
                   <div className="text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">قيم</div>
                   <div className="text-white/90 font-medium drop-shadow-md">راسخة ومتميزة</div>
                 </div>
-              </div>
+              </div>ٍ
             </div>
           </div>
         </div>
