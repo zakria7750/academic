@@ -58,80 +58,82 @@ export default function AboutPage() {
 
       {/* Ultra Premium Hero Section */}
       <section className="relative overflow-hidden py-32 lg:py-40">
-        {/* Multi-layered Premium Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)]"></div>
+        {/* Enhanced Background Image with Improved Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/about-background-1440.webp"
+            alt="من نحن"
+            fill
+            sizes="(max-width: 600px) 480px,
+                   (max-width: 1024px) 960px,
+                   1440px"
+            className="object-cover"
+            priority
+          />
+          {/* Enhanced Multi-layered Overlay for Better Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/85 via-academy-blue-dark/80 to-slate-900/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/70 to-academy-blue/50"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.08),transparent_70%)]"></div>
+          {/* Additional contrast layer for text readability */}
+          <div className="absolute inset-0 bg-black/20"></div>
+        </div>
         
-        {/* Ultra Premium Decorative Elements */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/25 to-transparent rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/15 rounded-full blur-xl animate-pulse delay-500"></div>
-          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/25 rounded-full blur-xl animate-pulse delay-1500"></div>
+        {/* Refined Decorative Elements with Better Balance */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/10 rounded-full blur-2xl animate-pulse delay-500"></div>
+          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/18 rounded-full blur-2xl animate-pulse delay-1500"></div>
           
-          {/* Premium Geometric Patterns */}
-          <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/30 rotate-45 animate-pulse delay-2000"></div>
-          <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/20 rounded-full animate-pulse delay-2500"></div>
+          {/* Subtle Geometric Patterns */}
+          <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/25 rotate-45 animate-pulse delay-2000"></div>
+          <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/15 rounded-full animate-pulse delay-2500"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
+        <div className="relative z-20 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Premium Title Section */}
+            {/* Enhanced Title Section with Improved Typography */}
             <div className="mb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight drop-shadow-2xl">
+                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent filter drop-shadow-lg">
                   من
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
+                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse filter drop-shadow-lg">
                   نحن
                 </span>
               </h1>
             </div>
             
-            {/* Premium Description */}
+            {/* Enhanced Description with Better Contrast */}
             <div className="mb-16">
-              <p className="text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
-                <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent">
+              <p className="text-2xl lg:text-3xl mb-6 font-bold leading-relaxed drop-shadow-xl">
+                <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent filter drop-shadow-lg">
                   أكاديمية المعرفة الدولية - منارة للتعليم والتميز
                 </span>
               </p>
-              <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
+              <p className="text-lg lg:text-xl text-white/95 max-w-4xl mx-auto leading-relaxed mb-8 font-medium drop-shadow-lg">
                 تعرف على رؤيتنا ورسالتنا وقيمنا التي تجعلنا مؤسسة رائدة في التعليم العالي
               </p>
               
-              {/* Premium Stats Preview */}
+              {/* Enhanced Stats Preview with Better Visibility */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">رؤية</div>
-                  <div className="text-white/80">واضحة ومحددة</div>
+                <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:scale-105 transition-all duration-500 hover:bg-white/20">
+                  <div className="text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">رؤية</div>
+                  <div className="text-white/90 font-medium drop-shadow-md">واضحة ومحددة</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">رسالة</div>
-                  <div className="text-white/80">تعليمية نبيلة</div>
+                <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:scale-105 transition-all duration-500 hover:bg-white/20">
+                  <div className="text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">رسالة</div>
+                  <div className="text-white/90 font-medium drop-shadow-md">تعليمية نبيلة</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">قيم</div>
-                  <div className="text-white/80">راسخة ومتميزة</div>
+                <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:scale-105 transition-all duration-500 hover:bg-white/20">
+                  <div className="text-3xl font-bold text-academy-gold mb-2 drop-shadow-lg">قيم</div>
+                  <div className="text-white/90 font-medium drop-shadow-md">راسخة ومتميزة</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Enhanced Background Image */}
-        <div className="absolute inset-0 z-0">
-  <Image
-    src="/about-background-1440.webp"
-    alt="من نحن"
-    fill
-    sizes="(max-width: 600px) 480px,
-           (max-width: 1024px) 960px,
-           1440px"
-    className="object-contian"
-    priority
-  />
-</div>
       </section>
 
              {/* Enhanced Vision Section */}
