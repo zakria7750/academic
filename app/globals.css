@@ -47,6 +47,62 @@ body {
   border-color: rgba(255, 215, 0, 0.3);
 }
 
+/* Enhanced Responsive Grid for Homepage Stats */
+.homepage-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .homepage-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .homepage-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Enhanced Premium Cards */
+.premium-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.premium-card:hover {
+  transform: translateY(-1rem) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 31, 63, 0.25), 0 0 0 1px rgba(255, 215, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .premium-card:hover {
+    transform: translateY(-0.75rem) scale(1.01);
+  }
+}
+
+/* Responsive text scaling */
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 /* Enhanced Dashboard Cards */
 .dashboard-card {
   background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
