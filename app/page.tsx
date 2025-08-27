@@ -54,15 +54,15 @@ export default function HomePage() {
               <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 text-academy-gold-light/90 mb-6 md:mb-8 px-4">
                 <div className="flex items-center space-x-2 space-x-reverse bg-white/8 backdrop-blur-md px-3 md:px-4 py-2 rounded-full border border-white/15">
                   <Star className="text-academy-gold" size={16} />
-                  <span className="text-xs md:text-sm font-medium">مؤسسة رائدة</span>
+                  <span className="text-xs md:text-sm font-bold">مؤسسة رائدة</span>
                 </div>
                 <div className="flex items-center space-x-2 space-x-reverse bg-white/8 backdrop-blur-md px-3 md:px-4 py-2 rounded-full border border-white/15">
                   <Shield className="text-academy-gold" size={16} />
-                  <span className="text-xs md:text-sm font-medium">معتمدة دولياً</span>
+                  <span className="text-xs md:text-sm font-bold">معتمدة دولياً</span>
                 </div>
                 <div className="flex items-center space-x-2 space-x-reverse bg-white/8 backdrop-blur-md px-3 md:px-4 py-2 rounded-full border border-white/15">
                   <Zap className="text-academy-gold" size={16} />
-                  <span className="text-xs md:text-sm font-medium">تعليم متطور</span>
+                  <span className="text-xs md:text-sm font-bold">تعليم متطور</span>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function HomePage() {
               </p>
               
               {/* Premium Stats Preview - Enhanced for better image harmony */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
                 <div className="bg-white/8 backdrop-blur-md border border-white/15 rounded-2xl p-4 md:p-6 text-center shadow-xl hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 hover:bg-white/12 transition-all duration-500">
                   <div className="text-2xl md:text-3xl font-bold text-academy-gold mb-2">1000+</div>
                   <div className="text-white/90 text-sm md:text-base">خريج متميز</div>
@@ -125,17 +125,17 @@ export default function HomePage() {
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-academy-gold-light/80">
               <div className="flex items-center space-x-2 space-x-reverse bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10">
                 <Users className="text-academy-gold" size={14} />
-                <span className="text-xs md:text-sm">+15,000 طالب</span>
+                <span className="text-xs md:text-sm font-bold">+15,000 طالب</span>
               </div>
               <div className="w-1 h-1 bg-academy-gold rounded-full hidden md:block"></div>
               <div className="flex items-center space-x-2 space-x-reverse bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10">
                 <Award className="text-academy-gold" size={14} />
-                <span className="text-xs md:text-sm">+130 برنامج</span>
+                <span className="text-xs md:text-sm font-bold">+130 برنامج</span>
               </div>
               <div className="w-1 h-1 bg-academy-gold rounded-full hidden md:block"></div>
               <div className="flex items-center space-x-2 space-x-reverse bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10">
                 <Globe className="text-academy-gold" size={14} />
-                <span className="text-xs md:text-sm">+50 دولة</span>
+                <span className="text-xs md:text-sm font-bold">+50 دولة</span>
               </div>
             </div>
           </div>
