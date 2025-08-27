@@ -95,9 +95,9 @@ export default function EducationSystemPage(){
             </div>*/} 
 
             {/* Premium Title Section */}
-            <div className="mb-6 sm:mb-8 lg:mb-12">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+            <div className="relative z-10 text-center mx-auto mb-6 sm:mb-8 lg:mb-12">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
+                <span className="inline-block px-6 py-3 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
                   نظام التعليم
                 </span>
               </h1>
@@ -115,12 +115,20 @@ export default function EducationSystemPage(){
                 <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
                 <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
               </div>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6">
-                نظام تعليمي متطور يجمع بين الأصالة والحداثة
-              </p>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light">
-                نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
-              </p>
+              <div className="relative z-10 text-center mx-auto mb-4 sm:mb-6">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium max-w-4xl mx-auto leading-relaxed">
+                  <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                    نظام تعليمي متطور يجمع بين الأصالة والحداثة
+                  </span>
+                </h2>
+              </div>
+              <div className="relative z-10 text-center mx-auto">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed font-light">
+                  <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                    نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
+                  </span>
+                </p>
+              </div>
             </div>
 
             {/* Ultra Premium Features Preview 
@@ -151,27 +159,59 @@ export default function EducationSystemPage(){
             </div>
 
             Ultra Premium Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-8 mt-12 sm:mt-16 lg:mt-20 max-w-5xl mx-auto">
-              <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">100%</div>
-                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">نجاح الطلاب</div>
-              </div>
-
-              <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">24/7</div>
-                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">دعم متاح</div>
-              </div>
-
-              <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">∞</div>
-                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">إمكانيات لا محدودة</div>
-              </div>
-
-              <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
-                  <Shield size={32} className="mx-auto" />
+            <div className="relative z-10 text-center mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mt-12 sm:mt-16 lg:mt-20 max-w-5xl mx-auto">
+                <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                      100%
+                    </span>
+                  </div>
+                  <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">
+                    <span className="inline-block px-2 py-1 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                      نجاح الطلاب
+                    </span>
+                  </div>
                 </div>
-                <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">تعليم مضمون</div>
+
+                <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                      24/7
+                    </span>
+                  </div>
+                  <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">
+                    <span className="inline-block px-2 py-1 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                      دعم متاح
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                      ∞
+                    </span>
+                  </div>
+                  <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">
+                    <span className="inline-block px-2 py-1 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                      إمكانيات لا محدودة
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-white/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/30 shadow-[0_20px_40px_rgba(0,0,0,0.15)] text-center group hover:-translate-y-4 hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)] transition-all duration-500">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20">
+                      <Shield size={32} className="mx-auto text-academy-gold drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]" />
+                    </span>
+                  </div>
+                  <div className="text-academy-darker-gray font-semibold text-xs sm:text-sm lg:text-lg">
+                    <span className="inline-block px-2 py-1 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                      تعليم مضمون
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
