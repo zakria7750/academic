@@ -22,86 +22,87 @@ export default function HomePage() {
 
       {/* Ultra Premium Hero Section */}
       <section className="relative overflow-hidden py-32 lg:py-40">
-        {/* Multi-layered Premium Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)]"></div>
+        {/* Multi-layered Premium Background - Enhanced for image harmony */}
+        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/85 via-academy-blue-dark/80 to-slate-900/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/70 via-academy-blue/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(255,215,0,0.15),transparent_60%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,215,0,0.08),transparent_50%)]"></div>
         
-        {/* Ultra Premium Decorative Elements */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/25 to-transparent rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/15 rounded-full blur-xl animate-pulse delay-500"></div>
-          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/25 rounded-full blur-xl animate-pulse delay-1500"></div>
+        {/* Ultra Premium Decorative Elements - Enhanced for better image integration */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-academy-gold/12 rounded-full blur-2xl animate-pulse delay-500"></div>
+          <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-academy-gold/18 rounded-full blur-2xl animate-pulse delay-1500"></div>
           
           {/* Premium Geometric Patterns */}
-          <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/30 rotate-45 animate-pulse delay-2000"></div>
-          <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/20 rounded-full animate-pulse delay-2500"></div>
+          <div className="absolute top-32 left-1/3 w-6 h-6 border-2 border-academy-gold/25 rotate-45 animate-pulse delay-2000"></div>
+          <div className="absolute bottom-32 right-1/3 w-4 h-4 bg-academy-gold/15 rounded-full animate-pulse delay-2500"></div>
         </div>
 
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Premium Title Section */}
-            <div className="mb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
+            {/* Premium Title Section - Enhanced for better responsiveness */}
+            <div className="mb-10 md:mb-12">
+              <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 tracking-tight leading-tight px-4 md:px-0">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
                   أكاديمية المعرفة الدولية
                 </span>
               </h1>
               
-              {/* Premium Trust Indicators */}
-              <div className="flex items-center justify-center space-x-6 space-x-reverse text-academy-gold-light/90 mb-8">
-                <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-                  <Star className="text-academy-gold" size={20} />
-                  <span className="text-sm font-medium">مؤسسة رائدة</span>
+              {/* Premium Trust Indicators - Enhanced for better responsiveness */}
+              <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 text-academy-gold-light/90 mb-6 md:mb-8 px-4">
+                <div className="flex items-center space-x-2 space-x-reverse bg-white/8 backdrop-blur-md px-3 md:px-4 py-2 rounded-full border border-white/15">
+                  <Star className="text-academy-gold" size={16} />
+                  <span className="text-xs md:text-sm font-medium">مؤسسة رائدة</span>
                 </div>
-                <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-                  <Shield className="text-academy-gold" size={20} />
-                  <span className="text-sm font-medium">معتمدة دولياً</span>
+                <div className="flex items-center space-x-2 space-x-reverse bg-white/8 backdrop-blur-md px-3 md:px-4 py-2 rounded-full border border-white/15">
+                  <Shield className="text-academy-gold" size={16} />
+                  <span className="text-xs md:text-sm font-medium">معتمدة دولياً</span>
                 </div>
-                <div className="flex items-center space-x-2 space-x-reverse bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-                  <Zap className="text-academy-gold" size={20} />
-                  <span className="text-sm font-medium">تعليم متطور</span>
+                <div className="flex items-center space-x-2 space-x-reverse bg-white/8 backdrop-blur-md px-3 md:px-4 py-2 rounded-full border border-white/15">
+                  <Zap className="text-academy-gold" size={16} />
+                  <span className="text-xs md:text-sm font-medium">تعليم متطور</span>
                 </div>
               </div>
             </div>
 
-            {/* Premium Description */}
-            <div className="mb-16">
-              <p className="text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
+            {/* Premium Description - Enhanced for better responsiveness */}
+            <div className="mb-12 md:mb-16 px-4">
+              <p className="hero-subtitle text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 font-semibold leading-relaxed">
                 <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent">
                   نحو أفق جديد من البحث والتعليم والتميز الأكاديمي
                 </span>
               </p>
-              <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
+              <p className="hero-description text-base md:text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-6 md:mb-8">
                 نقدم تعليماً عالي الجودة يجمع بين الأصالة والمعاصرة مع أحدث المعايير الدولية
               </p>
               
-              {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">1000+</div>
-                  <div className="text-white/80">خريج متميز</div>
+              {/* Premium Stats Preview - Enhanced for better image harmony */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+                <div className="bg-white/8 backdrop-blur-md border border-white/15 rounded-2xl p-4 md:p-6 text-center shadow-xl hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 hover:bg-white/12 transition-all duration-500">
+                  <div className="text-2xl md:text-3xl font-bold text-academy-gold mb-2">1000+</div>
+                  <div className="text-white/90 text-sm md:text-base">خريج متميز</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">130+</div>
-                  <div className="text-white/80">برنامج تعليمي</div>
+                <div className="bg-white/8 backdrop-blur-md border border-white/15 rounded-2xl p-4 md:p-6 text-center shadow-xl hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 hover:bg-white/12 transition-all duration-500">
+                  <div className="text-2xl md:text-3xl font-bold text-academy-gold mb-2">130+</div>
+                  <div className="text-white/90 text-sm md:text-base">برنامج تعليمي</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">21</div>
-                  <div className="text-white/80">أقسام أكاديمية</div>
+                <div className="bg-white/8 backdrop-blur-md border border-white/15 rounded-2xl p-4 md:p-6 text-center shadow-xl hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 hover:bg-white/12 transition-all duration-500 sm:col-span-2 md:col-span-1">
+                  <div className="text-2xl md:text-3xl font-bold text-academy-gold mb-2">21</div>
+                  <div className="text-white/90 text-sm md:text-base">أقسام أكاديمية</div>
                 </div>
               </div>
             </div>
 
-            {/* Ultra Premium CTA Section */}
-            <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-16">
+            {/* Ultra Premium CTA Section - Enhanced for better responsiveness */}
+            <div className="flex flex-col sm:flex-row gap-6 md:gap-8 justify-center items-center mb-16">
               <Link href="/admission">
-                <Button className="group bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold text-academy-blue font-bold px-16 py-6 text-xl rounded-full shadow-[0_20px_40px_rgba(255,215,0,0.3)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.4)] transform hover:scale-110 transition-all duration-500 relative overflow-hidden min-w-[250px] border border-academy-gold/20">
+                <Button className="group bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold text-academy-blue font-bold px-12 md:px-16 py-4 md:py-6 text-lg md:text-xl rounded-full shadow-[0_20px_40px_rgba(255,215,0,0.4)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.5)] transform hover:scale-110 transition-all duration-500 relative overflow-hidden min-w-[220px] md:min-w-[250px] border border-academy-gold/30">
                   <span className="relative z-10 flex items-center space-x-3 space-x-reverse">
-                    <Sparkles size={24} className="group-hover:rotate-180 transition-transform duration-700" />
+                    <Sparkles size={20} className="md:w-6 md:h-6 group-hover:rotate-180 transition-transform duration-700" />
                     <span>التسجيل الآن</span>
-                    <Crown size={24} className="group-hover:scale-125 transition-transform duration-500" />
+                    <Crown size={20} className="md:w-6 md:h-6 group-hover:scale-125 transition-transform duration-500" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </Button>
@@ -109,32 +110,32 @@ export default function HomePage() {
               <Link href="/programs">
                 <Button
                   variant="outline"
-                  className="group border-3 border-academy-gold/80 text-white hover:bg-academy-gold hover:text-academy-blue font-bold px-16 py-6 text-xl rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.3)] transform hover:scale-110 transition-all duration-500 bg-white/10 backdrop-blur-sm min-w-[250px]"
+                  className="group border-2 md:border-3 border-academy-gold/70 text-white hover:bg-academy-gold hover:text-academy-blue font-bold px-12 md:px-16 py-4 md:py-6 text-lg md:text-xl rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_rgba(255,215,0,0.4)] transform hover:scale-110 transition-all duration-500 bg-white/8 backdrop-blur-md min-w-[220px] md:min-w-[250px]"
                 >
                   <span className="flex items-center space-x-3 space-x-reverse">
-                    <BookOpen size={24} className="group-hover:scale-125 transition-transform duration-500" />
+                    <BookOpen size={20} className="md:w-6 md:h-6 group-hover:scale-125 transition-transform duration-500" />
                     <span>البرامج التعليمية</span>
-                    <TrendingUp size={24} className="group-hover:translate-x-1 transition-transform duration-500" />
+                    <TrendingUp size={20} className="md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-500" />
                   </span>
                 </Button>
               </Link>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="flex items-center justify-center space-x-8 space-x-reverse text-academy-gold-light/70">
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <Users className="text-academy-gold" size={16} />
-                <span className="text-sm">+15,000 طالب</span>
+            {/* Trust Indicators - Enhanced for better responsiveness */}
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-academy-gold-light/80">
+              <div className="flex items-center space-x-2 space-x-reverse bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10">
+                <Users className="text-academy-gold" size={14} />
+                <span className="text-xs md:text-sm">+15,000 طالب</span>
               </div>
-              <div className="w-1 h-1 bg-academy-gold rounded-full"></div>
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <Award className="text-academy-gold" size={16} />
-                <span className="text-sm">+130 برنامج</span>
+              <div className="w-1 h-1 bg-academy-gold rounded-full hidden md:block"></div>
+              <div className="flex items-center space-x-2 space-x-reverse bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10">
+                <Award className="text-academy-gold" size={14} />
+                <span className="text-xs md:text-sm">+130 برنامج</span>
               </div>
-              <div className="w-1 h-1 bg-academy-gold rounded-full"></div>
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <Globe className="text-academy-gold" size={16} />
-                <span className="text-sm">+50 دولة</span>
+              <div className="w-1 h-1 bg-academy-gold rounded-full hidden md:block"></div>
+              <div className="flex items-center space-x-2 space-x-reverse bg-white/5 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10">
+                <Globe className="text-academy-gold" size={14} />
+                <span className="text-xs md:text-sm">+50 دولة</span>
               </div>
             </div>
           </div>
@@ -175,64 +176,64 @@ export default function HomePage() {
             </h2>
           </div>
 
-                     <div className="homepage-stats-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card">
+                     <div className="homepage-stats-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto px-4">
+            <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-4 md:hover:-translate-y-6 rounded-2xl md:rounded-3xl premium-card">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <CardContent className="relative p-8 text-center">
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-light rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-academy-blue/10 group-hover:ring-academy-blue/20 transition-all duration-700 group-hover:scale-110">
-                    <Users className="text-academy-gold" size={28} />
+              <CardContent className="relative p-6 md:p-8 text-center">
+                <div className="relative mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-academy-blue to-academy-blue-light rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-academy-blue/10 group-hover:ring-academy-blue/20 transition-all duration-700 group-hover:scale-110">
+                    <Users className="text-academy-gold" size={20} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-blue-light transition-colors duration-300">+15,000</h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">عدد الطلاب</p>
-                <div className="mt-4 h-1 w-12 bg-gradient-to-r from-academy-blue to-academy-blue-light rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 md:mb-3 group-hover:text-academy-blue-light transition-colors duration-300">+15,000</h3>
+                <p className="text-academy-dark-gray font-semibold text-sm md:text-base lg:text-lg">عدد الطلاب</p>
+                <div className="mt-3 md:mt-4 h-1 w-8 md:w-12 bg-gradient-to-r from-academy-blue to-academy-blue-light rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
             </Card>
 
-            <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card">
+            <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-4 md:hover:-translate-y-6 rounded-2xl md:rounded-3xl premium-card">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-purple-100 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <CardContent className="relative p-8 text-center">
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-purple-500/10 group-hover:ring-purple-500/20 transition-all duration-700 group-hover:scale-110">
-                    <BookOpen className="text-white" size={28} />
+              <CardContent className="relative p-6 md:p-8 text-center">
+                <div className="relative mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-purple-500/10 group-hover:ring-purple-500/20 transition-all duration-700 group-hover:scale-110">
+                    <BookOpen className="text-white" size={20} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-purple-600 transition-colors duration-300">21</h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">عدد الأقسام</p>
-                <div className="mt-4 h-1 w-12 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 md:mb-3 group-hover:text-purple-600 transition-colors duration-300">21</h3>
+                <p className="text-academy-dark-gray font-semibold text-sm md:text-base lg:text-lg">عدد الأقسام</p>
+                <div className="mt-3 md:mt-4 h-1 w-8 md:w-12 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
             </Card>
 
-            <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card">
+            <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-4 md:hover:-translate-y-6 rounded-2xl md:rounded-3xl premium-card">
               <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-green-100 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <CardContent className="relative p-8 text-center">
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-green-500/10 group-hover:ring-green-500/20 transition-all duration-700 group-hover:scale-110">
-                    <Award className="text-white" size={28} />
+              <CardContent className="relative p-6 md:p-8 text-center">
+                <div className="relative mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-green-500/10 group-hover:ring-green-500/20 transition-all duration-700 group-hover:scale-110">
+                    <Award className="text-white" size={20} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-green-600 transition-colors duration-300">+130</h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">عدد البرامج</p>
-                <div className="mt-4 h-1 w-12 bg-gradient-to-r from-green-600 to-green-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 md:mb-3 group-hover:text-green-600 transition-colors duration-300">+130</h3>
+                <p className="text-academy-dark-gray font-semibold text-sm md:text-base lg:text-lg">عدد البرامج</p>
+                <div className="mt-3 md:mt-4 h-1 w-8 md:w-12 bg-gradient-to-r from-green-600 to-green-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
             </Card>
 
-            <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card">
+            <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-4 md:hover:-translate-y-6 rounded-2xl md:rounded-3xl premium-card">
               <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <CardContent className="relative p-8 text-center">
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-orange-500/10 group-hover:ring-orange-500/20 transition-all duration-700 group-hover:scale-110">
-                    <Globe className="text-white" size={28} />
+              <CardContent className="relative p-6 md:p-8 text-center">
+                <div className="relative mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-orange-500/10 group-hover:ring-orange-500/20 transition-all duration-700 group-hover:scale-110">
+                    <Globe className="text-white" size={20} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-orange-600 transition-colors duration-300">+50</h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">عدد الدول المشاركة</p>
-                <div className="mt-4 h-1 w-12 bg-gradient-to-r from-orange-600 to-orange-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-academy-blue mb-2 md:mb-3 group-hover:text-orange-600 transition-colors duration-300">+50</h3>
+                <p className="text-academy-dark-gray font-semibold text-sm md:text-base lg:text-lg">عدد الدول المشاركة</p>
+                <div className="mt-3 md:mt-4 h-1 w-8 md:w-12 bg-gradient-to-r from-orange-600 to-orange-700 rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </CardContent>
             </Card>
           </div>
@@ -282,8 +283,8 @@ export default function HomePage() {
             </p>
           </div>
 
-                     {/* Enhanced Cards Grid */}
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-8xl mx-auto">
+                     {/* Enhanced Cards Grid - Improved responsiveness */}
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-8xl mx-auto px-4">
             {[
               {
                 title: "رؤية عالمية ورسالة واضحة",
@@ -344,14 +345,14 @@ export default function HomePage() {
             ].map((feature, index) => (
               <Card 
                 key={index} 
-                className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card"
+                className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-4 md:hover:-translate-y-6 rounded-2xl md:rounded-3xl premium-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}></div>
                 
                 <CardContent className="relative p-0">
-                  {/* Enhanced Image Section */}
-                  <div className="relative h-56 overflow-hidden rounded-t-3xl">
+                  {/* Enhanced Image Section - Responsive */}
+                  <div className="relative h-40 sm:h-48 md:h-56 overflow-hidden rounded-t-2xl md:rounded-t-3xl">
                     <Image
                       src={feature.image}
                       alt={feature.title}
@@ -362,39 +363,39 @@ export default function HomePage() {
                     <div className={`absolute inset-0 bg-gradient-to-t ${feature.color} opacity-0 group-hover:opacity-40 transition-opacity duration-700`}></div>
                     
                     {/* Quality Badge */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">
-                      <div className="bg-academy-gold/90 backdrop-blur-sm text-academy-blue px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center space-x-1 space-x-reverse">
-                        <Star size={12} />
+                    <div className="absolute top-3 right-3 md:top-4 md:right-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">
+                      <div className="bg-academy-gold/90 backdrop-blur-sm text-academy-blue px-2 py-1 md:px-3 rounded-full text-xs font-bold shadow-lg flex items-center space-x-1 space-x-reverse">
+                        <Star size={10} className="md:w-3 md:h-3" />
                         <span>مميز</span>
                       </div>
                     </div>
 
                     {/* Premium Icon */}
-                    <div className="absolute bottom-4 right-4 group-hover:bottom-6 transition-all duration-500">
-                      <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center shadow-xl ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-500 group-hover:scale-110`}>
-                        <Sparkles className="text-white" size={20} />
+                    <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4 group-hover:bottom-4 md:group-hover:bottom-6 transition-all duration-500">
+                      <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center shadow-xl ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-500 group-hover:scale-110`}>
+                        <Sparkles className="text-white" size={16} />
                       </div>
                     </div>
                   </div>
 
-                  {/* Enhanced Content Section */}
-                  <div className="p-8">
-                    <h3 className="text-xl font-bold text-academy-blue mb-4 group-hover:text-academy-blue-light transition-colors duration-300 leading-tight">
+                  {/* Enhanced Content Section - Responsive */}
+                  <div className="p-4 md:p-6 lg:p-8">
+                    <h3 className="text-lg md:text-xl font-bold text-academy-blue mb-3 md:mb-4 group-hover:text-academy-blue-light transition-colors duration-300 leading-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-academy-dark-gray leading-relaxed group-hover:text-academy-darker-gray transition-colors duration-300 text-sm">
+                    <p className="text-academy-dark-gray leading-relaxed group-hover:text-academy-darker-gray transition-colors duration-300 text-xs md:text-sm">
                       {feature.description}
                     </p>
                     
                     {/* Premium Indicator */}
-                    <div className="mt-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="mt-4 md:mt-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="flex items-center space-x-2 space-x-reverse">
-                        <div className={`w-6 h-6 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center`}>
-                          <Zap size={12} className="text-white" />
+                        <div className={`w-5 h-5 md:w-6 md:h-6 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center`}>
+                          <Zap size={10} className="md:w-3 md:h-3 text-white" />
                         </div>
                         <span className="text-academy-blue font-semibold text-xs">ميزة متقدمة</span>
                       </div>
-                      <Sparkles className="text-academy-gold animate-pulse" size={16} />
+                      <Sparkles className="text-academy-gold animate-pulse" size={14} />
                     </div>
                   </div>
                 </CardContent>
