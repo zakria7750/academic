@@ -73,24 +73,25 @@ export default async function FacultyPage() {
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
             {/* Premium Title Section */}
-            <div className="mb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+            <div className="relative z-10 text-center mx-auto mb-12">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-8 tracking-tight leading-tight">
+                <span className="inline-block px-8 py-4 sm:px-10 sm:py-5 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
                   هيئة التدريس
                 </span>
               </h1>
             </div>
 
             {/* Premium Description */}
-            <div className="mb-16">
-              <p className="text-2xl lg:text-3xl mb-6 font-semibold leading-relaxed">
-                <span className="bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent">
+            <div className="relative z-10 text-center mx-auto mb-16">
+              <p className="text-3xl lg:text-4xl mb-6 font-semibold leading-relaxed">
+                <span className="inline-block px-6 py-3 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
                   نخبة من أفضل الأساتذة والخبراء في مختلف التخصصات
                 </span>
               </p>
-              <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
-                علماء ومفكرون متميزون يقدمون تعليماً عالي الجودة مع أحدث
-                المعايير الأكاديمية
+              <p className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
+                <span className="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                  علماء ومفكرون متميزون يقدمون تعليماً عالي الجودة مع أحدث المعايير الأكاديمية
+                </span>
               </p>
 
               {/* Premium Stats Preview */}
