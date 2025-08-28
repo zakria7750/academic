@@ -77,18 +77,21 @@ export default async function AccreditationsPage() {
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
             {/* Ultra Premium Title Section */}
-            <div className="mb-16">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 lg:mb-10 tracking-tight leading-tight font-arabic">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light via-white to-academy-gold-light bg-clip-text text-transparent drop-shadow-2xl">
+            <div className="relative z-10 text-center mx-auto mb-16">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 lg:mb-10 tracking-tight leading-tight font-arabic">
+                <span className="inline-block px-8 py-4 sm:px-10 sm:py-5 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold-light via-white to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
                   الاعتمادات الدولية
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-semibold max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6 lg:mb-8 drop-shadow-lg font-arabic tracking-wide">
-                اعتمادات دولية معترف بها عالمياً تضمن جودة التعليم والشهادات
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-academy-gold-light font-semibold max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6 lg:mb-8 font-arabic tracking-wide">
+                <span className="inline-block px-6 py-3 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                  اعتمادات دولية معترف بها عالمياً تضمن جودة التعليم والشهادات
+                </span>
               </p>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light font-arabic">
-                شراكات استراتيجية مع أرقى المؤسسات التعليمية والهيئات المعتمدة
-                حول العالم
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light font-arabic">
+                <span className="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                  شراكات استراتيجية مع أرقى المؤسسات التعليمية والهيئات المعتمدة حول العالم
+                </span>
               </p>
             </div>
 
