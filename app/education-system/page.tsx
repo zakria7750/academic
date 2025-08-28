@@ -69,17 +69,21 @@ export default function EducationSystemPage(){
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
             {/* Premium Title Section */}
-            <div className="mb-6 sm:mb-8 lg:mb-12">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+            <div className="relative z-10 text-center mx-auto mb-6 sm:mb-8 lg:mb-12">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-6 sm:mb-8 tracking-tight leading-tight">
+                <span className="inline-block px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
                   نظام التعليم
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6">
-                نظام تعليمي متطور يجمع بين الأصالة والحداثة
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6">
+                <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                  نظام تعليمي متطور يجمع بين الأصالة والحداثة
+                </span>
               </p>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light">
-                نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light">
+                <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                  نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
+                </span>
               </p>
             </div>
             {/* Ultra Premium Stats  */}
