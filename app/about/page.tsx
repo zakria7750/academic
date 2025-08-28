@@ -81,11 +81,7 @@ export default function AboutPage() {
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  من
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
-                  نحن
+                  من نحن
                 </span>
               </h1>
             </div>
@@ -374,10 +370,7 @@ export default function AboutPage() {
                       <div className={`w-20 h-20 bg-gradient-to-br ${value.color} rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-white/30 group-hover:ring-white/50 transition-all duration-500 group-hover:scale-110`}>
                         <Icon className="text-white" size={32} />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse flex items-center justify-center">
-                        <Sparkles className="text-academy-blue" size={12} />
                       </div>
-                    </div>
 
                     {/* Enhanced Content */}
                     <h3 className="text-2xl font-bold text-academy-blue mb-4 group-hover:text-academy-blue-light transition-colors duration-300">

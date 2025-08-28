@@ -17,9 +17,9 @@ export default function Header() {
                 {/*<GraduationCap className="text-slate-900 w-6 h-6" />*/}
                  <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center">
                   <img 
-                    src="/logo.png" 
+                    src="/logo-1440.webp" 
                     alt="Academy Logo" 
-                    className="w-10 h-10 object-contain" 
+                    className="w-10 h-10 object-conver " 
                     />
                  </div>
 

@@ -171,48 +171,6 @@ export default function AdmissionPage() {
         </div>
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Ultra Premium Academy Logo and Badge
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-16">
-              <div className="relative">
-                <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
-                  <div className="relative">
-                    <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                      <span className="text-academy-blue font-bold text-5xl drop-shadow-lg font-arabic tracking-wider">أ</span>
-                    </div>
-                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
-                      <Crown size={24} className="text-academy-blue" />
-                    </div>
-                    <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
-                      <Star size={20} className="text-academy-blue" />
-                    </div>
-                    <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
-                      <Gem size={16} className="text-academy-blue" />
-                    </div>
-                  </div>
-                </div>
-                
-                 Enhanced Floating Elements 
-                <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-                <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
-                <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
-              </div>
-              
-              <div className="flex flex-col items-center gap-4">
-                <Badge className="bg-white/20 backdrop-blur-2xl text-academy-gold border-academy-gold/40 hover:bg-white/30 px-8 py-4 text-xl font-bold rounded-3xl shadow-2xl transition-all duration-500 hover:scale-105">
-                  <GraduationCap className="w-6 h-6 mr-4" />
-                  <span className="font-arabic tracking-wide">القبول والتسجيل</span>
-                </Badge>
-                
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
-                  <div className="w-16 h-[2px] bg-academy-gold/50"></div>
-                  <Sparkles className="text-academy-gold animate-pulse" size={20} />
-                  <div className="w-16 h-[2px] bg-academy-gold/50"></div>
-                  <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse delay-500"></div>
-                </div>
-              </div>
-            </div>*/} 
-
             {/* Ultra Premium Title Section */}
             <div className="mb-16">
               <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold mb-10 tracking-tight leading-tight font-arabic">
@@ -223,19 +181,6 @@ export default function AdmissionPage() {
               </h1>
               
               {/* Enhanced Decorative Separator */}
-              <div className="flex items-center justify-center gap-8 mb-12">
-                <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-                <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
-                <div className="relative">
-                  <Sparkles className="text-academy-gold animate-pulse" size={36} />
-                  <div className="absolute inset-0 animate-ping">
-                    <Sparkles className="text-academy-gold opacity-30" size={36} />
-                  </div>
-                </div>
-                <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-academy-gold to-transparent shadow-sm"></div>
-                <div className="w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-              </div>
-              
               <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-semibold max-w-6xl mx-auto leading-relaxed mb-8 drop-shadow-lg font-arabic tracking-wide">
                 ابدأ رحلتك التعليمية معنا واحصل على شهادة معتمدة في تخصصك المفضل
               </p>
@@ -263,7 +208,7 @@ export default function AdmissionPage() {
             </div>
 
             {/* Ultra Premium Features Preview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto ">
               {/* قبول سريع */}
               <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-2xl p-10 rounded-[2rem] border border-white/25 text-center group hover:scale-105 hover:bg-gradient-to-br hover:from-white/25 hover:to-white/15 transition-all duration-700 shadow-[0_20px_40px_rgba(0,0,0,0.15)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.25)]">
                 <div className="w-20 h-20 bg-gradient-to-br from-emerald-400/30 to-green-500/20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-emerald-400/20">
@@ -287,7 +232,7 @@ export default function AdmissionPage() {
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-400/30 to-indigo-500/20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-blue-400/20">
                   <Users size={40} className="text-blue-300 drop-shadow-lg" />
                 </div>
-                <h3 className="text-white font-bold text-2xl mb-4 font-arabic tracking-wide">دعم شامل</h3>
+                <h3 className="text-white font-bold text-2xl mb-4 font-arabic tracking-wide ">دعم شامل</h3>
                 <p className="text-blue-300 text-lg leading-relaxed font-arabic">مرافقة أكاديمية متكاملة ومتخصصة</p>
               </div>
             </div>
@@ -326,9 +271,6 @@ export default function AdmissionPage() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -top-6 -left-6 w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-md"></div>
-              <div className="absolute -bottom-4 -right-8 w-5 h-5 bg-academy-blue rounded-full animate-pulse delay-700 shadow-sm"></div>
-              <div className="absolute top-1/2 -left-10 w-4 h-4 bg-academy-gold-light rounded-full animate-pulse delay-1200"></div>
             </div>
 
             <div className="mb-12">
@@ -354,7 +296,7 @@ export default function AdmissionPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-12 lg:gap-16">
             {applicationSteps.map((step, index) => {
               const Icon = step.icon
               return (
@@ -363,15 +305,10 @@ export default function AdmissionPage() {
                   className="group bg-white/95 backdrop-blur-2xl border-0 shadow-[0_24px_48px_rgba(0,0,0,0.15)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.25)] rounded-[2rem] overflow-hidden transition-all duration-700 hover:-translate-y-8 hover:scale-[1.03] relative border border-slate-200/60"
                 >
                   {/* Ultra Premium Status Indicator */}
-                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-academy-blue via-academy-gold via-academy-blue to-academy-gold"></div>
+                      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-academy-blue via-academy-gold via-academy-blue to-academy-gold"></div>
                   
                   {/* Ultra Premium Card Background Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-white/40 to-blue-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                  
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-4 left-4 w-3 h-3 bg-academy-gold/40 rounded-full animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-4 right-4 w-2 h-2 bg-academy-blue/30 rounded-full animate-pulse delay-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
                   {/* Enhanced Step Number Badge */}
                   <div className="absolute top-6 right-6">
                     <div className="w-14 h-14 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-2xl flex items-center justify-center shadow-xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
@@ -412,13 +349,13 @@ export default function AdmissionPage() {
           {/* Ultra Premium Process Summary */}
           <div className="text-center mt-24">
             <div className="bg-white/95 backdrop-blur-2xl rounded-[2rem] p-12 shadow-[0_32px_64px_rgba(0,0,0,0.15)] border border-slate-200/60 max-w-4xl mx-auto hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)] transition-all duration-700">
-              <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
-                <div className="w-16 h-16 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-blue-dark rounded-2xl flex items-center justify-center shadow-xl border border-academy-blue/20">
+              <div className="flex flex-col items-center justify-center gap-6 mb-8">
+                <div className="w-20 h-20 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-blue-dark rounded-2xl flex items-center justify-center shadow-xl border border-academy-blue/20">
                   <CheckCircle className="text-academy-gold drop-shadow-lg" size={32} />
                 </div>
                 <div className="text-center md:text-right">
                   <h3 className="text-academy-blue font-bold text-3xl mb-2 font-arabic tracking-wide">عملية التقديم السريعة والموثوقة</h3>
-                  <div className="w-24 h-[2px] bg-gradient-to-r from-academy-blue to-academy-gold rounded-full mx-auto md:mx-0"></div>
+                  <div className="w-24 h-[2px] bg-gradient-to-r from-academy-blue to-academy-gold rounded-full mx-auto mt-7"></div>
                 </div>
               </div>
               <p className="text-academy-dark-gray leading-relaxed font-semibold text-xl font-arabic tracking-wide">
@@ -426,7 +363,7 @@ export default function AdmissionPage() {
               </p>
               
               {/* Enhanced Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+              <div className="grid grid-cols-3  gap-6 mt-10">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-academy-blue mb-2 font-arabic">4-7</div>
                   <div className="text-academy-darker-gray font-semibold font-arabic">أيام عمل</div>
@@ -475,9 +412,6 @@ export default function AdmissionPage() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -top-6 -left-6 w-6 h-6 bg-academy-gold rounded-full animate-pulse shadow-md"></div>
-              <div className="absolute -bottom-4 -right-8 w-5 h-5 bg-academy-blue rounded-full animate-pulse delay-700 shadow-sm"></div>
-              <div className="absolute top-1/2 -left-10 w-4 h-4 bg-academy-gold-light rounded-full animate-pulse delay-1200"></div>
             </div>
 
             <div className="mb-12">
@@ -502,26 +436,26 @@ export default function AdmissionPage() {
               </p>
             </div>
           </div>
-
-          {/* Ultra Premium Master's Requirements */}
+          {/* Ultra Premium Doctoral Requirements */}
           <div className="mb-20">
             <Card className="border-0 shadow-[0_24px_48px_rgba(0,0,0,0.12)] bg-white/95 backdrop-blur-xl rounded-[2rem] overflow-hidden hover:shadow-[0_32px_64px_rgba(0,0,0,0.18)] transition-all duration-700">
-              <CardHeader className="bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold-dark text-academy-blue p-10">
+               <CardHeader className="bg-gradient-to-r from-academy-gold via-academy-gold-light to-academy-gold-dark text-academy-blue p-10">
                 <CardTitle className="text-3xl font-bold flex items-center font-arabic tracking-wide">
                   <div className="w-12 h-12 bg-academy-blue/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg backdrop-blur-sm border border-academy-blue/30">
                     <Award className="w-8 h-8 text-academy-blue drop-shadow-md" />
                   </div>
-                  شروط الحصول على الماجستير المهني
+                  شروط الحصول على الدكتورة المهني
                 </CardTitle>
               </CardHeader>
+              
               <CardContent className="p-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {masterRequirements.map((req, index) => {
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                  {doctoralRequirements.map((req, index) => {
                     const Icon = req.icon
                     return (
                       <div
                         key={index}
-                        className="group flex items-start space-x-6 space-x-reverse p-8 rounded-3xl bg-gradient-to-br from-slate-50/80 to-blue-50/60 hover:from-academy-gold/10 hover:to-academy-gold/5 border border-slate-200/60 hover:border-academy-gold/30 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
+                        className="group flex items-start space-x-6 space-x-reverse p-1 rounded-3xl bg-gradient-to-br from-slate-50/80 to-blue-50/60 hover:from-academy-gold/10 hover:to-academy-gold/5 border border-slate-200/60 hover:border-academy-gold/30 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
                       >
                         <div className="w-16 h-16 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-gold/20">
                           <Icon className="w-8 h-8 text-academy-blue drop-shadow-md" />
@@ -537,8 +471,7 @@ export default function AdmissionPage() {
               </CardContent>
             </Card>
           </div>
-
-          {/* Ultra Premium Doctoral Requirements */}
+           {/* Ultra Premium Master's Requirements */}
           <div className="mb-20">
             <Card className="border-0 shadow-[0_24px_48px_rgba(0,0,0,0.12)] bg-white/95 backdrop-blur-xl rounded-[2rem] overflow-hidden hover:shadow-[0_32px_64px_rgba(0,0,0,0.18)] transition-all duration-700">
               <CardHeader className="bg-gradient-to-r from-academy-blue via-academy-blue-light to-academy-blue-dark text-white p-10">
@@ -546,17 +479,17 @@ export default function AdmissionPage() {
                   <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center mr-4 shadow-lg backdrop-blur-sm border border-white/30">
                     <GraduationCap className="w-8 h-8 text-white drop-shadow-md" />
                   </div>
-                  شروط الحصول على الدكتوراه المهنية
+                  شروط الحصول على الماجستير المهنية
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {doctoralRequirements.map((req, index) => {
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                  {masterRequirements.map((req, index) => {
                     const Icon = req.icon
                     return (
-                      <div
+                       <div
                         key={index}
-                        className="group flex items-start space-x-6 space-x-reverse p-8 rounded-3xl bg-gradient-to-br from-slate-50/80 to-blue-50/60 hover:from-academy-blue/10 hover:to-academy-blue/5 border border-slate-200/60 hover:border-academy-blue/30 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
+                        className="group flex items-start space-x-4 space-x-reverse p-1 rounded-3xl bg-gradient-to-br from-slate-50/80 to-blue-50/60 hover:from-academy-blue/10 hover:to-academy-blue/5 border border-slate-200/60 hover:border-academy-blue/30 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
                       >
                         <div className="w-16 h-16 bg-gradient-to-br from-academy-blue via-academy-blue-light to-academy-blue-dark rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 border border-academy-blue/20">
                           <Icon className="w-8 h-8 text-white drop-shadow-md" />
@@ -585,7 +518,7 @@ export default function AdmissionPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                   {generalRequirements.map((req, index) => (
                     <div
                       key={index}

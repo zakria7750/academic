@@ -90,9 +90,13 @@ export default function Footer() {
           {/* Academy Info */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3 space-x-reverse">
-              <div className="w-12 h-12 bg-academy-gold rounded-full flex items-center justify-center">
-                <span className="text-academy-blue font-bold text-xl">م</span>
-              </div>
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center">
+                  <img 
+                    src="/logo-1440.webp" 
+                    alt="Academy Logo" 
+                    className="w-10 h-10 object-conver " 
+                    />
+                 </div>
               <div>
                 <h3 className="text-xl font-bold text-academy-gold">أكاديمية المعرفة الدولية</h3>
               </div>

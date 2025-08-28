@@ -233,31 +233,6 @@ export default function AccreditationApplicationForm() {
               </div>
             </CardContent>
           </Card>
-
-          {/* Benefits Reminder */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center text-white">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <Award className="text-academy-blue" size={24} />
-              </div>
-              <h4 className="text-lg font-bold mb-2">شهادة معتمدة</h4>
-              <p className="text-academy-gold/80 text-sm">احصل على شهادة اعتماد رسمية من الأكاديمية</p>
-            </div>
-            <div className="text-center text-white">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <User className="text-academy-blue" size={24} />
-              </div>
-              <h4 className="text-lg font-bold mb-2">ملف شخصي</h4>
-              <p className="text-academy-gold/80 text-sm">إدراج ملفك الشخصي في قائمة المدربين المعتمدين</p>
-            </div>
-            <div className="text-center text-white">
-              <div className="w-16 h-16 bg-academy-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <Send className="text-academy-blue" size={24} />
-              </div>
-              <h4 className="text-lg font-bold mb-2">منصة تسويقية</h4>
-              <p className="text-academy-gold/80 text-sm">استفد من منصة الأكاديمية للتسويق والترويج</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

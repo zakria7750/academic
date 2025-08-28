@@ -115,32 +115,6 @@ export default function TrainersPage() {
 
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Ultra Premium Icon Section 
-            <div className="relative inline-block mb-16">
-              <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
-                <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <Award className="text-academy-blue drop-shadow-lg" size={60} />
-                  </div>
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
-                    <Users size={24} className="text-academy-blue" />
-                  </div>
-                  <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
-                    <Star size={20} className="text-academy-blue" />
-                  </div>
-                  <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
-                    <CheckCircle size={16} className="text-academy-blue" />
-                  </div>
-                </div>
-              </div>
-              
-               Enhanced Floating Elements 
-              <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
-              <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
-              <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>*/} 
-
             {/* Premium Title Section */}
             <div className="absolute inset-0 z-0">
           <Image
@@ -154,11 +128,7 @@ export default function TrainersPage() {
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  المدربين
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
-                  المعتمدين
+                  المدربين المعتمدين
                 </span>
               </h1>
             </div>
@@ -175,7 +145,7 @@ export default function TrainersPage() {
               </p>
               
               {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">{trainers.length}</div>
                   <div className="text-white/80">مدرب معتمد</div>
@@ -193,53 +163,6 @@ export default function TrainersPage() {
           </div>
         </div>
       </section>
-
-      {/* Enhanced Trainers Stats */}
-      <section className="py-16 lg:py-20 bg-gradient-to-br from-academy-gray-light via-academy-gray to-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            <Card className="bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-3xl overflow-hidden group border-2 border-academy-gold/20 hover:border-academy-gold/60">
-              <CardContent className="p-8 text-center relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Award className="text-academy-gold" size={28} />
-                </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
-                  {trainers.length}+
-                </h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">مدرب معتمد</p>
-                <div className="absolute top-4 right-4 w-6 h-6 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-3xl overflow-hidden group border-2 border-academy-blue/20 hover:border-academy-blue/60">
-              <CardContent className="p-8 text-center relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Users className="text-academy-blue" size={28} />
-                </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
-                  15+
-                </h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">تخصص مختلف</p>
-                <div className="absolute top-4 right-4 w-6 h-6 bg-academy-blue/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-3xl overflow-hidden group sm:col-span-2 lg:col-span-1 border-2 border-academy-gold/20 hover:border-academy-gold/60">
-              <CardContent className="p-8 text-center relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-gold rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Star className="text-white" size={28} />
-                </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
-                  98%
-                </h3>
-                <p className="text-academy-dark-gray font-semibold text-lg">معدل الرضا</p>
-                <div className="absolute top-4 right-4 w-6 h-6 bg-academy-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Enhanced Trainers List Section */}
       <section className="py-20 lg:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -254,7 +177,7 @@ export default function TrainersPage() {
           </div>
 
           {trainers.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10">
+            <div className="grid grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10">
               {trainers.map((trainer) => (
                 <Card
                   key={trainer.id}
@@ -304,14 +227,6 @@ export default function TrainersPage() {
                           />
                         ))}
                       </div>
-
-                      {/* Enhanced Contact Button */}
-                      <Button
-                        size="sm"
-                        className="bg-gradient-to-r from-academy-blue to-academy-blue-600 hover:from-academy-gold hover:to-academy-gold-600 text-white hover:text-academy-blue font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-academy-blue"
-                      >
-                        تواصل معي
-                      </Button>
                     </div>
 
                     {/* Enhanced Decorative Corner Elements */}
@@ -358,7 +273,7 @@ export default function TrainersPage() {
           </div>
 
           {/* Enhanced Requirements Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-12">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-10 mb-12">
             {requirements.map((requirement, index) => {
               const Icon = requirement.icon
               return (

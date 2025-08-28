@@ -183,7 +183,6 @@ export default function HomePage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-light rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-academy-blue/10 group-hover:ring-academy-blue/20 transition-all duration-700 group-hover:scale-110">
                     <Users className="text-academy-gold" size={28} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-blue-light transition-colors duration-300">+15,000</h3>
                 <p className="text-academy-dark-gray font-semibold text-lg">عدد الطلاب</p>
@@ -198,7 +197,6 @@ export default function HomePage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-purple-500/10 group-hover:ring-purple-500/20 transition-all duration-700 group-hover:scale-110">
                     <BookOpen className="text-white" size={28} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-purple-600 transition-colors duration-300">21</h3>
                 <p className="text-academy-dark-gray font-semibold text-lg">عدد الأقسام</p>
@@ -213,7 +211,6 @@ export default function HomePage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-green-500/10 group-hover:ring-green-500/20 transition-all duration-700 group-hover:scale-110">
                     <Award className="text-white" size={28} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-green-600 transition-colors duration-300">+130</h3>
                 <p className="text-academy-dark-gray font-semibold text-lg">عدد البرامج</p>
@@ -228,7 +225,6 @@ export default function HomePage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-orange-500/10 group-hover:ring-orange-500/20 transition-all duration-700 group-hover:scale-110">
                     <Globe className="text-white" size={28} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-orange-600 transition-colors duration-300">+50</h3>
                 <p className="text-academy-dark-gray font-semibold text-lg">عدد الدول المشاركة</p>

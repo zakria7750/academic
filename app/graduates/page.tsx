@@ -36,22 +36,6 @@ export default async function GraduatesPage() {
 
         <div className="relative z-10 container mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Premium Icon Section
-            <div className="relative inline-block mb-12">
-              <div className="p-6 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl">
-                <div className="relative">
-                  <div className="w-20 h-20 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center shadow-xl">
-                    <GraduationCap className="text-academy-blue" size={40} />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-lg">
-                    <Crown size={16} className="text-academy-blue" />
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -top-4 -left-4 w-6 h-6 bg-academy-gold rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-2 -right-6 w-4 h-4 bg-academy-gold-light rounded-full animate-pulse delay-700"></div>
-            </div>*/} 
-
             {/* Premium Title Section */}
             <div className="mb-12">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight">
@@ -165,21 +149,12 @@ export default async function GraduatesPage() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -top-3 -left-3 w-4 h-4 bg-academy-gold rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-2 -right-4 w-3 h-3 bg-academy-blue rounded-full animate-pulse delay-500"></div>
             </div>
 
             <div className="mb-8">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-academy-blue mb-6 tracking-tight">
                 سيرة ذاتية مختصرة
               </h2>
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
-                <div className="w-16 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={20} />
-                <div className="w-16 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
-              </div>
               <p className="text-xl md:text-2xl text-academy-dark-gray max-w-3xl mx-auto leading-relaxed font-medium">
                 اكتشف كيف غيرت أكاديمية المعرفة الدولية حياة خريجينا المهنية ومساراتهم نحو النجاح
               </p>
@@ -200,7 +175,7 @@ export default async function GraduatesPage() {
                 <div className="w-8 h-8 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-lg flex items-center justify-center shadow-lg">
                   <Users className="text-white" size={16} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-xl">انضم إلى مجتمع النجاح</h3>
+                <h3 className="text-academy-blue font-bold text-xl">انضم إلى مجتمعنا</h3>
               </div>
               <p className="text-academy-dark-gray leading-relaxed">
                 كن جزءاً من شبكة خريجينا المتميزين واشترك في قصص النجاح التي تلهم الأجيال القادمة

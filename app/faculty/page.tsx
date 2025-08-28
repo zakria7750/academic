@@ -72,44 +72,11 @@ export default async function FacultyPage() {
 
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
-            {/* Ultra Premium Icon Section 
-            <div className="relative inline-block mb-16">
-              <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
-                <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <GraduationCap
-                      className="text-academy-blue drop-shadow-lg"
-                      size={60}
-                    />
-                  </div>
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
-                    <Brain size={24} className="text-academy-blue" />
-                  </div>
-                  <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
-                    <Star size={20} className="text-academy-blue" />
-                  </div>
-                  <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
-                    <Award size={16} className="text-academy-blue" />
-                  </div>
-                </div>
-              </div>
-
-              Enhanced Floating Elements 
-              <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
-              <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
-              <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>*/} 
-
             {/* Premium Title Section */}
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  هيئة
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
-                  التدريس
+                  هيئة التدريس
                 </span>
               </h1>
             </div>
@@ -127,7 +94,7 @@ export default async function FacultyPage() {
               </p>
 
               {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-3 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">
                     {facultyMembers.length}
@@ -185,9 +152,6 @@ export default async function FacultyPage() {
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-blue to-academy-blue-light rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-academy-blue/20 group-hover:ring-academy-blue/50 transition-all duration-500 group-hover:scale-110">
                     <GraduationCap className="text-academy-gold" size={32} />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse flex items-center justify-center">
-                    <Sparkles className="text-academy-blue" size={12} />
-                  </div>
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-blue-light transition-colors duration-300">
                   {facultyMembers.length}+
@@ -215,9 +179,6 @@ export default async function FacultyPage() {
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-gold to-academy-gold-light rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-academy-gold/20 group-hover:ring-academy-gold/50 transition-all duration-500 group-hover:scale-110">
                     <BookOpen className="text-academy-blue" size={32} />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-academy-blue rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse flex items-center justify-center">
-                    <Brain className="text-academy-gold" size={12} />
-                  </div>
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
                   15+
@@ -244,9 +205,6 @@ export default async function FacultyPage() {
                 <div className="relative mb-6">
                   <div className="w-20 h-20 bg-gradient-to-br from-academy-blue via-academy-gold to-academy-blue-light rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-academy-gold/20 group-hover:ring-academy-gold/50 transition-all duration-500 group-hover:scale-110">
                     <Award className="text-white" size={32} />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-academy-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse flex items-center justify-center">
-                    <Crown className="text-academy-blue" size={12} />
                   </div>
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 group-hover:text-academy-gold transition-colors duration-300">
@@ -355,29 +313,15 @@ export default async function FacultyPage() {
                       <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-3 group-hover:text-academy-darker-gray transition-colors duration-300 mb-4">
                         {member.biography}
                       </p>
-
-                      {/* Enhanced Read More Button */}
-                      <button className="mt-2 text-academy-gold hover:text-academy-blue font-bold text-sm transition-all duration-300 group-hover:translate-x-1 inline-flex items-center opacity-0 group-hover:opacity-100 space-x-2 space-x-reverse">
-                        <span>اقرأ المزيد</span>
-                        <Eye
-                          size={14}
-                          className="group-hover:scale-110 transition-transform duration-300"
-                        />
-                      </button>
-
                       {/* Academic Excellence Indicator */}
                       <div className="flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-3">
                         <div className="flex items-center space-x-2 space-x-reverse">
-                          <div className="w-6 h-6 bg-gradient-to-br from-academy-blue to-academy-blue-light rounded-full flex items-center justify-center">
-                            <Star size={12} className="text-academy-gold" />
-                          </div>
                           <span className="text-academy-blue font-semibold text-xs">
                             خبير أكاديمي
                           </span>
                         </div>
                       </div>
                     </div>
-
                     {/* Floating Decorative Elements */}
                     <div className="absolute top-4 right-4 w-8 h-8 bg-academy-gold/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                       <Sparkles className="text-academy-gold" size={14} />

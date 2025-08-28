@@ -245,41 +245,11 @@ export default async function ProgramsPage() {
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           
           <div className="text-center text-white">
-            {/* Ultra Premium Icon Section 
-            <div className="relative inline-block mb-16">
-              <div className="p-8 bg-white/15 backdrop-blur-2xl rounded-[2rem] border border-white/25 shadow-[0_32px_64px_rgba(0,0,0,0.25)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.3)] transition-all duration-700">
-                <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-academy-gold via-academy-gold-light to-academy-gold-dark rounded-3xl flex items-center justify-center shadow-2xl border border-academy-gold/20 hover:scale-110 transition-transform duration-500">
-                    <GraduationCap className="text-academy-blue drop-shadow-lg" size={60} />
-                  </div>
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-academy-gold-light to-academy-gold rounded-full flex items-center justify-center shadow-xl border border-white/20">
-                    <Award size={24} className="text-academy-blue" />
-                  </div>
-                  <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-full flex items-center justify-center shadow-lg">
-                    <Star size={20} className="text-academy-blue" />
-                  </div>
-                  <div className="absolute top-2 -left-6 w-8 h-8 bg-academy-gold/80 rounded-full flex items-center justify-center shadow-md">
-                    <BookOpen size={16} className="text-academy-blue" />
-                  </div>
-                </div>
-              </div>
-              
-              Enhanced Floating Elements 
-              <div className="absolute -top-6 -left-6 w-8 h-8 bg-academy-gold rounded-full animate-pulse shadow-lg"></div>
-              <div className="absolute -bottom-4 -right-8 w-6 h-6 bg-academy-gold-light rounded-full animate-pulse delay-700 shadow-md"></div>
-              <div className="absolute top-1/2 -left-12 w-4 h-4 bg-academy-gold rounded-full animate-pulse delay-1200"></div>
-              <div className="absolute -top-8 right-1/4 w-3 h-3 bg-academy-gold-light rounded-full animate-pulse delay-1600"></div>
-            </div>*/} 
-
             {/* Premium Title Section */}
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  البرامج
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-academy-gold-light via-academy-gold to-academy-gold-light bg-clip-text text-transparent animate-pulse">
-                  التعليمية
+                  البرامج التعليمية
                 </span>
               </h1>
             </div>
@@ -296,14 +266,14 @@ export default async function ProgramsPage() {
               </p>
               
               {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
-                  <div className="text-3xl font-bold text-academy-gold mb-2">{mastersPrograms.length}</div>
-                  <div className="text-white/80">برنامج ماجستير</div>
-                </div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">{doctoratePrograms.length}</div>
                   <div className="text-white/80">برنامج دكتوراه</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
+                  <div className="text-3xl font-bold text-academy-gold mb-2">{mastersPrograms.length}</div>
+                  <div className="text-white/80">برنامج ماجستير</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">{diplomaPrograms.length}</div>
@@ -332,19 +302,7 @@ export default async function ProgramsPage() {
       <section className="py-20 bg-gradient-to-br from-academy-gray to-academy-gray-light relative">
         <div className="absolute inset-0 bg-[url('/subtle-pattern.svg')] opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="group bg-white/80 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:-translate-y-4 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardContent className="p-8 relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
-                  <GraduationCap className="text-academy-gold text-2xl" />
-                </div>
-                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">{mastersPrograms.length}</h3>
-                <p className="text-academy-dark-gray font-semibold text-center text-lg">برامج ماجستير</p>
-                <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
-              </CardContent>
-            </Card>
-
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="group bg-white/80 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:-translate-y-4 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <CardContent className="p-8 relative z-10">
@@ -356,7 +314,17 @@ export default async function ProgramsPage() {
                 <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
               </CardContent>
             </Card>
-
+            <Card className="group bg-white/80 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:-translate-y-4 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <CardContent className="p-8 relative z-10">
+                <div className="w-16 h-16 bg-gradient-to-br from-academy-blue to-academy-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-500">
+                  <GraduationCap className="text-academy-gold text-2xl" />
+                </div>
+                <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">{mastersPrograms.length}</h3>
+                <p className="text-academy-dark-gray font-semibold text-center text-lg">برامج ماجستير</p>
+                <div className="w-16 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto mt-4 rounded-full"></div>
+              </CardContent>
+            </Card>
             <Card className="group bg-white/80 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:-translate-y-4 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/5 to-academy-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <CardContent className="p-8 relative z-10">
@@ -381,45 +349,6 @@ export default async function ProgramsPage() {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Enhanced Masters Programs Section */}
-      <section className="py-24 bg-white relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/2 to-academy-gold/2"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-block mb-6">
-              <div className="w-20 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto rounded-full"></div>
-            </div>
-            <div className="flex items-center justify-center space-x-4 space-x-reverse mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center shadow-xl">
-                <GraduationCap className="text-academy-blue text-2xl" />
-              </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue">برامج الماجستير المهني</h2>
-            </div>
-            <p className="text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed">
-              برامج ماجستير متخصصة تجمع بين الأسس النظرية والتطبيق العملي لإعداد خبراء في مختلف المجالات
-              <br />
-              <span className="text-lg text-academy-darker-gray">نقدم تعليماً عالي الجودة مع أحدث المناهج والتقنيات</span>
-            </p>
-          </div>
-
-          {mastersPrograms.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {mastersPrograms.map((program, index) => (
-                <ProgramCard key={program.id} program={program} index={index} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20">
-              <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/30 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
-                <GraduationCap className="text-academy-gold text-6xl" />
-              </div>
-              <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد برامج ماجستير</h3>
-              <p className="text-academy-dark-gray text-lg">لم يتم إضافة برامج الماجستير بعد.</p>
-            </div>
-          )}
         </div>
       </section>
 
@@ -461,7 +390,44 @@ export default async function ProgramsPage() {
           )}
         </div>
       </section>
+        {/* Enhanced Masters Programs Section */}
+      <section className="py-24 bg-white relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/2 to-academy-gold/2"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-block mb-6">
+              <div className="w-20 h-1 bg-gradient-to-r from-academy-gold to-academy-gold-dark mx-auto rounded-full"></div>
+            </div>
+            <div className="flex items-center justify-center space-x-4 space-x-reverse mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-2xl flex items-center justify-center shadow-xl">
+                <GraduationCap className="text-academy-blue text-2xl" />
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-academy-blue">برامج الماجستير المهني</h2>
+            </div>
+            <p className="text-xl text-academy-dark-gray max-w-4xl mx-auto leading-relaxed">
+              برامج ماجستير متخصصة تجمع بين الأسس النظرية والتطبيق العملي لإعداد خبراء في مختلف المجالات
+              <br />
+              <span className="text-lg text-academy-darker-gray">نقدم تعليماً عالي الجودة مع أحدث المناهج والتقنيات</span>
+            </p>
+          </div>
 
+          {mastersPrograms.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {mastersPrograms.map((program, index) => (
+                <ProgramCard key={program.id} program={program} index={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20">
+              <div className="w-32 h-32 bg-gradient-to-br from-academy-gold/20 to-academy-gold/30 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
+                <GraduationCap className="text-academy-gold text-6xl" />
+              </div>
+              <h3 className="text-3xl font-bold text-academy-blue mb-4">لا توجد برامج ماجستير</h3>
+              <p className="text-academy-dark-gray text-lg">لم يتم إضافة برامج الماجستير بعد.</p>
+            </div>
+          )}
+        </div>
+      </section>
       {/* Enhanced Diploma Programs Section */}
       <section className="py-24 bg-white relative">
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/2 to-academy-gold/2"></div>
