@@ -37,9 +37,9 @@ export default async function GraduatesPage() {
         <div className="relative z-10 container mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center text-white">
             {/* Premium Title Section */}
-            <div className="mb-12">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
+            <div className="relative z-10 text-center mx-auto mb-12">
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 tracking-tight leading-tight">
+                <span className="inline-block px-8 py-4 sm:px-10 sm:py-5 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
                   هيئة التدريس والخريجين 
                 </span>
               </h1>
@@ -50,8 +50,10 @@ export default async function GraduatesPage() {
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-gold to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
-              <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed">
-                نفخر بإنجازات خريجينا المتميزين الذين يقودون التغيير في مختلف المجالات حول العالم
+              <p className="text-3xl md:text-4xl lg:text-5xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed">
+                <span className="inline-block px-6 py-3 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                  نفخر بإنجازات خريجينا المتميزين الذين يقودون التغيير في مختلف المجالات حول العالم
+                </span>
               </p>
             </div>
 
