@@ -172,20 +172,24 @@ export default function AdmissionPage() {
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
             {/* Ultra Premium Title Section */}
-            <div className="mb-16">
-              <h1 className="text-6xl md:text-7xl lg:text-9xl font-bold mb-10 tracking-tight leading-tight font-arabic">
-                <span className="block mb-4">انضم إلى</span>
-                <span className="bg-gradient-to-r from-white via-academy-gold-light via-white to-academy-gold-light bg-clip-text text-transparent drop-shadow-2xl">
+            <div className="relative z-10 text-center mx-auto mb-16">
+              <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-10 tracking-tight leading-tight font-arabic">
+                <span className="inline-block px-6 py-3 mb-4 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">انضم إلى</span>
+                <span className="inline-block px-8 py-4 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 bg-gradient-to-r from-white via-academy-gold-light via-white to-academy-gold-light bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
                   أكاديمية المعرفة الدولية
                 </span>
               </h1>
               
               {/* Enhanced Decorative Separator */}
-              <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-semibold max-w-6xl mx-auto leading-relaxed mb-8 drop-shadow-lg font-arabic tracking-wide">
-                ابدأ رحلتك التعليمية معنا واحصل على شهادة معتمدة في تخصصك المفضل
+              <p className="text-3xl md:text-4xl lg:text-5xl text-academy-gold-light font-semibold max-w-6xl mx-auto leading-relaxed mb-8 font-arabic tracking-wide">
+                <span className="inline-block px-6 py-3 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                  ابدأ رحلتك التعليمية معنا واحصل على شهادة معتمدة في تخصصك المفضل
+                </span>
               </p>
-              <p className="text-xl md:text-2xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light font-arabic">
-                انضم إلى آلاف الطلاب الذين حققوا أحلامهم الأكاديمية والمهنية معنا في بيئة تعليمية متميزة
+              <p className="text-2xl md:text-3xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light font-arabic">
+                <span className="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md backdrop-saturate-150 border border-white/20 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]">
+                  انضم إلى آلاف الطلاب الذين حققوا أحلامهم الأكاديمية والمهنية معنا في بيئة تعليمية متميزة
+                </span>
               </p>
             </div>
 
