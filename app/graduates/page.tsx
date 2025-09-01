@@ -21,6 +21,8 @@ export default async function GraduatesPage() {
 
       {/* Premium Hero Section */}
       <section className="relative overflow-hidden py-24 lg:py-32">
+      <div className="absolute inset-0 opacity-30 bg-black z-10"></div>
+
         {/* Enhanced Background with Multiple Layers */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/70 to-academy-blue/50"></div>
@@ -28,7 +30,7 @@ export default async function GraduatesPage() {
         
         
         {/* Premium Decorative Elements */}
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-30 ">
           <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-48 h-48 bg-gradient-to-br from-academy-gold/15 to-transparent rounded-full blur-2xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-academy-gold/10 rounded-full blur-xl animate-pulse delay-500"></div>

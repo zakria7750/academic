@@ -26,7 +26,7 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
       {/* Ultra Premium Background Pattern */}
-      <div className="absolute inset-0 opacity-35">
+      <div className="absolute inset-0 opacity-30">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(0,31,63,0.06),transparent_50%)] bg-[radial-gradient(circle_at_70%_80%,rgba(255,215,0,0.09),transparent_50%)]"></div>
         <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-gradient-to-br from-academy-gold/12 via-academy-gold/6 to-transparent rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-academy-blue/10 via-academy-blue/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -41,6 +41,8 @@ export default async function BlogPage() {
 
       {/* Ultra Premium Hero Section */}
       <section className="relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
+      <div className="absolute inset-0 opacity-30 bg-black z-10"></div>
+
         {/* Multi-layered Premium Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/85 to-academy-blue/65"></div>

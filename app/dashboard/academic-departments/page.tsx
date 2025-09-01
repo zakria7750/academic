@@ -237,13 +237,13 @@ export default function AcademicDepartmentsPage() {
                 إضافة قسم جديد
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+            <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-white">
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold text-academy-blue text-center">
                   إضافة قسم أكاديمي جديد
                 </DialogTitle>
               </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+              <form onSubmit={handleSubmit} className="space-y-6 mt-6 ">
                 {/* Image Upload */}
                 <div className="space-y-2">
                   <Label htmlFor="image" className="text-academy-blue font-semibold">

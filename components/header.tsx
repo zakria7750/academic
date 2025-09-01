@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 shadow-2xl border-b border-indigo-400/20 sticky top-0 z-40 backdrop-blur-md">
+      <header className="bg-gradient-to-l from-slate-900 via-blue-900 to-indigo-900 shadow-2xl border-b border-indigo-400/20 sticky top-0 z-40 backdrop-blur-md">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Academy Name */}

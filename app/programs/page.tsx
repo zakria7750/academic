@@ -225,6 +225,8 @@ export default async function ProgramsPage() {
 
       {/* Ultra Premium Hero Section */}
       <section className="relative overflow-hidden py-32 lg:py-40">
+      <div className="absolute inset-0 opacity-30 bg-black z-10"></div>
+
         {/* Multi-layered Premium Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
