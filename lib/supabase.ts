@@ -195,3 +195,24 @@ export type InternationalAccreditation = {
   created_at: string
   updated_at: string
 }
+
+export type AcademicDepartment = {
+  id: string
+  title: string
+  description: string
+  image_url: string | null
+  created_at: string
+  updated_at: string
+}
+
+export type AcademicProgram = {
+  id: string
+  department_id: string
+  name: string
+  description: string
+  hours: number
+  fees: number
+  image_url: string | null
+  created_at: string
+  updated_at: string
+}

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Users, BookOpen, Award, GraduationCap, UserCheck, UserPlus, Newspaper, FileText, Shield } from "lucide-react"
+import { Users, BookOpen, Award, GraduationCap, UserCheck, UserPlus, Newspaper, FileText, Shield, Building2 } from "lucide-react"
 
 export default function DashboardPage() {
   const adminSections = [
@@ -18,6 +18,13 @@ export default function DashboardPage() {
       href: "/dashboard/faculty-members",
       description: "إدارة أعضاء هيئة التدريس والمحاضرين",
       color: "from-academy-gold-500 to-academy-gold-600",
+    },
+    {
+      title: "إدارة الأقسام الأكاديمية",
+      icon: Building2,
+      href: "/dashboard/academic-departments",
+      description: "إدارة الأقسام الأكاديمية والبرامج التعليمية",
+      color: "from-academy-blue-500 to-academy-blue-600",
     },
     {
       title: "إدارة البرامج التعليمية",
