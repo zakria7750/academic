@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,69 +12,64 @@ import {
   GraduationCap,
   Globe,
   Star,
+  Building2,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { supabase, type AcademicDepartment, type AcademicProgram } from "@/lib/supabase";
 
-const departments = [
-  {
-    id: "educational-psychological",
-    title: "الأقسام التربوية والنفسية",
-    description:
-      "أقسام متخصصة في التربية وعلم النفس والإرشاد مع برامج حديثة ومبتكرة تواكب أحدث التطورات العالمية",
-    programsCount: 6,
-    image: "/educational-psychology-dept.png",
-    icon: Brain,
-    color: "bg-gradient-to-br from-blue-500 to-blue-600",
-    gradient: "from-blue-500/20 to-blue-600/20",
-  },
-  {
-    id: "skills-development",
-    title: "الأقسام المهارية والتطويرية",
-    description:
-      "أقسام تركز على تطوير المهارات الشخصية والمهنية بأساليب عملية ومعاصرة",
-    programsCount: 3,
-    image: "/skills-development-dept.png",
-    icon: Target,
-    color: "bg-gradient-to-br from-green-500 to-green-600",
-    gradient: "from-green-500/20 to-green-600/20",
-  },
-  {
-    id: "academic-linguistic",
-    title: "الأقسام الأكاديمية واللغوية",
-    description:
-      "أقسام اللغات والدراسات الإسلامية والبحوث بمنهجية أكاديمية رصينة ومتطورة",
-    programsCount: 3,
-    image: "/academic-linguistic-dept.png",
-    icon: BookOpen,
-    color: "bg-gradient-to-br from-purple-500 to-purple-600",
-    gradient: "from-purple-500/20 to-purple-600/20",
-  },
-  {
-    id: "administrative-community",
-    title: "الأقسام الإدارية والمجتمعية",
-    description:
-      "أقسام إدارة الأعمال والتنمية المستدامة والذكاء الاصطناعي بخبرات عالمية",
-    programsCount: 5,
-    image: "/administrative-community-dept.png",
-    icon: Users,
-    color: "bg-gradient-to-br from-orange-500 to-orange-600",
-    gradient: "from-orange-500/20 to-orange-600/20",
-  },
-  {
-    id: "health-agriculture",
-    title: "الأقسام الصحية والزراعية",
-    description:
-      "أقسام التغذية العلاجية والطب البديل والزراعة بأحدث المعايير الدولية",
-    programsCount: 3,
-    image: "/health-agriculture-dept.png",
-    icon: Award,
-    color: "bg-gradient-to-br from-red-500 to-red-600",
-    gradient: "from-red-500/20 to-red-600/20",
-  },
+// أيقونات الأقسام المختلفة
+const departmentIcons = [Brain, Target, BookOpen, Users, Award, Building2, GraduationCap];
+const departmentColors = [
+  "bg-gradient-to-br from-blue-500 to-blue-600",
+  "bg-gradient-to-br from-green-500 to-green-600", 
+  "bg-gradient-to-br from-purple-500 to-purple-600",
+  "bg-gradient-to-br from-orange-500 to-orange-600",
+  "bg-gradient-to-br from-red-500 to-red-600",
+  "bg-gradient-to-br from-indigo-500 to-indigo-600",
+  "bg-gradient-to-br from-pink-500 to-pink-600"
 ];
 
 export default function DepartmentsPage() {
+  const [departments, setDepartments] = useState<AcademicDepartment[]>([]);
+  const [programs, setPrograms] = useState<AcademicProgram[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // جلب البيانات من قاعدة البيانات
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      // جلب الأقسام
+      const { data: departmentsData, error: departmentsError } = await supabase
+        .from("academic_departments")
+        .select("*")
+        .order("created_at", { ascending: true });
+
+      if (departmentsError) throw departmentsError;
+
+      // جلب البرامج
+      const { data: programsData, error: programsError } = await supabase
+        .from("academic_programs")
+        .select("*");
+
+      if (programsError) throw programsError;
+
+      setDepartments(departmentsData || []);
+      setPrograms(programsData || []);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // حساب عدد البرامج لكل قسم
+  const getDepartmentProgramsCount = (departmentId: string) => {
+    return programs.filter(program => program.department_id === departmentId).length;
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
       {/* Ultra Premium Background Pattern */}
@@ -166,13 +164,13 @@ export default function DepartmentsPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">
-                    5
+                    {loading ? "..." : departments.length}
                   </div>
                   <div className="text-white/80">أقسام رئيسية</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">
-                    20+
+                    {loading ? "..." : programs.length}
                   </div>
                   <div className="text-white/80">برنامج تعليمي</div>
                 </div>
@@ -200,7 +198,7 @@ export default function DepartmentsPage() {
                   <BookOpen className="text-academy-gold text-2xl" />
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">
-                  5
+                  {loading ? "..." : departments.length}
                 </h3>
                 <p className="text-academy-dark-gray font-semibold text-center text-lg">
                   أقسام رئيسية
@@ -216,7 +214,7 @@ export default function DepartmentsPage() {
                   <Target className="text-academy-gold text-2xl" />
                 </div>
                 <h3 className="text-4xl font-bold text-academy-blue mb-3 text-center">
-                  20
+                  {loading ? "..." : programs.length}
                 </h3>
                 <p className="text-academy-dark-gray font-semibold text-center text-lg">
                   برنامج تعليمي
@@ -265,87 +263,105 @@ export default function DepartmentsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {departments.map((department, index) => {
-              const Icon = department.icon;
-              return (
-                <Card
-                  key={department.id}
-                  className="group bg-white/90 backdrop-blur-sm hover:shadow-3xl border-0 shadow-2xl transition-all duration-700 hover:-translate-y-6 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
-                >
-                  {/* Enhanced Department Image */}
-                  <div className="relative h-56 overflow-hidden">
-                    <Image
-                      src={department.image || "/placeholder.svg"}
-                      alt={department.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin w-12 h-12 border-4 border-academy-gold border-t-transparent rounded-full mx-auto mb-4"></div>
+              <p className="text-academy-blue font-semibold">جاري تحميل الأقسام...</p>
+            </div>
+          ) : departments.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="w-24 h-24 bg-academy-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Building2 className="text-academy-blue" size={40} />
+              </div>
+              <h3 className="text-xl font-bold text-academy-blue mb-2">لا توجد أقسام أكاديمية</h3>
+              <p className="text-academy-dark-gray">لم يتم إضافة أي أقسام بعد</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {departments.map((department, index) => {
+                const Icon = departmentIcons[index % departmentIcons.length];
+                const color = departmentColors[index % departmentColors.length];
+                const programsCount = getDepartmentProgramsCount(department.id);
+                
+                return (
+                  <Card
+                    key={department.id}
+                    className="group bg-white/90 backdrop-blur-sm hover:shadow-3xl border-0 shadow-2xl transition-all duration-700 hover:-translate-y-6 rounded-3xl overflow-hidden border-2 border-academy-gold/20 hover:border-academy-gold/60 relative"
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                    }}
+                  >
+                    {/* Enhanced Department Image */}
+                    <div className="relative h-56 overflow-hidden">
+                      <Image
+                        src={department.image_url || "/placeholder.svg"}
+                        alt={department.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    {/* Enhanced Programs Count Badge */}
-                    <div className="absolute top-4 right-4 bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-full text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
-                      {department.programsCount} برامج
-                    </div>
+                      {/* Enhanced Programs Count Badge */}
+                      <div className="absolute top-4 right-4 bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue px-4 py-2 rounded-full text-sm font-bold shadow-xl backdrop-blur-sm border border-white/20">
+                        {programsCount} برامج
+                      </div>
 
-                    {/* Enhanced Department Icon */}
-                    <div className="absolute bottom-4 right-4">
-                      <div
-                        className={`w-14 h-14 ${department.color} rounded-2xl flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-500`}
-                      >
-                        <Icon className="text-white text-xl" />
+                      {/* Enhanced Department Icon */}
+                      <div className="absolute bottom-4 right-4">
+                        <div
+                          className={`w-14 h-14 ${color} rounded-2xl flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-500`}
+                        >
+                          <Icon className="text-white text-xl" />
+                        </div>
+                      </div>
+
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                        <div className="text-white text-center w-full">
+                          <p className="text-lg font-semibold mb-2">
+                            اكتشف المزيد
+                          </p>
+                          <p className="text-sm opacity-90">
+                            انقر لعرض التفاصيل الكاملة
+                          </p>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                      <div className="text-white text-center w-full">
-                        <p className="text-lg font-semibold mb-2">
-                          اكتشف المزيد
-                        </p>
-                        <p className="text-sm opacity-90">
-                          انقر لعرض التفاصيل الكاملة
-                        </p>
+                    {/* Enhanced Department Info */}
+                    <div className="p-8">
+                      <h3 className="text-2xl font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors duration-500 leading-tight">
+                        {department.title}
+                      </h3>
+
+                      <p className="text-academy-dark-gray text-base leading-relaxed mb-6 line-clamp-3">
+                        {department.description}
+                      </p>
+
+                      {/* Enhanced Programs Count Display */}
+                      <div className="flex items-center justify-between mb-8 p-4 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
+                        <div className="flex items-center space-x-3 space-x-reverse">
+                          <Target size={18} className="text-academy-gold" />
+                          <span className="text-academy-blue font-semibold text-sm">
+                            {programsCount} برامج متاحة
+                          </span>
+                        </div>
+                        <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
                       </div>
+
+                      {/* Enhanced View Details Button */}
+                      <Link href={`/departments/${department.id}`}>
+                        <Button className="w-full bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue hover:from-academy-gold-dark hover:to-academy-gold font-bold py-4 rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 border-0">
+                          عرض التفاصيل
+                          <div className="w-2 h-2 bg-academy-blue rounded-full ml-2 animate-pulse"></div>
+                        </Button>
+                      </Link>
                     </div>
-                  </div>
-
-                  {/* Enhanced Department Info */}
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-academy-blue mb-4 group-hover:text-academy-gold transition-colors duration-500 leading-tight">
-                      {department.title}
-                    </h3>
-
-                    <p className="text-academy-dark-gray text-base leading-relaxed mb-6 line-clamp-3">
-                      {department.description}
-                    </p>
-
-                    {/* Enhanced Programs Count Display */}
-                    <div className="flex items-center justify-between mb-8 p-4 bg-gradient-to-r from-academy-blue/5 to-academy-gold/5 rounded-2xl border border-academy-blue/10">
-                      <div className="flex items-center space-x-3 space-x-reverse">
-                        <Target size={18} className="text-academy-gold" />
-                        <span className="text-academy-blue font-semibold text-sm">
-                          {department.programsCount} برامج متاحة
-                        </span>
-                      </div>
-                      <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
-                    </div>
-
-                    {/* Enhanced View Details Button */}
-                    <Link href={`/departments/${department.id}`}>
-                      <Button className="w-full bg-gradient-to-r from-academy-gold to-academy-gold-dark text-academy-blue hover:from-academy-gold-dark hover:to-academy-gold font-bold py-4 rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 border-0">
-                        عرض التفاصيل
-                        <div className="w-2 h-2 bg-academy-blue rounded-full ml-2 animate-pulse"></div>
-                      </Button>
-                    </Link>
-                  </div>
-                </Card>
-              );
-            })}
-          </div>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
