@@ -96,17 +96,17 @@ export default async function BoardPage() {
         </div>
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
-  <Image
-    src="/board-background-1440.webp"
-    alt="مجلس الادارة"
-    fill
-    sizes="(max-width: 600px) 480px,
-           (max-width: 1024px) 960px,
-           1440px"
-    className="object-cover"
-    priority
-  />
-</div>
+          <Image
+            src="/board-background-1440.webp"
+            alt="مجلس الادارة"
+            fill
+            sizes="(max-width: 600px) 480px,
+                   (max-width: 1024px) 960px,
+                   1440px"
+            className="object-cover"
+            priority
+          />
+        </div>
       </section>
 
              {/* Enhanced Board Members Section */}

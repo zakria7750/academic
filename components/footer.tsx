@@ -188,7 +188,9 @@ export default function Footer() {
                   <Phone size={16} className="text-academy-gold" />
                 </div>
                 <div>
-                  <p className="text-gray-300 text-sm">+967 730 530 992</p>
+              <Link href="https://wa.me/967730530992" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
+                    +967 730 530 992
+              </Link>
                 </div>
               </div>
 
@@ -197,9 +199,14 @@ export default function Footer() {
                   <Mail size={16} className="text-academy-gold" />
                 </div>
                 <div>
-                  <p className="text-gray-300 text-sm">info@knowledge-academy.edu</p>
-                  <p className="text-gray-300 text-sm">admission@knowledge-academy.edu</p>
+                  <Link href="https://info@knowledge-academy.edu" className="block text-gray-300 hover:text-academy-gold transition-colors duration-200">
+                    info@knowledge-academy.edu
+                 </Link>
+                 <Link href="https://admission@knowledge-academy.edu" className="block text-gray-300 hover:text-academy-gold transition-colors duration-200">
+                    admission@knowledge-academy.edu
+                 </Link>
                 </div>
+                
               </div>
             </div>
 

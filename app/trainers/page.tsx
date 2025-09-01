@@ -118,10 +118,10 @@ export default function TrainersPage() {
             {/* Premium Title Section */}
             <div className="absolute inset-0 z-0">
           <Image
-            src="/graduates-hero-background-1440.webp"
+            src="/about-background-1440.webp"
             alt="خريجو أكاديمية المعرفة الدولية"
             fill
-            className="object-contian"
+            className="object-conver"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/60 via-academy-blue/40 to-academy-blue-dark/80"></div>
         </div>

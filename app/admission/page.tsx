@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import {
   CheckCircle,
   FileText,
@@ -136,6 +137,7 @@ export default function AdmissionPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
+
       {/* Ultra Premium Background Pattern */}
       <div className="absolute inset-0 opacity-35">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(0,31,63,0.06),transparent_50%)] bg-[radial-gradient(circle_at_70%_80%,rgba(255,215,0,0.09),transparent_50%)]"></div>
@@ -152,11 +154,12 @@ export default function AdmissionPage() {
 
       {/* Ultra Premium Hero Section */}
       <section className="relative overflow-hidden py-32 lg:py-40">
+        
         {/* Multi-layered Premium Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/85 to-academy-blue/65"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.12),transparent_70%)]"></div>
-        
+          
         {/* Ultra Premium Decorative Elements */}
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-academy-gold/25 to-transparent rounded-full blur-2xl animate-pulse"></div>
@@ -184,6 +187,7 @@ export default function AdmissionPage() {
               <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-semibold max-w-6xl mx-auto leading-relaxed mb-8 drop-shadow-lg font-arabic tracking-wide">
                 ابدأ رحلتك التعليمية معنا واحصل على شهادة معتمدة في تخصصك المفضل
               </p>
+              
               <p className="text-xl md:text-2xl text-academy-gold-200 max-w-5xl mx-auto leading-relaxed font-light font-arabic">
                 انضم إلى آلاف الطلاب الذين حققوا أحلامهم الأكاديمية والمهنية معنا في بيئة تعليمية متميزة
               </p>
@@ -236,9 +240,22 @@ export default function AdmissionPage() {
                 <p className="text-blue-300 text-lg leading-relaxed font-arabic">مرافقة أكاديمية متكاملة ومتخصصة</p>
               </div>
             </div>
+            
           </div>
         </div>
-        
+         {/* Enhanced Background Image */}
+                {/* <div className="absolute inset-0 z-50">
+                  <Image
+                    src="/about-background-1440.webp"
+                    alt="مجلس الادارة"
+                    fill
+                    sizes="(max-width: 600px) 480px,
+                           (max-width: 1024px) 960px,
+                           1440px"
+                    className="object-cover"
+                    priority
+                  />
+                </div> */}
       </section>
 
       {/* Ultra Premium Application Steps Section */}

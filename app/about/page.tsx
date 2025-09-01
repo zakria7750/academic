@@ -57,7 +57,7 @@ export default function AboutPage() {
       </div>
 
       {/* Ultra Premium Hero Section */}
-      <section className="relative overflow-hidden py-32 lg:py-40">
+      <section className="relative overflow-hidden py-32 lg:py-40 ">
         {/* Multi-layered Premium Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/95 via-academy-blue/80 to-academy-blue/60"></div>
@@ -93,12 +93,12 @@ export default function AboutPage() {
                   أكاديمية المعرفة الدولية - منارة للتعليم والتميز
                 </span>
               </p>
-              <p className="text-lg lg:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
+              <p className=" font-bold text-lg lg:text-xl text-white max-w-4xl mx-auto leading-relaxed mb-8">
                 تعرف على رؤيتنا ورسالتنا وقيمنا التي تجعلنا مؤسسة رائدة في التعليم العالي
               </p>
               
               {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-3 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">رؤية</div>
                   <div className="text-white/80">واضحة ومحددة</div>
@@ -117,17 +117,17 @@ export default function AboutPage() {
         </div>
         {/* Enhanced Background Image */}
         <div className="absolute inset-0 z-0">
-  <Image
-    src="/about-background-1440.webp"
-    alt="من نحن"
-    fill
-    sizes="(max-width: 600px) 480px,
-           (max-width: 1024px) 960px,
-           1440px"
-    className="object-contian"
-    priority
-  />
-</div>
+          <Image
+            src="/about-background-1440.webp"
+            alt="من نحن"
+            fill
+            sizes="(max-width: 600px) 480px,
+                   (max-width: 1024px) 960px,
+                   1440px"
+            className="object-conver"
+            priority
+          />
+        </div>
       </section>
 
              {/* Enhanced Vision Section */}

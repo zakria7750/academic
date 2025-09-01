@@ -57,8 +57,7 @@ export default function Header() {
                     <GraduationCap className="text-slate-900 w-5 h-5" />
                   </div>
                   <div>
-                    <span className="font-bold text-amber-300 text-sm">أكاديمية المعرفة</span>
-                    <p className="text-xs text-indigo-200/70">الدولية</p>
+                    <span className="font-bold text-amber-300 text-sm">أكاديمية المعرفة الدولية</span>
                   </div>
                 </div>
                 <button

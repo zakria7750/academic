@@ -68,7 +68,7 @@ export default async function AccreditationsPage() {
     sizes="(max-width: 600px) 480px,
            (max-width: 1024px) 960px,
            1440px"
-    className="object-contian"
+    className="object-conver"
     priority
   />
           <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/60 via-transparent to-transparent"></div>

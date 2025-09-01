@@ -78,7 +78,7 @@ export default function HomePage() {
               </p>
               
               {/* Premium Stats Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-3 md:grid-cols-3 gap-2 max-w-4xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500">
                   <div className="text-3xl font-bold text-academy-gold mb-2">1000+</div>
                   <div className="text-white/80">خريج متميز</div>
@@ -149,7 +149,7 @@ export default function HomePage() {
     sizes="(max-width: 600px) 480px,
            (max-width: 1024px) 960px,
            1440px"
-    className="object-contian"
+    className="object-cover"
     priority
   />
         </div>
@@ -175,7 +175,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-                     <div className="homepage-stats-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="homepage-stats-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-premium hover:shadow-premium-hover transition-all duration-700 hover:-translate-y-6 rounded-3xl premium-card">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <CardContent className="relative p-8 text-center">
