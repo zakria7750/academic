@@ -96,6 +96,7 @@ export default function TrainersPage() {
 
       {/* Ultra Premium Hero Section */}
       <section className="relative overflow-hidden py-32 lg:py-40">
+        <div className="absolute inset-0 opacity-30 bg-black z-10"></div>
       <div className="absolute inset-0 opacity-30 bg-black z-10"></div>
 
         {/* Multi-layered Premium Background */}
@@ -118,15 +119,6 @@ export default function TrainersPage() {
         <div className="relative z-10 container mx-auto max-w-8xl px-6 lg:px-8">
           <div className="text-center text-white">
             {/* Premium Title Section */}
-            <div className="absolute inset-0 z-0">
-          <Image
-            src="/about-background-1440.webp"
-            alt="خريجو أكاديمية المعرفة الدولية"
-            fill
-            className="object-conver"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-academy-blue/60 via-academy-blue/40 to-academy-blue-dark/80"></div>
-        </div>
             <div className="mb-12">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
@@ -164,6 +156,18 @@ export default function TrainersPage() {
             </div>
           </div>
         </div>
+        <div className="absolute inset-0 z-0">
+                  <Image
+                    src="/tarnier-1440.webp"
+                    alt="من نحن"
+                    fill
+                    sizes="(max-width: 600px) 480px,
+                           (max-width: 1024px) 960px,
+                           1440px"
+                    className="object-conver"
+                    priority
+                  />
+                </div>
       </section>
       {/* Enhanced Trainers List Section */}
       <section className="py-20 lg:py-32 bg-white">

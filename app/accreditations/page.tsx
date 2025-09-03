@@ -88,7 +88,7 @@ export default async function AccreditationsPage() {
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-semibold max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6 lg:mb-8 drop-shadow-lg font-arabic tracking-wide">
                 اعتمادات دولية معترف بها عالمياً تضمن جودة التعليم والشهادات
               </p>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light font-arabic">
+              <p className="text-sm sm:text-base md:text-base lg:text-xl tracking-tight font-bold text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light font-arabic">
                 شراكات استراتيجية مع أرقى المؤسسات التعليمية والهيئات المعتمدة
                 حول العالم
               </p>

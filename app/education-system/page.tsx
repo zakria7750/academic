@@ -80,7 +80,7 @@ export default function EducationSystemPage(){
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed mb-4 sm:mb-6">
                 نظام تعليمي متطور يجمع بين الأصالة والحداثة
               </p>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light">
+              <p className="text-sm sm:text-base md:text-base lg:text-lg text-academy-gold-200 max-w-4xl mx-auto leading-relaxed font-light">
                 نقدم لك تجربة تعليمية متميزة تؤهلك لمستقبل مشرق مع أحدث التقنيات التعليمية والمناهج المعاصرة
               </p>
             </div>
@@ -775,7 +775,7 @@ export default function EducationSystemPage(){
             <Card className="text-center hover:shadow-2xl transition-all duration-500 border-2 hover:border-academy-gold group overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl hover:-translate-y-4 hover:scale-[1.02]">
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/progress-tracking.png"
+                  src="/progress-tracking-1440.webp"
                   alt="تتبع التقدم"
                   width={300}
                   height={160}
