@@ -1,13 +1,22 @@
-import { getGraduates } from "@/app/actions/graduates-actions"
-import { GraduateCard } from "@/components/graduate-card"
-import { GraduateApplicationForm } from "@/components/graduate-application-form"
-import { GraduationCap, Users, Trophy, Globe, Star, Crown, Sparkles, Award } from "lucide-react"
-import Image from "next/image"
+import { getGraduates } from "@/app/actions/graduates-actions";
+import { GraduateCard } from "@/components/graduate-card";
+import { GraduateApplicationForm } from "@/components/graduate-application-form";
+import {
+  GraduationCap,
+  Users,
+  Trophy,
+  Globe,
+  Star,
+  Crown,
+  Sparkles,
+  Award,
+} from "lucide-react";
+import Image from "next/image";
 
 export const revalidate = 300; // ISR لمدة 5 دقائق
 
 export default async function GraduatesPage() {
-  const graduates = await getGraduates()
+  const graduates = await getGraduates();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
@@ -21,14 +30,12 @@ export default async function GraduatesPage() {
 
       {/* Premium Hero Section */}
       <section className="relative overflow-hidden py-24 lg:py-32">
-      <div className="absolute inset-0 opacity-30 bg-black z-10"></div>
+        <div className="absolute inset-0 opacity-30 bg-black z-10"></div>
 
         {/* Enhanced Background with Multiple Layers */}
         <div className="absolute inset-0 bg-gradient-to-br from-academy-blue via-academy-blue-dark to-slate-900"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-academy-blue/90 via-academy-blue/70 to-academy-blue/50"></div>
-        
-        
-        
+
         {/* Premium Decorative Elements */}
         <div className="absolute inset-0 opacity-30 ">
           <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-academy-gold/20 to-transparent rounded-full blur-2xl animate-pulse"></div>
@@ -42,18 +49,21 @@ export default async function GraduatesPage() {
             <div className="mb-12">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-white via-academy-gold-light to-white bg-clip-text text-transparent">
-                  هيئة التدريس والخريجين 
+                  هيئة التدريس
                 </span>
               </h1>
               <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-gold to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={24} />
+                <Sparkles
+                  className="text-academy-gold animate-pulse"
+                  size={24}
+                />
                 <div className="w-20 h-1 bg-gradient-to-r from-transparent via-academy-gold to-transparent"></div>
                 <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
               <p className="text-2xl md:text-3xl lg:text-4xl text-academy-gold-light font-medium max-w-4xl mx-auto leading-relaxed">
-                نفخر بإنجازات خريجينا المتميزين الذين يقودون التغيير في مختلف المجالات حول العالم
+                نفخر بإنجازاتنا التى تقود التغيير في مختلف المجالات حول العالم
               </p>
             </div>
 
@@ -67,8 +77,12 @@ export default async function GraduatesPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-emerald-400/20 to-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <Users className="text-emerald-300" size={28} />
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">{graduates.length}+</div>
-                    <div className="text-emerald-300 font-semibold text-lg">سيرة ذاتية</div>
+                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">
+                      {graduates.length}+
+                    </div>
+                    <div className="text-emerald-300 font-semibold text-lg">
+                      سيرة ذاتية
+                    </div>
                   </div>
                 </div>
               </div>
@@ -81,8 +95,12 @@ export default async function GraduatesPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <Globe className="text-blue-300" size={28} />
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">15+</div>
-                    <div className="text-blue-300 font-semibold text-lg">دولة</div>
+                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">
+                      15+
+                    </div>
+                    <div className="text-blue-300 font-semibold text-lg">
+                      دولة
+                    </div>
                   </div>
                 </div>
               </div>
@@ -95,8 +113,12 @@ export default async function GraduatesPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-academy-gold/20 to-yellow-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <Trophy className="text-academy-gold-light" size={28} />
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">95%</div>
-                    <div className="text-academy-gold-light font-semibold text-lg">معدل التوظيف</div>
+                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">
+                      95%
+                    </div>
+                    <div className="text-academy-gold-light font-semibold text-lg">
+                      معدل التوظيف
+                    </div>
                   </div>
                 </div>
               </div>
@@ -109,8 +131,12 @@ export default async function GraduatesPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <Award className="text-purple-300" size={28} />
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">10+</div>
-                    <div className="text-purple-300 font-semibold text-lg">تخصص</div>
+                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3">
+                      10+
+                    </div>
+                    <div className="text-purple-300 font-semibold text-lg">
+                      تخصص
+                    </div>
                   </div>
                 </div>
               </div>
@@ -157,9 +183,6 @@ export default async function GraduatesPage() {
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-academy-blue mb-6 tracking-tight">
                 سيرة ذاتية مختصرة
               </h2>
-              <p className="text-xl md:text-2xl text-academy-dark-gray max-w-3xl mx-auto leading-relaxed font-medium">
-                اكتشف كيف غيرت أكاديمية المعرفة الدولية حياة خريجينا المهنية ومساراتهم نحو النجاح
-              </p>
             </div>
           </div>
 
@@ -177,10 +200,12 @@ export default async function GraduatesPage() {
                 <div className="w-8 h-8 bg-gradient-to-br from-academy-blue to-academy-blue-dark rounded-lg flex items-center justify-center shadow-lg">
                   <Users className="text-white" size={16} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-xl">انضم إلى مجتمعنا</h3>
+                <h3 className="text-academy-blue font-bold text-xl">
+                  انضم إلى مجتمعنا
+                </h3>
               </div>
               <p className="text-academy-dark-gray leading-relaxed">
-                كن جزءاً من شبكة خريجينا المتميزين واشترك في قصص النجاح التي تلهم الأجيال القادمة
+                كن جزءاً من شبكة هيئة التدريس المتميزين
               </p>
             </div>
           </div>
@@ -217,17 +242,21 @@ export default async function GraduatesPage() {
 
             <div className="mb-10">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-academy-blue mb-8 tracking-tight leading-tight">
-                انضم إلى شبكة خريجي الأكاديمية
+                انضم إلى هيئة التدريس
               </h2>
               <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
                 <div className="w-16 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
-                <Sparkles className="text-academy-gold animate-pulse" size={20} />
+                <Sparkles
+                  className="text-academy-gold animate-pulse"
+                  size={20}
+                />
                 <div className="w-16 h-1 bg-gradient-to-r from-transparent via-academy-blue to-transparent"></div>
                 <div className="w-2 h-2 bg-academy-gold rounded-full animate-pulse"></div>
               </div>
               <p className="text-xl md:text-2xl text-academy-dark-gray max-w-3xl mx-auto leading-relaxed font-medium">
-                شارك قصة نجاحك مع المجتمع وكن مصدر إلهام للطلاب الحاليين والمستقبليين
+                شارك قصة نجاحك مع المجتمع وكن مصدر إلهام للطلاب الحاليين
+                والمستقبليين
               </p>
             </div>
 
@@ -237,24 +266,36 @@ export default async function GraduatesPage() {
                 <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Star className="text-emerald-600" size={24} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-lg mb-2">شارك إنجازاتك</h3>
-                <p className="text-academy-dark-gray text-sm">اعرض مسيرتك المهنية وإنجازاتك المتميزة</p>
+                <h3 className="text-academy-blue font-bold text-lg mb-2">
+                  شارك إنجازاتك
+                </h3>
+                <p className="text-academy-dark-gray text-sm">
+                  اعرض مسيرتك المهنية وإنجازاتك المتميزة
+                </p>
               </div>
 
               <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-slate-200/50 hover:shadow-xl transition-all duration-300">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Users className="text-blue-600" size={24} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-lg mb-2">تواصل مع الخريجين</h3>
-                <p className="text-academy-dark-gray text-sm">انضم إلى شبكة مهنية قوية من الخريجين</p>
+                <h3 className="text-academy-blue font-bold text-lg mb-2">
+                  تواصل مع المدرسين
+                </h3>
+                <p className="text-academy-dark-gray text-sm">
+                  انضم إلى شبكة مهنية قوية من الكوادر التعليمية
+                </p>
               </div>
 
               <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-slate-200/50 hover:shadow-xl transition-all duration-300">
                 <div className="w-12 h-12 bg-gradient-to-br from-academy-gold/20 to-yellow-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Award className="text-academy-gold" size={24} />
                 </div>
-                <h3 className="text-academy-blue font-bold text-lg mb-2">ألهم الآخرين</h3>
-                <p className="text-academy-dark-gray text-sm">كن مصدر إلهام للجيل القادم من الطلاب</p>
+                <h3 className="text-academy-blue font-bold text-lg mb-2">
+                  ألهم الآخرين
+                </h3>
+                <p className="text-academy-dark-gray text-sm">
+                  كن مصدر إلهام للجيل القادم{" "}
+                </p>
               </div>
             </div>
           </div>
@@ -274,10 +315,12 @@ export default async function GraduatesPage() {
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 p-4">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 bg-academy-gold rounded-full animate-pulse"></div>
-            <span className="text-academy-blue font-medium text-sm">شبكة الخريجين النشطة</span>
+            <span className="text-academy-blue font-medium text-sm">
+              شبكة المدرسين النشطة
+            </span>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
