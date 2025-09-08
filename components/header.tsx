@@ -83,7 +83,7 @@ function MobileSidebarContent({ onClose }: { onClose: () => void }) {
     { name: "مجلس الإدارة", href: "/board", icon: Users },
     { name: "هيئة التدريس", href: "/faculty", icon: UserCheck },
     { name: "المدربين المعتمدين", href: "/trainers", icon: Award },
-    { name: "هيئة التدريس والخريجين", href: "/graduates", icon: GraduationCap },
+    { name: "الانضمام لهيئة التدريس", href: "/graduates", icon: GraduationCap },
     { name: "الأقسام الأكاديمية", href: "/departments", icon: BookOpen },
     { name: "البرامج التعليمية", href: "/programs", icon: FileText },
     { name: "نظام التعليم", href: "/education-system", icon: Settings },
