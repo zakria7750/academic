@@ -243,7 +243,7 @@ export default function AcademicDepartmentsPage() {
                   إضافة قسم أكاديمي جديد
                 </DialogTitle>
               </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-6 mt-6 ">
+              <form onSubmit={handleSubmit} className="space-y-6 mt-6 bg-white">
                 {/* Image Upload */}
                 <div className="space-y-2">
                   <Label htmlFor="image" className="text-academy-blue font-semibold">
@@ -344,7 +344,7 @@ export default function AcademicDepartmentsPage() {
                 تعديل القسم الأكاديمي
               </DialogTitle>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+            <form onSubmit={handleSubmit} className="space-y-6 mt-6 bg-white">
               {/* Image Upload */}
               <div className="space-y-2">
                 <Label htmlFor="edit-image" className="text-academy-blue font-semibold">
