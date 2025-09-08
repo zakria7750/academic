@@ -63,7 +63,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
       console.log("[v0] Adding graduate...")
       const result = await addGraduate(formData)
       if (result.success) {
-        setMessage({ type: "success", text: "تم إضافة الخريج بنجاح" })
+        setMessage({ type: "success", text: "تم إضافة مدرس بنجاح" })
         setIsAddDialogOpen(false)
         const newGraduate: Graduate = {
           id: result.id,
@@ -95,7 +95,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
       console.log("[v0] Updating graduate:", editingGraduate.id)
       const result = await updateGraduate(editingGraduate.id, formData)
       if (result.success) {
-        setMessage({ type: "success", text: "تم تحديث الخريج بنجاح" })
+        setMessage({ type: "success", text: "تم تحديث مدرس بنجاح" })
         setEditingGraduate(null)
         const updatedGraduate: Graduate = {
           id: editingGraduate.id,
@@ -120,13 +120,13 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
   }
 
   async function handleDeleteGraduate(id: number) {
-    if (confirm("هل أنت متأكد من حذف هذا الخريج؟")) {
+    if (confirm("هل أنت متأكد من حذف هذا المدرس؟")) {
       try {
         setIsLoading(true)
         console.log("[v0] Deleting graduate:", id)
         const result = await deleteGraduate(id)
         if (result.success) {
-          setMessage({ type: "success", text: "تم حذف الخريج بنجاح" })
+          setMessage({ type: "success", text: "تم حذف المدرس بنجاح" })
           setGraduates(graduates.filter((g) => g.id !== id))
         } else {
           setMessage({ type: "error", text: result.error || "حدث خطأ" })
@@ -228,7 +228,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
               <Users className="w-5 h-5 text-academy-blue" />
             </div>
             <div className="text-right">
-              <div className="text-sm font-bold">الخريجون المعتمدون</div>
+              <div className="text-sm font-bold">المدرسين المعتمدون</div>
               <div className="text-xs text-academy-dark-gray">({graduates?.length || 0}) خريج</div>
             </div>
           </TabsTrigger>
@@ -249,20 +249,20 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
         <TabsContent value="graduates" className="space-y-8 mt-8">
           <div className="flex justify-between items-center bg-gradient-to-r from-academy-blue/5 to-academy-blue/10 rounded-2xl p-6">
             <div>
-              <h2 className="text-3xl font-bold text-academy-blue mb-2">الخريجون المعتمدون</h2>
-              <p className="text-academy-dark-gray">إدارة بيانات الخريجين المتميزين وقصص نجاحهم</p>
+              <h2 className="text-3xl font-bold text-academy-blue mb-2">المدرسين المعتمدون</h2>
+              <p className="text-academy-dark-gray">إدارة بيانات المدرسين المتميزين وقصص نجاحهم</p>
             </div>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
                 <Button className="bg-gradient-to-r from-academy-blue to-academy-blue-600 hover:from-academy-blue-600 hover:to-academy-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                   <Plus className="w-5 h-5 ml-2" />
-                  إضافة خريج جديد
+                  إضافة مدرس جديد
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
                 <DialogHeader className="text-center pb-4">
-                  <DialogTitle className="text-2xl font-bold text-academy-blue">إضافة خريج جديد</DialogTitle>
-                  <p className="text-academy-dark-gray mt-2">إضافة خريج متميز إلى شبكة الخريجين</p>
+                  <DialogTitle className="text-2xl font-bold text-academy-blue">إضافة مدرس جديد</DialogTitle>
+                  <p className="text-academy-dark-gray mt-2">إضافة مدرس متميز إلى شبكة المدرسين</p>
                 </DialogHeader>
                 <GraduateForm onSubmit={handleAddGraduate} />
               </DialogContent>
@@ -337,7 +337,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
               </Card>
             )) || (
               <div className="col-span-full text-center py-8">
-                <p className="text-academy-dark-gray">لا توجد خريجين مضافين حالياً</p>
+                <p className="text-academy-dark-gray">لا توجد مدرسين مضافين حالياً</p>
               </div>
             )}
           </div>
@@ -346,7 +346,7 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
         <TabsContent value="applications" className="space-y-8 mt-8">
           <div className="bg-gradient-to-r from-academy-gold/5 to-academy-gold/10 rounded-2xl p-6">
             <h2 className="text-3xl font-bold text-academy-blue mb-2">طلبات التقديم</h2>
-            <p className="text-academy-dark-gray">مراجعة ومعالجة طلبات الانضمام إلى شبكة الخريجين</p>
+            <p className="text-academy-dark-gray">مراجعة ومعالجة طلبات الانضمام إلى شبكة المدرسين</p>
           </div>
 
           <div className="space-y-4">
@@ -374,8 +374,8 @@ export function GraduatesManagement({ initialGraduates, initialApplications }: G
       <Dialog open={!!editingGraduate} onOpenChange={() => setEditingGraduate(null)}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
           <DialogHeader className="text-center pb-4">
-            <DialogTitle className="text-2xl font-bold text-academy-blue">تعديل بيانات الخريج</DialogTitle>
-            <p className="text-academy-dark-gray mt-2">تحديث معلومات الخريج وقصة نجاحه</p>
+            <DialogTitle className="text-2xl font-bold text-academy-blue">تعديل بيانات المدرسين</DialogTitle>
+            <p className="text-academy-dark-gray mt-2">تحديث معلومات المدرسين وقصة نجاحه</p>
           </DialogHeader>
           {editingGraduate && <GraduateForm onSubmit={handleUpdateGraduate} initialData={editingGraduate} />}
         </DialogContent>
@@ -392,7 +392,7 @@ function GraduateForm({
   initialData?: Graduate
 }) {
   return (
-    <form action={onSubmit} className="space-y-6">
+    <form action={onSubmit} className="space-y-6 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-3">
           <Label htmlFor="name" className="text-base font-semibold text-academy-blue flex items-center">
@@ -425,7 +425,7 @@ function GraduateForm({
       <div className="space-y-3">
         <Label htmlFor="current_position" className="text-base font-semibold text-academy-blue flex items-center">
           <Briefcase className="w-4 h-4 ml-2" />
-          المنصب الحالي
+          الدرجة العلمية
         </Label>
         <Input
           id="current_position"
@@ -453,7 +453,7 @@ function GraduateForm({
         <div className="space-y-3">
           <Label htmlFor="graduation_year" className="text-base font-semibold text-academy-blue flex items-center">
             <Calendar className="w-4 h-4 ml-2" />
-            سنة التخرج
+            سنوات الخبره
           </Label>
           <Input
             id="graduation_year"
@@ -469,7 +469,7 @@ function GraduateForm({
       <div className="space-y-3">
         <Label htmlFor="success_story" className="text-base font-semibold text-academy-blue flex items-center">
           <CheckCircle className="w-4 h-4 ml-2" />
-          قصة النجاح
+          السيرة الذاتية
         </Label>
         <Textarea
           id="success_story"
@@ -478,7 +478,7 @@ function GraduateForm({
           required
           defaultValue={initialData?.success_story}
           className="rounded-xl border-academy-blue/20 focus:border-academy-blue min-h-[120px]"
-          placeholder="اكتب قصة نجاح ملهمة تعكس إنجازات الخريج..."
+          placeholder="اكتب السيره الذاتية..."
         />
       </div>
 
@@ -489,12 +489,12 @@ function GraduateForm({
         {initialData ? (
           <>
             <Edit className="w-5 h-5 ml-2" />
-            تحديث بيانات الخريج
+            تحديث بيانات المدرسين
           </>
         ) : (
           <>
             <Plus className="w-5 h-5 ml-2" />
-            إضافة خريج جديد
+            إضافة مدرس جديد
           </>
         )}
       </Button>
@@ -556,7 +556,7 @@ function ApplicationCard({
               <div className="w-6 h-6 bg-academy-gold/10 rounded-lg flex items-center justify-center ml-2">
                 <Briefcase className="w-3 h-3 text-academy-gold" />
               </div>
-              المنصب الحالي
+              عدد سنوات العمل
             </span>
             <p className="font-medium text-academy-dark-gray">{application.current_position}</p>
           </div>
@@ -574,7 +574,7 @@ function ApplicationCard({
               <div className="w-6 h-6 bg-academy-gold/10 rounded-lg flex items-center justify-center ml-2">
                 <Calendar className="w-3 h-3 text-academy-gold" />
               </div>
-              سنة التخرج
+              الدرجة العلمية
             </span>
             <p className="font-medium text-academy-dark-gray">{application.graduation_year}</p>
           </div>
@@ -585,7 +585,7 @@ function ApplicationCard({
             <div className="w-6 h-6 bg-academy-blue/10 rounded-lg flex items-center justify-center ml-2">
               <Award className="w-3 h-3 text-academy-blue" />
             </div>
-            قصة النجاح
+            السيرة الذاتية
           </span>
           <p className="text-sm text-academy-dark-gray leading-relaxed">{application.success_story}</p>
         </div>
@@ -605,18 +605,18 @@ function ApplicationCard({
             <DialogContent className="rounded-2xl">
               <DialogHeader className="text-center pb-4">
                 <DialogTitle className="text-2xl font-bold text-green-600">قبول الطلب</DialogTitle>
-                <p className="text-academy-dark-gray mt-2">إضافة المتقدم إلى شبكة الخريجين</p>
+                <p className="text-academy-dark-gray mt-2">إضافة المتقدم إلى هيئة التدريس</p>
               </DialogHeader>
               <div className="space-y-6">
                 <div>
                   <Label htmlFor="approve-message" className="text-base font-semibold text-academy-blue">
-                    رسالة ترحيب للخريج الجديد (اختيارية)
+                    رسالة ترحيب المدرس الجديد (اختيارية)
                   </Label>
                   <Textarea
                     id="approve-message"
                     value={adminMessage}
                     onChange={(e) => setAdminMessage(e.target.value)}
-                    placeholder="مرحباً بك في شبكة خريجي أكاديمية المعرفة الدولية..."
+                    placeholder="مرحباً بك في هيئة التدريس أكاديمية المعرفة الدولية..."
                     className="mt-3 min-h-[100px] rounded-xl"
                   />
                 </div>
