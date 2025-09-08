@@ -54,7 +54,7 @@ export function GraduateCard({ graduate }: GraduateCardProps) {
               <div className="w-8 h-8 bg-gradient-to-br from-academy-blue/20 to-academy-blue/10 rounded-lg flex items-center justify-center">
                 <Briefcase className="text-academy-blue" size={16} />
               </div>
-              <span className="text-academy-blue font-semibold text-sm">المنصب الحالي</span>
+              <span className="text-academy-blue font-semibold text-sm">الدرجة العلمية</span>
             </div>
             <span className="text-academy-dark-gray font-medium text-lg">{graduate.current_position}</span>
           </div>
@@ -76,7 +76,7 @@ export function GraduateCard({ graduate }: GraduateCardProps) {
                 <div className="w-6 h-6 bg-gradient-to-br from-academy-gold/20 to-academy-gold/10 rounded-lg flex items-center justify-center">
                   <Calendar className="text-academy-gold" size={14} />
                 </div>
-                <span className="text-academy-blue font-semibold text-xs">التخرج</span>
+                <span className="text-academy-blue font-semibold text-xs">عدد سنوات العمل</span>
               </div>
               <span className="text-academy-dark-gray font-medium text-sm">{graduate.graduation_year}</span>
             </div>
@@ -95,7 +95,7 @@ export function GraduateCard({ graduate }: GraduateCardProps) {
               <div className="w-8 h-8 bg-gradient-to-br from-academy-blue/10 to-academy-gold/10 rounded-lg flex items-center justify-center">
                 <Sparkles className="text-academy-gold" size={16} />
               </div>
-              <h4 className="text-academy-blue font-bold text-lg">قصة النجاح</h4>
+              <h4 className="text-academy-blue font-bold text-lg">السيرة الذاتية</h4>
             </div>
             <p className="text-academy-dark-gray text-sm leading-relaxed line-clamp-4 font-medium">
               {graduate.success_story}
