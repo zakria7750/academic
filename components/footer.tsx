@@ -200,10 +200,13 @@ export default function Footer() {
                 </div>
                 <div>
                   <Link href="https://info@knowledge-academy.edu" className="block text-gray-300 hover:text-academy-gold transition-colors duration-200">
-                    info@knowledge-academy.edu
+                    info@almarifah-academy.org
                  </Link>
                  <Link href="https://admission@knowledge-academy.edu" className="block text-gray-300 hover:text-academy-gold transition-colors duration-200">
                     admission@knowledge-academy.edu
+                 </Link>
+                   <Link href="https://support@almarifah-academy.org" className="block text-gray-300 hover:text-academy-gold transition-colors duration-200">
+                    support@almarifah-academy.org
                  </Link>
                 </div>
                 
