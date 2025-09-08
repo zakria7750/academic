@@ -22,13 +22,13 @@ export default async function GraduatesManagementPage() {
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-              إدارة شبكة الخريجين
+       إدارة هيئة التدريس
             </h1>
             <p className="text-xl text-white/90 mb-2 max-w-2xl mx-auto leading-relaxed">
-              إدارة شاملة لشبكة خريجي أكاديمية المعرفة الدولية
+              إدارة شاملة لهيئة التدريس أكاديمية المعرفة الدولية
             </p>
             <p className="text-white/70 max-w-xl mx-auto">
-              متابعة الخريجين المتميزين ومعالجة طلبات الانضمام الجديدة
+              متابعة لهيئة التدريس ومعالجة طلبات الانضمام الجديدة
             </p>
           </div>
         </div>
@@ -43,7 +43,7 @@ export default async function GraduatesManagementPage() {
           <div className="bg-white rounded-2xl shadow-lg border-0 p-6 hover:shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-academy-dark-gray mb-1">إجمالي الخريجين</p>
+                <p className="text-sm font-medium text-academy-dark-gray mb-1">إجمالي هيئة التدريس</p>
                 <p className="text-3xl font-bold text-academy-blue">{approvedGraduates}</p>
               </div>
               <div className="w-12 h-12 bg-academy-blue/10 rounded-xl flex items-center justify-center">
