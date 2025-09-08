@@ -102,17 +102,6 @@ export function GraduateCard({ graduate }: GraduateCardProps) {
             </p>
           </div>
         </div>
-
-        {/* Premium Achievement Badge */}
-        <div className="mt-6 text-center">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-academy-blue/10 to-academy-gold/10 backdrop-blur-sm px-6 py-3 rounded-2xl border border-academy-blue/20">
-            <div className="w-6 h-6 bg-gradient-to-br from-academy-gold to-academy-gold-dark rounded-lg flex items-center justify-center shadow-lg">
-              <Crown size={12} className="text-academy-blue" />
-            </div>
-            <span className="text-academy-blue font-bold text-sm">خريج متميز</span>
-            <Sparkles className="text-academy-gold animate-pulse" size={14} />
-          </div>
-        </div>
       </div>
 
       {/* Premium Gradient Border Effect */}
