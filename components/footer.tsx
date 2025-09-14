@@ -223,7 +223,7 @@ export default function Footer() {
               تواصل معنا
             </h4>
             <div className="space-y-4">
-              <div className="flex items-center space-x-3 space-x-reverse">
+              {/* <div className="flex items-center space-x-3 space-x-reverse">
                 <div className="w-8 h-8 bg-academy-gold/20 rounded-full flex items-center justify-center">
                   <Phone size={16} className="text-academy-gold" />
                 </div>
@@ -235,7 +235,7 @@ export default function Footer() {
                     +967 730 530 992
                   </Link>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex items-center space-x-3 space-x-reverse">
                 <div className="w-8 h-8 bg-academy-gold/20 rounded-full flex items-center justify-center">
