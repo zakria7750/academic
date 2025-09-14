@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import Link from "next/link"
-import { useState } from "react"
-import SocialMediaButtons from "./SocialMediaButtons"
+import Link from "next/link";
+import { useState } from "react";
+import SocialMediaButtons from "./SocialMediaButtons";
 import {
   Phone,
   Mail,
@@ -32,44 +32,44 @@ import {
   Heart,
   Sparkles,
   Zap,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { subscribeToNewsletter } from "@/app/actions/news-actions"
-import { toast } from "sonner"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { subscribeToNewsletter } from "@/app/actions/news-actions";
+import { toast } from "sonner";
 
 export default function Footer() {
-  const [isSubscribing, setIsSubscribing] = useState(false)
-  const [email, setEmail] = useState("")
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [email, setEmail] = useState("");
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!email.trim()) {
-      toast.error("يرجى إدخال بريدك الإلكتروني")
-      return
+      toast.error("يرجى إدخال بريدك الإلكتروني");
+      return;
     }
 
-    setIsSubscribing(true)
-    const formData = new FormData()
-    formData.append("email", email)
+    setIsSubscribing(true);
+    const formData = new FormData();
+    formData.append("email", email);
 
     try {
-      const result = await subscribeToNewsletter(formData)
+      const result = await subscribeToNewsletter(formData);
       if (result.success) {
-        toast.success(result.message)
-        setEmail("")
+        toast.success(result.message);
+        setEmail("");
       } else {
-        toast.error(result.message)
+        toast.error(result.message);
       }
     } catch (error) {
-      toast.error("حدث خطأ غير متوقع")
+      toast.error("حدث خطأ غير متوقع");
     } finally {
-      setIsSubscribing(false)
+      setIsSubscribing(false);
     }
-  }
+  };
 
   return (
     <footer className="bg-academy-blue text-white relative">
@@ -91,20 +91,22 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="flex items-center space-x-3 space-x-reverse">
               <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center">
-                  <img 
-                    src="/logo-1440.webp" 
-                    alt="Academy Logo" 
-                    className="w-10 h-10 object-conver " 
-                    />
-                 </div>
+                <img
+                  src="/logo-1440.webp"
+                  alt="Academy Logo"
+                  className="w-10 h-10 object-conver "
+                />
+              </div>
               <div>
-                <h3 className="text-xl font-bold text-academy-gold">أكاديمية المعرفة الدولية</h3>
+                <h3 className="text-xl font-bold text-academy-gold">
+                  أكاديمية المعرفة الدولية
+                </h3>
               </div>
             </div>
 
             <p className="text-gray-300 leading-relaxed">
-              أكاديمية رائدة في التعليم والتدريب، نسعى لبناء العقول وتطوير المستقبل من خلال برامج تعليمية متميزة ومعتمدة
-              دولياً.
+              أكاديمية رائدة في التعليم والتدريب، نسعى لبناء العقول وتطوير
+              المستقبل من خلال برامج تعليمية متميزة ومعتمدة دولياً.
             </p>
 
             {/* Stats */}
@@ -122,29 +124,46 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-6">
-            <h4 className="text-lg font-bold text-academy-gold border-b border-academy-gold/30 pb-2">روابط سريعة</h4>
+            <h4 className="text-lg font-bold text-academy-gold border-b border-academy-gold/30 pb-2">
+              روابط سريعة
+            </h4>
             <ul className="space-y-3">
               {[
                 { name: "من نحن", href: "/about", icon: Users },
-                { name: "البرامج التعليمية", href: "/programs", icon: BookOpen },
+                {
+                  name: "البرامج التعليمية",
+                  href: "/programs",
+                  icon: BookOpen,
+                },
                 { name: "القبول والتسجيل", href: "/admission", icon: Award },
-                { name: "التحقق من الشهادات", href: "/verification", icon: Award },
-                { name: "الاعتمادات والشراكات", href: "/accreditations", icon: Globe },
+                {
+                  name: "التحقق من الشهادات",
+                  href: "/verification",
+                  icon: Award,
+                },
+                {
+                  name: "الاعتمادات والشراكات",
+                  href: "/accreditations",
+                  icon: Globe,
+                },
                 { name: "الأسئلة الشائعة", href: "/faq", icon: HelpCircle },
                 { name: "مجلة وعي", href: "/magazine", icon: BookOpen },
               ].map((link) => {
-                const Icon = link.icon
+                const Icon = link.icon;
                 return (
                   <li key={link.name}>
                     <Link
                       href={link.href}
                       className="flex items-center space-x-2 space-x-reverse text-gray-300 hover:text-academy-gold transition-colors duration-200 group"
                     >
-                      <Icon size={16} className="group-hover:scale-110 transition-transform duration-200" />
+                      <Icon
+                        size={16}
+                        className="group-hover:scale-110 transition-transform duration-200"
+                      />
                       <span>{link.name}</span>
                     </Link>
                   </li>
-                )
+                );
               })}
             </ul>
           </div>
@@ -156,41 +175,65 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                { name: "الأقسام الأكاديمية", href: "/departments", icon: Building2 },
+                {
+                  name: "الأقسام الأكاديمية",
+                  href: "/departments",
+                  icon: Building2,
+                },
                 { name: "هيئة التدريس", href: "/faculty", icon: GraduationCap },
-                { name: "المدربين المعتمدين", href: "/trainers", icon: UserCheck },
-                { name: "الانضمام لهيئة التدريس", href: "/graduates", icon: Crown },
-                { name: "نظام التعليم", href: "/education-system", icon: Monitor },
+                {
+                  name: "المدربين المعتمدين",
+                  href: "/trainers",
+                  icon: UserCheck,
+                },
+                {
+                  name: "الانضمام لهيئة التدريس",
+                  href: "/graduates",
+                  icon: Crown,
+                },
+                {
+                  name: "نظام التعليم",
+                  href: "/education-system",
+                  icon: Monitor,
+                },
                 { name: "المدونة والأخبار", href: "/blog", icon: Newspaper },
               ].map((link) => {
-                const Icon = link.icon
+                const Icon = link.icon;
                 return (
                   <li key={link.name}>
                     <Link
                       href={link.href}
                       className="flex items-center space-x-2 space-x-reverse text-gray-300 hover:text-academy-gold transition-colors duration-200 group hover:translate-x-1"
                     >
-                      <Icon size={16} className="group-hover:scale-110 transition-transform duration-200" />
+                      <Icon
+                        size={16}
+                        className="group-hover:scale-110 transition-transform duration-200"
+                      />
                       <span>{link.name}</span>
                     </Link>
                   </li>
-                )
+                );
               })}
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <h4 className="text-lg font-bold text-academy-gold border-b border-academy-gold/30 pb-2">تواصل معنا</h4>
+            <h4 className="text-lg font-bold text-academy-gold border-b border-academy-gold/30 pb-2">
+              تواصل معنا
+            </h4>
             <div className="space-y-4">
               <div className="flex items-center space-x-3 space-x-reverse">
                 <div className="w-8 h-8 bg-academy-gold/20 rounded-full flex items-center justify-center">
                   <Phone size={16} className="text-academy-gold" />
                 </div>
                 <div>
-              <Link href="https://wa.me/967730530992" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
+                  <Link
+                    href="https://wa.me/967730530992"
+                    className="text-gray-300 hover:text-academy-gold transition-colors duration-200"
+                  >
                     +967 730 530 992
-              </Link>
+                  </Link>
                 </div>
               </div>
 
@@ -199,25 +242,35 @@ export default function Footer() {
                   <Mail size={16} className="text-academy-gold" />
                 </div>
                 <div>
-                  <Link href="https://info@knowledge-academy.edu" className="block text-gray-300 hover:text-academy-gold transition-colors duration-200">
+                  <Link
+                    href="https://info@almarifah-academy.org"
+                    className="block text-gray-300 hover:text-academy-gold transition-colors duration-200"
+                  >
                     info@almarifah-academy.org
-                 </Link>
-                 <Link href="https://admission@knowledge-academy.edu" className="block text-gray-300 hover:text-academy-gold transition-colors duration-200">
-                    admission@knowledge-academy.edu
-                 </Link>
-                   <Link href="https://support@almarifah-academy.org" className="block text-gray-300 hover:text-academy-gold transition-colors duration-200">
+                  </Link>
+                  <Link
+                    href="https://admission@almarifah-academy.org"
+                    className="block text-gray-300 hover:text-academy-gold transition-colors duration-200"
+                  >
+                    admission@almarifah-academy.org
+                  </Link>
+                  <Link
+                    href="https://support@almarifah-academy.org"
+                    className="block text-gray-300 hover:text-academy-gold transition-colors duration-200"
+                  >
                     support@almarifah-academy.org
-                 </Link>
+                  </Link>
                 </div>
-                
               </div>
             </div>
 
             {/* Social Media */}
             <div>
-              <h5 className="text-academy-gold font-semibold mb-3">تابعنا على</h5>
+              <h5 className="text-academy-gold font-semibold mb-3">
+                تابعنا على
+              </h5>
               <div className="flex space-x-3 space-x-reverse">
-                <SocialMediaButtons/>
+                <SocialMediaButtons />
                 {/* {[{ icon: Youtube, href: "https://youtube.com/@almarifh2018?si=-NzMdaI7YB4H6-il", color: "hover:bg-red-600" },
       { icon: Facebook, href: "#", color: "hover:bg-blue-600" },
                   { icon: Twitter, href: "#", color: "hover:bg-sky-500" },
@@ -244,9 +297,16 @@ export default function Footer() {
         {/* Newsletter Subscription */}
         <div className="mt-12 pt-8 border-t border-academy-gold/20">
           <div className="max-w-2xl mx-auto text-center">
-            <h4 className="text-xl font-bold text-academy-gold mb-4">اشترك في نشرتنا الإخبارية</h4>
-            <p className="text-gray-300 mb-6">احصل على آخر الأخبار والتحديثات حول البرامج والفعاليات</p>
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <h4 className="text-xl font-bold text-academy-gold mb-4">
+              اشترك في نشرتنا الإخبارية
+            </h4>
+            <p className="text-gray-300 mb-6">
+              احصل على آخر الأخبار والتحديثات حول البرامج والفعاليات
+            </p>
+            <form
+              onSubmit={handleSubscribe}
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+            >
               <input
                 type="email"
                 value={email}
@@ -277,14 +337,22 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-academy-gold/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-right">
-              <p className="text-gray-300 text-sm">© 2018 أكاديمية المعرفة الدولية. جميع الحقوق محفوظة.</p>
+              <p className="text-gray-300 text-sm">
+                © 2018 أكاديمية المعرفة الدولية. جميع الحقوق محفوظة.
+              </p>
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-end space-x-6 space-x-reverse text-sm">
-              <Link href="/#" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
+              <Link
+                href="/#"
+                className="text-gray-300 hover:text-academy-gold transition-colors duration-200"
+              >
                 سياسة الخصوصية
               </Link>
-              <Link href="/#" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
+              <Link
+                href="/#"
+                className="text-gray-300 hover:text-academy-gold transition-colors duration-200"
+              >
                 الشروط والأحكام
               </Link>
               {/*<Link href="/#" className="text-gray-300 hover:text-academy-gold transition-colors duration-200">
@@ -313,5 +381,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
