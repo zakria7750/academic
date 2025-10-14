@@ -34,7 +34,11 @@ import {
 interface Certificate {
   id: string
   certificate_number: string
-  certificate_image: string
+  certificate_image: string | null
+  certificate_file: string | null
+  content_type: 'image' | 'file'
+  file_name: string | null
+  file_size: number | null
   issue_date: string
   created_at: string
 }
@@ -55,6 +59,7 @@ export default function CertificatesManagement() {
   const [formData, setFormData] = useState({
     certificateNumber: "",
     certificateImage: null as File | null,
+    certificateFile: null as File | null,
     issueDate: new Date().toISOString().split("T")[0],
   })
 
@@ -79,6 +84,7 @@ export default function CertificatesManagement() {
     setFormData({
       certificateNumber: "",
       certificateImage: null,
+      certificateFile: null,
       issueDate: new Date().toISOString().split("T")[0],
     })
   }
@@ -91,6 +97,9 @@ export default function CertificatesManagement() {
     formDataObj.append("certificateNumber", formData.certificateNumber)
     if (formData.certificateImage) {
       formDataObj.append("certificateImage", formData.certificateImage)
+    }
+    if (formData.certificateFile) {
+      formDataObj.append("certificateFile", formData.certificateFile)
     }
     formDataObj.append("issueDate", formData.issueDate)
 
@@ -116,6 +125,9 @@ export default function CertificatesManagement() {
     formDataObj.append("certificateNumber", formData.certificateNumber)
     if (formData.certificateImage) {
       formDataObj.append("certificateImage", formData.certificateImage)
+    }
+    if (formData.certificateFile) {
+      formDataObj.append("certificateFile", formData.certificateFile)
     }
     formDataObj.append("issueDate", formData.issueDate)
 
@@ -151,6 +163,7 @@ export default function CertificatesManagement() {
     setFormData({
       certificateNumber: certificate.certificate_number,
       certificateImage: null,
+      certificateFile: null,
       issueDate: certificate.issue_date,
     })
     setShowEditDialog(true)
@@ -169,10 +182,17 @@ export default function CertificatesManagement() {
     })
   }
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setFormData({ ...formData, certificateImage: file, certificateFile: null })
+    }
+  }
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      setFormData({ ...formData, certificateImage: file })
+      setFormData({ ...formData, certificateFile: file, certificateImage: null })
     }
   }
 
