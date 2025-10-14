@@ -34,7 +34,11 @@ import {
 interface Certificate {
   id: string
   certificate_number: string
-  certificate_image: string
+  certificate_image: Uint8Array | null
+  certificate_image_url: string | null
+  file_type: string | null
+  file_name: string | null
+  is_image: boolean
   issue_date: string
   created_at: string
 }
@@ -228,25 +232,25 @@ export default function CertificatesManagement() {
                   <div>
                     <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
                       <Upload className="w-4 h-4 text-academy-gold" />
-                      صورة الشهادة *
+                      ملف الشهادة *
                     </label>
                     <div className="relative">
                       <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
                         <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
-                        <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة هنا أو</p>
+                        <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت ملف الشهادة هنا أو</p>
                         <Button
                           type="button"
                           variant="outline"
                           className="border-2 border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white bg-transparent rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:-translate-y-1"
                           onClick={() => document.getElementById("certificate-upload")?.click()}
                         >
-                          <ImageIcon className="w-4 h-4 mr-2" />
-                          اختر صورة
+                          <FileText className="w-4 h-4 mr-2" />
+                          اختر ملف
                         </Button>
                         <input
                           id="certificate-upload"
                           type="file"
-                          accept="image/*"
+                          accept="image/*,.pdf,.doc,.docx,.txt"
                           onChange={handleFileChange}
                           className="hidden"
                           required
@@ -256,6 +260,9 @@ export default function CertificatesManagement() {
                             تم اختيار: {formData.certificateImage.name}
                           </p>
                         )}
+                        <p className="text-xs text-academy-dark-gray mt-2">
+                          الأنواع المدعومة: الصور (JPG, PNG, GIF)، PDF، Word (DOC, DOCX)، النصوص (TXT)
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -418,11 +425,32 @@ export default function CertificatesManagement() {
                           <Badge className="mr-4 bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 px-4 py-2 rounded-full text-sm font-semibold">
                             معتمدة
                           </Badge>
+                          {certificate.file_type && (
+                            <Badge className="mr-2 bg-gradient-to-r from-academy-blue to-academy-blue-700 text-white px-3 py-1 rounded-full text-xs font-medium">
+                              {certificate.is_image ? (
+                                <>
+                                  <ImageIcon className="w-3 h-3 ml-1" />
+                                  صورة
+                                </>
+                              ) : (
+                                <>
+                                  <FileText className="w-3 h-3 ml-1" />
+                                  ملف
+                                </>
+                              )}
+                            </Badge>
+                          )}
                         </div>
-                        <div className="flex items-center text-academy-dark-gray text-lg">
+                        <div className="flex items-center text-academy-dark-gray text-lg mb-2">
                           <Calendar className="w-5 h-5 ml-3 text-academy-gold" />
                           <span>تاريخ الإصدار: {formatDate(certificate.issue_date)}</span>
                         </div>
+                        {certificate.file_name && (
+                          <div className="flex items-center text-academy-dark-gray text-sm">
+                            <FileText className="w-4 h-4 ml-2 text-academy-gold" />
+                            <span>اسم الملف: {certificate.file_name}</span>
+                          </div>
+                        )}
                       </div>
 
                       <div className="flex space-x-4 space-x-reverse">
@@ -485,31 +513,34 @@ export default function CertificatesManagement() {
                 <div>
                   <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
                     <Upload className="w-4 h-4 text-academy-gold" />
-                    صورة الشهادة الجديدة (اختياري)
+                    ملف الشهادة الجديد (اختياري)
                   </label>
                   <div className="relative">
                     <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
                       <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
-                      <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة الجديدة هنا أو</p>
+                      <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت ملف الشهادة الجديد هنا أو</p>
                       <Button
                         type="button"
                         variant="outline"
                         className="border-2 border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white bg-transparent rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:-translate-y-1"
                         onClick={() => document.getElementById("certificate-edit-upload")?.click()}
                       >
-                        <ImageIcon className="w-4 h-4 mr-2" />
-                        اختر صورة جديدة
+                        <FileText className="w-4 h-4 mr-2" />
+                        اختر ملف جديد
                       </Button>
                       <input
                         id="certificate-edit-upload"
                         type="file"
-                        accept="image/*"
+                        accept="image/*,.pdf,.doc,.docx,.txt"
                         onChange={handleFileChange}
                         className="hidden"
                       />
                       {formData.certificateImage && (
                         <p className="text-sm text-academy-blue mt-3 font-medium">تم اختيار: {formData.certificateImage.name}</p>
                       )}
+                      <p className="text-xs text-academy-dark-gray mt-2">
+                        الأنواع المدعومة: الصور (JPG, PNG, GIF)، PDF، Word (DOC, DOCX)، النصوص (TXT)
+                      </p>
                     </div>
                   </div>
                 </div>
