@@ -150,7 +150,11 @@ export type GraduateApplication = {
 export type Certificate = {
   id: string
   certificate_number: string
-  certificate_image: string
+  certificate_image: string | null
+  certificate_file: string | null
+  content_type: 'image' | 'file'
+  file_name: string | null
+  file_size: number | null
   issue_date: string
   created_at: string
   updated_at: string

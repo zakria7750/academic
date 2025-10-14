@@ -14,7 +14,11 @@ import { verifyCertificate } from "@/app/actions/certificates-actions"
 interface Certificate {
   id: string
   certificate_number: string
-  certificate_image: string
+  certificate_image: string | null
+  certificate_file: string | null
+  content_type: 'image' | 'file'
+  file_name: string | null
+  file_size: number | null
   issue_date: string
   created_at: string
 }
@@ -65,6 +69,28 @@ export default function VerificationPage() {
       month: "long",
       day: "numeric",
     })
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes'
+    const k = 1024
+    const sizes = ['Bytes', 'KB', 'MB', 'GB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+  }
+
+  const handleDownloadFile = (fileUrl: string, fileName: string) => {
+    const link = document.createElement('a')
+    link.href = fileUrl
+    link.download = fileName
+    link.target = '_blank'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const handleViewFile = (fileUrl: string) => {
+    window.open(fileUrl, '_blank')
   }
 
   return (
@@ -233,8 +259,8 @@ export default function VerificationPage() {
                       </Card>*/} 
                     </div>
 
-                    {/* Certificate Image */}
-                    {verificationResult.certificate.certificate_image && (
+                    {/* Certificate Content - Image or File */}
+                    {verificationResult.certificate.content_type === 'image' && verificationResult.certificate.certificate_image && (
                       <div className="text-center">
                         <div className="flex items-center justify-center gap-3 mb-6">
                           <Award className="w-6 h-6 text-amber-600" />
@@ -282,12 +308,75 @@ export default function VerificationPage() {
                             عرض بالحجم الكامل
                           </Button>
                           <Button
-                            onClick={() => window.open(verificationResult.certificate?.certificate_image, "_blank")}
+                            onClick={() => handleDownloadFile(verificationResult.certificate?.certificate_image || '', verificationResult.certificate?.file_name || 'certificate.jpg')}
                             variant="outline"
                             className="border-2 border-amber-300 text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
                           >
                             <Download className="w-5 h-5 ml-2" />
                             تحميل الشهادة
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Certificate File */}
+                    {verificationResult.certificate.content_type === 'file' && verificationResult.certificate.certificate_file && (
+                      <div className="text-center">
+                        <div className="flex items-center justify-center gap-3 mb-6">
+                          <Award className="w-6 h-6 text-amber-600" />
+                          <h3 className="text-2xl font-bold text-gray-800">ملف الشهادة</h3>
+                        </div>
+
+                        <div className="relative inline-block group max-w-2xl mx-auto">
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-300/30 to-indigo-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                          <div className="relative bg-white p-8 rounded-2xl shadow-2xl border-2 border-blue-200">
+                            <div className="flex flex-col items-center space-y-4">
+                              {/* File Icon */}
+                              <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+                                <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                              
+                              {/* File Info */}
+                              <div className="text-center">
+                                <h4 className="text-xl font-bold text-gray-800 mb-2">
+                                  {verificationResult.certificate.file_name}
+                                </h4>
+                                <p className="text-gray-600 mb-1">
+                                  نوع الملف: {verificationResult.certificate.file_name?.split('.').pop()?.toUpperCase()}
+                                </p>
+                                {verificationResult.certificate.file_size && (
+                                  <p className="text-gray-600">
+                                    حجم الملف: {formatFileSize(verificationResult.certificate.file_size)}
+                                  </p>
+                                )}
+                              </div>
+
+                              {/* Verified Badge */}
+                              <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-3 text-base font-bold shadow-lg">
+                                <Shield className="w-5 h-5 ml-2" />
+                                معتمدة رسمياً
+                              </Badge>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-8 flex justify-center gap-4 flex-wrap">
+                          <Button
+                            onClick={() => handleViewFile(verificationResult.certificate?.certificate_file || '')}
+                            className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                          >
+                            <Eye className="w-5 h-5 ml-2" />
+                            عرض الملف
+                          </Button>
+                          <Button
+                            onClick={() => handleDownloadFile(verificationResult.certificate?.certificate_file || '', verificationResult.certificate?.file_name || 'certificate.pdf')}
+                            variant="outline"
+                            className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                          >
+                            <Download className="w-5 h-5 ml-2" />
+                            تحميل الملف
                           </Button>
                         </div>
                       </div>
