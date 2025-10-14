@@ -85,6 +85,35 @@ export default function VerificationPage() {
     })
   }
 
+  // Decode hex-escaped string
+  const decodeHexString = (hexString: string): string => {
+    try {
+      // Method 1: Replace hex escape sequences (\x7b) with actual characters
+      let decoded = hexString.replace(/\\x([0-9A-Fa-f]{2})/g, (match, hex) => {
+        return String.fromCharCode(parseInt(hex, 16))
+      })
+      
+      // Method 2: If it starts with \x and rest is hex, decode as pure hex
+      if (hexString.startsWith('\\x') && hexString.length > 3) {
+        const hexPart = hexString.substring(3) // Remove \x prefix
+        if (hexPart.match(/^[0-9A-Fa-f]+$/)) {
+          console.log('🔧 Decoding as pure hex data...')
+          let result = ''
+          for (let i = 0; i < hexPart.length; i += 2) {
+            const hex = hexPart.substr(i, 2)
+            result += String.fromCharCode(parseInt(hex, 16))
+          }
+          decoded = result
+        }
+      }
+      
+      return decoded
+    } catch (error) {
+      console.log('❌ Error decoding hex string:', error.message)
+      return hexString
+    }
+  }
+
   // Parse certificate file data
   const parseCertificateFile = (certificateImage: string): FileData | null => {
     console.log('🔍 parseCertificateFile called with:', certificateImage ? certificateImage.substring(0, 100) + '...' : 'null/undefined')
@@ -94,9 +123,17 @@ export default function VerificationPage() {
       return null
     }
     
+    // Check if data is hex-encoded and decode it
+    let decodedData = certificateImage
+    if (certificateImage.includes('\\x')) {
+      console.log('🔧 Detected hex-encoded data, decoding...')
+      decodedData = decodeHexString(certificateImage)
+      console.log('✅ Decoded data:', decodedData.substring(0, 100) + '...')
+    }
+    
     try {
       // Try to parse as new format (JSON with metadata)
-      const fileData = JSON.parse(certificateImage)
+      const fileData = JSON.parse(decodedData)
       console.log('✅ JSON parsed successfully:', {
         mimeType: fileData.mimeType,
         originalName: fileData.originalName,
@@ -114,7 +151,7 @@ export default function VerificationPage() {
     }
     
     // Fallback: treat as old format (direct URL)
-    if (certificateImage.startsWith('http')) {
+    if (decodedData.startsWith('http')) {
       console.log('🔗 Detected old URL format')
       return {
         data: '',

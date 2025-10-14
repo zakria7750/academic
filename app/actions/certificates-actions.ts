@@ -190,8 +190,33 @@ export async function downloadCertificateFile(certificateId: string) {
       return { success: false, message: "لا يوجد ملف مرفق بهذه الشهادة" }
     }
 
+    // Decode hex-escaped data if needed
+    let decodedData = certificate.certificate_image
+    if (certificate.certificate_image.includes('\\x')) {
+      console.log('🔧 Decoding hex-escaped data for download...')
+      
+      // Method 1: Replace hex escape sequences
+      decodedData = certificate.certificate_image.replace(/\\x([0-9A-Fa-f]{2})/g, (match, hex) => {
+        return String.fromCharCode(parseInt(hex, 16))
+      })
+      
+      // Method 2: If it starts with \x and rest is hex, decode as pure hex
+      if (certificate.certificate_image.startsWith('\\x') && certificate.certificate_image.length > 3) {
+        const hexPart = certificate.certificate_image.substring(3)
+        if (hexPart.match(/^[0-9A-Fa-f]+$/)) {
+          console.log('🔧 Decoding as pure hex data for download...')
+          let result = ''
+          for (let i = 0; i < hexPart.length; i += 2) {
+            const hex = hexPart.substr(i, 2)
+            result += String.fromCharCode(parseInt(hex, 16))
+          }
+          decodedData = result
+        }
+      }
+    }
+    
     // Parse the stored file data
-    const fileData = JSON.parse(certificate.certificate_image)
+    const fileData = JSON.parse(decodedData)
     
     return {
       success: true,
