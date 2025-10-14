@@ -216,7 +216,7 @@ export default function VerificationPage() {
                         </CardContent>
                       </Card>
 
-                      <Card className="border-amber-200 bg-gradient-to-br from-yellow-50 to-orange-50 shadow-lg">
+                      {/* <Card className="border-amber-200 bg-gradient-to-br from-yellow-50 to-orange-50 shadow-lg">
                         <CardContent className="p-6">
                           <div className="flex items-center space-x-3 space-x-reverse">
                             <div className="w-12 h-12 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full flex items-center justify-center shadow-md">
@@ -230,7 +230,7 @@ export default function VerificationPage() {
                             </div>
                           </div>
                         </CardContent>
-                      </Card>
+                      </Card>*/} 
                     </div>
 
                     {/* Certificate Image */}
