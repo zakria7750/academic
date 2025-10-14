@@ -69,16 +69,47 @@ export default function VerificationPage() {
   }
 
   /**
-   * دالة لعرض الملف بالطريقة المناسبة حسب نوعه
-   * @param fileUrl رابط الملف
-   * @param fileName اسم الملف (يمكن استخراجه من الرابط)
+   * دالة مساعدة لاستخراج اسم الملف من رابط Vercel Blob
+   * @param fileUrl رابط الملف من Vercel Blob
+   * @returns اسم الملف مع الامتداد
    */
-  const renderFileDisplay = (fileUrl: string, fileName?: string) => {
+  const extractFileNameFromUrl = (fileUrl: string): string => {
+    try {
+      // محاولة استخراج اسم الملف من الرابط
+      const urlParts = fileUrl.split('/')
+      let fileName = urlParts[urlParts.length - 1] || ''
+      
+      // إذا لم نجد اسم ملف مع امتداد، نحاول البحث عن امتداد في الرابط
+      if (!fileName.includes('.')) {
+        const urlWithParams = fileUrl.split('?')[0] // إزالة المعاملات إن وجدت
+        const match = urlWithParams.match(/\.(jpg|jpeg|png|gif|webp|svg|bmp|pdf|doc|docx|txt|rtf|odt)$/i)
+        if (match) {
+          fileName = `certificate.${match[1].toLowerCase()}`
+        } else {
+          // افتراض أنه صورة إذا لم نجد امتداد
+          fileName = 'certificate.jpg'
+        }
+      }
+      
+      return fileName
+    } catch (error) {
+      console.error('خطأ في استخراج اسم الملف:', error)
+      // افتراض أنه صورة في حالة الخطأ
+      return 'certificate.jpg'
+    }
+  }
+
+  /**
+   * دالة لعرض الملف بالطريقة المناسبة حسب نوعه
+   * تعمل مع روابط Vercel Blob Storage
+   * @param fileUrl رابط الملف من Vercel Blob
+   */
+  const renderFileDisplay = (fileUrl: string) => {
     if (!fileUrl) return null
 
-    // استخراج اسم الملف من الرابط إذا لم يتم توفيره
-    const extractedFileName = fileName || fileUrl.split('/').pop() || 'certificate'
-    const fileType = getFileType(extractedFileName)
+    // استخراج اسم الملف من رابط Vercel Blob باستخدام الدالة المساعدة
+    const fileName = extractFileNameFromUrl(fileUrl)
+    const fileType = getFileType(fileName)
 
     // عرض الصور
     if (fileType === "image") {
@@ -99,19 +130,37 @@ export default function VerificationPage() {
                 onError={(e) => {
                   const target = e.target as HTMLImageElement
                   target.style.display = "none"
+                  
+                  // التحقق من وجود رسالة خطأ مسبقة لتجنب التكرار
+                  const existingError = target.parentNode?.querySelector('.error-message')
+                  if (existingError) return
+                  
                   // عرض رسالة خطأ بدلاً من الصورة
                   const errorDiv = document.createElement("div")
-                  errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-xl"
+                  errorDiv.className = "error-message flex items-center justify-center h-96 bg-gray-100 rounded-xl"
                   errorDiv.innerHTML = `
                     <div class="text-center text-gray-500">
                       <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
                         <span class="text-2xl">⚠️</span>
                       </div>
                       <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
-                      <p class="text-sm">تأكد من اتصالك بالإنترنت</p>
+                      <p class="text-sm">تحقق من الرابط أو اتصالك بالإنترنت</p>
+                      <button 
+                        onclick="window.open('${fileUrl}', '_blank')" 
+                        class="mt-4 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                      >
+                        فتح الرابط مباشرة
+                      </button>
                     </div>
                   `
                   target.parentNode?.appendChild(errorDiv)
+                }}
+                onLoad={() => {
+                  // إزالة أي رسائل خطأ سابقة عند نجاح التحميل
+                  const errorDiv = document.querySelector('.error-message')
+                  if (errorDiv) {
+                    errorDiv.remove()
+                  }
                 }}
               />
               <div className="absolute top-6 right-6">
@@ -132,7 +181,14 @@ export default function VerificationPage() {
               عرض بالحجم الكامل
             </Button>
             <Button
-              onClick={() => window.open(fileUrl, "_blank")}
+              onClick={() => {
+                // التأكد من أن الرابط صالح قبل فتحه
+                if (fileUrl && fileUrl.startsWith('http')) {
+                  window.open(fileUrl, "_blank")
+                } else {
+                  alert('رابط الملف غير صالح')
+                }
+              }}
               variant="outline"
               className="border-2 border-amber-300 text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
             >
@@ -167,6 +223,35 @@ export default function VerificationPage() {
       }
     }
 
+    // دالة للتعامل مع تحميل الملف بشكل آمن
+    const handleFileDownload = () => {
+      try {
+        // التحقق من صحة الرابط
+        if (!fileUrl || !fileUrl.startsWith('http')) {
+          alert('رابط الملف غير صالح')
+          return
+        }
+
+        // فتح الرابط في نافذة جديدة
+        const newWindow = window.open(fileUrl, "_blank")
+        
+        // التحقق من نجاح فتح النافذة (قد يكون محجوب بواسطة popup blocker)
+        if (!newWindow) {
+          // إذا فشل فتح النافذة الجديدة، نحاول إنشاء رابط تحميل
+          const link = document.createElement('a')
+          link.href = fileUrl
+          link.download = fileName || 'certificate'
+          link.target = '_blank'
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+        }
+      } catch (error) {
+        console.error('خطأ في تحميل الملف:', error)
+        alert('حدث خطأ أثناء محاولة تحميل الملف. يرجى المحاولة مرة أخرى.')
+      }
+    }
+
     return (
       <div className="text-center">
         <div className="flex items-center justify-center gap-3 mb-6">
@@ -180,7 +265,13 @@ export default function VerificationPage() {
             <div className="flex flex-col items-center">
               {getFileIcon()}
               <h4 className="text-xl font-bold text-gray-800 mt-4 mb-2">{getFileTypeLabel()}</h4>
-              <p className="text-gray-600 mb-6">اضغط على الزر أدناه لتحميل الملف</p>
+              <p className="text-gray-600 mb-4">اضغط على الزر أدناه لتحميل الملف</p>
+              
+              {/* عرض معلومات إضافية عن الملف */}
+              <div className="text-sm text-gray-500 mb-6 bg-gray-50 px-4 py-2 rounded-lg">
+                <p>نوع الملف: {getFileTypeLabel()}</p>
+                {fileName && <p>اسم الملف: {fileName}</p>}
+              </div>
               
               <div className="absolute top-6 right-6">
                 <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg">
@@ -192,14 +283,30 @@ export default function VerificationPage() {
           </div>
         </div>
 
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex justify-center gap-4">
           <Button
-            onClick={() => window.open(fileUrl, "_blank")}
+            onClick={handleFileDownload}
             className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <Download className="w-5 h-5 ml-2" />
             تحميل الملف
           </Button>
+          
+          {/* زر إضافي لعرض الملف في المتصفح (للـ PDF) */}
+          {fileType === "pdf" && (
+            <Button
+              onClick={() => {
+                if (fileUrl && fileUrl.startsWith('http')) {
+                  window.open(fileUrl, "_blank")
+                }
+              }}
+              variant="outline"
+              className="border-2 border-amber-300 text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Eye className="w-5 h-5 ml-2" />
+              عرض PDF
+            </Button>
+          )}
         </div>
       </div>
     )
@@ -406,30 +513,68 @@ export default function VerificationPage() {
             <DialogTitle className="text-center text-xl font-bold text-gray-800">عرض الشهادة بالحجم الكامل</DialogTitle>
           </DialogHeader>
           <div className="flex items-center justify-center">
-            {verificationResult?.certificate?.certificate_image && 
-             getFileType(verificationResult.certificate.certificate_image.split('/').pop() || '') === "image" && (
-              <img
-                src={verificationResult.certificate.certificate_image}
-                alt="صورة الشهادة بالحجم الكامل"
-                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.style.display = "none"
-                  // عرض رسالة خطأ لعرض الصورة بالحجم الكامل
-                  const errorDiv = document.createElement("div")
-                  errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-lg"
-                  errorDiv.innerHTML = `
-                    <div class="text-center text-gray-500">
-                      <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
-                        <span class="text-2xl">⚠️</span>
-                      </div>
-                      <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
-                    </div>
-                  `
-                  target.parentNode?.appendChild(errorDiv)
-                }}
-              />
-            )}
+            {verificationResult?.certificate?.certificate_image && (() => {
+              const fileUrl = verificationResult.certificate.certificate_image
+              const fileName = extractFileNameFromUrl(fileUrl)
+              const fileType = getFileType(fileName)
+              
+              // عرض الصورة فقط إذا كان الملف صورة
+              if (fileType === "image") {
+                return (
+                  <img
+                    src={fileUrl}
+                    alt="صورة الشهادة بالحجم الكامل"
+                    className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      target.style.display = "none"
+                      
+                      // التحقق من وجود رسالة خطأ مسبقة
+                      const existingError = target.parentNode?.querySelector('.fullscreen-error')
+                      if (existingError) return
+                      
+                      // عرض رسالة خطأ لعرض الصورة بالحجم الكامل
+                      const errorDiv = document.createElement("div")
+                      errorDiv.className = "fullscreen-error flex items-center justify-center h-96 bg-gray-100 rounded-lg"
+                      errorDiv.innerHTML = `
+                        <div class="text-center text-gray-500">
+                          <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">⚠️</span>
+                          </div>
+                          <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة بالحجم الكامل</p>
+                          <p class="text-sm mt-2">تحقق من الرابط أو اتصالك بالإنترنت</p>
+                          <button 
+                            onclick="window.open('${fileUrl}', '_blank')" 
+                            class="mt-4 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                          >
+                            فتح الرابط مباشرة
+                          </button>
+                        </div>
+                      `
+                      target.parentNode?.appendChild(errorDiv)
+                    }}
+                    onLoad={() => {
+                      // إزالة أي رسائل خطأ سابقة عند نجاح التحميل
+                      const errorDiv = document.querySelector('.fullscreen-error')
+                      if (errorDiv) {
+                        errorDiv.remove()
+                      }
+                    }}
+                  />
+                )
+              }
+              
+              // إذا لم يكن الملف صورة، عرض رسالة
+              return (
+                <div className="flex items-center justify-center h-96 bg-gray-100 rounded-lg">
+                  <div className="text-center text-gray-500">
+                    <File className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                    <p className="text-lg font-medium">هذا الملف ليس صورة</p>
+                    <p className="text-sm mt-2">يمكنك تحميله من الصفحة الرئيسية</p>
+                  </div>
+                </div>
+              )
+            })()}
           </div>
         </DialogContent>
       </Dialog>
