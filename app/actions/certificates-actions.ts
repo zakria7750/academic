@@ -220,39 +220,77 @@ export async function downloadCertificateFile(certificateId: string) {
     try {
       fileData = JSON.parse(decodedData)
     } catch (error) {
-      console.log('❌ JSON parse failed for download, treating as binary image data')
+      console.log('❌ JSON parse failed for download, trying to extract JSON...')
       
-      // If it's binary data, create a file data object
-      if (certificate.certificate_image.includes('\\x')) {
-        // Convert binary data to base64
-        const bytes = new Uint8Array(decodedData.length)
-        for (let i = 0; i < decodedData.length; i++) {
-          bytes[i] = decodedData.charCodeAt(i)
-        }
+      // Check if the decoded data looks like it contains JSON
+      if (decodedData.includes('"data":') || decodedData.includes('"mimeType":')) {
+        console.log('🔍 Server: Decoded data seems to contain JSON, trying to extract it...')
         
-        let base64Data = ''
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-        for (let i = 0; i < bytes.length; i += 3) {
-          const a = bytes[i]
-          const b = bytes[i + 1] || 0
-          const c = bytes[i + 2] || 0
-          
-          const bitmap = (a << 16) | (b << 8) | c
-          
-          base64Data += chars.charAt((bitmap >> 18) & 63)
-          base64Data += chars.charAt((bitmap >> 12) & 63)
-          base64Data += i + 1 < bytes.length ? chars.charAt((bitmap >> 6) & 63) : '='
-          base64Data += i + 2 < bytes.length ? chars.charAt(bitmap & 63) : '='
+        // Try to find and extract JSON from the decoded data
+        const jsonMatch = decodedData.match(/\{.*"data".*\}/)
+        if (jsonMatch) {
+          try {
+            const extractedJson = jsonMatch[0]
+            console.log('🔧 Server: Extracted JSON for download')
+            
+            fileData = JSON.parse(extractedJson)
+            console.log('✅ Server: Extracted JSON parsed successfully for download')
+          } catch (extractError) {
+            console.log('❌ Server: Failed to parse extracted JSON:', extractError.message)
+          }
         }
+      }
+      
+      if (!fileData) {
+        console.log('❌ Server: No JSON found, treating as binary image data')
         
-        fileData = {
-          data: base64Data,
-          mimeType: 'image/jpeg',
-          originalName: `certificate-${certificate.certificate_number}.jpg`,
-          size: bytes.length
+        // If it's binary data, create a file data object
+        if (certificate.certificate_image.includes('\\x')) {
+          try {
+            // Convert binary data to base64 using btoa
+            const base64Data = btoa(decodedData)
+            console.log('✅ Server: Base64 conversion successful for download')
+            
+            fileData = {
+              data: base64Data,
+              mimeType: 'image/jpeg',
+              originalName: `certificate-${certificate.certificate_number}.jpg`,
+              size: decodedData.length
+            }
+          } catch (error) {
+            console.log('❌ Server: Base64 conversion failed, using manual method')
+            
+            // Fallback: manual conversion
+            const bytes = new Uint8Array(decodedData.length)
+            for (let i = 0; i < decodedData.length; i++) {
+              bytes[i] = decodedData.charCodeAt(i)
+            }
+            
+            let base64Data = ''
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+            for (let i = 0; i < bytes.length; i += 3) {
+              const a = bytes[i]
+              const b = bytes[i + 1] || 0
+              const c = bytes[i + 2] || 0
+              
+              const bitmap = (a << 16) | (b << 8) | c
+              
+              base64Data += chars.charAt((bitmap >> 18) & 63)
+              base64Data += chars.charAt((bitmap >> 12) & 63)
+              base64Data += i + 1 < bytes.length ? chars.charAt((bitmap >> 6) & 63) : '='
+              base64Data += i + 2 < bytes.length ? chars.charAt(bitmap & 63) : '='
+            }
+            
+            fileData = {
+              data: base64Data,
+              mimeType: 'image/jpeg',
+              originalName: `certificate-${certificate.certificate_number}.jpg`,
+              size: bytes.length
+            }
+          }
+        } else {
+          return { success: false, message: "تنسيق الملف غير مدعوم" }
         }
-      } else {
-        return { success: false, message: "تنسيق الملف غير مدعوم" }
       }
     }
     

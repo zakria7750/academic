@@ -147,6 +147,34 @@ export default function VerificationPage() {
       }
     } catch (error) {
       console.log('❌ JSON parse failed:', error.message)
+      
+      // Check if the decoded data looks like it contains JSON
+      if (decodedData.includes('"data":') || decodedData.includes('"mimeType":')) {
+        console.log('🔍 Decoded data seems to contain JSON, trying to extract it...')
+        
+        // Try to find and extract JSON from the decoded data
+        const jsonMatch = decodedData.match(/\{.*"data".*\}/)
+        if (jsonMatch) {
+          try {
+            const extractedJson = jsonMatch[0]
+            console.log('🔧 Extracted JSON:', extractedJson.substring(0, 100) + '...')
+            
+            const fileData = JSON.parse(extractedJson)
+            console.log('✅ Extracted JSON parsed successfully:', {
+              mimeType: fileData.mimeType,
+              originalName: fileData.originalName,
+              hasData: !!fileData.data,
+              dataLength: fileData.data ? fileData.data.length : 0
+            })
+            
+            if (fileData.data && fileData.mimeType) {
+              return fileData
+            }
+          } catch (extractError) {
+            console.log('❌ Failed to parse extracted JSON:', extractError.message)
+          }
+        }
+      }
     }
     
     // Check if it's a direct URL
@@ -165,34 +193,53 @@ export default function VerificationPage() {
     if (certificateImage.includes('\\x') && decodedData.length > 10) {
       console.log('🖼️ Detected binary image data, treating as JPEG')
       
-      // Convert the decoded binary data back to base64
-      const bytes = new Uint8Array(decodedData.length)
-      for (let i = 0; i < decodedData.length; i++) {
-        bytes[i] = decodedData.charCodeAt(i)
-      }
-      
-      let base64Data = ''
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-      for (let i = 0; i < bytes.length; i += 3) {
-        const a = bytes[i]
-        const b = bytes[i + 1] || 0
-        const c = bytes[i + 2] || 0
+      try {
+        // Convert the decoded binary data to base64 using btoa
+        const base64Data = btoa(decodedData)
+        console.log('✅ Base64 conversion successful, length:', base64Data.length)
+        console.log('📊 Base64 preview:', base64Data.substring(0, 50) + '...')
         
-        const bitmap = (a << 16) | (b << 8) | c
+        return {
+          data: base64Data,
+          mimeType: 'image/jpeg',
+          originalName: 'certificate.jpg',
+          size: decodedData.length,
+          isBinaryData: true
+        } as FileData & { isBinaryData: boolean }
+      } catch (error) {
+        console.log('❌ Base64 conversion failed:', error.message)
         
-        base64Data += chars.charAt((bitmap >> 18) & 63)
-        base64Data += chars.charAt((bitmap >> 12) & 63)
-        base64Data += i + 1 < bytes.length ? chars.charAt((bitmap >> 6) & 63) : '='
-        base64Data += i + 2 < bytes.length ? chars.charAt(bitmap & 63) : '='
+        // Fallback: manual conversion
+        const bytes = new Uint8Array(decodedData.length)
+        for (let i = 0; i < decodedData.length; i++) {
+          bytes[i] = decodedData.charCodeAt(i)
+        }
+        
+        let base64Data = ''
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+        for (let i = 0; i < bytes.length; i += 3) {
+          const a = bytes[i]
+          const b = bytes[i + 1] || 0
+          const c = bytes[i + 2] || 0
+          
+          const bitmap = (a << 16) | (b << 8) | c
+          
+          base64Data += chars.charAt((bitmap >> 18) & 63)
+          base64Data += chars.charAt((bitmap >> 12) & 63)
+          base64Data += i + 1 < bytes.length ? chars.charAt((bitmap >> 6) & 63) : '='
+          base64Data += i + 2 < bytes.length ? chars.charAt(bitmap & 63) : '='
+        }
+        
+        console.log('✅ Manual base64 conversion, length:', base64Data.length)
+        
+        return {
+          data: base64Data,
+          mimeType: 'image/jpeg',
+          originalName: 'certificate.jpg',
+          size: bytes.length,
+          isBinaryData: true
+        } as FileData & { isBinaryData: boolean }
       }
-      
-      return {
-        data: base64Data,
-        mimeType: 'image/jpeg',
-        originalName: 'certificate.jpg',
-        size: bytes.length,
-        isBinaryData: true
-      } as FileData & { isBinaryData: boolean }
     }
     
     console.log('❌ Unknown certificate image format')
@@ -414,13 +461,25 @@ export default function VerificationPage() {
                             <div className="relative inline-block group">
                               <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
                               <div className="relative bg-white p-4 rounded-2xl shadow-2xl border-2 border-amber-200">
-                            <img
-                              src={fileData && fileData.isBinaryData ? 
-                                createDataUrl(base64ToBytes(fileData.data), fileData.mimeType) : 
-                                verificationResult.certificate.certificate_image}
-                              alt="صورة الشهادة"
-                              className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
+{(() => {
+                              const imageSrc = fileData && fileData.isBinaryData ? 
+                                `data:${fileData.mimeType};base64,${fileData.data}` : 
+                                verificationResult.certificate.certificate_image
+                              
+                              console.log('🖼️ Image src generated:', imageSrc.substring(0, 100) + '...')
+                              
+                              return (
+                                <img
+                                  src={imageSrc}
+                                  alt="صورة الشهادة"
+                                  className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
+                                  onLoad={() => {
+                                    console.log('✅ Image loaded successfully!')
+                                  }}
                                   onError={(e) => {
+                                    console.log('❌ Image failed to load')
+                                    console.log('🔍 Image src was:', imageSrc.substring(0, 200) + '...')
+                                    
                                     const target = e.target as HTMLImageElement
                                     target.style.display = "none"
                                     const errorDiv = document.createElement("div")
@@ -431,12 +490,14 @@ export default function VerificationPage() {
                                           <span class="text-2xl">⚠️</span>
                                         </div>
                                         <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
-                                        <p class="text-sm">تأكد من اتصالك بالإنترنت</p>
+                                        <p class="text-sm">البيانات قد تكون معطوبة</p>
                                       </div>
                                     `
                                     target.parentNode?.appendChild(errorDiv)
                                   }}
                                 />
+                              )
+                            })()}
                                 <div className="absolute top-6 right-6">
                                   <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg">
                                     <Shield className="w-4 h-4 ml-1" />
@@ -612,28 +673,39 @@ export default function VerificationPage() {
               // Handle old format (URL) or binary data
               if ((fileData && (fileData.isOldFormat || fileData.isBinaryData)) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
                 return (
-                  <img
-                    src={fileData && fileData.isBinaryData ? 
-                      createDataUrl(base64ToBytes(fileData.data), fileData.mimeType) : 
-                      verificationResult.certificate.certificate_image}
-                    alt="صورة الشهادة بالحجم الكامل"
-                    className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.style.display = "none"
-                      const errorDiv = document.createElement("div")
-                      errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-lg"
-                      errorDiv.innerHTML = `
-                        <div class="text-center text-gray-500">
-                          <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
-                            <span class="text-2xl">⚠️</span>
-                          </div>
-                          <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
-                        </div>
-                      `
-                      target.parentNode?.appendChild(errorDiv)
-                    }}
-                  />
+{(() => {
+                    const fullImageSrc = fileData && fileData.isBinaryData ? 
+                      `data:${fileData.mimeType};base64,${fileData.data}` : 
+                      verificationResult.certificate.certificate_image
+                    
+                    return (
+                      <img
+                        src={fullImageSrc}
+                        alt="صورة الشهادة بالحجم الكامل"
+                        className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+                        onLoad={() => {
+                          console.log('✅ Full image loaded successfully!')
+                        }}
+                        onError={(e) => {
+                          console.log('❌ Full image failed to load')
+                          
+                          const target = e.target as HTMLImageElement
+                          target.style.display = "none"
+                          const errorDiv = document.createElement("div")
+                          errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-lg"
+                          errorDiv.innerHTML = `
+                            <div class="text-center text-gray-500">
+                              <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+                                <span class="text-2xl">⚠️</span>
+                              </div>
+                              <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
+                            </div>
+                          `
+                          target.parentNode?.appendChild(errorDiv)
+                        }}
+                      />
+                    )
+                  })()}
                 )
               }
               
