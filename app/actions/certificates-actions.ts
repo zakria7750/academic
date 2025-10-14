@@ -21,6 +21,15 @@ export async function verifyCertificate(certificateNumber: string) {
       throw error
     }
 
+    console.log("📋 Certificate found:", {
+      id: certificate.id,
+      number: certificate.certificate_number,
+      hasImage: !!certificate.certificate_image,
+      imageType: typeof certificate.certificate_image,
+      imageLength: certificate.certificate_image ? certificate.certificate_image.length : 0,
+      imagePreview: certificate.certificate_image ? certificate.certificate_image.substring(0, 100) + '...' : 'null'
+    })
+
     return {
       success: true,
       message: "تم العثور على الشهادة بنجاح",

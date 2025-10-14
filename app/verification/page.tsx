@@ -55,6 +55,15 @@ export default function VerificationPage() {
 
     try {
       const result = await verifyCertificate(certificateNumber.trim())
+      console.log('🔍 Verification result:', result)
+      if (result.success && result.certificate) {
+        console.log('📋 Certificate data:', {
+          id: result.certificate.id,
+          number: result.certificate.certificate_number,
+          hasImage: !!result.certificate.certificate_image,
+          imageDataLength: result.certificate.certificate_image ? result.certificate.certificate_image.length : 0
+        })
+      }
       setVerificationResult(result)
       setShowResult(true)
     } catch (error) {
@@ -78,21 +87,35 @@ export default function VerificationPage() {
 
   // Parse certificate file data
   const parseCertificateFile = (certificateImage: string): FileData | null => {
-    if (!certificateImage) return null
+    console.log('🔍 parseCertificateFile called with:', certificateImage ? certificateImage.substring(0, 100) + '...' : 'null/undefined')
+    
+    if (!certificateImage) {
+      console.log('❌ No certificate image data')
+      return null
+    }
     
     try {
       // Try to parse as new format (JSON with metadata)
       const fileData = JSON.parse(certificateImage)
+      console.log('✅ JSON parsed successfully:', {
+        mimeType: fileData.mimeType,
+        originalName: fileData.originalName,
+        hasData: !!fileData.data,
+        dataLength: fileData.data ? fileData.data.length : 0
+      })
+      
       if (fileData.data && fileData.mimeType) {
         return fileData
+      } else {
+        console.log('❌ Missing data or mimeType in parsed JSON')
       }
-    } catch {
-      // Not JSON, continue to fallback
+    } catch (error) {
+      console.log('❌ JSON parse failed:', error.message)
     }
     
     // Fallback: treat as old format (direct URL)
     if (certificateImage.startsWith('http')) {
-      // Old URL format - treat as image
+      console.log('🔗 Detected old URL format')
       return {
         data: '',
         mimeType: 'image/jpeg',
@@ -102,6 +125,7 @@ export default function VerificationPage() {
       } as FileData & { isOldFormat: boolean }
     }
     
+    console.log('❌ Unknown certificate image format')
     return null
   }
 
@@ -303,10 +327,13 @@ export default function VerificationPage() {
 
                     {/* Certificate File */}
                     {verificationResult.certificate.certificate_image && (() => {
+                      console.log('🎯 Certificate image data exists, processing...')
                       const fileData = parseCertificateFile(verificationResult.certificate.certificate_image)
+                      console.log('📊 Parsed file data:', fileData)
                       
                       // Handle old format (URL) or if parsing failed but it's a URL
                       if ((fileData && fileData.isOldFormat) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
+                        console.log('🔗 Rendering old format (URL)');
                         return (
                           <div className="text-center">
                             <div className="flex items-center justify-center gap-3 mb-6">
@@ -369,9 +396,13 @@ export default function VerificationPage() {
                       }
                       
                       // Handle new format with file data
-                      if (!fileData) return null
+                      if (!fileData) {
+                        console.log('❌ No file data to render')
+                        return null
+                      }
                       
                       const isImage = isImageType(fileData.mimeType)
+                      console.log('🖼️ Is image?', isImage, 'MIME type:', fileData.mimeType)
                       
                       return (
                         <div className="text-center">
