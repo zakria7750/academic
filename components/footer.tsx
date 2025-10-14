@@ -147,7 +147,7 @@ export default function Footer() {
                   icon: Globe,
                 },
                 { name: "الأسئلة الشائعة", href: "/faq", icon: HelpCircle },
-                { name: "مجلة وعي", href: "/magazine", icon: BookOpen },
+                { name: "مجلة وعي", href: "https://journal-academy-y9yi.vercel.app/", icon: BookOpen },
               ].map((link) => {
                 const Icon = link.icon;
                 return (
