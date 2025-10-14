@@ -8,8 +8,9 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
-import { Search, CheckCircle, XCircle, Calendar, Hash, Loader2, Award, Shield, Download, Eye } from "lucide-react"
-import { verifyCertificate } from "@/app/actions/certificates-actions"
+import { Search, CheckCircle, XCircle, Calendar, Hash, Loader2, Award, Shield, Download, Eye, FileText, Image } from "lucide-react"
+import { verifyCertificate, downloadCertificateFile } from "@/app/actions/certificates-actions"
+import { isImageType, base64ToBytes, createDataUrl, getFileExtension } from "@/lib/file-utils"
 
 interface Certificate {
   id: string
@@ -17,6 +18,15 @@ interface Certificate {
   certificate_image: string
   issue_date: string
   created_at: string
+}
+
+interface FileData {
+  data: string
+  mimeType: string
+  originalName: string
+  size: number
+  isOldFormat?: boolean
+  isBinaryData?: boolean
 }
 
 export default function VerificationPage() {
@@ -46,6 +56,15 @@ export default function VerificationPage() {
 
     try {
       const result = await verifyCertificate(certificateNumber.trim())
+      console.log('🔍 Verification result:', result)
+      if (result.success && result.certificate) {
+        console.log('📋 Certificate data:', {
+          id: result.certificate.id,
+          number: result.certificate.certificate_number,
+          hasImage: !!result.certificate.certificate_image,
+          imageDataLength: result.certificate.certificate_image ? result.certificate.certificate_image.length : 0
+        })
+      }
       setVerificationResult(result)
       setShowResult(true)
     } catch (error) {
@@ -65,6 +84,196 @@ export default function VerificationPage() {
       month: "long",
       day: "numeric",
     })
+  }
+
+  // Decode hex-escaped string
+  const decodeHexString = (hexString: string): string => {
+    try {
+      // Method 1: Replace hex escape sequences (\x7b) with actual characters
+      let decoded = hexString.replace(/\\x([0-9A-Fa-f]{2})/g, (match, hex) => {
+        return String.fromCharCode(parseInt(hex, 16))
+      })
+      
+      // Method 2: If it starts with \x and rest is hex, decode as pure hex
+      if (hexString.startsWith('\\x') && hexString.length > 3) {
+        const hexPart = hexString.substring(3) // Remove \x prefix
+        if (hexPart.match(/^[0-9A-Fa-f]+$/)) {
+          console.log('🔧 Decoding as pure hex data...')
+          let result = ''
+          for (let i = 0; i < hexPart.length; i += 2) {
+            const hex = hexPart.substr(i, 2)
+            result += String.fromCharCode(parseInt(hex, 16))
+          }
+          decoded = result
+        }
+      }
+      
+      return decoded
+    } catch (error) {
+      console.log('❌ Error decoding hex string:', error.message)
+      return hexString
+    }
+  }
+
+  // Parse certificate file data
+  const parseCertificateFile = (certificateImage: string): FileData | null => {
+    console.log('🔍 parseCertificateFile called with:', certificateImage ? certificateImage.substring(0, 100) + '...' : 'null/undefined')
+    
+    if (!certificateImage) {
+      console.log('❌ No certificate image data')
+      return null
+    }
+    
+    // Check if data is hex-encoded and decode it
+    let decodedData = certificateImage
+    if (certificateImage.includes('\\x')) {
+      console.log('🔧 Detected hex-encoded data, decoding...')
+      decodedData = decodeHexString(certificateImage)
+      console.log('✅ Decoded data:', decodedData.substring(0, 100) + '...')
+    }
+    
+    // Try to parse as JSON first
+    try {
+      const fileData = JSON.parse(decodedData)
+      console.log('✅ JSON parsed successfully:', {
+        mimeType: fileData.mimeType,
+        originalName: fileData.originalName,
+        hasData: !!fileData.data,
+        dataLength: fileData.data ? fileData.data.length : 0
+      })
+      
+      if (fileData.data && fileData.mimeType) {
+        return fileData
+      }
+    } catch (error) {
+      console.log('❌ JSON parse failed:', error.message)
+      
+      // Check if the decoded data looks like it contains JSON
+      if (decodedData.includes('"data":') || decodedData.includes('"mimeType":')) {
+        console.log('🔍 Decoded data seems to contain JSON, trying to extract it...')
+        
+        // Try to find and extract JSON from the decoded data
+        const jsonMatch = decodedData.match(/\{.*"data".*\}/)
+        if (jsonMatch) {
+          try {
+            const extractedJson = jsonMatch[0]
+            console.log('🔧 Extracted JSON:', extractedJson.substring(0, 100) + '...')
+            
+            const fileData = JSON.parse(extractedJson)
+            console.log('✅ Extracted JSON parsed successfully:', {
+              mimeType: fileData.mimeType,
+              originalName: fileData.originalName,
+              hasData: !!fileData.data,
+              dataLength: fileData.data ? fileData.data.length : 0
+            })
+            
+            if (fileData.data && fileData.mimeType) {
+              return fileData
+            }
+          } catch (extractError) {
+            console.log('❌ Failed to parse extracted JSON:', extractError.message)
+          }
+        }
+      }
+    }
+    
+    // Check if it's a direct URL
+    if (decodedData.startsWith('http')) {
+      console.log('🔗 Detected old URL format')
+      return {
+        data: '',
+        mimeType: 'image/jpeg',
+        originalName: 'certificate.jpg',
+        size: 0,
+        isOldFormat: true
+      } as FileData & { isOldFormat: boolean }
+    }
+    
+    // Check if it's binary data (likely an image)
+    if (certificateImage.includes('\\x') && decodedData.length > 10) {
+      console.log('🖼️ Detected binary image data, treating as JPEG')
+      
+      try {
+        // Convert the decoded binary data to base64 using btoa
+        const base64Data = btoa(decodedData)
+        console.log('✅ Base64 conversion successful, length:', base64Data.length)
+        console.log('📊 Base64 preview:', base64Data.substring(0, 50) + '...')
+        
+        return {
+          data: base64Data,
+          mimeType: 'image/jpeg',
+          originalName: 'certificate.jpg',
+          size: decodedData.length,
+          isBinaryData: true
+        } as FileData & { isBinaryData: boolean }
+      } catch (error) {
+        console.log('❌ Base64 conversion failed:', error.message)
+        
+        // Fallback: manual conversion
+        const bytes = new Uint8Array(decodedData.length)
+        for (let i = 0; i < decodedData.length; i++) {
+          bytes[i] = decodedData.charCodeAt(i)
+        }
+        
+        let base64Data = ''
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+        for (let i = 0; i < bytes.length; i += 3) {
+          const a = bytes[i]
+          const b = bytes[i + 1] || 0
+          const c = bytes[i + 2] || 0
+          
+          const bitmap = (a << 16) | (b << 8) | c
+          
+          base64Data += chars.charAt((bitmap >> 18) & 63)
+          base64Data += chars.charAt((bitmap >> 12) & 63)
+          base64Data += i + 1 < bytes.length ? chars.charAt((bitmap >> 6) & 63) : '='
+          base64Data += i + 2 < bytes.length ? chars.charAt(bitmap & 63) : '='
+        }
+        
+        console.log('✅ Manual base64 conversion, length:', base64Data.length)
+        
+        return {
+          data: base64Data,
+          mimeType: 'image/jpeg',
+          originalName: 'certificate.jpg',
+          size: bytes.length,
+          isBinaryData: true
+        } as FileData & { isBinaryData: boolean }
+      }
+    }
+    
+    console.log('❌ Unknown certificate image format')
+    return null
+  }
+
+  // Handle file download
+  const handleDownloadFile = async (certificateId: string, fileName: string) => {
+    try {
+      const result = await downloadCertificateFile(certificateId)
+      
+      if (!result.success || !result.fileData) {
+        console.error('Failed to download file:', result.message)
+        return
+      }
+
+      const { data, mimeType, originalName } = result.fileData
+      
+      // Convert base64 to blob
+      const bytes = base64ToBytes(data)
+      const blob = new Blob([bytes], { type: mimeType })
+      
+      // Create download link
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = originalName || fileName
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error('Error downloading file:', error)
+    }
   }
 
   return (
@@ -233,65 +442,200 @@ export default function VerificationPage() {
                       </Card>*/} 
                     </div>
 
-                    {/* Certificate Image */}
-                    {verificationResult.certificate.certificate_image && (
-                      <div className="text-center">
-                        <div className="flex items-center justify-center gap-3 mb-6">
-                          <Award className="w-6 h-6 text-amber-600" />
-                          <h3 className="text-2xl font-bold text-gray-800">صورة الشهادة</h3>
-                        </div>
+                    {/* Certificate File */}
+                    {verificationResult.certificate.certificate_image && (() => {
+                      console.log('🎯 Certificate image data exists, processing...')
+                      const fileData = parseCertificateFile(verificationResult.certificate.certificate_image)
+                      console.log('📊 Parsed file data:', fileData)
+                      
+                      // Handle old format (URL) or if parsing failed but it's a URL
+                      if ((fileData && (fileData.isOldFormat || fileData.isBinaryData)) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
+                        console.log('🔗 Rendering old/binary format');
+                        return (
+                          <div className="text-center">
+                            <div className="flex items-center justify-center gap-3 mb-6">
+                              <Award className="w-6 h-6 text-amber-600" />
+                              <h3 className="text-2xl font-bold text-gray-800">صورة الشهادة</h3>
+                            </div>
 
-                        <div className="relative inline-block group">
-                          <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                          <div className="relative bg-white p-4 rounded-2xl shadow-2xl border-2 border-amber-200">
-                            <img
-                              src={verificationResult.certificate.certificate_image || "/placeholder.svg"}
-                              alt="صورة الشهادة"
-                              className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement
-                                target.style.display = "none"
-                                // Show error message instead of fallback image
-                                const errorDiv = document.createElement("div")
-                                errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-xl"
-                                errorDiv.innerHTML = `
-                                  <div class="text-center text-gray-500">
-                                    <XCircle class="w-16 h-16 mx-auto mb-4 text-gray-400" />
-                                    <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
-                                    <p class="text-sm">تأكد من اتصالك بالإنترنت</p>
-                                  </div>
-                                `
-                                target.parentNode?.appendChild(errorDiv)
-                              }}
-                            />
-                            <div className="absolute top-6 right-6">
-                              <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg">
-                                <Shield className="w-4 h-4 ml-1" />
-                                معتمدة رسمياً
-                              </Badge>
+                            <div className="relative inline-block group">
+                              <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                              <div className="relative bg-white p-4 rounded-2xl shadow-2xl border-2 border-amber-200">
+                                {(() => {
+                                  const imageSrc = fileData && fileData.isBinaryData ? 
+                                    `data:${fileData.mimeType};base64,${fileData.data}` : 
+                                    verificationResult.certificate.certificate_image
+                                  
+                                  console.log('🖼️ Image src generated:', imageSrc.substring(0, 100) + '...')
+                                  
+                                  return (
+                                    <img
+                                      src={imageSrc}
+                                      alt="صورة الشهادة"
+                                      className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
+                                      onLoad={() => {
+                                        console.log('✅ Image loaded successfully!')
+                                      }}
+                                      onError={(e) => {
+                                        console.log('❌ Image failed to load')
+                                        console.log('🔍 Image src was:', imageSrc.substring(0, 200) + '...')
+                                        
+                                        const target = e.target as HTMLImageElement
+                                        target.style.display = "none"
+                                        const errorDiv = document.createElement("div")
+                                        errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-xl"
+                                        errorDiv.innerHTML = `
+                                          <div class="text-center text-gray-500">
+                                            <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+                                              <span class="text-2xl">⚠️</span>
+                                            </div>
+                                            <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
+                                            <p class="text-sm">البيانات قد تكون معطوبة</p>
+                                          </div>
+                                        `
+                                        target.parentNode?.appendChild(errorDiv)
+                                      }}
+                                    />
+                                  )
+                                })()}
+                                <div className="absolute top-6 right-6">
+                                  <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg">
+                                    <Shield className="w-4 h-4 ml-1" />
+                                    معتمدة رسمياً
+                                  </Badge>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="mt-6 flex justify-center gap-4">
+                              <Button
+                                onClick={() => setShowFullImage(true)}
+                                className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                              >
+                                <Eye className="w-5 h-5 ml-2" />
+                                عرض بالحجم الكامل
+                              </Button>
+                              <Button
+                                onClick={() => window.open(verificationResult.certificate?.certificate_image, "_blank")}
+                                variant="outline"
+                                className="border-2 border-amber-300 text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                              >
+                                <Download className="w-5 h-5 ml-2" />
+                                تحميل الشهادة
+                              </Button>
                             </div>
                           </div>
-                        </div>
+                        )
+                      }
+                      
+                      // Handle new format with file data
+                      if (!fileData) {
+                        console.log('❌ No file data to render')
+                        return null
+                      }
+                      
+                      const isImage = isImageType(fileData.mimeType)
+                      console.log('🖼️ Is image?', isImage, 'MIME type:', fileData.mimeType)
+                      
+                      return (
+                        <div className="text-center">
+                          <div className="flex items-center justify-center gap-3 mb-6">
+                            {isImage ? (
+                              <Image className="w-6 h-6 text-amber-600" />
+                            ) : (
+                              <FileText className="w-6 h-6 text-amber-600" />
+                            )}
+                            <h3 className="text-2xl font-bold text-gray-800">
+                              {isImage ? 'صورة الشهادة' : 'ملف الشهادة'}
+                            </h3>
+                          </div>
 
-                        <div className="mt-6 flex justify-center gap-4">
-                          <Button
-                            onClick={() => setShowFullImage(true)}
-                            className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
-                          >
-                            <Eye className="w-5 h-5 ml-2" />
-                            عرض بالحجم الكامل
-                          </Button>
-                          <Button
-                            onClick={() => window.open(verificationResult.certificate?.certificate_image, "_blank")}
-                            variant="outline"
-                            className="border-2 border-amber-300 text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
-                          >
-                            <Download className="w-5 h-5 ml-2" />
-                            تحميل الشهادة
-                          </Button>
+                          {isImage ? (
+                            // Display image
+                            <div className="relative inline-block group">
+                              <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                              <div className="relative bg-white p-4 rounded-2xl shadow-2xl border-2 border-amber-200">
+                                <img
+                                  src={createDataUrl(base64ToBytes(fileData.data), fileData.mimeType)}
+                                  alt="صورة الشهادة"
+                                  className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
+                                  onError={(e) => {
+                                    const target = e.target as HTMLImageElement
+                                    target.style.display = "none"
+                                    const errorDiv = document.createElement("div")
+                                    errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-xl"
+                                    errorDiv.innerHTML = `
+                                      <div class="text-center text-gray-500">
+                                        <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+                                          <span class="text-2xl">⚠️</span>
+                                        </div>
+                                        <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
+                                      </div>
+                                    `
+                                    target.parentNode?.appendChild(errorDiv)
+                                  }}
+                                />
+                                <div className="absolute top-6 right-6">
+                                  <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg">
+                                    <Shield className="w-4 h-4 ml-1" />
+                                    معتمدة رسمياً
+                                  </Badge>
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            // Display file info
+                            <div className="relative inline-block group max-w-md mx-auto">
+                              <div className="absolute inset-0 bg-gradient-to-r from-blue-300/30 to-indigo-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                              <div className="relative bg-white p-8 rounded-2xl shadow-2xl border-2 border-blue-200">
+                                <div className="flex flex-col items-center space-y-4">
+                                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
+                                    <FileText className="w-10 h-10 text-white" />
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-lg font-bold text-gray-800 mb-2">
+                                      {fileData.originalName}
+                                    </p>
+                                    <p className="text-sm text-gray-600 mb-1">
+                                      النوع: {fileData.mimeType.split('/')[1].toUpperCase()}
+                                    </p>
+                                    <p className="text-sm text-gray-600">
+                                      الحجم: {(fileData.size / 1024).toFixed(1)} KB
+                                    </p>
+                                  </div>
+                                  <div className="w-full">
+                                    <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg w-full justify-center">
+                                      <Shield className="w-4 h-4 ml-1" />
+                                      معتمدة رسمياً
+                                    </Badge>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          <div className="mt-6 flex justify-center gap-4">
+                            {isImage && (
+                              <Button
+                                onClick={() => setShowFullImage(true)}
+                                className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                              >
+                                <Eye className="w-5 h-5 ml-2" />
+                                عرض بالحجم الكامل
+                              </Button>
+                            )}
+                            <Button
+                              onClick={() => handleDownloadFile(verificationResult.certificate!.id, fileData.originalName)}
+                              variant="outline"
+                              className="border-2 border-amber-300 text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                            >
+                              <Download className="w-5 h-5 ml-2" />
+                              تحميل {isImage ? 'الصورة' : 'الملف'}
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )
+                    })()}
                   </div>
                 )}
               </>
@@ -323,29 +667,72 @@ export default function VerificationPage() {
             <DialogTitle className="text-center text-xl font-bold text-gray-800">عرض الشهادة بالحجم الكامل</DialogTitle>
           </DialogHeader>
           <div className="flex items-center justify-center">
-            {verificationResult?.certificate?.certificate_image && (
-              <img
-                src={verificationResult.certificate.certificate_image || "/placeholder.svg"}
-                alt="صورة الشهادة بالحجم الكامل"
-                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.style.display = "none"
-                  // Show error message for full image view
-                  const errorDiv = document.createElement("div")
-                  errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-lg"
-                  errorDiv.innerHTML = `
-                    <div class="text-center text-gray-500">
-                      <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
-                        <span class="text-2xl">⚠️</span>
-                      </div>
-                      <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
-                    </div>
-                  `
-                  target.parentNode?.appendChild(errorDiv)
-                }}
-              />
-            )}
+            {verificationResult?.certificate?.certificate_image && (() => {
+              const fileData = parseCertificateFile(verificationResult.certificate.certificate_image)
+              
+              // Handle old format (URL) or binary data
+              if ((fileData && (fileData.isOldFormat || fileData.isBinaryData)) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
+                const fullImageSrc = fileData && fileData.isBinaryData ? 
+                  `data:${fileData.mimeType};base64,${fileData.data}` : 
+                  verificationResult.certificate.certificate_image
+                
+                return (
+                  <img
+                    src={fullImageSrc}
+                    alt="صورة الشهادة بالحجم الكامل"
+                    className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+                    onLoad={() => {
+                      console.log('✅ Full image loaded successfully!')
+                    }}
+                    onError={(e) => {
+                      console.log('❌ Full image failed to load')
+                      
+                      const target = e.target as HTMLImageElement
+                      target.style.display = "none"
+                      const errorDiv = document.createElement("div")
+                      errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-lg"
+                      errorDiv.innerHTML = `
+                        <div class="text-center text-gray-500">
+                          <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">⚠️</span>
+                          </div>
+                          <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
+                        </div>
+                      `
+                      target.parentNode?.appendChild(errorDiv)
+                    }}
+                  />
+                )
+              }
+              
+              // Handle new format - only show if it's an image
+              if (fileData && isImageType(fileData.mimeType)) {
+                return (
+                  <img
+                    src={createDataUrl(base64ToBytes(fileData.data), fileData.mimeType)}
+                    alt="صورة الشهادة بالحجم الكامل"
+                    className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      target.style.display = "none"
+                      const errorDiv = document.createElement("div")
+                      errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-lg"
+                      errorDiv.innerHTML = `
+                        <div class="text-center text-gray-500">
+                          <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">⚠️</span>
+                          </div>
+                          <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
+                        </div>
+                      `
+                      target.parentNode?.appendChild(errorDiv)
+                    }}
+                  />
+                )
+              }
+              
+              return null
+            })()}
           </div>
         </DialogContent>
       </Dialog>
