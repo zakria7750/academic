@@ -162,7 +162,7 @@ export default function CertificatesManagement() {
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("ar-SA", {
+    return new Date(dateString).toLocaleDateString("ar-EG", {
       year: "numeric",
       month: "long",
       day: "numeric",
