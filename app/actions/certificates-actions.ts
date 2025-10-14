@@ -2,7 +2,7 @@
 
 import { createClient } from "@/lib/supabase"
 import { revalidatePath } from "next/cache"
-import { put } from "@vercel/blob"
+import { fileToBytes, bytesToBase64, detectFileType } from "@/lib/file-utils"
 
 export async function verifyCertificate(certificateNumber: string) {
   try {
@@ -40,22 +40,29 @@ export async function addCertificate(formData: FormData) {
     const certificateImageFile = formData.get("certificateImage") as File
     const issueDate = formData.get("issueDate") as string
 
-    let certificateImageUrl = ""
+    let certificateImageData = null
 
     if (certificateImageFile && certificateImageFile.size > 0) {
-      const blob = await put(
-        `certificates/${certificateNumber}-${Date.now()}.${certificateImageFile.name.split(".").pop()}`,
-        certificateImageFile,
-        {
-          access: "public",
-        },
-      )
-      certificateImageUrl = blob.url
+      // Convert file to bytes
+      const fileBytes = await fileToBytes(certificateImageFile)
+      
+      // Detect file type
+      const detectedMimeType = detectFileType(fileBytes)
+      
+      // Store file data with metadata
+      const fileData = {
+        data: bytesToBase64(fileBytes),
+        mimeType: detectedMimeType,
+        originalName: certificateImageFile.name,
+        size: certificateImageFile.size
+      }
+      
+      certificateImageData = JSON.stringify(fileData)
     }
 
     const { error } = await supabase.from("certificates").insert({
       certificate_number: certificateNumber,
-      certificate_image: certificateImageUrl,
+      certificate_image: certificateImageData,
       issue_date: issueDate || new Date().toISOString().split("T")[0],
     })
 
@@ -88,14 +95,21 @@ export async function updateCertificate(id: string, formData: FormData) {
     }
 
     if (certificateImageFile && certificateImageFile.size > 0) {
-      const blob = await put(
-        `certificates/${certificateNumber}-${Date.now()}.${certificateImageFile.name.split(".").pop()}`,
-        certificateImageFile,
-        {
-          access: "public",
-        },
-      )
-      updateData.certificate_image = blob.url
+      // Convert file to bytes
+      const fileBytes = await fileToBytes(certificateImageFile)
+      
+      // Detect file type
+      const detectedMimeType = detectFileType(fileBytes)
+      
+      // Store file data with metadata
+      const fileData = {
+        data: bytesToBase64(fileBytes),
+        mimeType: detectedMimeType,
+        originalName: certificateImageFile.name,
+        size: certificateImageFile.size
+      }
+      
+      updateData.certificate_image = JSON.stringify(fileData)
     }
 
     const { error } = await supabase.from("certificates").update(updateData).eq("id", id)
@@ -146,5 +160,41 @@ export async function getCertificates() {
   } catch (error) {
     console.error("Error fetching certificates:", error)
     return { success: false, certificates: [] }
+  }
+}
+
+export async function downloadCertificateFile(certificateId: string) {
+  try {
+    const supabase = createClient()
+
+    const { data: certificate, error } = await supabase
+      .from("certificates")
+      .select("certificate_image, certificate_number")
+      .eq("id", certificateId)
+      .single()
+
+    if (error) {
+      throw error
+    }
+
+    if (!certificate?.certificate_image) {
+      return { success: false, message: "لا يوجد ملف مرفق بهذه الشهادة" }
+    }
+
+    // Parse the stored file data
+    const fileData = JSON.parse(certificate.certificate_image)
+    
+    return {
+      success: true,
+      fileData: {
+        data: fileData.data,
+        mimeType: fileData.mimeType,
+        originalName: fileData.originalName || `certificate-${certificate.certificate_number}`,
+        size: fileData.size
+      }
+    }
+  } catch (error) {
+    console.error("Error downloading certificate file:", error)
+    return { success: false, message: "حدث خطأ أثناء تحميل الملف" }
   }
 }
