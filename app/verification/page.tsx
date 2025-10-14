@@ -9,7 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Search, CheckCircle, XCircle, Calendar, Hash, Loader2, Award, Shield, Download, Eye, FileText, File, ImageIcon } from "lucide-react"
-import { verifyCertificate, getFileType } from "@/app/actions/certificates-actions"
+import { verifyCertificate } from "@/app/actions/certificates-actions"
+import { getFileType } from "@/lib/file-utils"
 
 interface Certificate {
   id: string

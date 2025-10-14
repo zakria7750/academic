@@ -30,8 +30,8 @@ import {
   addCertificate,
   updateCertificate,
   deleteCertificate,
-  isValidFileType,
 } from "@/app/actions/certificates-actions"
+import { isValidFileType } from "@/lib/file-utils"
 
 interface Certificate {
   id: string
