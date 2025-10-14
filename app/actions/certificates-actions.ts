@@ -32,30 +32,46 @@ export async function verifyCertificate(certificateNumber: string) {
   }
 }
 
+/**
+ * دالة لإضافة شهادة جديدة مع رفع الملف إلى Vercel Blob Storage
+ * تدعم رفع أنواع مختلفة من الملفات (صور، PDF، DOCX، إلخ)
+ */
 export async function addCertificate(formData: FormData) {
   try {
     const supabase = createClient()
 
+    // استخراج البيانات من FormData
     const certificateNumber = formData.get("certificateNumber") as string
     const certificateImageFile = formData.get("certificateImage") as File
     const issueDate = formData.get("issueDate") as string
 
     let certificateImageUrl = ""
 
+    // رفع الملف إلى Vercel Blob Storage إذا تم تحديد ملف
     if (certificateImageFile && certificateImageFile.size > 0) {
+      // الحصول على امتداد الملف
+      const fileExtension = certificateImageFile.name.split(".").pop()?.toLowerCase() || "unknown"
+      
+      // إنشاء اسم فريد للملف
+      const fileName = `certificates/${certificateNumber}-${Date.now()}.${fileExtension}`
+      
+      // رفع الملف إلى Vercel Blob مع إعداد الوصول العام
       const blob = await put(
-        `certificates/${certificateNumber}-${Date.now()}.${certificateImageFile.name.split(".").pop()}`,
+        fileName,
         certificateImageFile,
         {
-          access: "public",
+          access: "public", // جعل الملف متاح للعامة
         },
       )
+      
+      // حفظ رابط الملف
       certificateImageUrl = blob.url
     }
 
+    // إدراج البيانات في قاعدة البيانات (يتم حفظ الرابط فقط وليس محتوى الملف)
     const { error } = await supabase.from("certificates").insert({
       certificate_number: certificateNumber,
-      certificate_image: certificateImageUrl,
+      certificate_image: certificateImageUrl, // حفظ رابط الملف في العمود certificate_image
       issue_date: issueDate || new Date().toISOString().split("T")[0],
     })
 
@@ -66,6 +82,7 @@ export async function addCertificate(formData: FormData) {
       throw error
     }
 
+    // إعادة تحديث الصفحة لعرض البيانات الجديدة
     revalidatePath("/dashboard/certificates")
     return { success: true, message: "تم إضافة الشهادة بنجاح" }
   } catch (error) {
@@ -74,30 +91,47 @@ export async function addCertificate(formData: FormData) {
   }
 }
 
+/**
+ * دالة لتحديث شهادة موجودة مع إمكانية رفع ملف جديد
+ * تدعم رفع أنواع مختلفة من الملفات (صور، PDF، DOCX، إلخ)
+ */
 export async function updateCertificate(id: string, formData: FormData) {
   try {
     const supabase = createClient()
 
+    // استخراج البيانات من FormData
     const certificateNumber = formData.get("certificateNumber") as string
     const certificateImageFile = formData.get("certificateImage") as File
     const issueDate = formData.get("issueDate") as string
 
+    // إعداد البيانات الأساسية للتحديث
     const updateData: any = {
       certificate_number: certificateNumber,
       issue_date: issueDate,
     }
 
+    // رفع ملف جديد إذا تم تحديده
     if (certificateImageFile && certificateImageFile.size > 0) {
+      // الحصول على امتداد الملف
+      const fileExtension = certificateImageFile.name.split(".").pop()?.toLowerCase() || "unknown"
+      
+      // إنشاء اسم فريد للملف
+      const fileName = `certificates/${certificateNumber}-${Date.now()}.${fileExtension}`
+      
+      // رفع الملف الجديد إلى Vercel Blob مع إعداد الوصول العام
       const blob = await put(
-        `certificates/${certificateNumber}-${Date.now()}.${certificateImageFile.name.split(".").pop()}`,
+        fileName,
         certificateImageFile,
         {
-          access: "public",
+          access: "public", // جعل الملف متاح للعامة
         },
       )
+      
+      // تحديث رابط الملف في البيانات
       updateData.certificate_image = blob.url
     }
 
+    // تحديث البيانات في قاعدة البيانات
     const { error } = await supabase.from("certificates").update(updateData).eq("id", id)
 
     if (error) {
@@ -107,6 +141,7 @@ export async function updateCertificate(id: string, formData: FormData) {
       throw error
     }
 
+    // إعادة تحديث الصفحة لعرض البيانات المحدثة
     revalidatePath("/dashboard/certificates")
     return { success: true, message: "تم تحديث الشهادة بنجاح" }
   } catch (error) {

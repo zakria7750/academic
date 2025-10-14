@@ -23,6 +23,7 @@ import {
   Award,
   FileText,
   Shield,
+  File,
 } from "lucide-react"
 import {
   getCertificates,
@@ -30,6 +31,7 @@ import {
   updateCertificate,
   deleteCertificate,
 } from "@/app/actions/certificates-actions"
+import { isValidFileType } from "@/lib/file-utils"
 
 interface Certificate {
   id: string
@@ -172,6 +174,31 @@ export default function CertificatesManagement() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
+      // التحقق من صحة نوع الملف
+      if (!isValidFileType(file)) {
+        setResult({
+          success: false,
+          message: "نوع الملف غير مدعوم. يرجى اختيار ملف صورة (JPG, PNG, WebP) أو مستند (PDF, DOC, DOCX)"
+        })
+        setShowResultDialog(true)
+        // إعادة تعيين قيمة input
+        e.target.value = ""
+        return
+      }
+      
+      // التحقق من حجم الملف (أقصى حد 10MB)
+      const maxSize = 10 * 1024 * 1024 // 10MB
+      if (file.size > maxSize) {
+        setResult({
+          success: false,
+          message: "حجم الملف كبير جداً. يرجى اختيار ملف أصغر من 10MB"
+        })
+        setShowResultDialog(true)
+        // إعادة تعيين قيمة input
+        e.target.value = ""
+        return
+      }
+      
       setFormData({ ...formData, certificateImage: file })
     }
   }
@@ -228,33 +255,41 @@ export default function CertificatesManagement() {
                   <div>
                     <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
                       <Upload className="w-4 h-4 text-academy-gold" />
-                      صورة الشهادة *
+                      ملف الشهادة *
                     </label>
                     <div className="relative">
                       <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
                         <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
-                        <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة هنا أو</p>
+                        <p className="text-academy-dark-gray mb-2 text-lg">اسحب وأفلت ملف الشهادة هنا أو</p>
+                        <p className="text-sm text-academy-dark-gray/70 mb-4">
+                          الأنواع المدعومة: صور (JPG, PNG, WebP) أو مستندات (PDF, DOC, DOCX)
+                        </p>
                         <Button
                           type="button"
                           variant="outline"
                           className="border-2 border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white bg-transparent rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:-translate-y-1"
                           onClick={() => document.getElementById("certificate-upload")?.click()}
                         >
-                          <ImageIcon className="w-4 h-4 mr-2" />
-                          اختر صورة
+                          <File className="w-4 h-4 mr-2" />
+                          اختر ملف
                         </Button>
                         <input
                           id="certificate-upload"
                           type="file"
-                          accept="image/*"
+                          accept="image/*,.pdf,.doc,.docx,.txt,.rtf,.odt"
                           onChange={handleFileChange}
                           className="hidden"
                           required
                         />
                         {formData.certificateImage && (
-                          <p className="text-sm text-academy-blue mt-3 font-medium">
-                            تم اختيار: {formData.certificateImage.name}
-                          </p>
+                          <div className="mt-4 p-3 bg-academy-blue/10 rounded-xl">
+                            <p className="text-sm text-academy-blue font-medium">
+                              تم اختيار: {formData.certificateImage.name}
+                            </p>
+                            <p className="text-xs text-academy-dark-gray mt-1">
+                              الحجم: {(formData.certificateImage.size / 1024 / 1024).toFixed(2)} MB
+                            </p>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -485,30 +520,40 @@ export default function CertificatesManagement() {
                 <div>
                   <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
                     <Upload className="w-4 h-4 text-academy-gold" />
-                    صورة الشهادة الجديدة (اختياري)
+                    ملف الشهادة الجديد (اختياري)
                   </label>
                   <div className="relative">
                     <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
                       <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
-                      <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة الجديدة هنا أو</p>
+                      <p className="text-academy-dark-gray mb-2 text-lg">اسحب وأفلت ملف الشهادة الجديد هنا أو</p>
+                      <p className="text-sm text-academy-dark-gray/70 mb-4">
+                        الأنواع المدعومة: صور (JPG, PNG, WebP) أو مستندات (PDF, DOC, DOCX)
+                      </p>
                       <Button
                         type="button"
                         variant="outline"
                         className="border-2 border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white bg-transparent rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:-translate-y-1"
                         onClick={() => document.getElementById("certificate-edit-upload")?.click()}
                       >
-                        <ImageIcon className="w-4 h-4 mr-2" />
-                        اختر صورة جديدة
+                        <File className="w-4 h-4 mr-2" />
+                        اختر ملف جديد
                       </Button>
                       <input
                         id="certificate-edit-upload"
                         type="file"
-                        accept="image/*"
+                        accept="image/*,.pdf,.doc,.docx,.txt,.rtf,.odt"
                         onChange={handleFileChange}
                         className="hidden"
                       />
                       {formData.certificateImage && (
-                        <p className="text-sm text-academy-blue mt-3 font-medium">تم اختيار: {formData.certificateImage.name}</p>
+                        <div className="mt-4 p-3 bg-academy-blue/10 rounded-xl">
+                          <p className="text-sm text-academy-blue font-medium">
+                            تم اختيار: {formData.certificateImage.name}
+                          </p>
+                          <p className="text-xs text-academy-dark-gray mt-1">
+                            الحجم: {(formData.certificateImage.size / 1024 / 1024).toFixed(2)} MB
+                          </p>
+                        </div>
                       )}
                     </div>
                   </div>
