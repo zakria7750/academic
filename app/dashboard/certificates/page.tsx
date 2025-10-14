@@ -228,25 +228,25 @@ export default function CertificatesManagement() {
                   <div>
                     <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
                       <Upload className="w-4 h-4 text-academy-gold" />
-                      صورة الشهادة *
+                      ملف الشهادة *
                     </label>
                     <div className="relative">
                       <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
                         <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
-                        <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة هنا أو</p>
+                        <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت ملف الشهادة هنا أو</p>
                         <Button
                           type="button"
                           variant="outline"
                           className="border-2 border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white bg-transparent rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:-translate-y-1"
                           onClick={() => document.getElementById("certificate-upload")?.click()}
                         >
-                          <ImageIcon className="w-4 h-4 mr-2" />
-                          اختر صورة
+                          <Upload className="w-4 h-4 mr-2" />
+                          اختر ملف
                         </Button>
                         <input
                           id="certificate-upload"
                           type="file"
-                          accept="image/*"
+                          accept="image/*,.pdf,.doc,.docx,.txt,.rtf"
                           onChange={handleFileChange}
                           className="hidden"
                           required
@@ -485,25 +485,25 @@ export default function CertificatesManagement() {
                 <div>
                   <label className="block text-sm font-semibold text-academy-blue mb-3 flex items-center gap-2">
                     <Upload className="w-4 h-4 text-academy-gold" />
-                    صورة الشهادة الجديدة (اختياري)
+                    ملف الشهادة الجديد (اختياري)
                   </label>
                   <div className="relative">
                     <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
                       <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
-                      <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة الجديدة هنا أو</p>
+                      <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت ملف الشهادة الجديد هنا أو</p>
                       <Button
                         type="button"
                         variant="outline"
                         className="border-2 border-academy-blue text-academy-blue hover:bg-academy-blue hover:text-white bg-transparent rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:-translate-y-1"
                         onClick={() => document.getElementById("certificate-edit-upload")?.click()}
                       >
-                        <ImageIcon className="w-4 h-4 mr-2" />
-                        اختر صورة جديدة
+                        <Upload className="w-4 h-4 mr-2" />
+                        اختر ملف جديد
                       </Button>
                       <input
                         id="certificate-edit-upload"
                         type="file"
-                        accept="image/*"
+                        accept="image/*,.pdf,.doc,.docx,.txt,.rtf"
                         onChange={handleFileChange}
                         className="hidden"
                       />

@@ -25,6 +25,7 @@ interface FileData {
   mimeType: string
   originalName: string
   size: number
+  isOldFormat?: boolean
 }
 
 export default function VerificationPage() {
@@ -77,23 +78,31 @@ export default function VerificationPage() {
 
   // Parse certificate file data
   const parseCertificateFile = (certificateImage: string): FileData | null => {
+    if (!certificateImage) return null
+    
     try {
       // Try to parse as new format (JSON with metadata)
       const fileData = JSON.parse(certificateImage)
-      return fileData
-    } catch {
-      // Fallback: treat as old format (direct URL or base64)
-      if (certificateImage.startsWith('http')) {
-        // Old URL format - treat as image
-        return {
-          data: '',
-          mimeType: 'image/jpeg',
-          originalName: 'certificate.jpg',
-          size: 0
-        }
+      if (fileData.data && fileData.mimeType) {
+        return fileData
       }
-      return null
+    } catch {
+      // Not JSON, continue to fallback
     }
+    
+    // Fallback: treat as old format (direct URL)
+    if (certificateImage.startsWith('http')) {
+      // Old URL format - treat as image
+      return {
+        data: '',
+        mimeType: 'image/jpeg',
+        originalName: 'certificate.jpg',
+        size: 0,
+        isOldFormat: true
+      } as FileData & { isOldFormat: boolean }
+    }
+    
+    return null
   }
 
   // Handle file download
@@ -296,8 +305,8 @@ export default function VerificationPage() {
                     {verificationResult.certificate.certificate_image && (() => {
                       const fileData = parseCertificateFile(verificationResult.certificate.certificate_image)
                       
-                      // Handle old format (URL)
-                      if (!fileData && verificationResult.certificate.certificate_image.startsWith('http')) {
+                      // Handle old format (URL) or if parsing failed but it's a URL
+                      if ((fileData && fileData.isOldFormat) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
                         return (
                           <div className="text-center">
                             <div className="flex items-center justify-center gap-3 mb-6">
@@ -498,7 +507,7 @@ export default function VerificationPage() {
               const fileData = parseCertificateFile(verificationResult.certificate.certificate_image)
               
               // Handle old format (URL)
-              if (!fileData && verificationResult.certificate.certificate_image.startsWith('http')) {
+              if ((fileData && fileData.isOldFormat) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
                 return (
                   <img
                     src={verificationResult.certificate.certificate_image}
