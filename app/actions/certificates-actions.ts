@@ -215,8 +215,46 @@ export async function downloadCertificateFile(certificateId: string) {
       }
     }
     
-    // Parse the stored file data
-    const fileData = JSON.parse(decodedData)
+    // Try to parse as JSON first
+    let fileData
+    try {
+      fileData = JSON.parse(decodedData)
+    } catch (error) {
+      console.log('❌ JSON parse failed for download, treating as binary image data')
+      
+      // If it's binary data, create a file data object
+      if (certificate.certificate_image.includes('\\x')) {
+        // Convert binary data to base64
+        const bytes = new Uint8Array(decodedData.length)
+        for (let i = 0; i < decodedData.length; i++) {
+          bytes[i] = decodedData.charCodeAt(i)
+        }
+        
+        let base64Data = ''
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+        for (let i = 0; i < bytes.length; i += 3) {
+          const a = bytes[i]
+          const b = bytes[i + 1] || 0
+          const c = bytes[i + 2] || 0
+          
+          const bitmap = (a << 16) | (b << 8) | c
+          
+          base64Data += chars.charAt((bitmap >> 18) & 63)
+          base64Data += chars.charAt((bitmap >> 12) & 63)
+          base64Data += i + 1 < bytes.length ? chars.charAt((bitmap >> 6) & 63) : '='
+          base64Data += i + 2 < bytes.length ? chars.charAt(bitmap & 63) : '='
+        }
+        
+        fileData = {
+          data: base64Data,
+          mimeType: 'image/jpeg',
+          originalName: `certificate-${certificate.certificate_number}.jpg`,
+          size: bytes.length
+        }
+      } else {
+        return { success: false, message: "تنسيق الملف غير مدعوم" }
+      }
+    }
     
     return {
       success: true,

@@ -26,6 +26,7 @@ interface FileData {
   originalName: string
   size: number
   isOldFormat?: boolean
+  isBinaryData?: boolean
 }
 
 export default function VerificationPage() {
@@ -131,8 +132,8 @@ export default function VerificationPage() {
       console.log('✅ Decoded data:', decodedData.substring(0, 100) + '...')
     }
     
+    // Try to parse as JSON first
     try {
-      // Try to parse as new format (JSON with metadata)
       const fileData = JSON.parse(decodedData)
       console.log('✅ JSON parsed successfully:', {
         mimeType: fileData.mimeType,
@@ -143,14 +144,12 @@ export default function VerificationPage() {
       
       if (fileData.data && fileData.mimeType) {
         return fileData
-      } else {
-        console.log('❌ Missing data or mimeType in parsed JSON')
       }
     } catch (error) {
       console.log('❌ JSON parse failed:', error.message)
     }
     
-    // Fallback: treat as old format (direct URL)
+    // Check if it's a direct URL
     if (decodedData.startsWith('http')) {
       console.log('🔗 Detected old URL format')
       return {
@@ -160,6 +159,40 @@ export default function VerificationPage() {
         size: 0,
         isOldFormat: true
       } as FileData & { isOldFormat: boolean }
+    }
+    
+    // Check if it's binary data (likely an image)
+    if (certificateImage.includes('\\x') && decodedData.length > 10) {
+      console.log('🖼️ Detected binary image data, treating as JPEG')
+      
+      // Convert the decoded binary data back to base64
+      const bytes = new Uint8Array(decodedData.length)
+      for (let i = 0; i < decodedData.length; i++) {
+        bytes[i] = decodedData.charCodeAt(i)
+      }
+      
+      let base64Data = ''
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+      for (let i = 0; i < bytes.length; i += 3) {
+        const a = bytes[i]
+        const b = bytes[i + 1] || 0
+        const c = bytes[i + 2] || 0
+        
+        const bitmap = (a << 16) | (b << 8) | c
+        
+        base64Data += chars.charAt((bitmap >> 18) & 63)
+        base64Data += chars.charAt((bitmap >> 12) & 63)
+        base64Data += i + 1 < bytes.length ? chars.charAt((bitmap >> 6) & 63) : '='
+        base64Data += i + 2 < bytes.length ? chars.charAt(bitmap & 63) : '='
+      }
+      
+      return {
+        data: base64Data,
+        mimeType: 'image/jpeg',
+        originalName: 'certificate.jpg',
+        size: bytes.length,
+        isBinaryData: true
+      } as FileData & { isBinaryData: boolean }
     }
     
     console.log('❌ Unknown certificate image format')
@@ -369,8 +402,8 @@ export default function VerificationPage() {
                       console.log('📊 Parsed file data:', fileData)
                       
                       // Handle old format (URL) or if parsing failed but it's a URL
-                      if ((fileData && fileData.isOldFormat) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
-                        console.log('🔗 Rendering old format (URL)');
+                      if ((fileData && (fileData.isOldFormat || fileData.isBinaryData)) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
+                        console.log('🔗 Rendering old/binary format');
                         return (
                           <div className="text-center">
                             <div className="flex items-center justify-center gap-3 mb-6">
@@ -381,10 +414,12 @@ export default function VerificationPage() {
                             <div className="relative inline-block group">
                               <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
                               <div className="relative bg-white p-4 rounded-2xl shadow-2xl border-2 border-amber-200">
-                                <img
-                                  src={verificationResult.certificate.certificate_image}
-                                  alt="صورة الشهادة"
-                                  className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
+                            <img
+                              src={fileData && fileData.isBinaryData ? 
+                                createDataUrl(base64ToBytes(fileData.data), fileData.mimeType) : 
+                                verificationResult.certificate.certificate_image}
+                              alt="صورة الشهادة"
+                              className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
                                   onError={(e) => {
                                     const target = e.target as HTMLImageElement
                                     target.style.display = "none"
@@ -574,11 +609,13 @@ export default function VerificationPage() {
             {verificationResult?.certificate?.certificate_image && (() => {
               const fileData = parseCertificateFile(verificationResult.certificate.certificate_image)
               
-              // Handle old format (URL)
-              if ((fileData && fileData.isOldFormat) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
+              // Handle old format (URL) or binary data
+              if ((fileData && (fileData.isOldFormat || fileData.isBinaryData)) || (!fileData && verificationResult.certificate.certificate_image.startsWith('http'))) {
                 return (
                   <img
-                    src={verificationResult.certificate.certificate_image}
+                    src={fileData && fileData.isBinaryData ? 
+                      createDataUrl(base64ToBytes(fileData.data), fileData.mimeType) : 
+                      verificationResult.certificate.certificate_image}
                     alt="صورة الشهادة بالحجم الكامل"
                     className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
                     onError={(e) => {
