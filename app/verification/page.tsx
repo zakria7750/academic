@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
-import { Search, CheckCircle, XCircle, Calendar, Hash, Loader2, Award, Shield, Download, Eye } from "lucide-react"
-import { verifyCertificate } from "@/app/actions/certificates-actions"
+import { Search, CheckCircle, XCircle, Calendar, Hash, Loader2, Award, Shield, Download, Eye, FileText, File, ImageIcon } from "lucide-react"
+import { verifyCertificate, getFileType } from "@/app/actions/certificates-actions"
 
 interface Certificate {
   id: string
@@ -65,6 +65,143 @@ export default function VerificationPage() {
       month: "long",
       day: "numeric",
     })
+  }
+
+  /**
+   * دالة لعرض الملف بالطريقة المناسبة حسب نوعه
+   * @param fileUrl رابط الملف
+   * @param fileName اسم الملف (يمكن استخراجه من الرابط)
+   */
+  const renderFileDisplay = (fileUrl: string, fileName?: string) => {
+    if (!fileUrl) return null
+
+    // استخراج اسم الملف من الرابط إذا لم يتم توفيره
+    const extractedFileName = fileName || fileUrl.split('/').pop() || 'certificate'
+    const fileType = getFileType(extractedFileName)
+
+    // عرض الصور
+    if (fileType === "image") {
+      return (
+        <div className="text-center">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <ImageIcon className="w-6 h-6 text-amber-600" />
+            <h3 className="text-2xl font-bold text-gray-800">صورة الشهادة</h3>
+          </div>
+
+          <div className="relative inline-block group">
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+            <div className="relative bg-white p-4 rounded-2xl shadow-2xl border-2 border-amber-200">
+              <img
+                src={fileUrl}
+                alt="صورة الشهادة"
+                className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.style.display = "none"
+                  // عرض رسالة خطأ بدلاً من الصورة
+                  const errorDiv = document.createElement("div")
+                  errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-xl"
+                  errorDiv.innerHTML = `
+                    <div class="text-center text-gray-500">
+                      <div class="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+                        <span class="text-2xl">⚠️</span>
+                      </div>
+                      <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
+                      <p class="text-sm">تأكد من اتصالك بالإنترنت</p>
+                    </div>
+                  `
+                  target.parentNode?.appendChild(errorDiv)
+                }}
+              />
+              <div className="absolute top-6 right-6">
+                <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg">
+                  <Shield className="w-4 h-4 ml-1" />
+                  معتمدة رسمياً
+                </Badge>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 flex justify-center gap-4">
+            <Button
+              onClick={() => setShowFullImage(true)}
+              className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Eye className="w-5 h-5 ml-2" />
+              عرض بالحجم الكامل
+            </Button>
+            <Button
+              onClick={() => window.open(fileUrl, "_blank")}
+              variant="outline"
+              className="border-2 border-amber-300 text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Download className="w-5 h-5 ml-2" />
+              تحميل الشهادة
+            </Button>
+          </div>
+        </div>
+      )
+    }
+
+    // عرض ملفات PDF والمستندات الأخرى
+    const getFileIcon = () => {
+      switch (fileType) {
+        case "pdf":
+          return <FileText className="w-16 h-16 text-red-600" />
+        case "document":
+          return <FileText className="w-16 h-16 text-blue-600" />
+        default:
+          return <File className="w-16 h-16 text-gray-600" />
+      }
+    }
+
+    const getFileTypeLabel = () => {
+      switch (fileType) {
+        case "pdf":
+          return "ملف PDF"
+        case "document":
+          return "مستند"
+        default:
+          return "ملف"
+      }
+    }
+
+    return (
+      <div className="text-center">
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <Award className="w-6 h-6 text-amber-600" />
+          <h3 className="text-2xl font-bold text-gray-800">ملف الشهادة</h3>
+        </div>
+
+        <div className="relative inline-block group">
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+          <div className="relative bg-white p-8 rounded-2xl shadow-2xl border-2 border-amber-200 min-w-[300px]">
+            <div className="flex flex-col items-center">
+              {getFileIcon()}
+              <h4 className="text-xl font-bold text-gray-800 mt-4 mb-2">{getFileTypeLabel()}</h4>
+              <p className="text-gray-600 mb-6">اضغط على الزر أدناه لتحميل الملف</p>
+              
+              <div className="absolute top-6 right-6">
+                <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg">
+                  <Shield className="w-4 h-4 ml-1" />
+                  معتمدة رسمياً
+                </Badge>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <Button
+            onClick={() => window.open(fileUrl, "_blank")}
+            className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <Download className="w-5 h-5 ml-2" />
+            تحميل الملف
+          </Button>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -233,65 +370,10 @@ export default function VerificationPage() {
                       </Card>*/} 
                     </div>
 
-                    {/* Certificate Image */}
-                    {verificationResult.certificate.certificate_image && (
-                      <div className="text-center">
-                        <div className="flex items-center justify-center gap-3 mb-6">
-                          <Award className="w-6 h-6 text-amber-600" />
-                          <h3 className="text-2xl font-bold text-gray-800">صورة الشهادة</h3>
-                        </div>
-
-                        <div className="relative inline-block group">
-                          <div className="absolute inset-0 bg-gradient-to-r from-amber-300/30 to-yellow-300/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                          <div className="relative bg-white p-4 rounded-2xl shadow-2xl border-2 border-amber-200">
-                            <img
-                              src={verificationResult.certificate.certificate_image || "/placeholder.svg"}
-                              alt="صورة الشهادة"
-                              className="max-w-full h-auto rounded-xl shadow-lg max-h-96 object-contain"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement
-                                target.style.display = "none"
-                                // Show error message instead of fallback image
-                                const errorDiv = document.createElement("div")
-                                errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-xl"
-                                errorDiv.innerHTML = `
-                                  <div class="text-center text-gray-500">
-                                    <XCircle class="w-16 h-16 mx-auto mb-4 text-gray-400" />
-                                    <p class="text-lg font-medium">لا يمكن تحميل صورة الشهادة</p>
-                                    <p class="text-sm">تأكد من اتصالك بالإنترنت</p>
-                                  </div>
-                                `
-                                target.parentNode?.appendChild(errorDiv)
-                              }}
-                            />
-                            <div className="absolute top-6 right-6">
-                              <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-4 py-2 text-sm font-bold shadow-lg">
-                                <Shield className="w-4 h-4 ml-1" />
-                                معتمدة رسمياً
-                              </Badge>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="mt-6 flex justify-center gap-4">
-                          <Button
-                            onClick={() => setShowFullImage(true)}
-                            className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
-                          >
-                            <Eye className="w-5 h-5 ml-2" />
-                            عرض بالحجم الكامل
-                          </Button>
-                          <Button
-                            onClick={() => window.open(verificationResult.certificate?.certificate_image, "_blank")}
-                            variant="outline"
-                            className="border-2 border-amber-300 text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
-                          >
-                            <Download className="w-5 h-5 ml-2" />
-                            تحميل الشهادة
-                          </Button>
-                        </div>
-                      </div>
-                    )}
+                    {/* Certificate File Display */}
+                    {verificationResult.certificate.certificate_image && 
+                      renderFileDisplay(verificationResult.certificate.certificate_image)
+                    }
                   </div>
                 )}
               </>
@@ -316,22 +398,23 @@ export default function VerificationPage() {
         </DialogContent>
       </Dialog>
 
-      {/* Full Image Dialog */}
+      {/* Full Image Dialog - يظهر فقط للصور */}
       <Dialog open={showFullImage} onOpenChange={setShowFullImage}>
         <DialogContent className="max-w-6xl max-h-[95vh] overflow-hidden p-2 bg-white">
           <DialogHeader className="pb-2">
             <DialogTitle className="text-center text-xl font-bold text-gray-800">عرض الشهادة بالحجم الكامل</DialogTitle>
           </DialogHeader>
           <div className="flex items-center justify-center">
-            {verificationResult?.certificate?.certificate_image && (
+            {verificationResult?.certificate?.certificate_image && 
+             getFileType(verificationResult.certificate.certificate_image.split('/').pop() || '') === "image" && (
               <img
-                src={verificationResult.certificate.certificate_image || "/placeholder.svg"}
+                src={verificationResult.certificate.certificate_image}
                 alt="صورة الشهادة بالحجم الكامل"
                 className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement
                   target.style.display = "none"
-                  // Show error message for full image view
+                  // عرض رسالة خطأ لعرض الصورة بالحجم الكامل
                   const errorDiv = document.createElement("div")
                   errorDiv.className = "flex items-center justify-center h-96 bg-gray-100 rounded-lg"
                   errorDiv.innerHTML = `
