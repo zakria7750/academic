@@ -40,17 +40,46 @@ export async function addCertificate(formData: FormData) {
     const certificateImageFile = formData.get("certificateImage") as File
     const issueDate = formData.get("issueDate") as string
 
+    // التحقق من البيانات المطلوبة
+    if (!certificateNumber || !certificateNumber.trim()) {
+      return { success: false, message: "رقم الشهادة مطلوب" }
+    }
+
+    if (!certificateImageFile || certificateImageFile.size === 0) {
+      return { success: false, message: "صورة الشهادة مطلوبة" }
+    }
+
+    // التحقق من نوع الملف
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+    if (!allowedTypes.includes(certificateImageFile.type)) {
+      return { success: false, message: "نوع الملف غير مدعوم. يُسمح فقط بـ JPEG, PNG, WebP" }
+    }
+
+    // التحقق من حجم الملف (5MB حد أقصى)
+    const maxSize = 5 * 1024 * 1024 // 5MB
+    if (certificateImageFile.size > maxSize) {
+      return { success: false, message: "حجم الملف كبير جداً. الحد الأقصى 5 ميجابايت" }
+    }
+
     let certificateImageUrl = ""
 
-    if (certificateImageFile && certificateImageFile.size > 0) {
-      const blob = await put(
-        `certificates/${certificateNumber}-${Date.now()}.${certificateImageFile.name.split(".").pop()}`,
-        certificateImageFile,
-        {
-          access: "public",
-        },
-      )
+    try {
+      // التحقق من وجود متغير البيئة لـ Vercel Blob
+      if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        console.error("BLOB_READ_WRITE_TOKEN is not configured")
+        return { success: false, message: "خدمة رفع الملفات غير مُعدة بشكل صحيح" }
+      }
+
+      const fileExtension = certificateImageFile.name.split(".").pop() || "jpg"
+      const fileName = `certificates/${certificateNumber}-${Date.now()}.${fileExtension}`
+      
+      const blob = await put(fileName, certificateImageFile, {
+        access: "public",
+      })
       certificateImageUrl = blob.url
+    } catch (uploadError) {
+      console.error("Error uploading file to Vercel Blob:", uploadError)
+      return { success: false, message: "فشل في رفع صورة الشهادة. تأكد من اتصال الإنترنت وحاول مرة أخرى" }
     }
 
     const { error } = await supabase.from("certificates").insert({
@@ -60,17 +89,18 @@ export async function addCertificate(formData: FormData) {
     })
 
     if (error) {
+      console.error("Database error:", error)
       if (error.code === "23505") {
         return { success: false, message: "رقم الشهادة موجود مسبقاً" }
       }
-      throw error
+      return { success: false, message: "فشل في حفظ بيانات الشهادة في قاعدة البيانات" }
     }
 
     revalidatePath("/dashboard/certificates")
     return { success: true, message: "تم إضافة الشهادة بنجاح" }
   } catch (error) {
     console.error("Error adding certificate:", error)
-    return { success: false, message: "حدث خطأ أثناء إضافة الشهادة" }
+    return { success: false, message: "حدث خطأ غير متوقع أثناء إضافة الشهادة" }
   }
 }
 
@@ -82,36 +112,65 @@ export async function updateCertificate(id: string, formData: FormData) {
     const certificateImageFile = formData.get("certificateImage") as File
     const issueDate = formData.get("issueDate") as string
 
+    // التحقق من البيانات المطلوبة
+    if (!certificateNumber || !certificateNumber.trim()) {
+      return { success: false, message: "رقم الشهادة مطلوب" }
+    }
+
     const updateData: any = {
       certificate_number: certificateNumber,
       issue_date: issueDate,
     }
 
+    // إذا تم اختيار صورة جديدة
     if (certificateImageFile && certificateImageFile.size > 0) {
-      const blob = await put(
-        `certificates/${certificateNumber}-${Date.now()}.${certificateImageFile.name.split(".").pop()}`,
-        certificateImageFile,
-        {
+      // التحقق من نوع الملف
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+      if (!allowedTypes.includes(certificateImageFile.type)) {
+        return { success: false, message: "نوع الملف غير مدعوم. يُسمح فقط بـ JPEG, PNG, WebP" }
+      }
+
+      // التحقق من حجم الملف (5MB حد أقصى)
+      const maxSize = 5 * 1024 * 1024 // 5MB
+      if (certificateImageFile.size > maxSize) {
+        return { success: false, message: "حجم الملف كبير جداً. الحد الأقصى 5 ميجابايت" }
+      }
+
+      try {
+        // التحقق من وجود متغير البيئة لـ Vercel Blob
+        if (!process.env.BLOB_READ_WRITE_TOKEN) {
+          console.error("BLOB_READ_WRITE_TOKEN is not configured")
+          return { success: false, message: "خدمة رفع الملفات غير مُعدة بشكل صحيح" }
+        }
+
+        const fileExtension = certificateImageFile.name.split(".").pop() || "jpg"
+        const fileName = `certificates/${certificateNumber}-${Date.now()}.${fileExtension}`
+        
+        const blob = await put(fileName, certificateImageFile, {
           access: "public",
-        },
-      )
-      updateData.certificate_image = blob.url
+        })
+        updateData.certificate_image = blob.url
+      } catch (uploadError) {
+        console.error("Error uploading file to Vercel Blob:", uploadError)
+        return { success: false, message: "فشل في رفع صورة الشهادة الجديدة. تأكد من اتصال الإنترنت وحاول مرة أخرى" }
+      }
     }
 
     const { error } = await supabase.from("certificates").update(updateData).eq("id", id)
 
     if (error) {
+      console.error("Database error:", error)
       if (error.code === "23505") {
         return { success: false, message: "رقم الشهادة موجود مسبقاً" }
       }
-      throw error
+      return { success: false, message: "فشل في تحديث بيانات الشهادة في قاعدة البيانات" }
     }
 
     revalidatePath("/dashboard/certificates")
     return { success: true, message: "تم تحديث الشهادة بنجاح" }
   } catch (error) {
     console.error("Error updating certificate:", error)
-    return { success: false, message: "حدث خطأ أثناء تحديث الشهادة" }
+    return { success: false, message: "حدث خطأ غير متوقع أثناء تحديث الشهادة" }
   }
 }
 

@@ -172,6 +172,22 @@ export default function CertificatesManagement() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
+      // التحقق من نوع الملف
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+      if (!allowedTypes.includes(file.type)) {
+        setResult({ success: false, message: "نوع الملف غير مدعوم. يُسمح فقط بـ JPEG, PNG, WebP" })
+        setShowResultDialog(true)
+        return
+      }
+
+      // التحقق من حجم الملف (5MB حد أقصى)
+      const maxSize = 5 * 1024 * 1024 // 5MB
+      if (file.size > maxSize) {
+        setResult({ success: false, message: "حجم الملف كبير جداً. الحد الأقصى 5 ميجابايت" })
+        setShowResultDialog(true)
+        return
+      }
+
       setFormData({ ...formData, certificateImage: file })
     }
   }
@@ -234,6 +250,7 @@ export default function CertificatesManagement() {
                       <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
                         <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
                         <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة هنا أو</p>
+                        <p className="text-xs text-academy-dark-gray/70 mb-3">الأنواع المدعومة: JPEG, PNG, WebP | الحد الأقصى: 5 ميجابايت</p>
                         <Button
                           type="button"
                           variant="outline"
@@ -491,6 +508,7 @@ export default function CertificatesManagement() {
                     <div className="border-2 border-dashed border-academy-blue/30 rounded-2xl p-8 text-center hover:border-academy-blue/50 transition-all duration-300 bg-gradient-to-br from-academy-blue-50/50 to-academy-gold-50/30">
                       <Upload className="w-16 h-16 text-academy-blue/60 mx-auto mb-4" />
                       <p className="text-academy-dark-gray mb-3 text-lg">اسحب وأفلت صورة الشهادة الجديدة هنا أو</p>
+                      <p className="text-xs text-academy-dark-gray/70 mb-3">الأنواع المدعومة: JPEG, PNG, WebP | الحد الأقصى: 5 ميجابايت</p>
                       <Button
                         type="button"
                         variant="outline"
